@@ -19,7 +19,7 @@ if(!isset($_SESSION['carrinho.php'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>Freshshop - Ecommerce Bootstrap 4 HTML Template</title>
+    <title>Freshshop - Ecommerce Bootstrap HTML Template</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -121,7 +121,7 @@ if(!isset($_SESSION['carrinho.php'])){
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/log133.png" class="logo" alt=""></a>
+                    <a class="navbar-brand" href="index.html"><img src="images/log21.png" class="logo" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
 
@@ -130,6 +130,19 @@ if(!isset($_SESSION['carrinho.php'])){
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="nav-item active"><a class="nav-link" href="index.html">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Receita de Carne</a></li>
+                                <li><a href="#">Receita de Peixe</a></li>
+                                <li><a href="#">Sopas</a></li>
+                                <li><a href="#">Doces e Sobremesa</a></li>
+                                <li><a href="#">Bolos</a></li>
+                                <li><a href="#">Massa</a></li>
+                                <li><a href="#">Marisco</a></li>
+                                <li><a href="#">Sumos e Bebidas</a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                             <ul class="dropdown-menu">
@@ -221,7 +234,7 @@ if(!isset($_SESSION['carrinho.php'])){
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Bem-Vindo a <br> LusoFlavors</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
+                            <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
                             <p><a class="btn hvr-hover" href="#">Shop New</a></p>
                         </div>
                     </div>
@@ -233,7 +246,7 @@ if(!isset($_SESSION['carrinho.php'])){
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Bem-Vindo a <br> LusoFlavors</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
+                            <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
                             <p><a class="btn hvr-hover" href="#">Shop New</a></p>
                         </div>
                     </div>
@@ -245,7 +258,7 @@ if(!isset($_SESSION['carrinho.php'])){
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="m-b-20">Bem-Vindo a <br> LusoFlavors</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
+                            <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
                             <p><a class="btn hvr-hover" href="#">Shop New</a></p>
                         </div>
                     </div>
@@ -265,19 +278,19 @@ if(!isset($_SESSION['carrinho.php'])){
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
-                        <img class="img-fluid" src="images/categories_img_01.jpg" alt="" />
+                        <img class="img-fluid" src="images/bacalhau_com_natas1.jpg" alt="" />
                         <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
-                        <img class="img-fluid" src="images/categories_img_02.jpg" alt="" />
+                        <img class="img-fluid" src="images/cachupa.cv1.jpg" alt="" />
                         <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
-                        <img class="img-fluid" src="images/categories_img_03.jpg" alt="" />
+                        <img class="img-fluid" src="images/moamba1.png" alt="" />
                         <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
                     </div>
                 </div>
@@ -333,7 +346,7 @@ if(!isset($_SESSION['carrinho.php'])){
                             <div class="type-lb">
                                 <p class="sale">Sale</p>
                             </div>
-                            <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                            <img src="images/sala-1.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -356,7 +369,7 @@ if(!isset($_SESSION['carrinho.php'])){
                             <div class="type-lb">
                                 <p class="new">New</p>
                             </div>
-                            <img src="images/bacalhau_com_natas.jpg" class="img-fluid" alt="Image">
+                            <img src="images/salada-frutas-com-creme-.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -379,7 +392,7 @@ if(!isset($_SESSION['carrinho.php'])){
                             <div class="type-lb">
                                 <p class="sale">Sale</p>
                             </div>
-                            <img src="images/feijoada-brasileira.jpg" class="img-fluid" alt="Image">
+                            <img src="images/Salada-de-atum-com-ovo.png" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -402,7 +415,7 @@ if(!isset($_SESSION['carrinho.php'])){
                             <div class="type-lb">
                                 <p class="sale">Sale</p>
                             </div>
-                            <img src="images/cachup-cv.jpg" class="img-fluid" alt="Image">
+                            <img src="images/salad-atum-2.png" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -500,7 +513,7 @@ if(!isset($_SESSION['carrinho.php'])){
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
+                    <img src="images/sala-1.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
