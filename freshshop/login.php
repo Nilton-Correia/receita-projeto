@@ -118,8 +118,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="conta-regita/css/materialize.min.css">
-    <link rel="stylesheet" href="conta-regita/css/tooplate.css">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/tooplate.css">
 </head>
 
 <body id="login">
