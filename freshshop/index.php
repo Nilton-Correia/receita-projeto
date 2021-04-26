@@ -133,14 +133,14 @@ if(!isset($_SESSION['carrinho.php'])){
                         <li class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Receita de Carne</a></li>
-                                <li><a href="#">Receita de Peixe</a></li>
-                                <li><a href="#">Sopas</a></li>
-                                <li><a href="#">Doces e Sobremesa</a></li>
-                                <li><a href="#">Bolos</a></li>
-                                <li><a href="#">Massa</a></li>
-                                <li><a href="#">Marisco</a></li>
-                                <li><a href="#">Sumos e Bebidas</a></li>
+                                <li><a href="receita-carne.php">Receita de Carne</a></li>
+                                <li><a href="receita-peixe.php">Receita de Peixe</a></li>
+                                <li><a href="sopas.php">Sopas</a></li>
+                                <li><a href="sobremesa-doce.php">Sobremesa e Doce</a></li>
+                                <li><a href="bolos.php">Bolos</a></li>
+                                <li><a href="massa.php">Massa</a></li>
+                                <li><a href="marisco.php">Marisco</a></li>
+                                <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
