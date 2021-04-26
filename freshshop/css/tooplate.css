@@ -124,7 +124,7 @@ ul.tm-home-list:not(.browser-default) {
 
 #register {
   padding-top: 180px;
-  background-image: url(../img/input-bg-01.jpg);
+  background-image:url(../images/logim3.jpg) ;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 30%;
@@ -140,7 +140,7 @@ ul.tm-home-list:not(.browser-default) {
 }
 
 #login {
-  background-image: url(../img/input-bg-04.jpg);
+  background-image: url(../images/logim3.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -514,6 +514,7 @@ input[type="email"]:not(.browser-default).tm-input-white-bg {
 
 @media (max-width: 767px) {
   #register {
+
     padding-top: 80px;
     padding-bottom: 80px;
   }
