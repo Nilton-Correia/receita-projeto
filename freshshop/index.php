@@ -144,18 +144,20 @@ if(!isset($_SESSION['carrinho.php'])){
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
                             <ul class="dropdown-menu">
-								<li><a href="shop.html">Sidebar Shop</a></li>
-								<li><a href="shop-detail.html">Shop Detail</a></li>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="my-account.html">My Account</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
+								<li><a href="shop.html">São Tomé</a></li>
+								<li><a href="shop-detail.html">Angola</a></li>
+                                <li><a href="cart.html">Portugal</a></li>
+                                <li><a href="shop.html">Cabo Verde</a></li>
+                                <li><a href="checkout.html">Moçambique</a></li>
+                                <li><a href="my-account.html">Giné Bissau</a></li>
+                                <li><a href="wishlist.html">Guiné Equatorial</a></li>
+                                <li><a href="wishlist.html">Timor-Leste</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Galeria</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gallery.html">Receitas recentes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -176,7 +178,7 @@ if(!isset($_SESSION['carrinho.php'])){
                 </div>
             <div class="side-menu">
                 <ul>
-                    <li><a href="login.php"><i class="fa fa-user s_color"></i>Account</a></li>
+                    <li><a href="login.php"><i class="fa fa-user s_color"></i>Conta</a></li>
                 </ul>
             </div>
                 <!-- End Atribute Navigation -->
@@ -332,21 +334,23 @@ if(!isset($_SESSION['carrinho.php'])){
                     <div class="special-menu text-center">
                         <div class="button-group filter-button-group">
                             <button class="active" data-filter="*">Todos</button>
-                            <button data-filter=".top-featured">Top featured</button>
-                            <button data-filter=".best-seller">Best seller</button>
+                            <button data-filter=".doces">Doces</button>
+                            <button data-filter=".mariscos">Mariscos</button>
+                            <button data-filter=".peixe">Peixes</button>
+                            <button data-filter=".carnes">Carnes</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="row special-list">
-                <div class="col-lg-3 col-md-6 special-grid best-seller">
+                <div class="col-lg-3 col-md-6 special-grid peixe">
                     <div class="products-single fix">
                         <div class="box-img-hover">
                             <div class="type-lb">
                                 <p class="sale">Sale</p>
                             </div>
-                            <img src="images/sala-1.jpg" class="img-fluid" alt="Image">
+                            <img src="images/resized-image-Promo.jpeg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -363,13 +367,114 @@ if(!isset($_SESSION['carrinho.php'])){
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 special-grid top-featured">
+                <div class="col-lg-3 col-md-6 special-grid doces">
                     <div class="products-single fix">
                         <div class="box-img-hover">
                             <div class="type-lb">
                                 <p class="new">New</p>
                             </div>
-                            <img src="images/salada-frutas-com-creme-.jpg" class="img-fluid" alt="Image">
+                            <img src="images/Mousse.jpg" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                </ul>
+                                <a class="cart" href="#">Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>Mouses</h4>
+                            <h5> $9.79</h5>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="col-lg-3 col-md-6 special-grid mariscos">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="new">New</p>
+                            </div>
+                            <img src="images/mexiliões.jpg" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                </ul>
+                                <a class="cart" href="#">Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>Mexilhões</h4>
+                            <h5> $9.79</h5>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6 special-grid peixe">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="new">New</p>
+                            </div>
+                            <img src="images/calulu3.jpg" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                </ul>
+                                <a class="cart" href="#">Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>Calulu de peixe</h4>
+                            <h5> $9.79</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 special-grid peixe">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="new">New</p>
+                            </div>
+                            <img src="images/bacalhau_com_natas1.jpg" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                </ul>
+                                <a class="cart" href="#">Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>Bacalhau com natas</h4>
+                            <h5> $9.79</h5>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="col-lg-3 col-md-6 special-grid carnes">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="new">New</p>
+                            </div>
+                            <img src="images/cachupa.cv1.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -385,6 +490,13 @@ if(!isset($_SESSION['carrinho.php'])){
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
 
                 <div class="col-lg-3 col-md-6 special-grid top-featured">
                     <div class="products-single fix">
