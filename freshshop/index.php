@@ -154,7 +154,7 @@ if(!isset($_SESSION['carrinho.php'])){
                                 <li><a href="wishlist.html">Wishlist</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Galeria</a></li>
+                        <li class="nav-item"><a class="nav-link" href="novidades.php">Novidades</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
                     </ul>
                 </div>
