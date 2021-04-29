@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once "functions/product.php";
+require_once "functions/receita-funcao.php";
 require_once "functions/cart.php";
 
-$pdoConnection = require_once "confi.php";
+$rtConnection = require_once "confi.php";
 
 if(isset($_GET['acao']) && in_array($_GET['acao'], array('add', 'del', 'up'))) {
 
@@ -25,8 +25,8 @@ if(isset($_GET['acao']) && in_array($_GET['acao'], array('add', 'del', 'up'))) {
     header('location: carrinho.php');
 }
 
-$resultsCarts = getContentCart($pdoConnection);
-$totalCarts  = getTotalCart($pdoConnection);
+$resultsCarts = getContentCart($rtConnection);
+$totalCarts  = getTotalCart($rtConnection);
 
 
 ?>

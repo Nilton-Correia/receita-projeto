@@ -33,17 +33,17 @@ function getContentCart($pdo) {
     if($_SESSION['cart']) {
 
         $cart = $_SESSION['cart'];
-        $receita =  getProductsByIds($pdo, implode(',', array_keys($cart)));
+        $products =  getProductsByIds($pdo, implode(',', array_keys($cart)));
 
-        foreach($receita as $receita) {
+        foreach($products as $product) {
 
             $results[] = array(
-                'idreceita' => $receita['idreceita'],
-                'imagens'=> $receita['imagens'],
-                'nome' => $receita['nome'],
-                'preco' => $receita['preco'],
-                'quantity' => $cart[$receita['idreceita']],
-                'subtotal' => $cart[$receita['receita']] * $receita['preco'],
+                'idreceita' => $product['idreceita'],
+                'imagens'=> $product['imagens'],
+                'nome' => $product['nome'],
+                'preco' => $product['preco'],
+                'quantity' => $cart[$product['idreceita']],
+                'subtotal' => $cart[$product['idreceita']] * $product['preco'],
             );
         }
     }
@@ -55,8 +55,8 @@ function getTotalCart($pdo) {
 
     $total = 0;
 
-    foreach(getContentCart($pdo) as $receita) {
-        $total += $receita['subtotal'];
+    foreach(getContentCart($pdo) as $product) {
+        $total += $product['subtotal'];
     }
     return $total;
 }

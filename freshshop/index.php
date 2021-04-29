@@ -1,12 +1,14 @@
 <?php
-// Include config file
 session_start();
-require("confi.php");
-// Check if the user is
-if(!isset($_SESSION['carrinho.php'])){
-    $_SESSION['carrinho.php'] = array();
-}//adiciona produto
+if(!isset($_SESSION['cart'])){
+    $_SESSION['cart'] = array();
+}
+require_once "functions/receita-funcao.php";
+$pdoConfig = require_once "confi.php";
+$products = getProducts($pdoConfig);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -345,12 +347,13 @@ if(!isset($_SESSION['carrinho.php'])){
 
             <div class="row special-list">
                 <div class="col-lg-3 col-md-6 special-grid peixe">
+                    <?php foreach($products as $product) : ?>
                     <div class="products-single fix">
                         <div class="box-img-hover">
                             <div class="type-lb">
                                 <p class="sale">Sale</p>
                             </div>
-                            <img src="images/resized-image-Promo.jpeg" class="img-fluid" alt="Image">
+                            <img src="images/<?php echo $product['imagens']?>" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -361,10 +364,11 @@ if(!isset($_SESSION['carrinho.php'])){
                             </div>
                         </div>
                         <div class="why-text">
-                            <h4>Lorem ipsum dolor sit amet</h4>
-                            <h5> $7.79</h5>
+                            <h4><?php echo $product['nome']?></h4>
+                            <h5 class="card-subtitle m-2 text text-muted"><?php echo number_format($product['preco'], 2, ',', '.') ?>€</h5>
                         </div>
                     </div>
+                    <?php endforeach;?>
                 </div>
 
                 <div class="col-lg-3 col-md-6 special-grid doces">
@@ -820,4 +824,5 @@ if(!isset($_SESSION['carrinho.php'])){
     <script src="js/custom.js"></script>
 
 </body>
+
 </html>
