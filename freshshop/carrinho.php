@@ -50,8 +50,8 @@ $totalCarts  = getTotalCart($rtConnection);
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="images/logo1.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/logo1.png">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -70,71 +70,6 @@ $totalCarts  = getTotalCart($rtConnection);
 </head>
 
 <body>
-<!-- Start Main Top -->
-<div class="main-top">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="custom-select-box">
-                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                        <option>¥ JPY</option>
-                        <option>$ USD</option>
-                        <option>€ EUR</option>
-                    </select>
-                </div>
-                <div class="right-phone-box">
-                    <p>Call US :- <a href="#"> +11 900 800 100</a></p>
-                </div>
-                <div class="our-link">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>
-                        <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>
-                        <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="login-box">
-                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-                        <option>Register Here</option>
-                        <option>Sign In</option>
-                    </select>
-                </div>
-                <div class="text-slid-box">
-                    <div id="offer-box" class="carouselTicker">
-                        <ul class="offer-box">
-                            <li>
-                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Main Top -->
 
 <!-- Start Main Top -->
 <header class="main-header">
@@ -185,8 +120,13 @@ $totalCarts  = getTotalCart($rtConnection);
             </div>
             <!-- End Atribute Navigation -->
         </div>
-
         <!-- Start Side Menu -->
+
+
+
+
+
+
         <div class="side">
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
             <li class="cart-box">
@@ -199,7 +139,7 @@ $totalCarts  = getTotalCart($rtConnection);
                     <li>
                         <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
                         <h6><a href="#">Omnes ocurreret</a></h6>
-                        <p>1x - <span class="price">$60.00</span></p>
+                        <p>1x - <span class="price">$220.00</span></p>
                     </li>
                     <li>
                         <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
@@ -236,7 +176,7 @@ $totalCarts  = getTotalCart($rtConnection);
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2>Cart</h2>
+                <h2>Carrinho</h2>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Shop</a></li>
                     <li class="breadcrumb-item active">Cart</li>
@@ -249,105 +189,46 @@ $totalCarts  = getTotalCart($rtConnection);
 
 <!-- Start Cart  -->
 <?php if($resultsCarts) : ?>
-<div class="cart-box-main">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="table-main table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Images</th>
-                            <th>Product Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Remove</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach($resultsCarts as $result) : ?>
-                        <tr>
-                            <td class="thumbnail-img">
-                                <a href="#">
-                                    <img class="img-fluid" src="images/<?php echo $result['imagens']?>" alt="" />
-                                </a>
-                            </td>
-                            <td class="name-pr">
-                                <?php echo $result['nome']?>
-                            </td>
-                            <td class="price-pr">
-                            <?php echo number_format($result['preco'], 2, ',', '.')?>€
-                            </td>
-                            <td class="quantity-box"><input type="number" size="4" value="<?php echo $result['quantity']?>" min="0" step="1" class="c-input-text qty text" name="prod[<?php echo $result['idreceita']?>]"></td>
-                            <td class="total-pr">
-                                <?php echo number_format($totalCarts, 2, ',', '.')?>€
-                            </td>
-                            <td class="remove-pr">
-                                <a href="carrinho.php?acao=del&id=<?php echo $result['idreceita']?>">
-                                    <i class="fas fa-times"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <?php endforeach;?>
-                        <tr>
+    <form action="carrinho.php?acao=up" method="post">
+        <table class="table table-strip">
+            <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+                <th>Subtotal</th>
+                <th>Ação</th>
 
-        <div class="row my-5">
-            <div class="col-lg-6 col-sm-6">
-                <div class="coupon-box">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">
-                        <div class="input-group-append">
-                            <button class="btn btn-theme" type="button">Apply Coupon</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-sm-6">
-                <div class="update-box">
-                    <input value="Update Cart" type="submit">
-                </div>
-            </div>
-        </div>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach($resultsCarts as $result) : ?>
+                <tr>
 
-        <div class="row my-5">
-            <div class="col-lg-8 col-sm-12"></div>
-            <div class="col-lg-4 col-sm-12">
-                <div class="order-box">
-                    <h3>Order summary</h3>
-                    <div class="d-flex">
-                        <h4>Sub Total</h4>
-                        <div class="ml-auto font-weight-bold"> $ 130 </div>
-                    </div>
-                    <div class="d-flex">
-                        <h4>Discount</h4>
-                        <div class="ml-auto font-weight-bold"> $ 40 </div>
-                    </div>
-                    <hr class="my-1">
-                    <div class="d-flex">
-                        <h4>Coupon Discount</h4>
-                        <div class="ml-auto font-weight-bold"> $ 10 </div>
-                    </div>
-                    <div class="d-flex">
-                        <h4>Tax</h4>
-                        <div class="ml-auto font-weight-bold"> $ 2 </div>
-                    </div>
-                    <div class="d-flex">
-                        <h4>Shipping Cost</h4>
-                        <div class="ml-auto font-weight-bold"> Free </div>
-                    </div>
-                    <hr>
-                    <div class="d-flex gr-total">
-                        <h5>Grand Total</h5>
-                        <div class="ml-auto h5"> $ 388 </div>
-                    </div>
-                    <hr> </div>
-            </div>
-            <div class="col-12 d-flex shopping-box"><a href="checkout.html" class="ml-auto btn hvr-hover">Checkout</a> </div>
-        </div>
+                    <td><?php echo $result['nome']?></td>
+                    <td>
+                        <input type="text" name="prod[<?php echo $result['idreceita']?>]" value="<?php echo $result['quantity']?>" size="1" />
 
-    </div>
-</div>
+                    </td>
+                    <td><?php echo number_format($result['preco'], 2, ',', '.')?>€</td>
+                    <td><?php echo number_format($result['subtotal'], 2, ',', '.')?>€</td>
+                    <td><a href="carrinho.php?acao=del&id=<?php echo $result['idreceita']?>" class="btn btn-danger">Remover</a></td>
+
+                </tr>
+            <?php endforeach;?>
+            <tr>
+                <td colspan="3" class="text-right"><b>Total: </b></td>
+                <td><?php echo number_format($totalCarts, 2, ',', '.')?>€</td>
+                <td></td>
+            </tr>
+            </tbody>
+
+        </table>
+
+        <a class="btn btn-info" href="index.php">Continuar Comprando</a>
+        <button class="btn btn-primary" type="submit">Atualizar Carrinho</button>
+        <a class="btn btn-info" href="Finalizarcompra.php">Finalizar</a>
+    </form>
 <?php endif?>
 <!-- End Cart -->
 
@@ -436,7 +317,6 @@ $totalCarts  = getTotalCart($rtConnection);
         </div>
     </div>
 </div>
-
 <!-- End Instagram Feed  -->
 
 
