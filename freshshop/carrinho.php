@@ -34,6 +34,7 @@ $totalCarts  = getTotalCart($rtConnection);
 
 <!DOCTYPE html>
 <html lang="en">
+<!-- End Cart -->
 <!-- Basic -->
 
 <head>
