@@ -123,14 +123,14 @@ $products = getProducts($pdoConfig);
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/log21.png" class="logo" alt=""></a>
+                    <a class="navbar-brand" href="index.php"><img src="images/log21.png" class="logo" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
                         <li class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
@@ -158,7 +158,7 @@ $products = getProducts($pdoConfig);
                                 <li><a href="wishlist.html">Timor-Leste</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Receitas recentes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gallery.html">Novidades</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
                     </ul>
                 </div>
@@ -205,7 +205,7 @@ $products = getProducts($pdoConfig);
                             <p>1x - <span class="price">$40.00</span></p>
                         </li>
                         <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                            <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">Ver Carrinho</a>
                             <span class="float-right"><strong>Total</strong>: $180.00</span>
                         </li>
                     </ul>
@@ -360,7 +360,7 @@ $products = getProducts($pdoConfig);
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
-                                <a class="cart" href="#">Add to Cart</a>
+                                <a class="cart" href="carrinho.php?acao=add&id=<?php echo $product['idreceita']?>">Add to Cart</a>
                             </div>
                         </div>
                         <div class="why-text">
@@ -558,7 +558,7 @@ $products = getProducts($pdoConfig);
             <div class="row">
                 <div class="col-lg-12">
                     <div class="title-all text-center">
-                        <h1>Receitas + Recentes</h1>
+                        <h1>Destaque do Dia</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
                     </div>
                 </div>

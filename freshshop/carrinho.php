@@ -185,6 +185,7 @@ $totalCarts  = getTotalCart($rtConnection);
             </div>
             <!-- End Atribute Navigation -->
         </div>
+
         <!-- Start Side Menu -->
         <div class="side">
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
@@ -247,6 +248,7 @@ $totalCarts  = getTotalCart($rtConnection);
 <!-- End All Title Box -->
 
 <!-- Start Cart  -->
+<?php if($resultsCarts) : ?>
 <div class="cart-box-main">
     <div class="container">
         <div class="row">
@@ -264,83 +266,31 @@ $totalCarts  = getTotalCart($rtConnection);
                         </tr>
                         </thead>
                         <tbody>
+                        <?php foreach($resultsCarts as $result) : ?>
                         <tr>
                             <td class="thumbnail-img">
                                 <a href="#">
-                                    <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
+                                    <img class="img-fluid" src="images/<?php echo $result['imagens']?>" alt="" />
                                 </a>
                             </td>
                             <td class="name-pr">
-                                <a href="#">
-                                    Lorem ipsum dolor sit amet
-                                </a>
+                                <?php echo $result['nome']?>
                             </td>
                             <td class="price-pr">
-                                <p>$ 80.0</p>
+                            <?php echo number_format($result['preco'], 2, ',', '.')?>€
                             </td>
-                            <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
+                            <td class="quantity-box"><input type="number" size="4" value="<?php echo $result['quantity']?>" min="0" step="1" class="c-input-text qty text" name="prod[<?php echo $result['idreceita']?>]"></td>
                             <td class="total-pr">
-                                <p>$ 80.0</p>
+                                <?php echo number_format($totalCarts, 2, ',', '.')?>€
                             </td>
                             <td class="remove-pr">
-                                <a href="#">
+                                <a href="carrinho.php?acao=del&id=<?php echo $result['idreceita']?>">
                                     <i class="fas fa-times"></i>
                                 </a>
                             </td>
                         </tr>
+                        <?php endforeach;?>
                         <tr>
-                            <td class="thumbnail-img">
-                                <a href="#">
-                                    <img class="img-fluid" src="images/img-pro-02.jpg" alt="" />
-                                </a>
-                            </td>
-                            <td class="name-pr">
-                                <a href="#">
-                                    Lorem ipsum dolor sit amet
-                                </a>
-                            </td>
-                            <td class="price-pr">
-                                <p>$ 60.0</p>
-                            </td>
-                            <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
-                            <td class="total-pr">
-                                <p>$ 80.0</p>
-                            </td>
-                            <td class="remove-pr">
-                                <a href="#">
-                                    <i class="fas fa-times"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="thumbnail-img">
-                                <a href="#">
-                                    <img class="img-fluid" src="images/img-pro-03.jpg" alt="" />
-                                </a>
-                            </td>
-                            <td class="name-pr">
-                                <a href="#">
-                                    Lorem ipsum dolor sit amet
-                                </a>
-                            </td>
-                            <td class="price-pr">
-                                <p>$ 30.0</p>
-                            </td>
-                            <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
-                            <td class="total-pr">
-                                <p>$ 80.0</p>
-                            </td>
-                            <td class="remove-pr">
-                                <a href="#">
-                                    <i class="fas fa-times"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
 
         <div class="row my-5">
             <div class="col-lg-6 col-sm-6">
@@ -398,6 +348,7 @@ $totalCarts  = getTotalCart($rtConnection);
 
     </div>
 </div>
+<?php endif?>
 <!-- End Cart -->
 
 <!-- Start Instagram Feed  -->
@@ -485,6 +436,7 @@ $totalCarts  = getTotalCart($rtConnection);
         </div>
     </div>
 </div>
+
 <!-- End Instagram Feed  -->
 
 
