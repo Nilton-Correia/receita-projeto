@@ -372,6 +372,7 @@ $totalCarts  = getTotalCart($rtConnection);
 </div>
 <?php endif?>
 <!-- End Cart -->
+<!-- End Cart -->
 
 <!-- Start Instagram Feed  -->
 <div class="instagram-box">
