@@ -1,12 +1,13 @@
 <?php
+// Include config file
 session_start();
-if(!isset($_SESSION['cart'])){
-    $_SESSION['cart'] = array();
-}
-require_once "functions/receita-funcao.php";
-$pdoConfig = require_once "confi.php";
-$products = getProducts($pdoConfig);
+require("confi.php");
+// Check if the user is
+if(!isset($_SESSION['carrinho.php'])){
+    $_SESSION['carrinho.php'] = array();
+}//adiciona produto
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -253,33 +254,31 @@ $products = getProducts($pdoConfig);
                         </div>
                     </div>
 
-                    <div class="product-categorie-receita-carne">
+                    <div class="product-categorie-box">
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                        <?php foreach($products as $product) : ?>
                                         <div class="products-single fix">
                                             <div class="box-img-hover">
                                                 <div class="type-lb">
                                                     <p class="sale">Sale</p>
                                                 </div>
-                                                <img src="images/<?php echo $product['imagens']?>" class="img-fluid" alt="Image">
+                                                <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
                                                 <div class="mask-icon">
                                                     <ul>
                                                         <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
                                                         <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                                         <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                                     </ul>
-                                                    <a class="cart" href="carrinho.php?acao=add&id=<?php echo $product['idreceita']?>">Add to Cart</a>
+                                                    <a class="cart" href="#">Add to Cart</a>
                                                 </div>
                                             </div>
                                             <div class="why-text">
-                                                <h4><?php echo $product['nome']?></h4>
-                                                <h5 class="card-subtitle m-2 text text-muted"><?php echo number_format($product['preco'], 2, ',', '.') ?>€</h5>
+                                                <h4>Lorem ipsum dolor sit amet</h4>
+                                                <h5> $9.79</h5>
                                             </div>
                                         </div>
-                                        <?php endforeach;?>
                                     </div>
                                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                         <div class="products-single fix">

@@ -349,10 +349,12 @@ $products = getProducts($pdoConfig);
             <div class="row special-list">
                 <div class="col-lg-3 col-md-6 special-grid">
                     <?php foreach($products as $product) : ?>
+
+
                     <div class="products-single fix">
                         <div class="box-img-hover">
                             <div class="type-lb">
-                                <p class="sale">Sale</p>
+                                <p class="sale"><?php echo $product['idcategoria']?></p>
                             </div>
                             <img src="images/<?php echo $product['imagens']?>" class="img-fluid" alt="Image">
                             <div class="mask-icon">
@@ -362,25 +364,27 @@ $products = getProducts($pdoConfig);
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
 
-                                <a class="cart" href="carrinho.php?acao=add&id=<?php echo $product['idreceita']?>" class="card-link">Adicionar ao carrinho</a>
+                                <a class="cart" href="teste.php?acao=add&id=<?php echo $product['idreceita']?>" class="card-link">Adicionar ao carrinho</a>
 
                             </div>
                         </div>
                         <div class="why-text">
-                            <h4><?php echo $product['nome']?></h4>
-                            <h5 class="card-subtitle m-2 text text-muted"><?php echo number_format($product['preco'], 2, ',', '.') ?>€</h5>
+                            <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h4>
+
+
+                            <h5 class="card-subtitle m-2 text text-muted">
+                                <?php
+                                if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
                         </div>
                     </div>
                     <?php endforeach;?>
                 </div>
 
 
-
-
-
             </div>
         </div>
     </div>
+
     <!-- End Products  -->
 
     <!-- Start Blog  -->

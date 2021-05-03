@@ -290,22 +290,12 @@ $totalCarts  = getTotalCart($rtConnection);
                                 <p><?php echo number_format($result['subtotal'], 2, ',', '.')?>€</p>
                             </td>
                             <td class="remove-pr">
-                                <a href="carrinho.php?acao=del&id=<?php echo $result['idreceita']?>">
+                                <a href="teste.php?acao=del&id=<?php echo $result['idreceita']?>">
                                     <i class="fas fa-times"></i>
                                 </a>
                             </td>
                         </tr>
                         <?php endforeach;?>
-
-
-
-
-
-
-
-
-
-
 
                         </tbody>
                     </table>
@@ -313,17 +303,6 @@ $totalCarts  = getTotalCart($rtConnection);
             </div>
         </div>
 
-        <div class="row my-5">
-            <div class="col-lg-6 col-sm-6">
-                <div class="coupon-box">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">
-                        <div class="input-group-append">
-                            <button class="btn btn-theme" type="button">Apply Coupon</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="update-box">
                     <input value="Update Cart" type="submit">
@@ -331,7 +310,7 @@ $totalCarts  = getTotalCart($rtConnection);
                 </div>
             </div>
         </div>
-
+        <?php endif?>
         <div class="row my-5">
             <div class="col-lg-8 col-sm-12"></div>
             <div class="col-lg-4 col-sm-12">
@@ -370,7 +349,7 @@ $totalCarts  = getTotalCart($rtConnection);
 
     </div>
 </div>
-<?php endif?>
+
 <!-- End Cart -->
 <!-- End Cart -->
 
