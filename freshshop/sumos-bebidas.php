@@ -47,69 +47,7 @@ if(!isset($_SESSION['carrinho.php'])){
 
 <body>
 <!-- Start Main Top -->
-<div class="main-top">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="custom-select-box">
-                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                        <option>¥ JPY</option>
-                        <option>$ USD</option>
-                        <option>€ EUR</option>
-                    </select>
-                </div>
-                <div class="right-phone-box">
-                    <p>Call US :- <a href="#"> +11 900 800 100</a></p>
-                </div>
-                <div class="our-link">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>
-                        <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>
-                        <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="login-box">
-                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-                        <option>Register Here</option>
-                        <option>Sign In</option>
-                    </select>
-                </div>
-                <div class="text-slid-box">
-                    <div id="offer-box" class="carouselTicker">
-                        <ul class="offer-box">
-                            <li>
-                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!-- End Main Top -->
 
 <!-- Start Main Top -->
@@ -122,28 +60,43 @@ if(!isset($_SESSION['carrinho.php'])){
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="images/logo.png" class="logo" alt=""></a>
+                <a class="navbar-brand" href="index.html"><img src="images/log21.png" class="logo" alt=""></a>
             </div>
             <!-- End Header Navigation -->
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                    <li class="dropdown active">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                    <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
                         <ul class="dropdown-menu">
-                            <li><a href="shop.html">Sidebar Shop</a></li>
-                            <li><a href="shop-detail.html">Shop Detail</a></li>
-                            <li><a href="cart.html">Cart</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
-                            <li><a href="my-account.html">My Account</a></li>
-                            <li><a href="wishlist.html">Wishlist</a></li>
+                            <li><a href="receita-carne.php">Receita de Carne</a></li>
+                            <li><a href="receita-peixe.php">Receita de Peixe</a></li>
+                            <li><a href="sopas.php">Sopas</a></li>
+                            <li><a href="sobremesa-doce.php">Sobremesa e Doce</a></li>
+                            <li><a href="bolos.php">Bolos</a></li>
+                            <li><a href="massa.php">Massa</a></li>
+                            <li><a href="marisco.php">Marisco</a></li>
+                            <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="shop.html">São Tomé</a></li>
+                            <li><a href="shop-detail.html">Angola</a></li>
+                            <li><a href="cart.html">Portugal</a></li>
+                            <li><a href="shop.html">Cabo Verde</a></li>
+                            <li><a href="checkout.html">Moçambique</a></li>
+                            <li><a href="my-account.html">Giné Bissau</a></li>
+                            <li><a href="wishlist.html">Guiné Equatorial</a></li>
+                            <li><a href="wishlist.html">Timor-Leste</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Receitas recentes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -152,14 +105,25 @@ if(!isset($_SESSION['carrinho.php'])){
             <div class="attr-nav">
                 <ul>
                     <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                    <li class="side-menu"><a href="#">
+                    <li class="side-menu">
+                        <a href="#">
                             <i class="fa fa-shopping-bag"></i>
                             <span class="badge">3</span>
-                            <p>My Cart</p>
-                        </a></li>
+                        </a>
+                    </li>
                 </ul>
             </div>
-            <!-- End Atribute Navigation -->
+
+        </div>
+        <div class="side-menu">
+            <ul>
+                <li><a href="login.php"><i class="fa fa-user s_color"></i>
+
+                        <span><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
+                            }
+                            else{ echo "Conta";}?> </span>
+                    </a></li>
+            </ul>
         </div>
         <!-- Start Side Menu -->
         <div class="side">
@@ -812,7 +776,7 @@ if(!isset($_SESSION['carrinho.php'])){
 <script src="js/jquery.superslides.min.js"></script>
 <script src="js/bootstrap-select.js"></script>
 <script src="js/inewsticker.js"></script>
-<script src="js/bootsnav.js."></script>
+<script src="js/bootsnav.js"></script>
 <script src="js/images-loded.min.js"></script>
 <script src="js/isotope.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>

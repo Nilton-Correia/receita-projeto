@@ -80,7 +80,7 @@ $products = getProducts($pdoConfig);
                                 <li><a href="bolos.php">Bolos</a></li>
                                 <li><a href="massa.php">Massa</a></li>
                                 <li><a href="marisco.php">Marisco</a></li>
-           <yy></yy>                     <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
+                               <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -120,7 +120,7 @@ $products = getProducts($pdoConfig);
                 <ul>
                     <li><a href="login.php"><i class="fa fa-user s_color"></i>
 
-                            <span><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Ola ";echo htmlspecialchars($_SESSION["username"]);
+                            <span><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
                                 }
                                 else{ echo "Conta";}?> </span>
                             </a></li>

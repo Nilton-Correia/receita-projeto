@@ -1,12 +1,13 @@
 <?php
-// Initialize the session
 session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: index.php");
+
     exit;
 }
+
 if(!isset($_SESSION['cart'])){
     $_SESSION['cart'] = array();
 }
@@ -14,7 +15,6 @@ require_once "functions/receita-funcao.php";
 $pdoConfig = require_once "confi.php";
 $products = getProducts($pdoConfig);
 ?>
-
 
 
 <!DOCTYPE html>
@@ -57,69 +57,6 @@ $products = getProducts($pdoConfig);
 
 <body>
 <!-- Start Main Top -->
-<div class="main-top">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="custom-select-box">
-                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                        <option>¥ JPY</option>
-                        <option>$ USD</option>
-                        <option>€ EUR</option>
-                    </select>
-                </div>
-                <div class="right-phone-box">
-                    <p>Call US :- <a href="#"> +11 900 800 100</a></p>
-                </div>
-                <div class="our-link">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>
-                        <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>
-                        <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="login-box">
-                    <select id="basic" class="selectpicker show-tick form-control"  data-placeholder="Sign In">
-                        <option>Register Here</option>
-                        <option>Sign In</option>
-                    </select>
-                </div>
-                <div class="text-slid-box">
-                    <div id="offer-box" class="carouselTicker">
-                        <ul class="offer-box">
-                            <li>
-                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- End Main Top -->
 
 <!-- Start Main Top -->
@@ -151,7 +88,7 @@ $products = getProducts($pdoConfig);
                             <li><a href="bolos.php">Bolos</a></li>
                             <li><a href="massa.php">Massa</a></li>
                             <li><a href="marisco.php">Marisco</a></li>
-                            <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
+                            <yy></yy>                     <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -189,7 +126,12 @@ $products = getProducts($pdoConfig);
         </div>
         <div class="side-menu">
             <ul>
-                <li><a href="login.php"><i class="fa fa-user s_color"></i>Conta</a></li>
+                <li><a href="login.php"><i class="fa fa-user s_color"></i>
+
+                        <span><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Ola ";echo htmlspecialchars($_SESSION["username"]);
+                            }
+                            else{ echo "Conta";}?> </span>
+                    </a></li>
             </ul>
         </div>
         <!-- End Atribute Navigation -->
@@ -355,11 +297,13 @@ $products = getProducts($pdoConfig);
         </div>
 
         <div class="row special-list">
-            <div class="col-lg-3 col-md-6 special-grid">
-                <?php foreach($products as $product) : ?>
-
-
+            <?php foreach($products as $product) : ?>
+                <div class="col-lg-3 col-md-6 special-grid">
                     <div class="products-single fix">
+
+
+
+
                         <div class="box-img-hover">
                             <div class="type-lb">
                                 <p class="sale"><?php echo $product['idcategoria']?></p>
@@ -384,10 +328,11 @@ $products = getProducts($pdoConfig);
                                 <?php
                                 if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
                         </div>
-                    </div>
-                <?php endforeach;?>
-            </div>
 
+                    </div>
+
+                </div>
+            <?php endforeach;?>
 
         </div>
     </div>

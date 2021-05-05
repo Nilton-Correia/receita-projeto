@@ -76,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                                 header("location: administrar/indexadmin.php");
                             }else{
-                                header("location:welcome.php");
+                                header("location:index.php");
                             }
 
                         }

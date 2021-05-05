@@ -7,6 +7,7 @@ if(!isset($_SESSION['carrinho.php'])){
     $_SESSION['carrinho.php'] = array();
 }//adiciona produto
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -19,7 +20,7 @@ if(!isset($_SESSION['carrinho.php'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>Freshshop - Ecommerce Bootstrap HTML Template</title>
+    <title>Freshshop - Ecommerce Bootstrap 4 HTML Template</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -46,69 +47,7 @@ if(!isset($_SESSION['carrinho.php'])){
 
 <body>
 <!-- Start Main Top -->
-<div class="main-top">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="custom-select-box">
-                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                        <option>¥ JPY</option>
-                        <option>$ USD</option>
-                        <option>€ EUR</option>
-                    </select>
-                </div>
-                <div class="right-phone-box">
-                    <p>Call US :- <a href="#"> +11 900 800 100</a></p>
-                </div>
-                <div class="our-link">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>
-                        <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>
-                        <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="login-box">
-                    <select id="basic" class="selectpicker show-tick form-control"  data-placeholder="Sign In">
-                        <option>Register Here</option>
-                        <option>Sign In</option>
-                    </select>
-                </div>
-                <div class="text-slid-box">
-                    <div id="offer-box" class="carouselTicker">
-                        <ul class="offer-box">
-                            <li>
-                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
-                            </li>
-                            <li>
-                                <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!-- End Main Top -->
 
 <!-- Start Main Top -->
@@ -128,34 +67,36 @@ if(!isset($_SESSION['carrinho.php'])){
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                    <li class="nav-item active"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Receita de Carne</a></li>
-                            <li><a href="#">Receita de Peixe</a></li>
-                            <li><a href="#">Sopas</a></li>
-                            <li><a href="#">Doces e Sobremesa</a></li>
-                            <li><a href="#">Bolos</a></li>
-                            <li><a href="#">Massa</a></li>
-                            <li><a href="#">Marisco</a></li>
-                            <li><a href="#">Sumos e Bebidas</a></li>
+                            <li><a href="receita-carne.php">Receita de Carne</a></li>
+                            <li><a href="receita-peixe.php">Receita de Peixe</a></li>
+                            <li><a href="sopas.php">Sopas</a></li>
+                            <li><a href="sobremesa-doce.php">Sobremesa e Doce</a></li>
+                            <li><a href="bolos.php">Bolos</a></li>
+                            <li><a href="massa.php">Massa</a></li>
+                            <li><a href="marisco.php">Marisco</a></li>
+                            <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
-                            <li><a href="shop.html">Sidebar Shop</a></li>
-                            <li><a href="shop-detail.html">Shop Detail</a></li>
-                            <li><a href="cart.html">Cart</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
-                            <li><a href="my-account.html">My Account</a></li>
-                            <li><a href="wishlist.html">Wishlist</a></li>
+                            <li><a href="shop.html">São Tomé</a></li>
+                            <li><a href="shop-detail.html">Angola</a></li>
+                            <li><a href="cart.html">Portugal</a></li>
+                            <li><a href="shop.html">Cabo Verde</a></li>
+                            <li><a href="checkout.html">Moçambique</a></li>
+                            <li><a href="my-account.html">Giné Bissau</a></li>
+                            <li><a href="wishlist.html">Guiné Equatorial</a></li>
+                            <li><a href="wishlist.html">Timor-Leste</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galeria</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Receitas recentes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -176,10 +117,14 @@ if(!isset($_SESSION['carrinho.php'])){
         </div>
         <div class="side-menu">
             <ul>
-                <li><a href="login.php"><i class="fa fa-user s_color"></i>Account</a></li>
+                <li><a href="login.php"><i class="fa fa-user s_color"></i>
+
+                        <span><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
+                            }
+                            else{ echo "Conta";}?> </span>
+                    </a></li>
             </ul>
         </div>
-        <!-- End Atribute Navigation -->
         <!-- Start Side Menu -->
         <div class="side">
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
@@ -191,12 +136,12 @@ if(!isset($_SESSION['carrinho.php'])){
                         <p>1x - <span class="price">$80.00</span></p>
                     </li>
                     <li>
-                        <a href="#" class="photo"><img src="images/log3.jpg" class="cart-thumb" alt="" /></a>
+                        <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
                         <h6><a href="#">Omnes ocurreret</a></h6>
                         <p>1x - <span class="price">$60.00</span></p>
                     </li>
                     <li>
-                        <a href="#" class="photo"><img src="images/log3.jpg" class="cart-thumb" alt="" /></a>
+                        <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
                         <h6><a href="#">Agam facilisis</a></h6>
                         <p>1x - <span class="price">$40.00</span></p>
                     </li>
@@ -844,3 +789,4 @@ if(!isset($_SESSION['carrinho.php'])){
 </body>
 
 </html>
+
