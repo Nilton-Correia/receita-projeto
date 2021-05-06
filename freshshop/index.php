@@ -61,7 +61,7 @@ $products = getProducts($pdoConfig);
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/log21.png" class="logo" alt=""></a>
+                    <a class="navbar-brand" href="index.html"><img src="images/logotipo.png" class="logo" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
 
@@ -109,7 +109,7 @@ $products = getProducts($pdoConfig);
                         <li class="side-menu">
 							<a href="#">
 								<i class="fa fa-shopping-bag"></i>
-								<span class="badge">3</span>
+								<span class="badge">4</span>
 							</a>
 						</li>
                     </ul>
@@ -148,7 +148,7 @@ $products = getProducts($pdoConfig);
                             <p>1x - <span class="price">$40.00</span></p>
                         </li>
                         <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                            <a href="cart.html" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
                             <span class="float-right"><strong>Total</strong>: $180.00</span>
                         </li>
                     </ul>
