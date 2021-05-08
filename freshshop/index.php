@@ -6,6 +6,8 @@ if(!isset($_SESSION['cart'])){
 require_once "functions/receita-funcao.php";
 $pdoConfig = require_once "confi.php";
 $products = getProducts($pdoConfig);
+
+
 ?>
 
 
@@ -300,7 +302,7 @@ $products = getProducts($pdoConfig);
                             <div class="type-lb">
                                 <p class="sale"><?php echo $product['idcategoria']?></p>
                             </div>
-                            <img src="images/<?php echo $product['imagens']?>" class="img-fluid" alt="Image">
+                            <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
