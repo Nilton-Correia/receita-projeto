@@ -1,16 +1,18 @@
 <?php
-// Include config file
 session_start();
-require("confi.php");
-// Check if the user is
-if(!isset($_SESSION['carrinho.php'])){
-    $_SESSION['carrinho.php'] = array();
-}//adiciona produto
+if(!isset($_SESSION['cart'])){
+    $_SESSION['cart'] = array();
+}
+require_once "functions/receita-funcao.php";
+$pdoConfig = require_once "confi.php";
+$products = getProducts($pdoConfig);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
+<!-- End Cart -->
 
 <head>
     <meta charset="utf-8">
@@ -20,14 +22,14 @@ if(!isset($_SESSION['carrinho.php'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>Freshshop - Ecommerce Bootstrap 4 HTML Template</title>
+    <title>LusoFlavors</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="images/logotipo.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/logotipo.png">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -47,7 +49,6 @@ if(!isset($_SESSION['carrinho.php'])){
 
 <body>
 <!-- Start Main Top -->
-
 <!-- End Main Top -->
 
 <!-- Start Main Top -->
@@ -60,7 +61,7 @@ if(!isset($_SESSION['carrinho.php'])){
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="images/log21.png" class="logo" alt=""></a>
+                <a class="navbar-brand" href="index.php"><img src="images/logotipo.png" class="logo" alt=""></a>
             </div>
             <!-- End Header Navigation -->
 
@@ -108,7 +109,7 @@ if(!isset($_SESSION['carrinho.php'])){
                     <li class="side-menu">
                         <a href="#">
                             <i class="fa fa-shopping-bag"></i>
-                            <span class="badge">3</span>
+                            <span class="badge">4</span>
                         </a>
                     </li>
                 </ul>

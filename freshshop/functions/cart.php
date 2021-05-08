@@ -44,7 +44,7 @@ function getContentCart($pdo) {
                 'preco' => $product['preco'],
                 'idcategoria'=> $product['idcategoria'],
                 'idPais'=>$product['idPais'],
-                'idtipo_receita'=>$product['idtipo_receita'],
+                'descricao'=>$product['descricao'],
                 'quantity' => $cart[$product['idreceita']],
                 'subtotal' => $cart[$product['idreceita']] * $product['preco'],
             );

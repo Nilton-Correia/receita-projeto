@@ -1,16 +1,18 @@
 <?php
-// Include config file
 session_start();
-require("confi.php");
-// Check if the user is
-if(!isset($_SESSION['carrinho.php'])){
-    $_SESSION['carrinho.php'] = array();
-}//adiciona produto
+if(!isset($_SESSION['cart'])){
+    $_SESSION['cart'] = array();
+}
+require_once "functions/receita-funcao.php";
+$pdoConfig = require_once "confi.php";
+$products = getProducts($pdoConfig);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
+<!-- End Cart -->
 
 <head>
     <meta charset="utf-8">
@@ -20,14 +22,14 @@ if(!isset($_SESSION['carrinho.php'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>Freshshop - Ecommerce Bootstrap 4 HTML Template</title>
+    <title>LusoFlavors</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="images/logotipo.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/logotipo.png">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -47,7 +49,6 @@ if(!isset($_SESSION['carrinho.php'])){
 
 <body>
 <!-- Start Main Top -->
-
 <!-- End Main Top -->
 
 <!-- Start Main Top -->
@@ -60,7 +61,7 @@ if(!isset($_SESSION['carrinho.php'])){
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="images/log21.png" class="logo" alt=""></a>
+                <a class="navbar-brand" href="index.php"><img src="images/logotipo.png" class="logo" alt=""></a>
             </div>
             <!-- End Header Navigation -->
 
@@ -108,7 +109,7 @@ if(!isset($_SESSION['carrinho.php'])){
                     <li class="side-menu">
                         <a href="#">
                             <i class="fa fa-shopping-bag"></i>
-                            <span class="badge">3</span>
+                            <span class="badge">4</span>
                         </a>
                     </li>
                 </ul>
@@ -222,28 +223,37 @@ if(!isset($_SESSION['carrinho.php'])){
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
                                 <div class="row">
+
+                                    <?php foreach($products as $product) : ?>
                                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                         <div class="products-single fix">
                                             <div class="box-img-hover">
                                                 <div class="type-lb">
                                                     <p class="sale">Sale</p>
                                                 </div>
-                                                <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
                                                 <div class="mask-icon">
                                                     <ul>
                                                         <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
                                                         <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                                         <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                                     </ul>
-                                                    <a class="cart" href="#">Add to Cart</a>
+                                                    <a class="cart" href="teste.php?acao=add&id=<?php echo $product['idreceita']?>">Add to Cart</a>
                                                 </div>
                                             </div>
                                             <div class="why-text">
-                                                <h4>Lorem ipsum dolor sit amet</h4>
-                                                <h5> $9.79</h5>
+                                                <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h4>
+                                                <h5>
+                                                    <?php
+                                                    if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
+                                                </h5>
+
                                             </div>
                                         </div>
                                     </div>
+
+                                    <?php endforeach;?>
+
                                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                         <div class="products-single fix">
                                             <div class="box-img-hover">
