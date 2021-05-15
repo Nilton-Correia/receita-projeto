@@ -28,7 +28,6 @@ if(isset($_GET['acao']) && in_array($_GET['acao'], array('add', 'del', 'up'))) {
 $resultsCarts = getContentCart($rtConnection);
 $totalCarts  = getTotalCart($rtConnection);
 
-
 ?>
 
 

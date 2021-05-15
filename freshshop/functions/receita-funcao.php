@@ -8,11 +8,13 @@ function getProducts($pdo){
 }
 
 function getProductsByIds($pdo, $ids) {
-	$sql = "SELECT * FROM receita WHERE idreceita IN (".$ids.")";
+	$sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE  idreceita IN (".$ids.")";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
+
 	return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 function getCatReceita1($pdo){
     $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE categoria.nome_categoria='Receita Carne' ";
@@ -71,6 +73,13 @@ function getCatReceita8($pdo){
 
 function getCatReceita9($pdo){
     $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE categoria.nome_categoria='Salada' ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getCategoria($pdo){
+    $sql = "SELECT * FROM categoria";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);

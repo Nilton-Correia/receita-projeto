@@ -129,11 +129,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-login-l">
 
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="tm-bg-black p-5 h-100">
-                <div class="input-field">
+                <div class="input-field  <?php echo (!empty($username_err)) ? 'erro no utilizador' : '';?>">
                     <input placeholder="Username" id="<?php echo $username; ?>" name="username" type="text" class="validate">
+                    <span class=" help-block"><?php echo $username_err; ?></span>
                 </div>
-                <div class="input-field mb-5">
+                <div class="input-field mb-5 <?php echo (!empty($password_err)) ? 'erro no password' : '';?>">
                     <input placeholder="Password" id="<?php echo $password; ?>" name="password" type="password" class="validate">
+                    <span class="help-block "><?php echo $password_err; ?></span>
                 </div>
                 <div class="tm-flex-lr">
                     <a href="#" class="white-text small">Forgot Password?</a>
@@ -143,7 +145,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-login-r">
             <header class="font-weight-light tm-bg-black p-5 h-100">
-                <h3 class="mt-0 text-white font-weight-light">Your Login</h3>
+                <h3 class="mt-0 text-white font-weight-light"><a href="index.php">LusoFlavors</a></h3>
                 <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
                 <p class="mb-0">Vestibulum neque neque, porttitor quis lacinia eu, iaculis id dui. Mauris quis velit lectus.</p>
             </header>
@@ -151,7 +153,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
     <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 ml-auto mr-0 text-center">
-            <a href="registar.php" class="waves-effect btn-large btn-large-white px-4 black-text rounded-0">Create New Account</a>
+            <a href="registar.php" class="waves-effect btn-large btn-large-white px-4 black-text rounded-0">Criar Conta</a>
         </div>
     </div>
     <footer class="row tm-mt-big mb-3">

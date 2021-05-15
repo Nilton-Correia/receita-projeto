@@ -6,7 +6,7 @@ if (!isset($_SESSION['cart'])) {
 }
 require_once "functions/receita-funcao.php";
 $pdoConfig = require_once "confi.php";
-$products = getProducts($pdoConfig);
+$receita = getProductsByIds($pdoConfig,'idreceita');
 
 ?>
 
@@ -183,9 +183,23 @@ $products = getProducts($pdoConfig);
 </div>
 <!-- End All Title Box -->
 
+<?php
+function getProductsByIds($pdo, $ids) {
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE  idreceita IN (".$ids.")";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $nome = $product['nome'];
+    $preco = number_format($product['preco'], 2, ',', '.');echo "€",
+    $descricao = $product['descricao'];
+}
+
+?>
 <!-- Start Shop Detail  -->
 <div class="shop-detail-box-main">
     <div class="container">
+
         <div class="row">
             <div class="col-xl-5 col-lg-5 col-md-6">
                 <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
@@ -195,7 +209,7 @@ $products = getProducts($pdoConfig);
                         <div class="carousel-item"> <img class="d-block w-100" src="images/big-img-03.jpg" alt="Third slide"> </div>
                     </div>
                     <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
-                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <i class="fa fa-angle-left" aria-hidden="true"></i><?php echo '<img src="./images/'.$stmt['imagens'].'" height="250px"/>' ?>
                         <span class="sr-only">Previous</span>
                     </a>
                     <a class="carousel-control-next" href="#carousel-example-1" role="button" data-slide="next">
@@ -217,7 +231,7 @@ $products = getProducts($pdoConfig);
             </div>
             <div class="col-xl-7 col-lg-7 col-md-6">
                 <div class="single-product-details">
-                    <h2>Fachion Lorem ipsum dolor sit amet</h2>
+                    <h2><?php echo $product['nome'] ?> </h2>
                     <h5> <del>$ 60.00</del> $40.79</h5>
                     <p class="available-stock"><span> More than 20 available / <a href="#">8 sold </a></span><p>
                     <h4>Short Description:</h4>

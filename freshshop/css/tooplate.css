@@ -109,14 +109,14 @@ ul.tm-home-list:not(.browser-default) {
 }
 
 #home {
-  background-image: url(../img/input-bg-05.jpg);
+  background-image: url(../images/instagram-img-02.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
 }
 
 #survey {
-  background-image: url(../img/input-bg-06.jpg);
+  background-image: url(../images/instagram-img-02.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
@@ -124,15 +124,15 @@ ul.tm-home-list:not(.browser-default) {
 
 #register {
   padding-top: 180px;
-  background-image:url(../images/logim3.jpg) ;
+  background-image:url(../images/banner-02.jpg) ;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 30%;
-  color: black;
+  color: whitesmoke;
 }
 
 #application {
-  background-image: url(../img/input-bg-03.jpg);
+  background-image: url(../images/instagram-img-02.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
@@ -140,7 +140,7 @@ ul.tm-home-list:not(.browser-default) {
 }
 
 #login {
-  background-image: url(../images/logim3.jpg);
+  background-image: url(../images/banner-03.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

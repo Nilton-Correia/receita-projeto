@@ -189,9 +189,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <body id="register">
 <div class="container">
-    <div class="row tm-register-row">
+    <div class="row tm-register-row ">
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-register-col-l">
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">"
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
 
                 <div class="input-field  <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
@@ -213,13 +213,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
 
                 <div class="text-right mt-4">
-                    <button type="submit" class="waves-effect btn-large btn-large-white px-4 black-text">SUBMIT</button>
+                    <button type="submit" class="waves-effect btn-large btn-large-white px-4 black-text">Submeter</button>
                 </div>
             </form>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-register-col-r">
             <header class="mb-5">
-                <h3 class="mt-0 text-white">REGISTER Yourself</h3>
+                <h3 class="mt-0 text-white"><a href="index.php">LusoFlavors</a></h3>
                 <p class="grey-text">Aenean tincidunt, enim nec blandit lobortis, ante enim ultrices eros, et laoreet augue libero id nunc.
                     Proin semper feugiat ultrices.</p>
                 <p class="grey-text">Aenean a efficitur magna, sed dignissim odio. Praesent pretium lectus ac nunc ultrices, ac volutpat orci
