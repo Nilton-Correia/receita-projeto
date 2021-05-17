@@ -74,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Redirect user to welcome page
                             if($tipo=="admin") {
 
-                                header("location: administrar/indexadmin.php");
+                                header("location: adminstracao/pluto/adminstrador.php");
                             }else{
                                 header("location:index.php");
                             }

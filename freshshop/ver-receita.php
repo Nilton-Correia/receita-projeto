@@ -1,14 +1,35 @@
 <?php
-
 session_start();
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = array();
-}
 require_once "functions/receita-funcao.php";
-$pdoConfig = require_once "confi.php";
-$receita = getProductsByIds($pdoConfig,'idreceita');
+require_once "functions/cart.php";
+
+$rtConnection = require_once "confi.php";
+
+if(isset($_GET['acao']) && in_array($_GET['acao'], array('add', 'del', 'up'))) {
+
+    if($_GET['acao'] == 'add' && isset($_GET['id']) && preg_match("/^[0-9]+$/", $_GET['id'])){
+        addCart($_GET['id'], 1);
+    }
+
+    if($_GET['acao'] == 'del' && isset($_GET['id']) && preg_match("/^[0-9]+$/", $_GET['id'])){
+        deleteCart($_GET['id']);
+    }
+
+    if($_GET['acao'] == 'up'){
+        if(isset($_POST['prod']) && is_array($_POST['prod'])){
+            foreach($_POST['prod'] as $id => $qtd){
+                updateCart($id, $qtd);
+            }
+        }
+    }
+    header('location: carrinho.php');
+}
+
+$resultsCarts = getContentCart($rtConnection);
+$totalCarts  = getTotalCart($rtConnection);
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,14 +83,14 @@ $receita = getProductsByIds($pdoConfig,'idreceita');
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="images/log21.png" class="logo" alt=""></a>
+                <a class="navbar-brand" href="index.php"><img src="images/logotipo.png" class="logo" alt=""></a>
             </div>
             <!-- End Header Navigation -->
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                    <li class="nav-item active"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
@@ -110,7 +131,7 @@ $receita = getProductsByIds($pdoConfig,'idreceita');
                     <li class="side-menu">
                         <a href="#">
                             <i class="fa fa-shopping-bag"></i>
-                            <span class="badge">3</span>
+                            <span class="badge">4</span>
                         </a>
                     </li>
                 </ul>
@@ -119,7 +140,12 @@ $receita = getProductsByIds($pdoConfig,'idreceita');
         </div>
         <div class="side-menu">
             <ul>
-                <li><a href="login.php"><i class="fa fa-user s_color"></i>Conta</a></li>
+                <li><a href="login.php"><i class="fa fa-user s_color"></i>
+
+                        <span><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
+                            }
+                            else{ echo "Conta";}?> </span>
+                    </a></li>
             </ul>
         </div>
         <!-- End Atribute Navigation -->
@@ -183,33 +209,42 @@ $receita = getProductsByIds($pdoConfig,'idreceita');
 </div>
 <!-- End All Title Box -->
 
-<?php
-function getProductsByIds($pdo, $ids) {
-    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE  idreceita IN (".$ids.")";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $nome = $product['nome'];
-    $preco = number_format($product['preco'], 2, ',', '.');echo "€",
-    $descricao = $product['descricao'];
-}
+<!-- Start Shop Detail  -->
+<?php
+
+require_once('confi.php');
+$sql="SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE idreceita='ids' ";
+$result = $link->query($sql);
+$link->query("SET NAMES 'utf8'");
+
+
+$rt= $result->fetch_assoc();
+$nome  = $rt['nome'];
+$desc  = $rt['descricao'];
+$preco = number_format($rt['preco'], 2, ',', '.');
+$ingrediente  = $rt['ingredientes'];
+$mod_pre  = $rt['modo_preparacao'];
+
+
 
 ?>
-<!-- Start Shop Detail  -->
 <div class="shop-detail-box-main">
     <div class="container">
+
+
+
 
         <div class="row">
             <div class="col-xl-5 col-lg-5 col-md-6">
                 <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active"> <img class="d-block w-100" src="images/big-img-01.jpg" alt="First slide"> </div>
+                        <div class="carousel-item active"> <?php echo '<img src="./images/'.$rt['imagens'].'" height="250px"/>' ?> </div>
                         <div class="carousel-item"> <img class="d-block w-100" src="images/big-img-02.jpg" alt="Second slide"> </div>
                         <div class="carousel-item"> <img class="d-block w-100" src="images/big-img-03.jpg" alt="Third slide"> </div>
                     </div>
                     <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
-                        <i class="fa fa-angle-left" aria-hidden="true"></i><?php echo '<img src="./images/'.$stmt['imagens'].'" height="250px"/>' ?>
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="sr-only">Previous</span>
                     </a>
                     <a class="carousel-control-next" href="#carousel-example-1" role="button" data-slide="next">
@@ -231,10 +266,10 @@ function getProductsByIds($pdo, $ids) {
             </div>
             <div class="col-xl-7 col-lg-7 col-md-6">
                 <div class="single-product-details">
-                    <h2><?php echo $product['nome'] ?> </h2>
-                    <h5> <del>$ 60.00</del> $40.79</h5>
+                    <h2><?php echo $nome ?></h2>
+                    <h5><?php echo $preco ?> €</h5>
                     <p class="available-stock"><span> More than 20 available / <a href="#">8 sold </a></span><p>
-                    <h4>Short Description:</h4>
+                    <h4><?php echo $desc ?></h4>
                     <p>Nam sagittis a augue eget scelerisque. Nullam lacinia consectetur sagittis. Nam sed neque id eros fermentum dignissim quis at tortor. Nullam ultricies urna quis sem sagittis pharetra. Nam erat turpis, cursus in ipsum at,
                         tempor imperdiet metus. In interdum id nulla tristique accumsan. Ut semper in quam nec pretium. Donec egestas finibus suscipit. Curabitur tincidunt convallis arcu. </p>
                     <ul>
@@ -256,7 +291,7 @@ function getProductsByIds($pdo, $ids) {
                     <div class="add-to-btn">
                         <div class="add-comp">
                             <a class="btn hvr-hover" href="#"><i class="fas fa-heart"></i> Add to wishlist</a>
-                            <a class="btn hvr-hover" href="#"><i class="fas fa-sync-alt"></i> Add to Compare</a>
+                            <a class="btn hvr-hover" href="carrinho.php?acao=add&id=<?php echo $rt['idreceita']?>"><i class="fas fa-sync-alt"></i> Add to Compare</a>
                         </div>
                         <div class="share-bar">
                             <a class="btn hvr-hover" href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
@@ -267,8 +302,11 @@ function getProductsByIds($pdo, $ids) {
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
+
 
         <div class="row my-5">
             <div class="card card-outline-secondary my-4">
@@ -563,6 +601,8 @@ function getProductsByIds($pdo, $ids) {
         </div>
     </div>
 </div>
+
+
 <!-- End Instagram Feed  -->
 
 
