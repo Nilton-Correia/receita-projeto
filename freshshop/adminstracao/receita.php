@@ -89,6 +89,7 @@ session_start();
 
 
                     <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
+
                 </ul>
             </div>
         </nav>
@@ -137,146 +138,45 @@ session_start();
                             </div>
                         </div>
                     </div>
-                    <div class="row column1">
-                        <div class="col-md-6 col-lg-3">
-                            <div class="full counter_section margin_bottom_30">
-                                <div class="couter_icon">
-                                    <div>
-                                        <i class="fa fa-user yellow_color"></i>
-                                    </div>
-                                </div>
-                                <div class="counter_no">
-                                    <div>
-                                        <p class="total_no">2500</p>
-                                        <p class="head_couter">Welcome</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="full counter_section margin_bottom_30">
-                                <div class="couter_icon">
-                                    <div>
-                                        <i class="fa fa-clock-o blue1_color"></i>
-                                    </div>
-                                </div>
-                                <div class="counter_no">
-                                    <div>
-                                        <p class="total_no">123.50</p>
-                                        <p class="head_couter">Average Time</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="full counter_section margin_bottom_30">
-                                <div class="couter_icon">
-                                    <div>
-                                        <i class="fa fa-cloud-download green_color"></i>
-                                    </div>
-                                </div>
-                                <div class="counter_no">
-                                    <div>
-                                        <p class="total_no">1,805</p>
-                                        <p class="head_couter">Collections</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="full counter_section margin_bottom_30">
-                                <div class="couter_icon">
-                                    <div>
-                                        <i class="fa fa-comments-o red_color"></i>
-                                    </div>
-                                </div>
-                                <div class="counter_no">
-                                    <div>
-                                        <p class="total_no">54</p>
-                                        <p class="head_couter">Comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row column1 social_media_section">
-                        <div class="col-md-6 col-lg-3">
-                            <div class="full socile_icons fb margin_bottom_30">
-                                <div class="social_icon">
-                                    <i class="fa fa-facebook"></i>
-                                </div>
-                                <div class="social_cont">
-                                    <ul>
-                                        <li>
-                                            <span><strong>35k</strong></span>
-                                            <span>Friends</span>
-                                        </li>
-                                        <li>
-                                            <span><strong>128</strong></span>
-                                            <span>Feeds</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="full socile_icons tw margin_bottom_30">
-                                <div class="social_icon">
-                                    <i class="fa fa-twitter"></i>
-                                </div>
-                                <div class="social_cont">
-                                    <ul>
-                                        <li>
-                                            <span><strong>584k</strong></span>
-                                            <span>Followers</span>
-                                        </li>
-                                        <li>
-                                            <span><strong>978</strong></span>
-                                            <span>Tweets</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="full socile_icons linked margin_bottom_30">
-                                <div class="social_icon">
-                                    <i class="fa fa-linkedin"></i>
-                                </div>
-                                <div class="social_cont">
-                                    <ul>
-                                        <li>
-                                            <span><strong>758+</strong></span>
-                                            <span>Contacts</span>
-                                        </li>
-                                        <li>
-                                            <span><strong>365</strong></span>
-                                            <span>Feeds</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="full socile_icons google_p margin_bottom_30">
-                                <div class="social_icon">
-                                    <i class="fa fa-google-plus"></i>
-                                </div>
-                                <div class="social_cont">
-                                    <ul>
-                                        <li>
-                                            <span><strong>450</strong></span>
-                                            <span>Followers</span>
-                                        </li>
-                                        <li>
-                                            <span><strong>57</strong></span>
-                                            <span>Circles</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Preco</th>
+                            <th>Imagem</th>
+                            <th>Descrição</th>
+                            <th>Ingredientes</th>
+                            <th>Modo de Preparação</th>
+                            <th>País</th>
+                            <th>Categoria do Produto</th>
+                            <td><a href="adicio-receita.php"> Adicionar</a></td>
+                        </tr>
+                        </thead>
+                        <?php
+                        require("confi.php");
+                        $receitas="Select * from receita";
+                        if($resultado=$link->query($receitas)){
+                            while ($row=$resultado->fetch_assoc()){
+                                echo'<tr> 
+            <td>'.$row['nome'].'</td>
+            <td>'.$row['preco'].'</td>
+            <td>'.$row['imagens'].'</td>
+            <td>'.$row['descricao'].'</td>
+            <td>'.$row['ingredientes'].'</td>
+            <td>'.$row['modo_preparacao'].'</td>
+            <td>'.$row['idPais'].'</td>
+            <td>'.$row['idcategoria'].'</td>
+            <td><a href="elimina-receita.php?id='.$row['idreceita'].'"> Eliminar</a></td>
+            <td><a href="edit-receita.php?id='.$row['idreceita'].'"> Editar</a></td>
+            </tr>';
+                            }
+                        }
+
+
+                        ?>
+                    </table>
+
                     <!-- graph -->
 
                     <!-- footer -->

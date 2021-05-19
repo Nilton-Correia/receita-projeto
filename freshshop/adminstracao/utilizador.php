@@ -1,4 +1,5 @@
 <?php
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -132,39 +133,48 @@
                     <div class="row column_title">
                         <div class="col-md-12">
                             <div class="page_title">
-                                <h2>Dashboard</h2>
+                                <h2>Listar Utilizador</h2>
                             </div>
                         </div>
                     </div>
                     <table class="table table-striped">
                         <thead>
                         <tr>
+                            <th>Utilizador</th>
                             <th>Nome</th>
                             <th>Email</th>
                             <th>Telefone</th>
                             <th>Morada</th>
                             <th>Localidade</th>
+                            <th>Tipo de utilizador</th>
 
-                            <td><a href="adicio-utilizador.php"> Adiciona</a></td>
+
+                            <td><a href="adicio-utilizador.php">Adiciona</a></td>
                         </tr>
                         </thead>
                         <?php
-                        require ("freshshop/confi.php");
-                        $utilizador="Select * from utilizador";
+            require ("../confi.php");
+                        $utilizador="SELECT * FROM  utilizador";
                         if($resultado=$link->query($utilizador)){
                             while ($row=$resultado->fetch_assoc()){
                                 echo'<tr> 
+            <td>'.$row['username'].'</td>
             <td>'.$row['nome'].'</td>
             <td>'.$row['email'].'</td> 
             <td>'.$row['telefone'].'</td>
              <td>'.$row['morada'].'</td>
               <td>'.$row['localidade'].'</td>
+               <td>'.$row['id_tipo'].'</td>
+            
+              
             
             
             <td><a href="elimina-utilizador.php?id='.$row['id'].'"> Eliminar</a></td>
             <td><a href="edit-utilizador.php?id='.$row['id'].'"> Editar</a></td>
             </tr>';
                             }
+                            $resultado->free();
+                            $link->close();
                         }
 
 

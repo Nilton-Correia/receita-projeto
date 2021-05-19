@@ -1,32 +1,6 @@
 <?php
 session_start();
 require_once "functions/receita-funcao.php";
-require_once "functions/cart.php";
-
-$rtConnection = require_once "confi.php";
-
-if(isset($_GET['acao']) && in_array($_GET['acao'], array('add', 'del', 'up'))) {
-
-    if($_GET['acao'] == 'add' && isset($_GET['id']) && preg_match("/^[0-9]+$/", $_GET['id'])){
-        addCart($_GET['id'], 1);
-    }
-
-    if($_GET['acao'] == 'del' && isset($_GET['id']) && preg_match("/^[0-9]+$/", $_GET['id'])){
-        deleteCart($_GET['id']);
-    }
-
-    if($_GET['acao'] == 'up'){
-        if(isset($_POST['prod']) && is_array($_POST['prod'])){
-            foreach($_POST['prod'] as $id => $qtd){
-                updateCart($id, $qtd);
-            }
-        }
-    }
-    header('location: carrinho.php');
-}
-
-$resultsCarts = getContentCart($rtConnection);
-$totalCarts  = getTotalCart($rtConnection);
 
 ?>
 
@@ -223,8 +197,7 @@ $rt= $result->fetch_assoc();
 $nome  = $rt['nome'];
 $desc  = $rt['descricao'];
 $preco = number_format($rt['preco'], 2, ',', '.');
-$ingrediente  = $rt['ingredientes'];
-$mod_pre  = $rt['modo_preparacao'];
+
 
 
 
@@ -239,7 +212,7 @@ $mod_pre  = $rt['modo_preparacao'];
             <div class="col-xl-5 col-lg-5 col-md-6">
                 <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active"> <?php echo '<img src="./images/'.$rt['imagens'].'" height="250px"/>' ?> </div>
+                        <div class="carousel-item active"> </div>
                         <div class="carousel-item"> <img class="d-block w-100" src="images/big-img-02.jpg" alt="Second slide"> </div>
                         <div class="carousel-item"> <img class="d-block w-100" src="images/big-img-03.jpg" alt="Third slide"> </div>
                     </div>
@@ -266,12 +239,13 @@ $mod_pre  = $rt['modo_preparacao'];
             </div>
             <div class="col-xl-7 col-lg-7 col-md-6">
                 <div class="single-product-details">
-                    <h2><?php echo $nome ?></h2>
+                    <h2><?php echo $rt['nome'] ?></h2>
                     <h5><?php echo $preco ?> €</h5>
                     <p class="available-stock"><span> More than 20 available / <a href="#">8 sold </a></span><p>
                     <h4><?php echo $desc ?></h4>
-                    <p>Nam sagittis a augue eget scelerisque. Nullam lacinia consectetur sagittis. Nam sed neque id eros fermentum dignissim quis at tortor. Nullam ultricies urna quis sem sagittis pharetra. Nam erat turpis, cursus in ipsum at,
-                        tempor imperdiet metus. In interdum id nulla tristique accumsan. Ut semper in quam nec pretium. Donec egestas finibus suscipit. Curabitur tincidunt convallis arcu. </p>
+                    <p>
+                       <?php echo $ingrediente  = $rt['ingredientes'] ?>
+                         </p>
                     <ul>
                         <li>
                             <div class="form-group quantity-box">

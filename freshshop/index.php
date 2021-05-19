@@ -1,13 +1,20 @@
 <?php
 session_start();
+
 if(!isset($_SESSION['cart'])){
     $_SESSION['cart'] = array();
 }
 require_once "functions/receita-funcao.php";
+
 $pdoConfig = require_once "confi.php";
 $products = getProducts($pdoConfig);
 
+
+
+
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -321,7 +328,7 @@ $products = getProducts($pdoConfig);
                             </div>
                         </div>
                         <div class="why-text">
-                            <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h4>
+                            <h4> <?php echo '<a href="ver-receita.php?acao=add&id='.$product['idreceita'].'">'.$product['nome'].'</a>'; ?></h4>
 
 
                             <h5 class="card-subtitle m-2 text text-muted">
