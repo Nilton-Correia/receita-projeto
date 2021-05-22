@@ -64,27 +64,23 @@ session_start();
                 <ul class="list-unstyled components">
 
 
-                    <li><a href="utilizador.php"><i class="fa fa-table purple_color2"></i> <span>Utilizador</span></a></li>
+
+                    <li><a href="utilizador.php"><i class="fa fa-group purple_color2"></i> <span>Utilizador</span></a></li>
 
 
                     <li>
                         <a href="receita.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Receitas</span></a>
+                            <i class="fa fa-cutlery red_color"></i> <span>Receitas</span></a>
                     </li>
-                    <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
-                        <ul class="collapse list-unstyled" id="additional_page">
-                            <li>
-                                <a href="profile.html">> <span>Profile</span></a>
-                            </li>
-                            <li>
-                                <a href="project.html">> <span>Projects</span></a>
-                            </li>
-                            <li>
-                                <a href="login.html">> <span>Login</span></a>
-                            </li>
 
-                        </ul>
+                    <li>
+                        <a href="../index.php">
+                            <i class="fa fa-paper-plane red_color"></i> <span>Luso Flavors</span></a>
+                    </li>
+
+                    <li>
+                        <a href="../logout.php">
+                            <i class="fa fa-sign-out red_color"></i> <span>Logout</span></a>
                     </li>
 
 
@@ -134,12 +130,12 @@ session_start();
                     <div class="row column_title">
                         <div class="col-md-12">
                             <div class="page_title">
-                                <h2>Dashboard</h2>
+                                <h2>Listar Receita</h2>
                             </div>
                         </div>
                     </div>
 
-                    <table class="table table-striped">
+                    <table class="table table-striped table-dark">
                         <thead>
                         <tr>
                             <th>Nome</th>
@@ -147,14 +143,14 @@ session_start();
                             <th>Imagem</th>
                             <th>Descrição</th>
                             <th>Ingredientes</th>
-                            <th>Modo de Preparação</th>
+                            <th>Preparação</th>
                             <th>País</th>
-                            <th>Categoria do Produto</th>
-                            <td><a href="adicio-receita.php"> Adicionar</a></td>
+                            <th>Categoria</th>
+                            <th><a href="adicio-receita.php" class="fa fa-plus blue2_color">Adicionar</a></th>
                         </tr>
                         </thead>
                         <?php
-                        require("confi.php");
+                        require("../confi.php");
                         $receitas="Select * from receita";
                         if($resultado=$link->query($receitas)){
                             while ($row=$resultado->fetch_assoc()){
@@ -167,8 +163,8 @@ session_start();
             <td>'.$row['modo_preparacao'].'</td>
             <td>'.$row['idPais'].'</td>
             <td>'.$row['idcategoria'].'</td>
-            <td><a href="elimina-receita.php?id='.$row['idreceita'].'"> Eliminar</a></td>
-            <td><a href="edit-receita.php?id='.$row['idreceita'].'"> Editar</a></td>
+            <td><a href="elimina-receita.php?id='.$row['idreceita'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
+            <td><a href="edit-receita.php?id='.$row['idreceita'].'" class="fa fa-wrench green_color"> Editar</a></td>
             </tr>';
                             }
                         }

@@ -4,6 +4,7 @@ require ("../confi.php");
 
 
 
+
 if($_POST){
     $id=$_POST['id'];
     $nome =$_POST['nome'];
@@ -17,7 +18,7 @@ if($_POST){
 
     $editar ="UPDATE utilizador SET nome='$nome', email= '$email', telefone='$telefone',morada='$morada',localidade='$localidade',id_tipo='$id_tipo' WHERE id = $id";
 
-    if ($resultado=$link->query($editar)) {
+    if (!$resultado=$link->query($editar)) {
 
         header( "location:utilizador.php");
     } else {
@@ -27,7 +28,7 @@ if($_POST){
     }
 
 }
-if($_GET){
+
     $utilizad = $_GET['id'];
     $editar ="SELECT * FROM utilizador WHERE id = $utilizad";
 
@@ -38,7 +39,7 @@ if($_GET){
 
         echo "Infelizmente não foi possivel Editar";
     }
-}
+
 
 ?>
 <!DOCTYPE html>
@@ -105,29 +106,23 @@ if($_GET){
                 <ul class="list-unstyled components">
 
 
-                    <li><a href="utilizador.php"><i class="fa fa-table purple_color2"></i> <span>Utilizador</span></a></li>
+                    <li><a href="utilizador.php"><i class="fa fa-group purple_color2"></i> <span>Utilizador</span></a></li>
 
 
                     <li>
                         <a href="receita.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Receitas</span></a>
-                    </li>
-                    <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
-                        <ul class="collapse list-unstyled" id="additional_page">
-                            <li>
-                                <a href="pluto/profile.html">> <span>Profile</span></a>
-                            </li>
-                            <li>
-                                <a href="pluto/project.html">> <span>Projects</span></a>
-                            </li>
-                            <li>
-                                <a href="pluto/login.html">> <span>Login</span></a>
-                            </li>
-
-                        </ul>
+                            <i class="fa fa-cutlery red_color"></i> <span>Receitas</span></a>
                     </li>
 
+                    <li>
+                        <a href="../index.php">
+                            <i class="fa fa-paper-plane red_color"></i> <span>Luso Flavors</span></a>
+                    </li>
+
+                    <li>
+                        <a href="../logout.php">
+                            <i class="fa fa-sign-out red_color"></i> <span>Logout</span></a>
+                    </li>
 
                     <li><a href="pluto/settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
                 </ul>

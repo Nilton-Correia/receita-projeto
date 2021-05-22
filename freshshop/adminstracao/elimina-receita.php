@@ -1,9 +1,9 @@
 <?php
 session_start();
-require ("../config.php");
+require ("../confi.php");
 
 
-$receita = $_GET['idreceita'];
+$receita = $_GET['id'];
 $deleta ="DELETE FROM receita WHERE idreceita = $receita";
 $resultado=$link->query($deleta);
 

@@ -1,17 +1,15 @@
 <?php
 session_start();
 
+
 if(!isset($_SESSION['cart'])){
     $_SESSION['cart'] = array();
 }
 require_once "functions/receita-funcao.php";
-
+require_once "functions/cart.php";
 $pdoConfig = require_once "confi.php";
 $products = getProducts($pdoConfig);
-
-
-
-
+$resultsCarts = getContentCart($pdoConfig);
 ?>
 
 
@@ -117,7 +115,7 @@ $products = getProducts($pdoConfig);
                         <li class="side-menu">
 							<a href="#">
 								<i class="fa fa-shopping-bag"></i>
-								<span class="badge">4</span>
+								<span class="badge">0</span>
 							</a>
 						</li>
                     </ul>
@@ -159,7 +157,7 @@ $products = getProducts($pdoConfig);
                         </li>
 
                         <li class="total">
-                            <a href="cart.html" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                            <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
                             <span class="float-right"><strong>Total</strong>: $180.00</span>
                         </li>
                     </ul>

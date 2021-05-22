@@ -1,10 +1,10 @@
 
 <?php
 session_start();
+require("../confi.php");
 
 
 
-if(isset($_POST['receita'])){
     if(!empty($_POST['nome'])||!empty($_POST['preco'])||!empty($_POST['imagens'])||!empty($_POST['descricao'])||!empty($_POST['ingredientes'])||!empty($_POST['modo_preparacao'])||!empty($_POST['idPais'])||!empty($_POST['idcategoria'])) {
         $nome = $_POST['nome'];
         $preco = $_POST['preco'];
@@ -51,8 +51,12 @@ if(isset($_POST['receita'])){
             }
 
         }
+        else {
+
+            header("location: receita.php");
+        }
     }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +74,7 @@ if(isset($_POST['receita'])){
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- site icon -->
-    <link rel="icon" href="images/fevicon.png" type="image/png" />
+    <link rel="icon" href="" type="image/png" />
     <!-- bootstrap css -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <!-- site css -->
@@ -116,29 +120,24 @@ if(isset($_POST['receita'])){
                 <h4>General</h4>
                 <ul class="list-unstyled components">
 
-
-                    <li><a href="utilizador.php"><i class="fa fa-table purple_color2"></i> <span>Utilizador</span></a></li>
+                    <li><a href="utilizador.php"><i class="fa fa-group purple_color2"></i> <span>Utilizador</span></a></li>
 
 
                     <li>
                         <a href="receita.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Receitas</span></a>
+                            <i class="fa fa-cutlery red_color"></i> <span>Receitas</span></a>
                     </li>
-                    <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
-                        <ul class="collapse list-unstyled" id="additional_page">
-                            <li>
-                                <a href="pluto/profile.html">> <span>Profile</span></a>
-                            </li>
-                            <li>
-                                <a href="pluto/project.html">> <span>Projects</span></a>
-                            </li>
-                            <li>
-                                <a href="pluto/login.html">> <span>Login</span></a>
-                            </li>
 
-                        </ul>
+                    <li>
+                        <a href="../index.php">
+                            <i class="fa fa-paper-plane red_color"></i> <span>Luso Flavors</span></a>
                     </li>
+
+                    <li>
+                        <a href="../logout.php">
+                            <i class="fa fa-sign-out red_color"></i> <span>Logout</span></a>
+                    </li>
+
 
 
                     <li><a href="pluto/settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
@@ -201,46 +200,50 @@ if(isset($_POST['receita'])){
                                                 <br class="box">
                                                 <p><a href="index.php" class="btn btn-black rounded-0">Pagina Inicial</a></p>
                                                 <br>
+                                                <?php
+                                                $nome=$preco=$descricao=$idPais=$ingredientes=$modo_preparacao=$idcategoria=$imagens="";
+                                                ?>
                                                 <form action="adicio-receita.php" method="post" enctype="multipart/form-data">
                                                     <div class="field">
                                                         <div class="control">
-                                                            <input name="nome" type="text" class="input is-large" placeholder="Nome Produto" autofocus>
+                                                            <input name="nome" type="text" value="<?=$nome?>" class="input is-large" placeholder="Nome Produto" autofocus>
                                                         </div>
                                                     </div>
                                                     <div class="field">
                                                         <div class="control">
-                                                            <input name="preco" type="text" class="input is-large" placeholder="Preço">
+                                                            <input name="preco" type="text" value="<?=$preco?>" class="input is-large" placeholder="Preço">
                                                         </div>
                                                     </div>
                                                     <div class="field">
                                                         <div class="control">
-                                                            <input name="descricao" class="input is-large" type="text" placeholder="Descrição do Produto">
+
+                                                            <input name="descricao" value="<?=$descricao?>" class="input is-large" type="text" placeholder="Descrição do Produto">
                                                         </div>
                                                     </div>
                                                     <div class="field">
                                                         <div class="control">
-                                                            <input name="idPais" type="text" class="input is-large"  placeholder="idPais">
+                                                            <input name="idPais" type="text" value="<?=$idPais?>" class="input is-large"  placeholder="idPais">
                                                         </div>
                                                     </div>
 
                                                     <div class="field">
                                                         <div class="control">
-                                                            <input name="idcategoria" type="text" class="input is-large" placeholder=" id_categoria">
+                                                            <input name="idcategoria" type="text" value="<?=$idcategoria?>" class="input is-large" placeholder=" id_categoria">
                                                         </div>
                                                     </div>
                                                     <div class="field">
                                                         <div class="control">
-                                                            <input name="ingredientes" type="text" class="input is-large"  placeholder="ingredientes">
+                                                            <input name="ingredientes" type="text" value="<?=$ingredientes?>" class="input is-large"  placeholder="ingredientes">
                                                         </div>
                                                     </div>
                                                     <div class="field">
                                                         <div class="control">
-                                                            <input name="modo_preparacao" type="text" class="input is-large"  placeholder="modo_preparacao">
+                                                            <input name="modo_preparacao" type="text" value="<?=$modo_preparacao?>" class="input is-large"  placeholder="modo_preparacao">
                                                         </div>
                                                     </div>
 
                                                     <div>
-                                                        <input type="file" name="imagens">
+                                                        <input type="file" name="imagens" value="<?=$imagens?>">
                                                     </div>
                                                     <br>
                                                     <button type="submit" class="button is-block is-link is-large is-fullwidth">Registar Produto</button>
@@ -248,6 +251,12 @@ if(isset($_POST['receita'])){
                                             </div>
                                         </div>
                                     </div>
+
+
+
+
+
+
 
                                     <!-- graph -->
 

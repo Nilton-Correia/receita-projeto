@@ -4,6 +4,7 @@ session_start();
 require("../confi.php");
 
 
+
     if (!empty($_POST['username']) || !empty($_POST['nome']) || !empty($_POST['email']) || !empty($_POST['telefone']) || !empty($_POST['id_tipo']) || !empty($_POST['morada']) || !empty($_POST['localidade']) || !empty($_POST['password'])) {
         $username = $_POST['username'];
         $nome = $_POST['nome'];
@@ -12,7 +13,9 @@ require("../confi.php");
         $id_tipo = $_POST['id_tipo'];
         $morada = $_POST['morada'];
         $localidade = $_POST['localidade'];
-        $password = $_POST['password'];
+        $pass = $_POST['password'];
+        $password =password_hash($pass, PASSWORD_DEFAULT);
+
 
 
         $sql = "INSERT INTO utilizador(username, nome, email, telefone, id_tipo, morada, localidade, password) VALUES (' $username','$nome','$email', '$telefone', '$id_tipo' ,'$morada', '$localidade', '$password')";
@@ -210,6 +213,7 @@ require("../confi.php");
                                                     </div>
                                                     <div class="field">
                                                         <div class="control">
+
                                                             <input name="localidade" type="text" value="<?=$localidade?>" class="input is-large" placeholder="localidade">
                                                         </div>
                                                     </div>

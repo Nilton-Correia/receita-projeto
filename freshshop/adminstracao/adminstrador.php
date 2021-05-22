@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 ?>
 
@@ -51,41 +52,38 @@
                 <div class="sidebar_user_info">
                     <div class="icon_setting"></div>
                     <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
                         <div class="user_info">
-                            <h6>John David</h6>
+                            <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Olá ";echo htmlspecialchars($_SESSION["username"]);
+                                }
+                                else{ echo "Conta";}?> </h6>
                             <p><span class="online_animation"></span> Online</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="sidebar_blog_2">
-                <h4>General</h4>
+
                 <ul class="list-unstyled components">
 
 
-                    <li><a href="utilizador.php"><i class="fa fa-table purple_color2"></i> <span>Utilizador</span></a></li>
+                    <li><a href="utilizador.php"><i class="fa fa-group purple_color2"></i> <span>Utilizador</span></a></li>
 
 
                     <li>
                         <a href="receita.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Receitas</span></a>
+                            <i class="fa fa-cutlery red_color"></i> <span>Receitas</span></a>
                     </li>
-                    <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
-                        <ul class="collapse list-unstyled" id="additional_page">
-                            <li>
-                                <a href="pluto/profile.html">> <span>Profile</span></a>
-                            </li>
-                            <li>
-                                <a href="pluto/project.html">> <span>Projects</span></a>
-                            </li>
-                            <li>
-                                <a href="pluto/login.html">> <span>Login</span></a>
-                            </li>
 
-                        </ul>
+                    <li>
+                        <a href="../index.php">
+                            <i class="fa fa-paper-plane red_color"></i> <span>Luso Flavors</span></a>
                     </li>
+
+                    <li>
+                        <a href="../logout.php">
+                            <i class="fa fa-sign-out red_color"></i> <span>Logout</span></a>
+                    </li>
+
 
 
                     <li><a href="pluto/settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
@@ -110,17 +108,7 @@
                                     <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
                                     <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
                                 </ul>
-                                <ul class="user_profile_dd">
-                                    <li>
-                                        <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" /><span class="name_user">John David</span></a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="pluto/profile.html">My Profile</a>
-                                            <a class="dropdown-item" href="pluto/settings.html">Settings</a>
-                                            <a class="dropdown-item" href="help.html">Help</a>
-                                            <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
-                                        </div>
-                                    </li>
-                                </ul>
+
                             </div>
                         </div>
                     </div>
@@ -133,7 +121,7 @@
                     <div class="row column_title">
                         <div class="col-md-12">
                             <div class="page_title">
-                                <h2>Dashboard</h2>
+                                <h2>Administração</h2>
                             </div>
                         </div>
                     </div>

@@ -60,33 +60,27 @@ session_start();
                 </div>
             </div>
             <div class="sidebar_blog_2">
-                <h4>General</h4>
+                <h4><a href="adminstrador.php" >Administração</a></h4>
                 <ul class="list-unstyled components">
 
 
-                    <li><a href="utilizador.php"><i class="fa fa-table purple_color2"></i> <span>Utilizador</span></a></li>
+                    <li><a href="utilizador.php"><i class="fa fa-group purple_color2"></i> <span>Utilizador</span></a></li>
 
 
                     <li>
                         <a href="receita.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Receitas</span></a>
-                    </li>
-                    <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
-                        <ul class="collapse list-unstyled" id="additional_page">
-                            <li>
-                                <a href="profile.html">> <span>Profile</span></a>
-                            </li>
-                            <li>
-                                <a href="project.html">> <span>Projects</span></a>
-                            </li>
-                            <li>
-                                <a href="login.html">> <span>Login</span></a>
-                            </li>
-
-                        </ul>
+                            <i class="fa fa-cutlery red_color"></i> <span>Receitas</span></a>
                     </li>
 
+                    <li>
+                        <a href="../index.php">
+                            <i class="fa fa-paper-plane red_color"></i> <span>Luso Flavors</span></a>
+                    </li>
+
+                    <li>
+                        <a href="../logout.php">
+                            <i class="fa fa-sign-out red_color"></i> <span>Logout</span></a>
+                    </li>
 
                     <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
                 </ul>
@@ -137,10 +131,11 @@ session_start();
                             </div>
                         </div>
                     </div>
-                    <table class="table table-striped">
+                    <table class="table table-striped table-dark">
                         <thead>
                         <tr>
-                            <th>Utilizador</th>
+
+                            <th>Login</th>
                             <th>Nome</th>
                             <th>Email</th>
                             <th>Telefone</th>
@@ -149,9 +144,10 @@ session_start();
                             <th>Tipo de utilizador</th>
 
 
-                            <td><a href="adicio-utilizador.php">Adiciona</a></td>
+                            <th><a href="adicio-utilizador.php" class="fa fa-plus blue2_color">Adiciona</a></th>
                         </tr>
                         </thead>
+
                         <?php
             require ("../confi.php");
                         $utilizador="SELECT * FROM  utilizador";
@@ -169,8 +165,8 @@ session_start();
               
             
             
-            <td><a href="elimina-utilizador.php?id='.$row['id'].'"> Eliminar</a></td>
-            <td><a href="edit-utilizador.php?id='.$row['id'].'"> Editar</a></td>
+            <td><a href="elimina-utilizador.php?id='.$row['id'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
+            <td><a href="edit-utilizador.php?id='.$row['id'].'" class="fa fa-wrench green_color"> Editar</a></td>
             </tr>';
                             }
                             $resultado->free();
