@@ -3,14 +3,14 @@ session_start();
 require("../confi.php");
 
 
-$utilizador = $_GET['id'];
-$deleta ="DELETE FROM utilizador WHERE id = $utilizador";
+$pais = $_GET['id'];
+$deleta ="DELETE FROM pais WHERE idPais = $pais";
 $resultado=$link->query($deleta);
 
 
 if ($resultado=$link->query($deleta)) {
     echo "O registro foi excluido";
-    header( "location: utilizador.php");
+    header( "location: pais.php");
 } else {
 
 
@@ -18,3 +18,4 @@ if ($resultado=$link->query($deleta)) {
 }
 
 ?>
+

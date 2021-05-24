@@ -7,6 +7,14 @@ function getProducts($pdo){
 	return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getProductos($pdo){
+    $sql = "SELECT receita.,categoria.,pais.*  FROM receita INNER JOIN pais ON receita.idPais=pais.idPais INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 function getProductsByIds($pdo, $ids) {
 	$sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE  idreceita IN (".$ids.")";
 	$stmt = $pdo->prepare($sql);

@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -25,13 +26,14 @@ session_start();
     <!-- responsive css -->
     <link rel="stylesheet" href="css/responsive.css" />
     <!-- color css -->
-    <link rel="stylesheet" href="css/colors.css" />
+    <link rel="stylesheet" href="css/color_2.css" />
     <!-- select bootstrap -->
     <link rel="stylesheet" href="css/bootstrap-select.css" />
     <!-- scrollbar css -->
     <link rel="stylesheet" href="css/perfect-scrollbar.css" />
     <!-- custom css -->
     <link rel="stylesheet" href="css/custom.css" />
+
     <link rel="stylesheet" href="css/bulma.min.css" />
     <link href="css/sb-admin-2.css" rel="stylesheet">
     <!--[if lt IE 9]>
@@ -47,13 +49,13 @@ session_start();
             <div class="sidebar_blog_1">
                 <div class="sidebar-header">
                     <div class="logo_section">
-                        <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
+                        <a href="../index.php"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
                     </div>
                 </div>
                 <div class="sidebar_user_info">
                     <div class="icon_setting"></div>
                     <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
+                        <div class="user_img"><img class="img-responsive" src="../images/logotipo.png" alt="#" /></div>
                         <div class="user_info">
                             <h6>John David</h6>
                             <p><span class="online_animation"></span> Online</p>
@@ -62,9 +64,8 @@ session_start();
                 </div>
             </div>
             <div class="sidebar_blog_2">
-                <h4>General</h4>
+                <h4><a href="adminstrador.php" >Administração</a></h4>
                 <ul class="list-unstyled components">
-
 
 
                     <li><a href="utilizador.php"><i class="fa fa-group purple_color2"></i> <span>Utilizador</span></a></li>
@@ -84,7 +85,6 @@ session_start();
                             <i class="fa fa-paper-plane red_color"></i> <span>Editar Pais da Receita</span></a>
                     </li>
 
-
                     <li>
                         <a href="../index.php">
                             <i class="fa fa-paper-plane red_color"></i> <span>Luso Flavors</span></a>
@@ -95,9 +95,7 @@ session_start();
                             <i class="fa fa-sign-out red_color"></i> <span>Logout</span></a>
                     </li>
 
-
                     <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
-
                 </ul>
             </div>
         </nav>
@@ -106,84 +104,90 @@ session_start();
         <div id="content">
             <!-- topbar -->
             <div class="topbar">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <div class="full">
-                        <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
-                        <div class="logo_section">
-                            <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
-                        </div>
-                        <div class="right_topbar">
-                            <div class="icon_info">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
-                                    <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
-                                </ul>
-                                <ul class="user_profile_dd">
-                                    <li>
-                                        <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" /><span class="name_user">John David</span></a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="profile.html">My Profile</a>
-                                            <a class="dropdown-item" href="settings.html">Settings</a>
-                                            <a class="dropdown-item" href="help.html">Help</a>
-                                            <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+
+                <div class="full">
+                    <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                    <div class="logo_section">
+                        <a href="../index.php"><img class="img-responsive" src="../images/logotipo.png" alt="#" /></a>
                     </div>
+
+                </div>
                 </nav>
             </div>
             <!-- end topbar -->
             <!-- dashboard inner -->
-            <div class="midde_cont">
-                <div class="container-fluid">
-                    <div class="row column_title">
-                        <div class="col-md-12">
-                            <div class="page_title">
-                                <h2>Listar Receita</h2>
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+
+
+                <div class="row">
+
+                    <!-- Area Chart -->
+                    <div class="col-xl-12 col-lg-7">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Lista de Categoria de Receita<a href="./form_add_categoria.php"> <img src="../img/adicionar-geral.png" alt=""></a></h6>
+
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Categoria de Receita</th>
+                                            <th><a href="formulario_inserir_categoria.php" class="fa fa-plus blue2_color">Adiciona</a></th>
+
+
+                                        </tr>
+
+                                        </thead>
+                                        <?php
+                                        require("../confi.php");
+
+                                        /* definir o charset utilizado na ligação */
+                                        $link->set_charset("utf8");
+
+                                        /* texto sql da consulta*/
+                                        $catc = 'SELECT * FROM categoria';
+
+                                        /* executar a consulta e testar se ocorreu erro */
+                                        if($resultado=$link->query($catc)){
+                                            while ($row=$resultado->fetch_assoc()){
+                                                echo'<tr> 
+            
+               <td>'.$row['nome_categoria'].'</td>
+            
+             
+            <td><a href="eliminar-categoria.php?id='.$row['idcategoria'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
+            <td><a href="edit-utilizador.php?id='.$row['idcategoria'].'" class="fa fa-wrench green_color"> Editar</a></td>
+            </tr>';
+                                            }
+                                            $resultado->free();
+                                            $link->close();
+                                        }
+
+
+                                        ?>
+                                    </table>
+
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <table class="table table-striped table-white">
-                        <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Preco</th>
-                            <th>Imagem</th>
-                            <th>Descrição</th>
-                            <th>Ingredientes</th>
-                            <th>Preparação</th>
-                            <th>País</th>
-                            <th>Categoria</th>
-                            <th><a href="adicio-receita.php" class="fa fa-plus blue2_color">Adicionar</a></th>
-                        </tr>
-                        </thead>
-                        <?php
-                        require("../confi.php");
-                        $receitas="Select * from receita";
-                        if($resultado=$link->query($receitas)){
-                            while ($row=$resultado->fetch_assoc()){
-                                echo'<tr> 
-            <td>'.$row['nome'].'</td>
-            <td>'.$row['preco'].'</td>
-            <td>'.$row['imagens'].'</td>
-            <td>'.$row['descricao'].'</td>
-            <td>'.$row['ingredientes'].'</td>
-            <td>'.$row['modo_preparacao'].'</td>
-            <td>'.$row['idPais'].'</td>
-            <td>'.$row['idcategoria'].'</td>
-            <td><a href="elimina-receita.php?id='.$row['idreceita'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
-            <td><a href="edit-receita.php?id='.$row['idreceita'].'" class="fa fa-wrench green_color"> Editar</a></td>
-            </tr>';
-                            }
-                        }
+                    <!-- Pie Chart -->
 
+                </div>
 
-                        ?>
-                    </table>
+                <!-- Content Row -->
+                <!-- /.container-fluid -->
+
+            </div>
 
                     <!-- graph -->
 
@@ -223,3 +227,4 @@ session_start();
     <script src="js/chart_custom_style1.js"></script>
 </body>
 </html>
+

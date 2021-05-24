@@ -3,14 +3,14 @@ session_start();
 require("../confi.php");
 
 
-$utilizador = $_GET['id'];
-$deleta ="DELETE FROM utilizador WHERE id = $utilizador";
+$categoria = $_GET['id'];
+$deleta ="DELETE FROM categoria WHERE idcategoria = $categoria";
 $resultado=$link->query($deleta);
 
 
 if ($resultado=$link->query($deleta)) {
     echo "O registro foi excluido";
-    header( "location: utilizador.php");
+    header( "location: categoria.php");
 } else {
 
 

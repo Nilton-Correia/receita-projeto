@@ -1,14 +1,5 @@
 <?php
 session_start();
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"])){
-    if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]== "admin") {
-        header("location: ./adminstracao/adminstrador.php");
-    }else{
-        header("location: welcome.php");
-    }
-
-}
 
 ?>
 
@@ -114,107 +105,127 @@ if(isset($_SESSION["loggedin"])){
             <!-- topbar -->
             <div class="topbar">
 
-                    <div class="full">
-                        <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
-                        <div class="logo_section">
-                            <a href="../index.php"><img class="img-responsive" src="../images/logotipo.png" alt="#" /></a>
-                        </div>
-
+                <div class="full">
+                    <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                    <div class="logo_section">
+                        <a href="../index.php"><img class="img-responsive" src="../images/logotipo.png" alt="#" /></a>
                     </div>
+
+                </div>
                 </nav>
             </div>
             <!-- end topbar -->
             <!-- dashboard inner -->
-            <div class="sidebar_blog_2">
-                <div class="container-fluid">
-                    <div class="row column_title">
-                        <div class="col-md-12">
-                            <div class="page_title">
-                                <h2>Listar Utilizador</h2>
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+
+
+                <div class="row">
+
+                    <!-- Area Chart -->
+                    <div class="col-xl-12 col-lg-7">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Lista País de Receita<a href="./form_add_categoria.php"> <img src="../img/adicionar-geral.png" alt=""></a></h6>
+
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+
+
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Pais</th>
+                                            <th><a href="forma_inserir_pais.php" class="fa fa-plus blue2_color">Adiciona</a></th>
+
+
+                                        </tr>
+
+                                        </thead>
+                                        <?php
+                                        require("../confi.php");
+
+                                        /* definir o charset utilizado na ligação */
+                                        $link->set_charset("utf8");
+
+                                        /* texto sql da consulta*/
+                                        $catc = 'SELECT * FROM pais';
+
+                                        /* executar a consulta e testar se ocorreu erro */
+                                        if($resultado=$link->query($catc)){
+                                            while ($row=$resultado->fetch_assoc()){
+                                                echo'<tr> 
+            
+               <td>'.$row['Pais'].'</td>
+            
+             
+            <td><a href="eliminar-pais.php?id='.$row['idPais'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
+            <td><a href="editar-pais.php?id='.$row['idPais'].'" class="fa fa-wrench green_color"> Editar</a></td>
+            </tr>';
+                                            }
+                                            $resultado->free();
+                                            $link->close();
+                                        }
+
+
+                                        ?>
+                                    </table>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <table class="table table-striped table-white">
-                        <thead>
-                        <tr>
 
-                            <th>Login</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Telefone</th>
-                            <th>Morada</th>
-                            <th>Localidade</th>
-                            <th>Tipo de utilizador</th>
+                    <!-- Pie Chart -->
 
-
-                            <th><a href="adicio-utilizador.php" class="fa fa-plus blue2_color">Adiciona</a></th>
-                        </tr>
-                        </thead>
-
-                        <?php
-            require ("../confi.php");
-                        $utilizador="SELECT * FROM  utilizador";
-                        if($resultado=$link->query($utilizador)){
-                            while ($row=$resultado->fetch_assoc()){
-                                echo'<tr> 
-            <td>'.$row['username'].'</td>
-            <td>'.$row['nome'].'</td>
-            <td>'.$row['email'].'</td> 
-            <td>'.$row['telefone'].'</td>
-             <td>'.$row['morada'].'</td>
-              <td>'.$row['localidade'].'</td>
-               <td>'.$row['id_tipo'].'</td>
-            
-              
-            
-            
-            <td><a href="elimina-utilizador.php?id='.$row['id'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
-            <td><a href="edit-utilizador.php?id='.$row['id'].'" class="fa fa-wrench green_color"> Editar</a></td>
-            </tr>';
-                            }
-                            $resultado->free();
-                            $link->close();
-                        }
-
-
-                        ?>
-                    </table>
-
-                    <!-- graph -->
-
-                    <!-- footer -->
-                    <div class="container-fluid">
-                        <div class="footer">
-                            <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
-                        </div>
-                    </div>
                 </div>
-                <!-- end dashboard inner -->
+
+                <!-- Content Row -->
+                <!-- /.container-fluid -->
+
+            </div>
+
+            <!-- graph -->
+
+            <!-- footer -->
+            <div class="container-fluid">
+                <div class="footer">
+                    <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
+                </div>
             </div>
         </div>
+        <!-- end dashboard inner -->
     </div>
-    <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- wow animation -->
-    <script src="js/animate.js"></script>
-    <!-- select country -->
-    <script src="js/bootstrap-select.js"></script>
-    <!-- owl carousel -->
-    <script src="js/owl.carousel.js"></script>
-    <!-- chart js -->
-    <script src="js/Chart.min.js"></script>
-    <script src="js/Chart.bundle.min.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/analyser.js"></script>
-    <!-- nice scrollbar -->
-    <script src="js/perfect-scrollbar.min.js"></script>
-    <script>
-        var ps = new PerfectScrollbar('#sidebar');
-    </script>
-    <!-- custom js -->
-    <script src="js/custom.js"></script>
-    <script src="js/chart_custom_style1.js"></script>
+</div>
+</div>
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- wow animation -->
+<script src="js/animate.js"></script>
+<!-- select country -->
+<script src="js/bootstrap-select.js"></script>
+<!-- owl carousel -->
+<script src="js/owl.carousel.js"></script>
+<!-- chart js -->
+<script src="js/Chart.min.js"></script>
+<script src="js/Chart.bundle.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/analyser.js"></script>
+<!-- nice scrollbar -->
+<script src="js/perfect-scrollbar.min.js"></script>
+<script>
+    var ps = new PerfectScrollbar('#sidebar');
+</script>
+<!-- custom js -->
+<script src="js/custom.js"></script>
+<script src="js/chart_custom_style1.js"></script>
 </body>
 </html>
+
+

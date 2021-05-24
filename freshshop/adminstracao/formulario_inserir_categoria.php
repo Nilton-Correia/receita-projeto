@@ -2,6 +2,7 @@
 session_start();
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +18,7 @@ session_start();
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- site icon -->
-    <link rel="icon" href="images/fevicon.png" type="image/png" />
+    <link rel="icon" href="" type="image/png" />
     <!-- bootstrap css -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <!-- site css -->
@@ -47,7 +48,7 @@ session_start();
             <div class="sidebar_blog_1">
                 <div class="sidebar-header">
                     <div class="logo_section">
-                        <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
+                        <a href="pluto/index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
                     </div>
                 </div>
                 <div class="sidebar_user_info">
@@ -64,8 +65,6 @@ session_start();
             <div class="sidebar_blog_2">
                 <h4>General</h4>
                 <ul class="list-unstyled components">
-
-
 
                     <li><a href="utilizador.php"><i class="fa fa-group purple_color2"></i> <span>Utilizador</span></a></li>
 
@@ -96,8 +95,8 @@ session_start();
                     </li>
 
 
-                    <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
 
+                    <li><a href="pluto/settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
                 </ul>
             </div>
         </nav>
@@ -110,7 +109,7 @@ session_start();
                     <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
-                            <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
+                            <a href="pluto/index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
                         </div>
                         <div class="right_topbar">
                             <div class="icon_info">
@@ -123,8 +122,8 @@ session_start();
                                     <li>
                                         <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" /><span class="name_user">John David</span></a>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="profile.html">My Profile</a>
-                                            <a class="dropdown-item" href="settings.html">Settings</a>
+                                            <a class="dropdown-item" href="pluto/profile.html">My Profile</a>
+                                            <a class="dropdown-item" href="pluto/settings.html">Settings</a>
                                             <a class="dropdown-item" href="help.html">Help</a>
                                             <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
                                         </div>
@@ -142,84 +141,109 @@ session_start();
                     <div class="row column_title">
                         <div class="col-md-12">
                             <div class="page_title">
-                                <h2>Listar Receita</h2>
+                                <h2>Dashboard</h2>
                             </div>
                         </div>
                     </div>
-
-                    <table class="table table-striped table-white">
-                        <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Preco</th>
-                            <th>Imagem</th>
-                            <th>Descrição</th>
-                            <th>Ingredientes</th>
-                            <th>Preparação</th>
-                            <th>País</th>
-                            <th>Categoria</th>
-                            <th><a href="adicio-receita.php" class="fa fa-plus blue2_color">Adicionar</a></th>
-                        </tr>
-                        </thead>
-                        <?php
-                        require("../confi.php");
-                        $receitas="Select * from receita";
-                        if($resultado=$link->query($receitas)){
-                            while ($row=$resultado->fetch_assoc()){
-                                echo'<tr> 
-            <td>'.$row['nome'].'</td>
-            <td>'.$row['preco'].'</td>
-            <td>'.$row['imagens'].'</td>
-            <td>'.$row['descricao'].'</td>
-            <td>'.$row['ingredientes'].'</td>
-            <td>'.$row['modo_preparacao'].'</td>
-            <td>'.$row['idPais'].'</td>
-            <td>'.$row['idcategoria'].'</td>
-            <td><a href="elimina-receita.php?id='.$row['idreceita'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
-            <td><a href="edit-receita.php?id='.$row['idreceita'].'" class="fa fa-wrench green_color"> Editar</a></td>
-            </tr>';
-                            }
-                        }
-
-
-                        ?>
-                    </table>
-
-                    <!-- graph -->
-
-                    <!-- footer -->
                     <div class="container-fluid">
-                        <div class="footer">
-                            <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
+
+                        <div class="row">
+
+                            <!-- Content Column -->
+                            <div class="col-lg-6 mb-4">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Adicionar Categoria de Produtos&nbsp;<img src="../img/adicionar-produto.png" alt=""></h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <?php
+
+                                        require("../confi.php");
+
+                                        $operacao = filter_input(INPUT_GET, 'operacao');
+
+
+                                        $unome="";
+                                        $link->close();
+                                        ?>
+
+
+                                        <form method="POST" action="add-cat.php" onSubmit="return validar()">
+                                            Categoria<br>
+                                            <input type="text" id="nome_categoria" name="nome_categoria" value="" class="input is-large" placeholder="Categoria"><br>
+                                            <br>
+                                            <button type="submit" value="Adicionar" class="button is-block is-link is-large is-fullwidth">Adicionar</button>
+                                        </form>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+
+
+                    </div>
+
+
+                            <!-- graph -->
+
+                            <!-- footer -->
+                            <div class="container-fluid">
+                                <div class="footer">
+                                    <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end dashboard inner -->
                     </div>
                 </div>
-                <!-- end dashboard inner -->
             </div>
-        </div>
-    </div>
-    <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- wow animation -->
-    <script src="js/animate.js"></script>
-    <!-- select country -->
-    <script src="js/bootstrap-select.js"></script>
-    <!-- owl carousel -->
-    <script src="js/owl.carousel.js"></script>
-    <!-- chart js -->
-    <script src="js/Chart.min.js"></script>
-    <script src="js/Chart.bundle.min.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/analyser.js"></script>
-    <!-- nice scrollbar -->
-    <script src="js/perfect-scrollbar.min.js"></script>
-    <script>
-        var ps = new PerfectScrollbar('#sidebar');
+            <!-- jQuery -->
+            <script src="js/jquery.min.js"></script>
+            <script src="js/popper.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <!-- wow animation -->
+            <script src="js/animate.js"></script>
+            <!-- select country -->
+            <script src="js/bootstrap-select.js"></script>
+            <!-- owl carousel -->
+            <script src="js/owl.carousel.js"></script>
+            <!-- chart js -->
+            <script src="js/Chart.min.js"></script>
+            <script src="js/Chart.bundle.min.js"></script>
+            <script src="js/utils.js"></script>
+            <script src="js/analyser.js"></script>
+            <!-- nice scrollbar -->
+            <script src="js/perfect-scrollbar.min.js"></script>
+            <script>
+                var ps = new PerfectScrollbar('#sidebar');
+            </script>
+    <script type="text/javascript">
+        function validar() {
+            var enviar = false;
+
+            var categoria = document.getElementById("nome_categoria").value;
+            if (categoria=="") {
+                document.getElementById("nome_categoria").setCustomValidity("Preencha a Categoria de Produto!");
+
+            }
+            else {
+                enviar = true;
+            }
+
+            return enviar;
+        }
+
+
     </script>
-    <!-- custom js -->
-    <script src="js/custom.js"></script>
-    <script src="js/chart_custom_style1.js"></script>
+            <!-- custom js -->
+            <script src="js/custom.js"></script>
+            <script src="js/chart_custom_style1.js"></script>
 </body>
 </html>
+
+
+

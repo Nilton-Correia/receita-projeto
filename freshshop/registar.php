@@ -152,7 +152,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
-                header("location: index.php");
+                header("location: login.php");
             } else{
                 //echo mysqli_errno($this->link);
                 echo "Algo deu errado. Por favor, tente novamente mais tarde.";

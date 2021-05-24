@@ -89,6 +89,8 @@ require("../confi.php");
     <link rel="stylesheet" href="css/perfect-scrollbar.css" />
     <!-- custom css -->
     <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="css/bulma.min.css" />
+    <link href="css/sb-admin-2.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -127,6 +129,16 @@ require("../confi.php");
                         <a href="receita.php">
                             <i class="fa fa-cutlery red_color"></i> <span>Receitas</span></a>
                     </li>
+                    <li>
+                        <a href="categoria.php">
+                            <i class="fa fa-paper-plane red_color"></i> <span>Editar Categoria</span></a>
+                    </li>
+
+                    <li>
+                        <a href="pais.php">
+                            <i class="fa fa-paper-plane red_color"></i> <span>Editar Pais da Receita</span></a>
+                    </li>
+
 
                     <li>
                         <a href="../index.php">
@@ -190,68 +202,100 @@ require("../confi.php");
                         </div>
                     </div>
 
-                    <div class="page-wrapper">
+                    <div class="container-fluid">
+
                         <div class="row">
-                            <div class="col-md-8">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-md-flex align-items-center">
-                                            <div class="container has-text-centered">
-                                                <br class="box">
-                                                <p><a href="index.php" class="btn btn-black rounded-0">Pagina Inicial</a></p>
-                                                <br>
-                                                <?php
-                                                $nome=$preco=$descricao=$idPais=$ingredientes=$modo_preparacao=$idcategoria=$imagens="";
-                                                ?>
-                                                <form action="adicio-receita.php" method="post" enctype="multipart/form-data">
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="nome" type="text" value="<?=$nome?>" class="input is-large" placeholder="Nome Produto" autofocus>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="preco" type="text" value="<?=$preco?>" class="input is-large" placeholder="Preço">
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
 
-                                                            <input name="descricao" value="<?=$descricao?>" class="input is-large" type="text" placeholder="Descrição do Produto">
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="idPais" type="text" value="<?=$idPais?>" class="input is-large"  placeholder="idPais">
-                                                        </div>
-                                                    </div>
+                            <!-- Content Column -->
+                            <div class="col-lg-5 mb-4">
 
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="idcategoria" type="text" value="<?=$idcategoria?>" class="input is-large" placeholder=" id_categoria">
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="ingredientes" type="text" value="<?=$ingredientes?>" class="input is-large"  placeholder="ingredientes">
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="modo_preparacao" type="text" value="<?=$modo_preparacao?>" class="input is-large"  placeholder="modo_preparacao">
-                                                        </div>
-                                                    </div>
-
-                                                    <div>
-                                                        <input type="file" name="imagens" value="<?=$imagens?>">
-                                                    </div>
-                                                    <br>
-                                                    <button type="submit" class="button is-block is-link is-large is-fullwidth">Registar Produto</button>
-                                                </form>
-                                            </div>
-                                        </div>
+                                <!-- Project Card Example -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Adicionar Receita&nbsp;<img src="../img/adicionar-produto.png" alt=""></h6>
                                     </div>
 
+                                    <div class="card-body">
+                                        <?php
+
+                                        /* obter os dados do registo */
+                                        $nome = $preco = $imagens = $idPais = $descricao = $modo_preparacao = $ingredientes = $idcategoria ="";
+
+                                        ?>
+
+
+                                        <form method="POST" action="adicio-receita.php" onSubmit="return validar()">
+                                            Nome de Receita<br>
+                                            <input type="text" id="nome" name="nome" value="<?=$nome?>" class="input is-large" placeholder="Receita" required><br>
+                                            Preço<br>
+                                            <input type="number" id="preco" name="preco" value="<?=$preco?>" class="input is-large" placeholder="Preço" required><br>
+                                            Ingrediente<br>
+                                            <input type="text" id="ingrediente" name="ingrediente" value="<?=$ingredientes?>" class="input is-large" placeholder="Ingrediente" required><br>
+                                            Modo de Preparação<br>
+                                            <input type="text" id="modo_preparacao" name="modo_preparacao" value="<?=$modo_preparacao?>" class="input is-large" placeholder="Modo de Preparacao" required><br>
+                                            Imagens<br>
+                                            <input type="file" id="imagens" name="imagens" value="<?=$imagens?>" placeholder="Imagens" required><br><br>
+                                            País
+                                            <div class="col-md-12 mb-2">
+                                                <select class="custom-select d-block w-100" id="Pais" name="Pais" required>
+                                                    <option value="">País...</option>
+                                                    <?php
+                                                    require ("../confi.php");
+                                                    $link->set_charset("utf8");
+                                                    $consulta = 'SELECT * FROM pais';
+
+                                                    /* executar a consulta e testar se ocorreu erro */
+                                                    if (!$resultado = $link->query($consulta)) {
+                                                        echo ' Falha na consulta: '. $link->error;
+                                                        $link->close();  /* fechar a ligação */
+                                                    }
+                                                    else{
+                                                        while ($row = $resultado->fetch_assoc()) {
+
+                                                            ?>
+                                                            <option value=<?php echo $row['idPais'];?>><?php echo $row['Pais'];?></option>
+                                                            <?php
+                                                        }
+
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            Categoria de Produto<br>
+                                            <div class="col-md-12 mb-2">
+                                                <select class="custom-select d-block w-100" id="idcategoria" name="idcategoria" required>
+                                                    <option value="">Categoria de Receita...</option>
+                                                    <?php
+                                                    $link->set_charset("utf8");
+                                                    $consulta = 'SELECT * FROM categoria';
+
+                                                    /* executar a consulta e testar se ocorreu erro */
+                                                    if (!$resultado = $link->query($consulta)) {
+                                                        echo ' Falha na consulta: '. $link->error;
+                                                        $link->close();  /* fechar a ligação */
+                                                    }
+                                                    else{
+                                                        while ($rows = $resultado->fetch_assoc()) {
+
+                                                            ?>
+                                                            <option value=<?php echo $rows['idcategoria'];?>><?php echo $rows['nome_categoria'];?></option>
+                                                            <?php
+                                                        }
+
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div><br><br>
+                                            <button type="submit" value="Adicionar" class="button is-block is-link is-large is-fullwidth">Adicionar</button>
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
 
 
 

@@ -1,7 +1,18 @@
 <?php
 session_start();
-
 require("../confi.php");
+
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"])){
+    if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]== "admin") {
+        header("location: ./adminstracao/adminstrador.php");
+    }else{
+        header("location: welcome.php");
+    }
+
+}
+
+
 
 
 
@@ -56,13 +67,16 @@ require("../confi.php");
     <!-- responsive css -->
     <link rel="stylesheet" href="css/responsive.css" />
     <!-- color css -->
-    <link rel="stylesheet" href="css/colors.css" />
+    <link rel="stylesheet" href="css/color.css" />
     <!-- select bootstrap -->
     <link rel="stylesheet" href="css/bootstrap-select.css" />
     <!-- scrollbar css -->
     <link rel="stylesheet" href="css/perfect-scrollbar.css" />
     <!-- custom css -->
     <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="css/bulma.min.css" />
+    <link href="css/sb-admin-2.css" rel="stylesheet" />
+
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -168,72 +182,55 @@ require("../confi.php");
                             </div>
                         </div>
                     </div>
-                    <div class="page-wrapper">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="card">
-                                    <div class="card-body">
 
-                                        <div class="d-md-flex align-items-center">
-                                            <div class="container has-text-centered">
-                                                <br class="box">
-                                                <p><a href="index.php" class="btn btn-black rounded-0">Pagina Inicial</a></p>
-                                                <br>
+                                    <div class="container-fluid">
 
+                                        <div class="row">
+                                            <div class="col-lg-5 mb-4">
 
-                                                <form method="POST"  action="adicio-utilizador.php" enctype="multipart/form-data">
-                                                    <?php
-                                                    /* obter os dados do registo */
-                                                    $username = $nome = $email = $telefone = $localidade = $morada  = $id_tipo = $password= "";
-                                                    ?>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="username" type="text" value="<?=$username?>" class="input is-large" placeholder="username" autofocus>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="nome" type="text" value="<?=$nome?>" class="input is-large" placeholder="nome" autofocus>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="email" type="text" value="<?=$email?>" class="input is-large" placeholder="email">
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="telefone" type="text" value="<?=$telefone?>" class="input is-large" placeholder="telefone">
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="morada" type="text" value="<?=$morada?>" class="input is-large" placeholder="morada">
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-
-                                                            <input name="localidade" type="text" value="<?=$localidade?>" class="input is-large" placeholder="localidade">
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="id_tipo" type="text" value="<?=$id_tipo?>" class="input is-large" placeholder="tipo">
-                                                        </div>
+                                                <!-- Project Card Example -->
+                                                <div class="card shadow mb-4">
+                                                    <div class="card-header py-3">
+                                                        <h6 class="m-0 font-weight-bold text-primary">Adicionar Utilizador&nbsp;<img src="../img/edt.png" alt=""></h6>
                                                     </div>
 
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="password" type="password" value="<?=$password?>" class="input is-large" placeholder="password">
+                                                    <div class="card-body">
+                                                        <?php
+                                                        /* obter os dados do registo */
+                                                        $username = $nome = $email = $telefone = $localidade = $morada = $id_tipo = $password= "";
+                                                        ?>
+
+                                                        <div class="box">
+                                                            <form method="POST" action="adicio-utilizador.php">
+                                                                Username
+                                                                <input type="text" name="username" value="<?=$username?>" class="input is-large" placeholder="username" required><br>
+                                                                Nome<br>
+                                                                <input type="text" name="nome" value="<?=$nome?>" class="input is-large" placeholder="Nome" required><br>
+                                                                Email<br>
+                                                                <input type="email" name="email" value="<?=$email?>" class="input is-large" placeholder="Email" required><br>
+                                                                Telefone<br>
+                                                                <input type="tel" name="telefone" value="<?=$telefone?>" class="input is-large" placeholder="Telefone" required><br>
+                                                                Palavra Passe<br>
+                                                                <input type="password" name="password" value="<?=$password?>" class="input is-large" placeholder="Palavra Passe" required><br>
+                                                                Tipo<br>
+                                                                <input type="text" name="id_tipo" value="<?=$id_tipo?>" class="input is-large" placeholder="Tipo" required><br>
+                                                                Localidade<br>
+                                                                <input type="text" name="localidade" value="<?=$localidade?>" class="input is-large" placeholder="Localidade" required><br>
+                                                                Morada<br>
+                                                                <input type="text" name="morada" value="<?=$morada?>" class="input is-large" placeholder="Morada" required><br><br>
+
+                                                                <button type="submit" value="Adicionar" class="button is-block is-link is-large is-fullwidth">Adicionar</button>
+                                                            </form>
                                                         </div>
+
                                                     </div>
 
-                                                    <br>
-                                                    <button type="submit"  class="button is-block is-link is-large is-fullwidth">Registar</button>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
+
+
+
                                     </div>
 
                     <!-- graph -->
