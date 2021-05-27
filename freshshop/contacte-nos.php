@@ -143,7 +143,7 @@ if(!isset($_SESSION['carrinho.php'])){
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="html/gallery.html">Gallery</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="html/contact-us.html">Contact Us</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

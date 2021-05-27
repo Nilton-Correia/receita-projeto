@@ -1,49 +1,276 @@
 <?php
 session_start();
-require("../confi.php");
-
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"])){
-    if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]== "admin") {
-        header("location: ./adminstracao/adminstrador.php");
-    }else{
-        header("location: welcome.php");
-    }
+// Include config file
+require_once("../confi.php");
+if(!isset($_SESSION['cart'])){
+    $_SESSION['cart'] = array();
 
 }
+// Define variables and initialize with empty values
+$username =  $password  = $nome = $email = $morada = $localidade = $telefone = $confirm_password = "";
+$username_err = $password_err = $nome_err = $morada_err = $localidade_err = $telefone_err = $email_err = $confirm_password_err = "";
 
 
 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
 
+    // Validate username
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Por favor coloque um nome de utilizador.";
+    } else {
+        // Prepare a select statement
+        $sql = "SELECT id FROM utilizador WHERE username = ?";
 
-    if (!empty($_POST['username']) || !empty($_POST['nome']) || !empty($_POST['email']) || !empty($_POST['telefone']) || !empty($_POST['id_tipo']) || !empty($_POST['morada']) || !empty($_POST['localidade']) || !empty($_POST['password'])) {
-        $username = $_POST['username'];
-        $nome = $_POST['nome'];
-        $telefone = $_POST['telefone'];
-        $email = $_POST['email'];
-        $id_tipo = $_POST['id_tipo'];
-        $morada = $_POST['morada'];
-        $localidade = $_POST['localidade'];
-        $pass = $_POST['password'];
-        $password =password_hash($pass, PASSWORD_DEFAULT);
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
 
+            // Set parameters
+            $param_username = trim($_POST["username"]);
 
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                /* store result */
+                mysqli_stmt_store_result($stmt);
 
-        $sql = "INSERT INTO utilizador(username, nome, email, telefone, id_tipo, morada, localidade, password) VALUES (' $username','$nome','$email', '$telefone', '$id_tipo' ,'$morada', '$localidade', '$password')";
-        if (!mysqli_query($link, $sql)) {
-            print_r(mysqli_error($link));
-
-
-        } else {
-
-            header("location: utilizador.php");
+                if (mysqli_stmt_num_rows($stmt) == 1) {
+                    $username_err = "Este nome de utilizador já está em uso.";
+                } else {
+                    $username = trim($_POST["username"]);
+                }
+            } else {
+                //log error
+                //echo mysqli_errno($this->con);
+                echo "Opa! Algo deu errado. Por favor, tente novamente mais tarde.";
+            }
         }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+
+    }
+
+    // Validate name
+    if(empty(trim($_POST["nome"]))){
+        $nome_err = "Por favor coloque um nome de utilizador.";
+    } else{
+        // Prepare a select statement
+        $sql = "SELECT id FROM utilizador WHERE   nome = ?";
+
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+
+            // Set parameters
+            $param_nome = trim($_POST["nome"]);
+
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+
+                $nome = trim($_POST["nome"]);
+            } else{
+                //log error
+                //echo mysqli_errno($this->con);
+                echo "Opa! Algo deu errado. Por favor, tente novamente mais tarde.";
+            }
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
     }
 
 
+    // Validate morada
+    if(empty(trim($_POST["morada"]))){
+        $morada_err = "Por favor coloque morada de utilizador.";
+    } else{
+        // Prepare a select statement
+        $sql = "SELECT id FROM utilizador WHERE   morada = ?";
 
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+
+            // Set parameters
+            $param_morada = trim($_POST["morada"]);
+
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+
+                $morada = trim($_POST["morada"]);
+            } else{
+                //log error
+                //echo mysqli_errno($this->con);
+                echo "Opa! Algo deu errado. Por favor, tente novamente mais tarde.";
+            }
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Validate localidade
+    if(empty(trim($_POST["localidade"]))){
+        $localidade_err = "Por favor coloque localidade de utilizador.";
+    } else{
+        // Prepare a select statement
+        $sql = "SELECT id FROM utilizador WHERE   localidade = ?";
+
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+
+            // Set parameters
+            $param_localidade = trim($_POST["localidade"]);
+
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+
+                $localidade = trim($_POST["localidade"]);
+            } else{
+                //log error
+                //echo mysqli_errno($this->con);
+                echo "Opa! Algo deu errado. Por favor, tente novamente mais tarde.";
+            }
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Validate telefone
+    if(empty(trim($_POST["telefone"]))){
+        $telefone_err = "Por favor coloque um telefone de utilizador.";
+    } else{
+        // Prepare a select statement
+        $sql = "SELECT id FROM utilizador WHERE   telefone = ?";
+
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+
+            // Set parameters
+            $param_telefone = trim($_POST["telefone"]);
+
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+
+                $telefone = trim($_POST["telefone"]);
+            } else{
+                //log error
+                //echo mysqli_errno($this->con);
+                echo "Opa! Algo deu errado. Por favor, tente novamente mais tarde.";
+            }
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+
+    if(empty(trim($_POST["email"]))){
+        $email_err = "Por favor insira um nome.";
+
+    } else {
+        $sql = "SELECT id FROM utilizador Where email = ?";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            mysqli_stmt_bind_param($stmt, "s", $param_name);
+            //set parameters
+            $param_email = trim($_POST["email"]);
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+
+                if (mysqli_stmt_num_rows($stmt) == 1) {
+                    $email_err = "This login is already taken.";
+                } else {
+                    $email = trim($_POST["email"]);
+                }
+            } else {
+                echo "3";
+            }
+        }
+        mysqli_stmt_close($stmt);
+    }
+
+    //validar password
+
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Por favor insira uma senha.";
+    } elseif(strlen(trim($_POST["password"])) < 6){
+        $password_err = "A senha deve ter pelo menos 6 caracteres.";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "Por favor, confirme a senha.";
+    } else{
+        $confirm_password = trim($_POST["confirm_password"]);
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "A senha não corresponde.";
+        }
+    }
+//
+
+    // Check input errors before inserting in database
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($name_err)
+        && empty($morada_err) && empty($localidade_err) && empty($telefone_err) && empty($email_err)){
+
+        // Prepare an insert statement
+        $sql = "INSERT INTO utilizador (username, password, nome, morada, localidade, telefone, email) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "sssssss", $param_username, $param_password, $param_nome, $param_morada, $param_localidade, $param_telefone, $param_email);
+
+            // Set parameters
+
+            $param_username = $username;
+            $param_nome = $nome;
+            $param_morada =$morada;
+            $param_localidade = $localidade;
+            $param_telefone = $telefone;
+            $param_email = $email;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Redirect to login page
+                header("location: ./utilizador.php");
+            } else{
+                //echo mysqli_errno($this->link);
+                echo "Algo deu errado. Por favor, tente novamente mais tarde.";
+                printf("Error: %s.\n", mysqli_stmt_error($stmt));
+                echo"6";
+            }
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+
+    // Close connection
+    mysqli_close($link);
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,31 +422,41 @@ if(isset($_SESSION["loggedin"])){
                                                     </div>
 
                                                     <div class="card-body">
-                                                        <?php
-                                                        /* obter os dados do registo */
-                                                        $username = $nome = $email = $telefone = $localidade = $morada = $id_tipo = $password= "";
-                                                        ?>
 
                                                         <div class="box">
-                                                            <form method="POST" action="adicio-utilizador.php">
-                                                                Username
-                                                                <input type="text" name="username" value="<?=$username?>" class="input is-large" placeholder="username" required><br>
-                                                                Nome<br>
-                                                                <input type="text" name="nome" value="<?=$nome?>" class="input is-large" placeholder="Nome" required><br>
-                                                                Email<br>
-                                                                <input type="email" name="email" value="<?=$email?>" class="input is-large" placeholder="Email" required><br>
-                                                                Telefone<br>
-                                                                <input type="tel" name="telefone" value="<?=$telefone?>" class="input is-large" placeholder="Telefone" required><br>
-                                                                Palavra Passe<br>
-                                                                <input type="password" name="password" value="<?=$password?>" class="input is-large" placeholder="Palavra Passe" required><br>
-                                                                Tipo<br>
-                                                                <input type="text" name="id_tipo" value="<?=$id_tipo?>" class="input is-large" placeholder="Tipo" required><br>
-                                                                Localidade<br>
-                                                                <input type="text" name="localidade" value="<?=$localidade?>" class="input is-large" placeholder="Localidade" required><br>
-                                                                Morada<br>
-                                                                <input type="text" name="morada" value="<?=$morada?>" class="input is-large" placeholder="Morada" required><br><br>
+                                                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
-                                                                <button type="submit" value="Adicionar" class="button is-block is-link is-large is-fullwidth">Adicionar</button>
+
+                                                                <div class="input-field  <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+
+                                                                    <input placeholder="Username" id="<?php echo $username; ?>" name="username" type="text" class="input is-large" >
+                                                                </div>
+                                                                <div class="input-field <?php echo (!empty($nome_err)) ? 'has-error' : ''; ?>">
+                                                                    <input placeholder="Nome" id="<?php echo $nome; ?>" name="nome" type="text" class="input is-large">
+                                                                </div>
+                                                                <div class="input-field <?php echo (!empty($morada_err)) ? 'has-error' : ''; ?>">
+                                                                    <input placeholder="Morada" id="<?php echo $morada; ?>" name="morada" type="text" class="input is-large">
+                                                                </div>
+                                                                <div class="input-field <?php echo (!empty($localidade_err)) ? 'has-error' : ''; ?>">
+                                                                    <input placeholder="Localidade" id="<?php echo $localidade; ?>" name="localidade" type="text" class="input is-large">
+                                                                </div>
+                                                                <div class="input-field <?php echo (!empty($telefone_err)) ? 'has-error' : ''; ?>">
+                                                                    <input placeholder="Telefone" id="<?php echo $telefone; ?>" name="telefone" type="text" class="input is-large">
+                                                                </div>
+                                                                <div class="input-field <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+                                                                    <input placeholder="Email" id="email" name="email" type="text" class="input is-large">
+                                                                </div>
+                                                                <div class="input-field <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                                                                    <input placeholder="Password" id="<?php echo $password; ?>" name="password" type="password" class="input is-large">
+                                                                </div>
+
+                                                                <div class="input-field <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                                                                    <input placeholder="Confirmar password" id="<?php echo $confirm_password; ?>" name="confirm_password" type="password" class="input is-large">
+                                                                </div>
+
+                                                                <div class="text-right mt-4">
+                                                                    <button type="submit" class="waves-effect btn-large btn-large-white px-4 black-text">Submeter</button>
+                                                                </div>
                                                             </form>
                                                         </div>
 

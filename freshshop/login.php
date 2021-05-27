@@ -147,8 +147,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-login-r">
             <header class="font-weight-light tm-bg-black p-5 h-100">
                 <h3 class="mt-0 text-white font-weight-light"><a href="index.php">LusoFlavors</a></h3>
-                <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                <p class="mb-0">Vestibulum neque neque, porttitor quis lacinia eu, iaculis id dui. Mauris quis velit lectus.</p>
+                <p>Poderas encontrar melhor site de receita aqui</p>
+
             </header>
         </div>
     </div>

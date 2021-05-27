@@ -102,7 +102,7 @@ $totalCarts  = getTotalCart($rtConnection);
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="html/gallery.html">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="html/contact-us.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -227,7 +227,7 @@ $totalCarts  = getTotalCart($rtConnection);
 
         <a class="btn btn-info" href="index.php">Continuar Comprando</a>
         <button class="btn btn-primary" type="submit">Atualizar Carrinho</button>
-        <a class="btn btn-info" href="Finalizarcompra.php">Finalizar</a>
+        <a class="btn btn-info" href="checkout.php">Finalizar</a>
     </form>
 <?php endif?>
 <!-- End Cart -->

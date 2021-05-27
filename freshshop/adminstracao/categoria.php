@@ -164,7 +164,7 @@ session_start();
             
              
             <td><a href="eliminar-categoria.php?id='.$row['idcategoria'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
-            <td><a href="edit-utilizador.php?id='.$row['idcategoria'].'" class="fa fa-wrench green_color"> Editar</a></td>
+            <td><a href="edita-categoria-formulario.php?id='.$row['idcategoria'].'" class="fa fa-wrench green_color"> Editar</a></td>
             </tr>';
                                             }
                                             $resultado->free();

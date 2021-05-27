@@ -9,6 +9,7 @@ require_once "functions/cart.php";
 $pdoConfig = require_once "confi.php";
 $products = getProductos($pdoConfig);
 $resultsCarts = getContentCart($pdoConfig);
+$totalCarts = getTotalCart($pdoConfig);
 
 ?>
 
@@ -101,7 +102,7 @@ $resultsCarts = getContentCart($pdoConfig);
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="recente.php">Receitas recentes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="html/contact-us.html">Contacte nos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -160,7 +161,7 @@ $resultsCarts = getContentCart($pdoConfig);
 
                             <li class="total">
                                 <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
-                                <span class="float-right"><strong>Total</strong>: $180.00</span>
+                                <span class="float-right"><strong>Total</strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
                             </li>
                         </ul>
                     <?php endforeach;?>
@@ -177,9 +178,11 @@ $resultsCarts = getContentCart($pdoConfig);
     <div class="top-search">
         <div class="container">
             <div class="input-group">
+                <form action="pesquisa.php" method="Post">
                 <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                <input type="text" class="form-control" placeholder="Search">
-                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                <input type="search" class="form-control" placeholder="Pesquise">
+                <button class="input-group-addon close-search"><i class="fa fa-times"></i></button>
+                </form>
             </div>
         </div>
     </div>
@@ -292,12 +295,13 @@ $resultsCarts = getContentCart($pdoConfig);
                     <div class="special-menu text-center">
                         <div class="button-group filter-button-group">
                             <button class="active" data-filter="*">Todos</button>
-                            <button data-filter=".Sobremesa_Doces">Doces e Salgados</button>
+                            <button data-filter=".Sobremesa_Doces">Doces</button>
                             <button data-filter=".Marisco">Mariscos</button>
                             <button data-filter=".Receita_Peixe">Peixes</button>
-                            <button data-filter=".Receita_carne">Carnes</button>
+                            <button data-filter=".Receita_Carne">Carnes</button>
                             <button data-filter=".Massa">Massa</button>
                             <button data-filter=".Sumo_Bebidas">Sumo e Bebidas</button>
+                            <button data-filter=".Salada">Salada</button>
                         </div>
                     </div>
                 </div>
@@ -314,7 +318,7 @@ $resultsCarts = getContentCart($pdoConfig);
 
                         <div class="box-img-hover">
                             <div class="type-lb">
-                                <p class="sale"><?php echo $product['Pais']?></p>
+                                <p class="sale"><?php echo $cat?></p>
                             </div>
                             <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
                             <div class="mask-icon">

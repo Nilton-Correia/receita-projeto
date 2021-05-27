@@ -47,15 +47,17 @@ session_start();
             <div class="sidebar_blog_1">
                 <div class="sidebar-header">
                     <div class="logo_section">
-                        <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
+                        <a href="../index.php"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
                     </div>
                 </div>
                 <div class="sidebar_user_info">
                     <div class="icon_setting"></div>
                     <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
+                        <div class="user_img"><img class="img-responsive" src="../images/logotipo.png"alt="#" /></div>
                         <div class="user_info">
-                            <h6>John David</h6>
+                            <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
+                                }
+                                else{ echo "Conta";}?></h6>
                             <p><span class="online_animation"></span> Online</p>
                         </div>
                     </div>
@@ -110,27 +112,7 @@ session_start();
                     <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
-                            <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
-                        </div>
-                        <div class="right_topbar">
-                            <div class="icon_info">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
-                                    <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
-                                </ul>
-                                <ul class="user_profile_dd">
-                                    <li>
-                                        <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" /><span class="name_user">John David</span></a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="profile.html">My Profile</a>
-                                            <a class="dropdown-item" href="settings.html">Settings</a>
-                                            <a class="dropdown-item" href="help.html">Help</a>
-                                            <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            <a href="../index.php"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
                         </div>
                     </div>
                 </nav>
@@ -153,6 +135,7 @@ session_start();
                             <th>Nome</th>
                             <th>Preco</th>
                             <th>Imagem</th>
+                            <th>Video</th>
                             <th>Descrição</th>
                             <th>Ingredientes</th>
                             <th>Preparação</th>
@@ -163,18 +146,20 @@ session_start();
                         </thead>
                         <?php
                         require("../confi.php");
-                        $receitas="Select * from receita";
+                        $link->set_charset("utf8");
+                        $receitas="SELECT receita.*, pais.*, categoria.* FROM receita INNER JOIN pais ON receita.idPais=pais.idPais INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria";
                         if($resultado=$link->query($receitas)){
                             while ($row=$resultado->fetch_assoc()){
                                 echo'<tr> 
             <td>'.$row['nome'].'</td>
             <td>'.$row['preco'].'</td>
             <td>'.$row['imagens'].'</td>
+             <td>'.$row['video'].'</td>
             <td>'.$row['descricao'].'</td>
             <td>'.$row['ingredientes'].'</td>
             <td>'.$row['modo_preparacao'].'</td>
-            <td>'.$row['idPais'].'</td>
-            <td>'.$row['idcategoria'].'</td>
+            <td>'.$row['Pais'].'</td>
+            <td>'.$row['nome_categoria'].'</td>
             <td><a href="elimina-receita.php?id='.$row['idreceita'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
             <td><a href="edit-receita.php?id='.$row['idreceita'].'" class="fa fa-wrench green_color"> Editar</a></td>
             </tr>';

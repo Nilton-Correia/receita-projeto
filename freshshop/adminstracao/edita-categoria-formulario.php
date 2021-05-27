@@ -1,46 +1,5 @@
 <?php
 session_start();
-require ("../confi.php");
-
-
-
-
-if($_POST){
-    $id=$_POST['id'];
-    $nome =$_POST['nome'];
-    $email =$_POST['email'];
-    $telefone =$_POST['telefone'];
-    $morada =$_POST['morada'];
-    $localidade =$_POST['email'];
-    $id_tipo =$_POST['id_tipo'];
-
-
-
-    $editar ="UPDATE utilizador SET nome='$nome', email= '$email', telefone='$telefone',morada='$morada',localidade='$localidade',id_tipo='$id_tipo' WHERE id = $id";
-
-    if (!$resultado=$link->query($editar)) {
-
-        header( "location:utilizador.php");
-    } else {
-
-
-        echo "Infelizmente não foi possivel Editar";
-    }
-
-}
-
-    $utilizad = $_GET['id'];
-    $editar ="SELECT * FROM utilizador WHERE id = $utilizad";
-
-    if ($resultado=$link->query($editar)) {
-        $row=$resultado->fetch_assoc();
-    } else {
-
-
-        echo "Infelizmente não foi possivel Editar";
-    }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,6 +31,10 @@ if($_POST){
     <link rel="stylesheet" href="css/perfect-scrollbar.css" />
     <!-- custom css -->
     <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="css/bulma.min.css" />
+    <link href="css/sb-admin-2.css" rel="stylesheet" />
+
+
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -178,95 +141,119 @@ if($_POST){
                             <div class="col-md-8">
                                 <div class="card">
                                     <div class="card-body">
+                                        <?php
+
+                                        /* Verificar se foi enviado o pedido para eliminar  */
+
+                                        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                                            $id = filter_input(INPUT_GET, 'id');
+                                            $operacao = filter_input(INPUT_GET, 'operacao');
+
+                                            /* validar os dados recebidos através do pedido */
+                                            if (empty($id) && $operacao!="editar"){
+
+                                                echo " Nada para editar!! ";
+                                            }
+
+                                        }
+                                        else{
+
+
+
+
+                                        }
+
+
+                                        /* estabelece a ligação à base de dados */
+                                        require("../confi.php");
+
+                                        /* definir o charset utilizado na ligação */
+                                        $link->set_charset("utf8");
+
+                                        /* texto sql da consulta*/
+                                        $editar = "SELECT * FROM categoria  WHERE idcategoria = '$id' ";
+
+                                        /* executar a consulta e testar se ocorreu erro */
+                                        if (!$resultado = $link->query($editar)) {
+                                            echo ' Falha na consulta: '. $link->error;
+                                            $link->close();  /* fechar a ligação */
+                                        }
+                                        else{
+                                        /* buscar os dados do registo */
+                                        $row = $resultado->fetch_assoc();
+                                        ?>
+
 
                                         <div class="d-md-flex align-items-center">
                                             <div class="container has-text-centered">
-                                                <br class="box">
-                                                <p><a href="index.php" class="btn btn-black rounded-0">Pagina Inicial</a></p>
-                                                <br>
-                                                <form action="edit-utilizador.php" method="post" enctype="multipart/form-data">
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="username" type="text" value="<?php echo ''.$row['username'].''; ?>" class="input is-large" placeholder="username" autofocus>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="nome" type="text" value="<?php echo ''.$row['nome'].''; ?>" class="input is-large" placeholder="nome" autofocus>
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="email" type="text" value="<?php echo ''.$row['email'].''; ?>" class="input is-large" placeholder="email">
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="telefone" type="text" value="<?php echo ''.$row['telefone'].''; ?>" class="input is-large" placeholder="telefone">
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="morada" type="text" value="<?php echo ''.$row['morada'].''; ?>" class="input is-large" placeholder="morada">
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="localidade" type="text" value="<?php echo ''.$row['localidade'].''; ?>" class="input is-large" placeholder="localidade">
-                                                        </div>
-                                                    </div>
-                                                    <div class="field">
-                                                        <div class="control">
-                                                            <input name="id_tipo" type="text" value="<?php echo ''.$row['id_tipo'].''; ?>" class="input is-large" placeholder="tipo">
-                                                        </div>
-                                                    </div>
+
+                                                <div class="box">
 
 
+                                                    <form action="edita-categoria.php" method="post" >
+
+                                                        <div class="field">
+                                                            <div class="control">
+                                                                <input name="x_nomecat" type="text" value="<?=$row['nome_categoria']?>" class="input is-large" placeholder="Categoria">
+                                                            </div>
+                                                        </div>
 
 
-                                                    <br>
-                                                    <button type="submit"  class="button is-block is-link is-large is-fullwidth">Editar</button>
-                                                </form>
+                                                        <div class="field">
+                                                            <div class="control">
+                                                                <input name="x_idcategoria" type="hidden" value="<?=$row['idcategoria']?>" class="input is-large">
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+                                                        <button type="submit"  class="button is-block is-link is-large ">Editar</button>
+                                                    </form>
+
+                                                    <?php
+                                                    $resultado->free();/* libertar o resultado */
+                                                    $link->close();       /* close a ligação */
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- graph -->
+
+                                        <!-- footer -->
+                                        <div class="container-fluid">
+                                            <div class="footer">
+                                                <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- graph -->
-
-                                    <!-- footer -->
-                                    <div class="container-fluid">
-                                        <div class="footer">
-                                            <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
-                                        </div>
-                                    </div>
+                                    <!-- end dashboard inner -->
                                 </div>
-                                <!-- end dashboard inner -->
                             </div>
                         </div>
-                    </div>
-                    <!-- jQuery -->
-                    <script src="js/jquery.min.js"></script>
-                    <script src="js/popper.min.js"></script>
-                    <script src="js/bootstrap.min.js"></script>
-                    <!-- wow animation -->
-                    <script src="js/animate.js"></script>
-                    <!-- select country -->
-                    <script src="js/bootstrap-select.js"></script>
-                    <!-- owl carousel -->
-                    <script src="js/owl.carousel.js"></script>
-                    <!-- chart js -->
-                    <script src="js/Chart.min.js"></script>
-                    <script src="js/Chart.bundle.min.js"></script>
-                    <script src="js/utils.js"></script>
-                    <script src="js/analyser.js"></script>
-                    <!-- nice scrollbar -->
-                    <script src="js/perfect-scrollbar.min.js"></script>
-                    <script>
-                        var ps = new PerfectScrollbar('#sidebar');
-                    </script>
-                    <!-- custom js -->
-                    <script src="js/custom.js"></script>
-                    <script src="js/chart_custom_style1.js"></script>
+                        <!-- jQuery -->
+                        <script src="js/jquery.min.js"></script>
+                        <script src="js/popper.min.js"></script>
+                        <script src="js/bootstrap.min.js"></script>
+                        <!-- wow animation -->
+                        <script src="js/animate.js"></script>
+                        <!-- select country -->
+                        <script src="js/bootstrap-select.js"></script>
+                        <!-- owl carousel -->
+                        <script src="js/owl.carousel.js"></script>
+                        <!-- chart js -->
+                        <script src="js/Chart.min.js"></script>
+                        <script src="js/Chart.bundle.min.js"></script>
+                        <script src="js/utils.js"></script>
+                        <script src="js/analyser.js"></script>
+                        <!-- nice scrollbar -->
+                        <script src="js/perfect-scrollbar.min.js"></script>
+                        <script>
+                            var ps = new PerfectScrollbar('#sidebar');
+                        </script>
+                        <!-- custom js -->
+                        <script src="js/custom.js"></script>
+                        <script src="js/chart_custom_style1.js"></script>
 </body>
 </html>
 

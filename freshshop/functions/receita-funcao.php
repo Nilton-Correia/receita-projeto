@@ -39,7 +39,7 @@ function getProductsByIds($pdo, $ids) {
 
 
 function getCatReceita1($pdo){
-    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE categoria.nome_categoria='Receita Carne' ";
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE categoria.nome_categoria='Receita_Carne' ";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -51,12 +51,7 @@ function getCatReceita2($pdo){
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getCatReceita3($pdo){
-    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE categoria.nome_categoria='Receita Peixe' ";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+
 
 function getCatReceita4($pdo){
     $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE categoria.nome_categoria='Sopas' ";
@@ -66,7 +61,7 @@ function getCatReceita4($pdo){
 }
 
 function getCatReceita5($pdo){
-    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE categoria.nome_categoria='Sobremesa e Doces' ";
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE categoria.nome_categoria='Sobremesa_Doces' ";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -87,7 +82,7 @@ function getCatReceita7($pdo){
 }
 
 function getCatReceita8($pdo){
-    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE categoria.nome_categoria='Sumo e Bebidas' ";
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE categoria.nome_categoria='Sumo_Bebidas' ";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -1,14 +1,5 @@
 <?php
 session_start();
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"])){
-    if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]== "admin") {
-        header("location: ../adminstracao/adminstrador.php");
-    }else{
-        header("location: welcome.php");
-    }
-
-}
 
 ?>
 
@@ -117,7 +108,7 @@ if(isset($_SESSION["loggedin"])){
                     <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
-                            <a href="../index.php"><img class="img-responsive" src="../images/logotipo.png" alt="#" /></a>
+
                         </div>
 
                     </div>
@@ -153,7 +144,7 @@ if(isset($_SESSION["loggedin"])){
 
                         <?php
             require ("../confi.php");
-                        $utilizador="SELECT * FROM  utilizador";
+                        $utilizador="SELECT utilizador.*, tipo_utilizador.* FROM  utilizador INNER JOIN tipo_utilizador ON utilizador.id_tipo= tipo_utilizador.id_tipo";
                         if($resultado=$link->query($utilizador)){
                             while ($row=$resultado->fetch_assoc()){
                                 echo'<tr> 
@@ -163,13 +154,13 @@ if(isset($_SESSION["loggedin"])){
             <td>'.$row['telefone'].'</td>
              <td>'.$row['morada'].'</td>
               <td>'.$row['localidade'].'</td>
-               <td>'.$row['id_tipo'].'</td>
+               <td>'.$row['tipo'].'</td>
             
               
             
             
             <td><a href="elimina-utilizador.php?id='.$row['id'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
-            <td><a href="edit-utilizador.php?id='.$row['id'].'" class="fa fa-wrench green_color"> Editar</a></td>
+            <td><a href="edit-utilizador-formulario.php?id='.$row['id'].'" class="fa fa-wrench green_color"> Editar</a></td>
             </tr>';
                             }
                             $resultado->free();

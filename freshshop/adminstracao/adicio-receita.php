@@ -1,18 +1,18 @@
-
 <?php
 session_start();
 require("../confi.php");
 
 
 
-    if(!empty($_POST['nome'])||!empty($_POST['preco'])||!empty($_POST['imagens'])||!empty($_POST['descricao'])||!empty($_POST['ingredientes'])||!empty($_POST['modo_preparacao'])||!empty($_POST['idPais'])||!empty($_POST['idcategoria'])) {
+    if(!empty($_POST['nome'])||!empty($_POST['preco'])||!empty($_POST['imagens'])||!empty($_POST['idPais'])||!empty($_POST['ingredientes'])||!empty($_POST['modo_preparacao'])||!empty($_POST['descricao'])||!empty($_POST['video'])||!empty($_POST['idcategoria'])) {
         $nome = $_POST['nome'];
         $preco = $_POST['preco'];
         $descricao = $_POST['descricao'];
+        $idpais = $_POST['idPais'];
         $ingredientes = $_POST['ingredientes'];
         $modo_preparacao = $_POST['modo_preparacao'];
-        $idPais = $_POST['idPais'];
-        $idcategoria = $_POST['idcategoria'];
+        $categoria = $_POST['idcategoria'];
+        $video = $_POST['video'];
         print_r($_FILES);
         $imagens = $_FILES['imagens'];
 
@@ -27,11 +27,11 @@ require("../confi.php");
 
         $allowed = array('jpg', 'jpeg', 'png', 'pdf');
 
-        $sql = "INSERT INTO receita(nome, preco, descricao, idcategoria , idPais, ingredientes, modo_preparacao, imagens) VALUES ('$nome','$preco','$descricao','$idcategoria','$idPais','$ingredientes','$modo_preparacao','".$imagens['name']."')";
+        $sql = "INSERT INTO receita(nome, preco, descricao, ingredientes, modo_preparacao, idcategoria, idPais, video, imagens) VALUES ('$nome','$preco','$descricao','$ingredientes','$modo_preparacao','$categoria','$idpais','$video','".$imagens['name']."')";
         if (!mysqli_query($link, $sql)) {
             print_r(mysqli_error($link));
 
-            $result = mysqli_query($link, "SELECT * FROM receita INNER JOIN categoria ON receita.idcategoria= categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais");
+            $result = mysqli_query($link, "SELECT * FROM receita INNER JOIN Categoria ON  receita.idcategoria= categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais  ");
 
             if (in_array($imagensActualExt, $allowed)) {
                 if ($imagensError === 0) {
@@ -50,10 +50,6 @@ require("../confi.php");
                 echo "Não podes fazer upload deste tipo de imagens";
             }
 
-        }
-        else {
-
-            header("location: receita.php");
         }
     }
 
@@ -104,7 +100,7 @@ require("../confi.php");
             <div class="sidebar_blog_1">
                 <div class="sidebar-header">
                     <div class="logo_section">
-                        <a href="pluto/index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
+                        <a href="../index.php"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
                     </div>
                 </div>
                 <div class="sidebar_user_info">
@@ -112,7 +108,9 @@ require("../confi.php");
                     <div class="user_profle_side">
                         <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
                         <div class="user_info">
-                            <h6>John David</h6>
+                            <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
+                                }
+                                else{ echo "Conta";}?></h6>
                             <p><span class="online_animation"></span> Online</p>
                         </div>
                     </div>
@@ -165,27 +163,7 @@ require("../confi.php");
                     <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
-                            <a href="pluto/index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
-                        </div>
-                        <div class="right_topbar">
-                            <div class="icon_info">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
-                                    <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
-                                </ul>
-                                <ul class="user_profile_dd">
-                                    <li>
-                                        <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" /><span class="name_user">John David</span></a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="pluto/profile.html">My Profile</a>
-                                            <a class="dropdown-item" href="pluto/settings.html">Settings</a>
-                                            <a class="dropdown-item" href="help.html">Help</a>
-                                            <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            <a href="pluto/index.html"><img class="img-responsive" src="../images/logotipo.png" alt="#" /></a>
                         </div>
                     </div>
                 </nav>
@@ -196,9 +174,6 @@ require("../confi.php");
                 <div class="container-fluid">
                     <div class="row column_title">
                         <div class="col-md-12">
-                            <div class="page_title">
-                                <h2>Dashboard</h2>
-                            </div>
                         </div>
                     </div>
 
@@ -211,83 +186,101 @@ require("../confi.php");
 
                                 <!-- Project Card Example -->
                                 <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Adicionar Receita&nbsp;<img src="../img/adicionar-produto.png" alt=""></h6>
-                                    </div>
+
 
                                     <div class="card-body">
-                                        <?php
-
-                                        /* obter os dados do registo */
-                                        $nome = $preco = $imagens = $idPais = $descricao = $modo_preparacao = $ingredientes = $idcategoria ="";
-
-                                        ?>
 
 
-                                        <form method="POST" action="adicio-receita.php" onSubmit="return validar()">
-                                            Nome de Receita<br>
-                                            <input type="text" id="nome" name="nome" value="<?=$nome?>" class="input is-large" placeholder="Receita" required><br>
-                                            Preço<br>
-                                            <input type="number" id="preco" name="preco" value="<?=$preco?>" class="input is-large" placeholder="Preço" required><br>
-                                            Ingrediente<br>
-                                            <input type="text" id="ingrediente" name="ingrediente" value="<?=$ingredientes?>" class="input is-large" placeholder="Ingrediente" required><br>
-                                            Modo de Preparação<br>
-                                            <input type="text" id="modo_preparacao" name="modo_preparacao" value="<?=$modo_preparacao?>" class="input is-large" placeholder="Modo de Preparacao" required><br>
-                                            Imagens<br>
-                                            <input type="file" id="imagens" name="imagens" value="<?=$imagens?>" placeholder="Imagens" required><br><br>
-                                            País
-                                            <div class="col-md-12 mb-2">
-                                                <select class="custom-select d-block w-100" id="Pais" name="Pais" required>
-                                                    <option value="">País...</option>
-                                                    <?php
-                                                    require ("../confi.php");
-                                                    $link->set_charset("utf8");
-                                                    $consulta = 'SELECT * FROM pais';
-
-                                                    /* executar a consulta e testar se ocorreu erro */
-                                                    if (!$resultado = $link->query($consulta)) {
-                                                        echo ' Falha na consulta: '. $link->error;
-                                                        $link->close();  /* fechar a ligação */
-                                                    }
-                                                    else{
-                                                        while ($row = $resultado->fetch_assoc()) {
-
-                                                            ?>
-                                                            <option value=<?php echo $row['idPais'];?>><?php echo $row['Pais'];?></option>
-                                                            <?php
-                                                        }
-
-                                                    }
-                                                    ?>
-                                                </select>
+                                        <form action="adicio-receita.php" method="post" enctype="multipart/form-data">
+                                            <div class="field">
+                                                <div class="control">
+                                                    <input name="nome" type="text" class="input is-large" placeholder="Nome Produto" autofocus>
+                                                </div>
                                             </div>
-                                            Categoria de Produto<br>
-                                            <div class="col-md-12 mb-2">
-                                                <select class="custom-select d-block w-100" id="idcategoria" name="idcategoria" required>
-                                                    <option value="">Categoria de Receita...</option>
-                                                    <?php
-                                                    $link->set_charset("utf8");
-                                                    $consulta = 'SELECT * FROM categoria';
+                                            <div class="field">
+                                                <div class="control">
+                                                    <input name="preco" type="number" class="input is-large" placeholder="Preço">
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="control">
+                                                    <input name="descricao" class="input is-large" type="text" placeholder="Descrição do Produto">
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="control">
+                                                    <select class="custom-select d-block w-100" name="idPais" required>
+                                                        <option value="">País...</option>
+                                                        <?php
+                                                        require ("../confi.php");
+                                                        $link->set_charset("utf8");
+                                                        $consulta = 'SELECT * FROM pais';
 
-                                                    /* executar a consulta e testar se ocorreu erro */
-                                                    if (!$resultado = $link->query($consulta)) {
-                                                        echo ' Falha na consulta: '. $link->error;
-                                                        $link->close();  /* fechar a ligação */
-                                                    }
-                                                    else{
-                                                        while ($rows = $resultado->fetch_assoc()) {
-
-                                                            ?>
-                                                            <option value=<?php echo $rows['idcategoria'];?>><?php echo $rows['nome_categoria'];?></option>
-                                                            <?php
+                                                        /* executar a consulta e testar se ocorreu erro */
+                                                        if (!$resultado = $link->query($consulta)) {
+                                                            echo ' Falha na consulta: '. $link->error;
+                                                            $link->close();  /* fechar a ligação */
                                                         }
+                                                        else{
+                                                            while ($row = $resultado->fetch_assoc()) {
 
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div><br><br>
-                                            <button type="submit" value="Adicionar" class="button is-block is-link is-large is-fullwidth">Adicionar</button>
+                                                                ?>
+                                                                <option value=<?php echo $row['idPais'];?>><?php echo $row['Pais'];?></option>
+                                                                <?php
+                                                            }
 
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="control">
+                                                    <input name="ingredientes" type="text" class="input is-large"  placeholder="Ingredientes">
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="control">
+                                                    <input name="modo_preparacao" type="text" class="input is-large"  placeholder="Modo de Preparacao">
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="control">
+                                                    <select class="custom-select d-block w-100"  name="idcategoria" required>
+                                                        <option value="">Categoria de Produto...</option>
+                                                        <?php
+                                                        $link->set_charset("utf8");
+                                                        $consulta = 'SELECT * FROM categoria';
+
+                                                        /* executar a consulta e testar se ocorreu erro */
+                                                        if (!$resultado = $link->query($consulta)) {
+                                                            echo ' Falha na consulta: '. $link->error;
+                                                            $link->close();  /* fechar a ligação */
+                                                        }
+                                                        else{
+                                                            while ($rows = $resultado->fetch_assoc()) {
+
+                                                                ?>
+                                                                <option value=<?php echo $rows['idcategoria'];?>><?php echo $rows['nome_categoria'];?></option>
+                                                                <?php
+                                                            }
+
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                              Video
+                                                <div>
+                                                    <input name="video" type="file" value="video">
+                                                </div>
+
+                                            Imagem
+                                            <div>
+                                                <input type="file" name="imagens" value="imagens">
+                                            </div>
+                                            <br>
+                                            <button type="submit" class="button is-block is-link is-large ">Registar Produto</button>
                                         </form>
 
                                     </div>

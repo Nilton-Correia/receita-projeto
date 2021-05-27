@@ -164,7 +164,7 @@ session_start();
             
              
             <td><a href="eliminar-pais.php?id='.$row['idPais'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
-            <td><a href="editar-pais.php?id='.$row['idPais'].'" class="fa fa-wrench green_color"> Editar</a></td>
+            <td><a href="edit-pais-formulario.php?id='.$row['idPais'].'" class="fa fa-wrench green_color"> Editar</a></td>
             </tr>';
                                             }
                                             $resultado->free();

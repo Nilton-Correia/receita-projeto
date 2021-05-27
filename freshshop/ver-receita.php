@@ -101,7 +101,7 @@ $receita = getProductsByIds($pdoConfig,$id);
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="html/gallery.html">Receitas recentes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="html/contact-us.html">Contacte nos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

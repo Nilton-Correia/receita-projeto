@@ -159,6 +159,7 @@ session_start();
                                         <?php
 
                                         require("../confi.php");
+                                        $link->set_charset("utf8");
 
                                         $operacao = filter_input(INPUT_GET, 'operacao');
 

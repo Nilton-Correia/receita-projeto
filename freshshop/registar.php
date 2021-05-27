@@ -220,11 +220,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-register-col-r">
             <header class="mb-5">
                 <h3 class="mt-0 text-white"><a href="index.php">LusoFlavors</a></h3>
-                <p class="grey-text">Aenean tincidunt, enim nec blandit lobortis, ante enim ultrices eros, et laoreet augue libero id nunc.
-                    Proin semper feugiat ultrices.</p>
-                <p class="grey-text">Aenean a efficitur magna, sed dignissim odio. Praesent pretium lectus ac nunc ultrices, ac volutpat orci
-                    viverra.
-                </p>
+                <p>Melhor site de Receita Lusofono</p>
+
             </header>
 
         </div>

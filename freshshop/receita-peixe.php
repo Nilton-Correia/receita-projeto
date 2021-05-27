@@ -310,7 +310,7 @@ $cat = getCategoria($pdoConfig);
                         <div class="title-left">
                             <h3>Categorias</h3>
                         </div>
-                        <?php foreach($products as $product) : ?>
+
                         <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
 
                             <div class="list-group-collapse sub-men">
@@ -359,7 +359,7 @@ $cat = getCategoria($pdoConfig);
             </div>
         </div>
     </div>
-    <?php endforeach;?>
+
 </div>
 <!-- End Shop Page -->
 
