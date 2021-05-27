@@ -2597,7 +2597,11 @@
 	padding: 12px 25px;
 	border: none;
 }
-
+.hide-bullets {
+    list-style:none;
+    margin-left: -40px;
+    margin-top:20px;
+}
 
 
 

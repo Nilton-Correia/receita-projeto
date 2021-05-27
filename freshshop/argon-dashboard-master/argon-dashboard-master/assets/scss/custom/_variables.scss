@@ -461,7 +461,7 @@ $table-accent-bg:             rgba($gray-100, .3) !default;
 $table-hover-bg:              $gray-100 !default;
 $table-active-bg:             $table-hover-bg !default;
 
-$table-border-width:          rgba($black, .15) !default;
+$table-border-width:          $border-width !default;
 $table-border-color:          $gray-200 !default;
 
 $table-head-spacer-y:         .75rem !default;

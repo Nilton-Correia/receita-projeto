@@ -7,13 +7,27 @@ function getProducts($pdo){
 	return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+
 function getProductos($pdo){
-    $sql = "SELECT receita.,categoria.,pais.*  FROM receita INNER JOIN pais ON receita.idPais=pais.idPais INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria";
+$sql = "SELECT receita.*,categoria.*,pais.*  FROM receita INNER JOIN pais ON receita.idPais=pais.idPais INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+
+
+function pesquisar($pdo,$pesquisar)
+{
+    $sql = "SELECT *  FROM receita where nome LIKE '%$pesquisar' ";
+    $result = $sql->query($sql);
+    $result->num_rows;
+    if ($result != null) {
+        while ($row = $result->fetch_assoc()) {
+
+        }
+    }
+}
 
 function getProductsByIds($pdo, $ids) {
 	$sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE  idreceita IN (".$ids.")";
@@ -31,7 +45,7 @@ function getCatReceita1($pdo){
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 function getCatReceita2($pdo){
-    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE categoria.nome_categoria='Receita Peixe' ";
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE categoria.nome_categoria='Receita_Peixe' ";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);

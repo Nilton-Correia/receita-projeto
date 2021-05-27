@@ -1,18 +1,16 @@
 <?php
 session_start();
-
-
 if(!isset($_SESSION['cart'])){
     $_SESSION['cart'] = array();
 }
 require_once "functions/receita-funcao.php";
 require_once "functions/cart.php";
+
 $pdoConfig = require_once "confi.php";
-$products = getProducts($pdoConfig);
+$products = getProductos($pdoConfig);
 $resultsCarts = getContentCart($pdoConfig);
+
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -75,7 +73,7 @@ $resultsCarts = getContentCart($pdoConfig);
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
+                        <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
                         <li class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
                             <ul class="dropdown-menu">
@@ -92,18 +90,18 @@ $resultsCarts = getContentCart($pdoConfig);
                         <li class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
                             <ul class="dropdown-menu">
-								<li><a href="shop.html">São Tomé</a></li>
-								<li><a href="shop-detail.html">Angola</a></li>
-                                <li><a href="cart.html">Portugal</a></li>
-                                <li><a href="shop.html">Cabo Verde</a></li>
-                                <li><a href="checkout.html">Moçambique</a></li>
-                                <li><a href="my-account.html">Giné Bissau</a></li>
-                                <li><a href="wishlist.html">Guiné Equatorial</a></li>
-                                <li><a href="wishlist.html">Timor-Leste</a></li>
+								<li><a href="html/shop.html">São Tomé</a></li>
+								<li><a href="html/shop-detail.html">Angola</a></li>
+                                <li><a href="html/cart.html">Portugal</a></li>
+                                <li><a href="html/shop.html">Cabo Verde</a></li>
+                                <li><a href="html/checkout.html">Moçambique</a></li>
+                                <li><a href="html/my-account.html">Giné Bissau</a></li>
+                                <li><a href="html/wishlist.html">Guiné Equatorial</a></li>
+                                <li><a href="html/wishlist.html">Timor-Leste</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Receitas recentes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="recente.php">Receitas recentes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="html/contact-us.html">Contacte nos</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -114,8 +112,10 @@ $resultsCarts = getContentCart($pdoConfig);
                         <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                         <li class="side-menu">
 							<a href="#">
-								<i class="fa fa-shopping-bag"></i>
-								<span class="badge">0</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                </svg>
+								<span class="qty"><?php echo count($_SESSION['cart'])?></span>
 							</a>
 						</li>
                     </ul>
@@ -136,36 +136,36 @@ $resultsCarts = getContentCart($pdoConfig);
 
             <!-- Start Side Menu -->
 
+            <!-- Start Side Menu -->
+
 
 
             <div class="side">
                 <a href="#" class="close-side"><i class="fa fa-times"></i></a>
                 <li class="cart-box">
-                <?php foreach($resultsCarts as $result) : ?>
-                    <ul class="cart-list">
-                        <li>
-                            <a href="ver-receita.php?acao=add&id=" class="photo"><?php echo '<img src="./images/'.$result['imagens'].'" height="250px"/>' ?></a>
-                            <h6><?php echo '<a href="ver-receita.php?acao=add&id=' . $result['idreceita'] . '">' . $result['nome'] . '</a>'; ?></h6>
+                    <?php foreach($resultsCarts as $result) : ?>
+                        <ul class="cart-list">
+                            <li>
+                                <a href="ver-receita.php?acao=add&id=" class="photo"><?php echo '<img src="./images/'.$result['imagens'].'" height="250px"/>' ?></a>
+                                <h6><?php echo '<a href="ver-receita.php?acao=add&id=' . $result['idreceita'] . '">' . $result['nome'] . '</a>'; ?></h6>
 
-                            <p>
+                                <p>
                                 <span class="price">
                                   <?php
                                   if(($result['preco']!=0)){ echo number_format($result['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
                                 </span>
 
-                            </p>
-                        </li>
+                                </p>
+                            </li>
 
-                        <li class="total">
-                            <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
-                        </li>
-                    </ul>
-                <?php endforeach;?>
+                            <li class="total">
+                                <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
+                                <span class="float-right"><strong>Total</strong>: $180.00</span>
+                            </li>
+                        </ul>
+                    <?php endforeach;?>
                 </li>
             </div>
-
-
             <!-- End Side Menu -->
 
         </nav>
@@ -292,10 +292,12 @@ $resultsCarts = getContentCart($pdoConfig);
                     <div class="special-menu text-center">
                         <div class="button-group filter-button-group">
                             <button class="active" data-filter="*">Todos</button>
-                            <button data-filter=".doces">Doces</button>
-                            <button data-filter=".mariscos">Mariscos</button>
-                            <button data-filter=".peixe">Peixes</button>
-                            <button data-filter=".carnes">Carnes</button>
+                            <button data-filter=".Sobremesa_Doces">Doces e Salgados</button>
+                            <button data-filter=".Marisco">Mariscos</button>
+                            <button data-filter=".Receita_Peixe">Peixes</button>
+                            <button data-filter=".Receita_carne">Carnes</button>
+                            <button data-filter=".Massa">Massa</button>
+                            <button data-filter=".Sumo_Bebidas">Sumo e Bebidas</button>
                         </div>
                     </div>
                 </div>
@@ -303,7 +305,8 @@ $resultsCarts = getContentCart($pdoConfig);
 
             <div class="row special-list">
                 <?php foreach($products as $product) : ?>
-                <div class="col-lg-3 col-md-6 special-grid">
+                    <?php $cat=$product['nome_categoria'] ?>
+                <div class="col-lg-3 col-md-6 special-grid <?php echo $cat?>">
                     <div class="products-single fix">
 
 
@@ -311,7 +314,7 @@ $resultsCarts = getContentCart($pdoConfig);
 
                         <div class="box-img-hover">
                             <div class="type-lb">
-                                <p class="sale"><?php echo $product['idcategoria']?></p>
+                                <p class="sale"><?php echo $product['Pais']?></p>
                             </div>
                             <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
                             <div class="mask-icon">
@@ -326,7 +329,7 @@ $resultsCarts = getContentCart($pdoConfig);
                             </div>
                         </div>
                         <div class="why-text">
-                            <h4> <?php echo '<a href="ver-receita.php?acao=add&id='.$product['idreceita'].'">'.$product['nome'].'</a>'; ?></h4>
+                            <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h4>
 
 
                             <h5 class="card-subtitle m-2 text text-muted">

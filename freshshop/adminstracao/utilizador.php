@@ -3,7 +3,7 @@ session_start();
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"])){
     if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]== "admin") {
-        header("location: ./adminstracao/adminstrador.php");
+        header("location: ../adminstracao/adminstrador.php");
     }else{
         header("location: welcome.php");
     }

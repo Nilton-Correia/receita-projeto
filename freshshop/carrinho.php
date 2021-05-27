@@ -88,36 +88,21 @@ $totalCarts  = getTotalCart($rtConnection);
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                    <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
+                    <li class="nav-item"><a class="nav-link" href="html/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="html/about.html">About Us</a></li>
+                    <li class="dropdown active">
+                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                         <ul class="dropdown-menu">
-                            <li><a href="receita-carne.php">Receita de Carne</a></li>
-                            <li><a href="receita-peixe.php">Receita de Peixe</a></li>
-                            <li><a href="sopas.php">Sopas</a></li>
-                            <li><a href="sobremesa-doce.php">Sobremesa e Doce</a></li>
-                            <li><a href="bolos.php">Bolos</a></li>
-                            <li><a href="massa.php">Massa</a></li>
-                            <li><a href="marisco.php">Marisco</a></li>
-                            <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
+                            <li><a href="html/shop.html">Sidebar Shop</a></li>
+                            <li><a href="html/shop-detail.html">Shop Detail</a></li>
+                            <li><a href="html/cart.html">Cart</a></li>
+                            <li><a href="html/checkout.html">Checkout</a></li>
+                            <li><a href="html/my-account.html">My Account</a></li>
+                            <li><a href="html/wishlist.html">Wishlist</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="shop.html">São Tomé</a></li>
-                            <li><a href="shop-detail.html">Angola</a></li>
-                            <li><a href="cart.html">Portugal</a></li>
-                            <li><a href="shop.html">Cabo Verde</a></li>
-                            <li><a href="checkout.html">Moçambique</a></li>
-                            <li><a href="my-account.html">Giné Bissau</a></li>
-                            <li><a href="wishlist.html">Guiné Equatorial</a></li>
-                            <li><a href="wishlist.html">Timor-Leste</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Receitas recentes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="html/gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="html/contact-us.html">Contact Us</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -126,25 +111,14 @@ $totalCarts  = getTotalCart($rtConnection);
             <div class="attr-nav">
                 <ul>
                     <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                    <li class="side-menu">
-                        <a href="#">
+                    <li class="side-menu"><a href="#">
                             <i class="fa fa-shopping-bag"></i>
-                            <span class="badge">4</span>
-                        </a>
-                    </li>
+                            <span class="badge">3</span>
+                            <p>My Cart</p>
+                        </a></li>
                 </ul>
             </div>
-
-        </div>
-        <div class="side-menu">
-            <ul>
-                <li><a href="login.php"><i class="fa fa-user s_color"></i>
-
-                        <span><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
-                            }
-                            else{ echo "Conta";}?> </span>
-                    </a></li>
-            </ul>
+            <!-- End Atribute Navigation -->
         </div>
         <!-- Start Side Menu -->
 

@@ -3,11 +3,10 @@
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_PORT',3306);
 define('DB_NAME', 'site-receita');
 
 
-$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD,DB_NAME, DB_PORT);
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 // Check connection
 if($link === false){
@@ -19,3 +18,6 @@ return new PDO(sprintf("mysql:host=%s;dbname=%s", DB_SERVER, DB_NAME), DB_USERNA
     array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
 ?>
+
+
+

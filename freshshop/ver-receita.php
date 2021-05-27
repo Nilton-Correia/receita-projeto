@@ -1,9 +1,17 @@
 <?php
+
 session_start();
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
+if($_GET['acao'] == 'add') {
+    $id = intval($_GET['id']);
+}
 require_once "functions/receita-funcao.php";
+$pdoConfig = require_once "confi.php";
+$receita = getProductsByIds($pdoConfig,$id);
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +65,7 @@ require_once "functions/receita-funcao.php";
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.php"><img src="images/logotipo.png" class="logo" alt=""></a>
+                <a class="navbar-brand" href="index.php"><img src="images/log21.png" class="logo" alt=""></a>
             </div>
             <!-- End Header Navigation -->
 
@@ -65,7 +73,7 @@ require_once "functions/receita-funcao.php";
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
+                    <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
                         <ul class="dropdown-menu">
@@ -82,18 +90,18 @@ require_once "functions/receita-funcao.php";
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
-                            <li><a href="shop.html">São Tomé</a></li>
-                            <li><a href="shop-detail.html">Angola</a></li>
-                            <li><a href="cart.html">Portugal</a></li>
-                            <li><a href="shop.html">Cabo Verde</a></li>
-                            <li><a href="checkout.html">Moçambique</a></li>
-                            <li><a href="my-account.html">Giné Bissau</a></li>
-                            <li><a href="wishlist.html">Guiné Equatorial</a></li>
-                            <li><a href="wishlist.html">Timor-Leste</a></li>
+                            <li><a href="html/shop.html">São Tomé</a></li>
+                            <li><a href="html/shop-detail.html">Angola</a></li>
+                            <li><a href="html/cart.html">Portugal</a></li>
+                            <li><a href="html/shop.html">Cabo Verde</a></li>
+                            <li><a href="html/checkout.html">Moçambique</a></li>
+                            <li><a href="html/my-account.html">Giné Bissau</a></li>
+                            <li><a href="html/wishlist.html">Guiné Equatorial</a></li>
+                            <li><a href="html/wishlist.html">Timor-Leste</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Receitas recentes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="html/gallery.html">Receitas recentes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="html/contact-us.html">Contacte nos</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -104,8 +112,10 @@ require_once "functions/receita-funcao.php";
                     <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                     <li class="side-menu">
                         <a href="#">
-                            <i class="fa fa-shopping-bag"></i>
-                            <span class="badge">4</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                            </svg>
+                            <span class="badge">3</span>
                         </a>
                     </li>
                 </ul>
@@ -114,12 +124,7 @@ require_once "functions/receita-funcao.php";
         </div>
         <div class="side-menu">
             <ul>
-                <li><a href="login.php"><i class="fa fa-user s_color"></i>
-
-                        <span><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
-                            }
-                            else{ echo "Conta";}?> </span>
-                    </a></li>
+                <li><a href="login.php"><i class="fa fa-user s_color"></i>Conta</a></li>
             </ul>
         </div>
         <!-- End Atribute Navigation -->
@@ -184,26 +189,19 @@ require_once "functions/receita-funcao.php";
 <!-- End All Title Box -->
 
 
+
+
+
+
+
+
 <!-- Start Shop Detail  -->
-<?php
-
-require_once('confi.php');
-$sql="SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE idreceita='ids' ";
-$result = $link->query($sql);
-$link->query("SET NAMES 'utf8'");
-
-
-$rt= $result->fetch_assoc();
-$nome  = $rt['nome'];
-$desc  = $rt['descricao'];
-$preco = number_format($rt['preco'], 2, ',', '.');
-
-
-
-
-?>
 <div class="shop-detail-box-main">
     <div class="container">
+
+
+
+        <?php foreach($receita as $product) : ?>
 
 
 
@@ -212,12 +210,21 @@ $preco = number_format($rt['preco'], 2, ',', '.');
             <div class="col-xl-5 col-lg-5 col-md-6">
                 <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active"> </div>
-                        <div class="carousel-item"> <img class="d-block w-100" src="images/big-img-02.jpg" alt="Second slide"> </div>
-                        <div class="carousel-item"> <img class="d-block w-100" src="images/big-img-03.jpg" alt="Third slide"> </div>
+
+<!--  A imagem da receita selecionada         -->
+                       <!--- <video width="320" height="240" controls="controls">-->
+
+                        <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
+
+
+
+                        <!---  </video>-->
+
+
+
                     </div>
                     <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
-                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+
                         <span class="sr-only">Previous</span>
                     </a>
                     <a class="carousel-control-next" href="#carousel-example-1" role="button" data-slide="next">
@@ -225,47 +232,35 @@ $preco = number_format($rt['preco'], 2, ',', '.');
                         <span class="sr-only">Next</span>
                     </a>
                     <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-1" data-slide-to="0" class="active">
-                            <img class="d-block w-100 img-fluid" src="images/smp-img-01.jpg" alt="" />
-                        </li>
-                        <li data-target="#carousel-example-1" data-slide-to="1">
-                            <img class="d-block w-100 img-fluid" src="images/smp-img-02.jpg" alt="" />
-                        </li>
-                        <li data-target="#carousel-example-1" data-slide-to="2">
-                            <img class="d-block w-100 img-fluid" src="images/smp-img-03.jpg" alt="" />
-                        </li>
-                    </ol>
+
+
                 </div>
             </div>
             <div class="col-xl-7 col-lg-7 col-md-6">
                 <div class="single-product-details">
-                    <h2><?php echo $rt['nome'] ?></h2>
-                    <h5><?php echo $preco ?> €</h5>
+                    <h2><?php echo $product['nome'] ?> </h2>
+                    <h5>  <?php
+                        if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
                     <p class="available-stock"><span> More than 20 available / <a href="#">8 sold </a></span><p>
-                    <h4><?php echo $desc ?></h4>
-                    <p>
-                       <?php echo $ingrediente  = $rt['ingredientes'] ?>
-                         </p>
-                    <ul>
-                        <li>
-                            <div class="form-group quantity-box">
-                                <label class="control-label">Quantity</label>
-                                <input class="form-control" value="0" min="0" max="20" type="number">
-                            </div>
-                        </li>
-                    </ul>
+                    <h4>Ingredientes</h4>
+                    <p>  <?php echo $product['ingredientes'] ?></p>
+
+
+                    <h4>Modo de preparação</h4>
+                   <p> <?php echo $product['modo_preparacao'] ?></p>
+
 
                     <div class="price-box-bar">
                         <div class="cart-and-bay-btn">
                             <a class="btn hvr-hover" data-fancybox-close="" href="#">Buy New</a>
-                            <a class="btn hvr-hover" data-fancybox-close="" href="#">Add to cart</a>
+                            <a class="btn hvr-hover" href="carrinho.php?acao=add&id=<?php echo $product['idreceita']?>"data-fancybox-close="" href="#">Adicionar ao carrinho</a>
                         </div>
                     </div>
 
                     <div class="add-to-btn">
                         <div class="add-comp">
                             <a class="btn hvr-hover" href="#"><i class="fas fa-heart"></i> Add to wishlist</a>
-                            <a class="btn hvr-hover" href="carrinho.php?acao=add&id=<?php echo $rt['idreceita']?>"><i class="fas fa-sync-alt"></i> Add to Compare</a>
+                            <a class="btn hvr-hover" href="#"><i class="fas fa-sync-alt"></i> Add to Compare</a>
                         </div>
                         <div class="share-bar">
                             <a class="btn hvr-hover" href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
@@ -276,10 +271,15 @@ $preco = number_format($rt['preco'], 2, ',', '.');
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
+
+
+        <?php endforeach;?>
+
+
+
+
 
 
         <div class="row my-5">
@@ -575,8 +575,6 @@ $preco = number_format($rt['preco'], 2, ',', '.');
         </div>
     </div>
 </div>
-
-
 <!-- End Instagram Feed  -->
 
 
