@@ -231,54 +231,56 @@ $cat = getCategoria($pdoConfig);
                             <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
                                 <div class="row">
                                     <?php
-
-                                    $servidor = "localhost";
-                                    $usuario = "root";
-                                    $senha = "";
-                                    $dbname = "dbmultimedia";
-                                    //Criar a conexao
-                                    $conex = mysqli_connect($servidor, $usuario, $senha, $dbname);
-
-                                    $pesquisar = $_POST['pesquisar'];
-
-                                    $resultado_receita = "SELECT receita.*, pais.*, categoria.* FROM receita INNER JOIN pais ON receita.idPais= pais.idPais INNER JOIN categoria ON receita.idcategoria=categoria.idccategoria WHERE nome LIKE '%$pesquisar%'";
-
-                                    $resultado_receita = mysqli_query($conex, $resultado_receita);
-
-                                    while($rows_receita = mysqli_fetch_array($resultado_receita)){
-
-                                        ?>
+                                    if($_GET){
+                                        $pesquisar = $_GET['pesquisar'];
+                                    }
+                                    else{
+                                        $pesquisar = " ";
+                                    }
 
 
+                                    ?>
+                                    <?php
+                                    $sql = "SELECT receita.*, pais.*, categoria.* FROM receita INNER JOIN pais ON receita.idPais= pais.idPais INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria WHERE nome LIKE '%$pesquisar%'";
 
-                                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
+                                    $result = $link->query($sql);
+                                    $result->num_rows;
+                                    if ($result!=null) {
+                                        while($row = $result->fetch_assoc()) {
+
+
+                                            ?>
+                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                <div class="products-single fix">
+                                                    <div class="box-img-hover">
+                                                        <div class="type-lb">
+                                                            <p class="sale">Sale</p>
+                                                        </div>
+                                                        <?php echo '<img src="./images/'.$row['imagens'].'" height="250px"/>' ?>
+                                                        <div class="mask-icon">
+                                                            <ul>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                            </ul>
+                                                            <a class="cart" href="teste.php?acao=add&id=<?php echo $row['idreceita']?>">Add to Cart</a>
+                                                        </div>
                                                     </div>
-                                                    <?php echo '<img src="./images/'.$rows_receita['imagens'].'" height="250px"/>' ?>
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="teste.php?acao=add&id=<?php echo $rows_receita['idreceita']?>">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $rows_receita['idreceita'] . '">' . $rows_receita['nome'] . '</a>'; ?></h4>
-                                                    <h5>
-                                                        <?php
-                                                        if(($rows_receita['preco']!=0)){ echo number_format($rows_receita['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
-                                                    </h5>
+                                                    <div class="why-text">
+                                                        <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $row['idreceita'] . '">' . $row['nome'] . '</a>'; ?></h4>
+                                                        <h5>
+                                                            <?php
+                                                            if(($row['preco']!=0)){ echo number_format($row['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
+                                                        </h5>
 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    <?php
+                                            <?php
+
+                                        }
                                     }
+
                                     ?>
 
 
@@ -324,67 +326,75 @@ $cat = getCategoria($pdoConfig);
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
-                <div class="product-categori">
-                    <div class="search-product">
-                        <form action="#">
-                            <input class="form-control" placeholder="Search here..." type="text">
-                            <button type="submit"> <i class="fa fa-search"></i> </button>
+
+
+            <div class="top-search">
+                <div class="container">
+                    <div class="input-group">
+                        <form action="pesquisa.php" method="Get">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input type="search" class="form-control" name="pesquisar" placeholder="Pesquise">
+                            <button class="input-group-addon close-search"><i class="fa fa-times"></i></button>
                         </form>
                     </div>
-                    <div class="filter-sidebar-left">
-                        <div class="title-left">
-                            <h3>Categorias</h3>
-                        </div>
+                </div>
+            </div>
 
-                        <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
 
-                            <div class="list-group-collapse sub-men">
-                                <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Fruits & Drinks <small class="text-muted">(100)</small>
-                                </a>
-                                <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
-                                    <div class="list-group">
-                                        <a href="#" class="list-group-item list-group-item-action active">Fruits 1 <small class="text-muted">(50)</small></a>
-                                        <a href="#" class="list-group-item list-group-item-action">Fruits 2 <small class="text-muted">(10)</small></a>
-                                        <a href="#" class="list-group-item list-group-item-action">Fruits 3 <small class="text-muted">(10)</small></a>
-                                        <a href="#" class="list-group-item list-group-item-action">Fruits 4 <small class="text-muted">(10)</small></a>
-                                        <a href="#" class="list-group-item list-group-item-action">Fruits 5 <small class="text-muted">(20)</small></a>
-                                    </div>
-                                </div>
+
+            <div class="filter-sidebar-left">
+                <div class="title-left">
+                    <h3>Categorias</h3>
+                </div>
+
+                <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+
+                    <div class="list-group-collapse sub-men">
+                        <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Fruits & Drinks <small class="text-muted">(100)</small>
+                        </a>
+                        <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action active">Fruits 1 <small class="text-muted">(50)</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">Fruits 2 <small class="text-muted">(10)</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">Fruits 3 <small class="text-muted">(10)</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">Fruits 4 <small class="text-muted">(10)</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">Fruits 5 <small class="text-muted">(20)</small></a>
                             </div>
-                            <div class="list-group-collapse sub-men">
-                                <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Vegetables
-                                    <small class="text-muted">(50)</small>
-                                </a>
-                                <div class="collapse" id="sub-men2" data-parent="#list-group-men">
-                                    <div class="list-group">
-                                        <a href="#" class="list-group-item list-group-item-action">Vegetables 1 <small class="text-muted">(10)</small></a>
-                                        <a href="#" class="list-group-item list-group-item-action">Vegetables 2 <small class="text-muted">(20)</small></a>
-                                        <a href="#" class="list-group-item list-group-item-action">Vegetables 3 <small class="text-muted">(20)</small></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" class="list-group-item list-group-item-action"> Grocery  <small class="text-muted">(150) </small></a>
-                            <a href="#" class="list-group-item list-group-item-action"> Grocery <small class="text-muted">(11)</small></a>
-                            <a href="#" class="list-group-item list-group-item-action"> Grocery <small class="text-muted">(22)</small></a>
                         </div>
                     </div>
-                    <div class="filter-price-left">
-                        <div class="title-left">
-                            <h3>Price</h3>
-                        </div>
-                        <div class="price-box-slider">
-                            <div id="slider-range"></div>
-                            <p>
-                                <input type="text" id="amount" readonly style="border:0; color:#fbb714; font-weight:bold;">
-                                <button class="btn hvr-hover" type="submit">Filter</button>
-                            </p>
+                    <div class="list-group-collapse sub-men">
+                        <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Vegetables
+                            <small class="text-muted">(50)</small>
+                        </a>
+                        <div class="collapse" id="sub-men2" data-parent="#list-group-men">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action">Vegetables 1 <small class="text-muted">(10)</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">Vegetables 2 <small class="text-muted">(20)</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">Vegetables 3 <small class="text-muted">(20)</small></a>
+                            </div>
                         </div>
                     </div>
+                    <a href="#" class="list-group-item list-group-item-action"> Grocery  <small class="text-muted">(150) </small></a>
+                    <a href="#" class="list-group-item list-group-item-action"> Grocery <small class="text-muted">(11)</small></a>
+                    <a href="#" class="list-group-item list-group-item-action"> Grocery <small class="text-muted">(22)</small></a>
+                </div>
+            </div>
+            <div class="filter-price-left">
+                <div class="title-left">
+                    <h3>Price</h3>
+                </div>
+                <div class="price-box-slider">
+                    <div id="slider-range"></div>
+                    <p>
+                        <input type="text" id="amount" readonly style="border:0; color:#fbb714; font-weight:bold;">
+                        <button class="btn hvr-hover" type="submit">Filter</button>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
 
 </div>
 <!-- End Shop Page -->
