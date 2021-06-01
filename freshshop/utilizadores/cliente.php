@@ -279,7 +279,21 @@ $localidade  = $ln['localidade'];
 
 
 
+
+                    </div>
+                    <!-- footer -->
+                    <div class="container-fluid">
+                        <div class="footer">
+                            <a href="editar_util.php">
+                            <p>Editar</p>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
+
+
+            </div>
                 <!-- footer -->
                 <div class="container-fluid">
                     <div class="footer">
