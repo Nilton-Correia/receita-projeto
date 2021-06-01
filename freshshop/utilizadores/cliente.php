@@ -181,13 +181,7 @@ session_start();
             <!-- dashboard inner -->
             <div class="midde_cont">
                 <div class="container-fluid">
-                    <div class="row column_title">
-                        <div class="col-md-12">
-                            <div class="page_title">
-                                <h2>Dashboard</h2>
-                            </div>
-                        </div>
-                    </div>
+
 
                     </div>
 
@@ -221,39 +215,40 @@ $localidade  = $ln['localidade'];
                         <div class="col-md-12 col-lg-12">
                             <div class="odr-box">
                                 <div class="title-left">
-                                    <h3>Shopping cart</h3>
+                                    <h3>Dados Pessoais</h3>
                                 </div>
                                 <div class="rounded p-2 bg-light">
                                     <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> Nome</a>
-                                            <div class="small text-muted"><?php echo"$nome" ?> </div>
+                                        <div class="media-body">Username
+                                            <div class="small-body text-muted"><?php echo"$username" ?>
+                                                </div>
                                         </div>
                                     </div>
                                     <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> Username</a>
-                                            <div class="small text-muted"><?php echo"$username" ?> </div>
+                                        <div class="media-body">Nome Completo
+                                            <div class="small-body text-muted"> <?php echo"$nome" ?> </div>
                                         </div>
                                     </div>
                                     <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> Email</a>
-                                            <div class="small text-muted"><?php echo"$email" ?> </div>
+                                        <div class="media-body"> Email
+                                            <div class="small-body text-muted"><?php echo"$email" ?> </div>
                                         </div>
                                     </div>
                                     <div class="media mb-2">
-                                        <div class="media-body"> <a href="detail.html"> Telefone</a>
-                                            <div class="small text-muted"><?php echo"$telefone" ?> </div>
+                                        <div class="media-body"> Telefone
+                                            <div class="small-body text-muted"><?php echo"$telefone" ?> </div>
                                         </div>
                                     </div>
 
                                     <div class="media mb-2">
-                                        <div class="media-body"> <a href="detail.html"> Morada</a>
-                                            <div class="small text-muted"><?php echo"$morada" ?> </div>
+                                        <div class="media-body"> Morada
+                                            <div class="small-body text-muted"><?php echo"$morada" ?> </div>
                                         </div>
                                     </div>
 
                                     <div class="media mb-2">
-                                        <div class="media-body"> <a href="detail.html"> Localidade</a>
-                                            <div class="small text-muted"><?php echo"$localidade" ?> </div>
+                                        <div class="media-body"> Localidade
+                                            <div class="small-body text-muted"><?php echo"$localidade" ?> </div>
                                         </div>
                                     </div>
 

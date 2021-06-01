@@ -343,21 +343,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <a href="receita.php">
                             <i class="fa fa-paper-plane red_color"></i> <span>Receitas</span></a>
                     </li>
-                    <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
-                        <ul class="collapse list-unstyled" id="additional_page">
-                            <li>
-                                <a href="pluto/profile.html">> <span>Profile</span></a>
-                            </li>
-                            <li>
-                                <a href="pluto/project.html">> <span>Projects</span></a>
-                            </li>
-                            <li>
-                                <a href="pluto/login.html">> <span>Login</span></a>
-                            </li>
-
-                        </ul>
+                    <li>
+                        <a href="categoria.php">
+                            <i class="fa fa-paper-plane red_color"></i> <span>Editar Categoria</span></a>
                     </li>
+
+                    <li>
+                        <a href="pais.php">
+                            <i class="fa fa-paper-plane red_color"></i> <span>Editar Pais da Receita</span></a>
+                    </li>
+
 
 
                     <li><a href="pluto/settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>

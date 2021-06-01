@@ -188,6 +188,7 @@ $totalCarts  = getTotalCart($rtConnection);
 <!-- End All Title Box -->
 
 <!-- Start Cart  -->
+<div>
 <?php if($resultsCarts) : ?>
     <form action="carrinho.php?acao=up" method="post">
         <table class="table table-strip">
@@ -197,7 +198,7 @@ $totalCarts  = getTotalCart($rtConnection);
                 <th>Quantidade</th>
                 <th>Preço</th>
                 <th>Subtotal</th>
-                <th>Ação</th>
+                <th>Remover</th>
 
             </tr>
             </thead>
@@ -230,6 +231,7 @@ $totalCarts  = getTotalCart($rtConnection);
         <a class="btn btn-info" href="checkout.php">Finalizar</a>
     </form>
 <?php endif?>
+</div>
 <!-- End Cart -->
 
 <!-- Start Instagram Feed  -->

@@ -97,7 +97,7 @@ $totalCarts = getTotalCart($pdoConfig);
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="recente.php">Receitas recentes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacto.php">Contacte nos</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -205,33 +205,33 @@ $totalCarts = getTotalCart($pdoConfig);
                 <div class="contact-form-right">
                     <h2>Contacte nos </h2>
                     <h3>Luso Flavors</h3>
-                    <form id="contactForm">
+                    <form method="Post" action="criar_contacto.php">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required data-error="Please enter your name">
+                                    <input type="text" class="form-control"  name="nome" placeholder="Nome" required data-error="Please enter your name">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" placeholder="Your Email" id="email" class="form-control" name="name" required data-error="Please enter your email">
+                                    <input type="email" placeholder="Email"  class="form-control" name="email" required data-error="Please enter your email">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="subject" name="name" placeholder="Subject" required data-error="Please enter your Subject">
+                                    <input type="text" class="form-control" name="assunto" placeholder="Assunto" required data-error="Please enter your Subject">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea class="form-control" id="message" placeholder="Your Message" rows="4" data-error="Write your message" required></textarea>
+                                    <textarea class="form-control" name="mensagem" placeholder="Mensagem" rows="4" data-error="Write your message" required></textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="submit-button text-center">
-                                    <button class="btn hvr-hover" id="submit" type="submit">Send Message</button>
+                                    <button class="btn hvr-hover" id="submit" type="submit">Enviar mensagem</button>
                                     <div id="msgSubmit" class="h3 text-center hidden"></div>
                                     <div class="clearfix"></div>
                                 </div>

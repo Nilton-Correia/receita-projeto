@@ -13,6 +13,7 @@ require("../confi.php");
         $modo_preparacao = $_POST['modo_preparacao'];
         $categoria = $_POST['idcategoria'];
         $video = $_POST['video'];
+
         print_r($_FILES);
         $imagens = $_FILES['imagens'];
 
@@ -25,7 +26,7 @@ require("../confi.php");
         $imagensExt = explode('.', $imagensName);
         $imagensActualExt = strtolower(end($imagensExt));
 
-        $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+        $allowed = array('jpg', 'jpeg', 'png', 'pdf', 'mp4');
 
         $sql = "INSERT INTO receita(nome, preco, descricao, ingredientes, modo_preparacao, idcategoria, idPais, video, imagens) VALUES ('$nome','$preco','$descricao','$ingredientes','$modo_preparacao','$categoria','$idpais','$video','".$imagens['name']."')";
         if (!mysqli_query($link, $sql)) {

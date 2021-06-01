@@ -57,7 +57,9 @@ session_start();
                     <div class="user_profle_side">
                         <div class="user_img"><img class="img-responsive" src="../images/logotipo.png" alt="#" /></div>
                         <div class="user_info">
-                            <h6>John David</h6>
+                            <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
+                                }
+                                else{ echo "Conta";}?></h6>
                             <p><span class="online_animation"></span> Online</p>
                         </div>
                     </div>

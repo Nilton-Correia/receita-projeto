@@ -76,6 +76,15 @@ session_start();
                         <a href="receita.php">
                             <i class="fa fa-cutlery red_color"></i> <span>Receitas</span></a>
                     </li>
+                    <li>
+                        <a href="categoria.php">
+                            <i class="fa fa-paper-plane red_color"></i> <span>Editar Categoria</span></a>
+                    </li>
+
+                    <li>
+                        <a href="pais.php">
+                            <i class="fa fa-paper-plane red_color"></i> <span>Editar Pais da Receita</span></a>
+                    </li>
 
                     <li>
                         <a href="../index.php">

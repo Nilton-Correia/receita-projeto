@@ -240,7 +240,7 @@ $cat = getCategoria($pdoConfig);
                                                         <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                                         <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                                     </ul>
-                                                    <a class="cart" href="teste.php?acao=add&id=<?php echo $product['idreceita']?>">Add to Cart</a>
+                                                    <a class="cart" href="carrinho.php?acao=add&id=<?php echo $product['idreceita']?>">Add to Cart</a>
                                                 </div>
                                             </div>
                                             <div class="why-text">
