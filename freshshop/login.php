@@ -139,7 +139,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <span class="help-block "><?php echo $password_err; ?></span>
                 </div>
                 <div class="tm-flex-lr">
-                    <a href="#" class="white-text small">Forgot Password?</a>
+                    <a href="resert-password.php" class="white-text small">Forgot Password?</a>
                     <button type="submit" class="waves-effect btn-large btn-large-white px-4 black-text rounded-0">Login</button>
                 </div>
             </form>

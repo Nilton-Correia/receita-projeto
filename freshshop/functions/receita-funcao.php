@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 function getProducts($pdo){
 	$sql = "SELECT *  FROM receita ";
@@ -101,3 +101,67 @@ function getCategoria($pdo){
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+function getPortugal($pdo){
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE pais.Pais='Portugal' ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function getSao_tome($pdo){
+
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE pais.Pais='São Tomé e Principe' ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function getBrasil($pdo){
+
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE pais.Pais='Brazil' ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function getCabo_verde($pdo){
+
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE pais.Pais='Cabo Verde' ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function getGuine($pdo){
+
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE pais.Pais='Guiné Bissau' ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function getMocambique($pdo){
+
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE pais.Pais='Moçambique' ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function getTimor($pdo){
+
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE pais.Pais='Timor-Leste' ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function getAngola($pdo){
+
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE pais.Pais='Angola' ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function getGuine_equatorial($pdo){
+
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE pais.Pais='Guiné Equatorial' ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+

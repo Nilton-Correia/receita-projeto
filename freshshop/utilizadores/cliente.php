@@ -1,5 +1,19 @@
 <?php
+// Initialize the session
+require("../confi.php");
+
 session_start();
+
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: ../login.php");
+}
+
+if(isset($_SESSION["loggedin"])){
+    if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]=="admin"){
+        header("location: ../utilizadores/cliente.php");
+    }
+}
+
 
 ?>
 

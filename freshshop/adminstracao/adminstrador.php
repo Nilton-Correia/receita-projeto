@@ -1,5 +1,10 @@
 <?php
+// Initialize the session
+require("../confi.php");
+
 session_start();
+
+
 
 ?>
 

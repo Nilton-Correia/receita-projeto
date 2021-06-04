@@ -7,15 +7,17 @@ require_once "functions/receita-funcao.php";
 require_once "functions/cart.php";
 
 $pdoConfig = require_once "confi.php";
-$products = getProductos($pdoConfig);
-$resultsCarts = getContentCart($pdoConfig);
-$totalCarts = getTotalCart($pdoConfig);
 
+$products = getProducts($pdoConfig);
+$resultsCarts = getContentCart($pdoConfig);
+$products = getPortugal($pdoConfig);
+$cat = getCategoria($pdoConfig);
+$totalCarts = getTotalCart($pdoConfig);
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <!-- Basic -->
 <!-- End Cart -->
 
@@ -91,14 +93,14 @@ $totalCarts = getTotalCart($pdoConfig);
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
-                            <li><a href="saotome_principe.php">São Tomé</a></li>
-                            <li><a href="angola.php">Angola</a></li>
+                            <li><a href="html/shop.html">São Tomé</a></li>
+                            <li><a href="html/shop-detail.html">Angola</a></li>
                             <li><a href="portugal.php">Portugal</a></li>
-                            <li><a href="cabo_verde.php">Cabo Verde</a></li>
-                            <li><a href="mocambique.php">Moçambique</a></li>
-                            <li><a href="guine_bissau.php">Giné Bissau</a></li>
-                            <li><a href="guine-equatorial.php">Guiné Equatorial</a></li>
-                            <li><a href="timor_leste.php">Timor-Leste</a></li>
+                            <li><a href="html/shop.html">Cabo Verde</a></li>
+                            <li><a href="html/checkout.html">Moçambique</a></li>
+                            <li><a href="html/my-account.html">Giné Bissau</a></li>
+                            <li><a href="html/wishlist.html">Guiné Equatorial</a></li>
+                            <li><a href="html/wishlist.html">Timor-Leste</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="recente.php">Receitas recentes</a></li>
@@ -178,258 +180,221 @@ $totalCarts = getTotalCart($pdoConfig);
 <div class="top-search">
     <div class="container">
         <div class="input-group">
-            <form action="pesquisa.php" method="Get">
-                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                <input type="search" class="form-control" name="pesquisar" placeholder="Pesquise">
-                <button class="input-group-addon close-search"><i class="fa fa-times"></i></button>
-            </form>
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
         </div>
     </div>
 </div>
 <!-- End Top Search -->
 
-<!-- Start Slider -->
-<div id="slides-shop" class="cover-slides">
-    <ul class="slides-container">
-        <li class="text-center">
-            <img src="images/banner-01.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Bem-Vindo a <br> LusoFlavors</strong></h1>
-                        <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
-                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="text-center">
-            <img src="images/log3.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Bem-Vindo a <br> LusoFlavors</strong></h1>
-                        <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
-                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="text-center">
-            <img src="images/banner-03.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20">Bem-Vindo a <br> LusoFlavors</strong></h1>
-                        <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
-                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
-    <div class="slides-navigation">
-        <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-        <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-    </div>
-</div>
-<!-- End Slider -->
-
-<!-- Start Categories  -->
-<div class="categories-shop">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/bacalhau_com_natas1.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/cachupa.cv1.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/moamba1.png" alt="" />
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Categories -->
-
-<div class="box-add-products">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <img class="img-fluid" src="images/logim2.jpg" alt="" />
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <img class="img-fluid" src="images/logim3.jpg" alt="" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Start Products  -->
-<div class="products-box">
+<!-- Start All Title Box -->
+<div class="all-title-box">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="title-all text-center">
-                    <h1>Sabores Luso</h1>
-                    <p>Melhores sabores Luso econtras aqui</p>
-                </div>
+                <h2>Shop</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Shop</li>
+                </ul>
             </div>
         </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start Shop Page  -->
+<div class="shop-box-inner">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="special-menu text-center">
-                    <div class="button-group filter-button-group">
-                        <button class="active" data-filter="*">Todos</button>
-                        <button data-filter=".Sobremesa_Doces">Doces</button>
-                        <button data-filter=".Marisco">Mariscos</button>
-                        <button data-filter=".Receita_Peixe">Peixes</button>
-                        <button data-filter=".Receita_Carne">Carnes</button>
-                        <button data-filter=".Massa">Massa</button>
-                        <button data-filter=".Sumo_Bebidas">Sumo e Bebidas</button>
-                        <button data-filter=".Salada">Salada</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row special-list">
-            <?php foreach($products as $product) : ?>
-                <?php $cat=$product['nome_categoria'] ?>
-                <div class="col-lg-3 col-md-6 special-grid <?php echo $cat?>">
-                    <div class="products-single fix">
-
-
-
-
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="sale"><?php echo $cat?></p>
+            <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                <div class="right-product-box">
+                    <div class="product-item-filter row">
+                        <div class="col-12 col-sm-8 text-center text-sm-left">
+                            <div class="toolbar-sorter-right">
+                                <span>Sort by </span>
+                                <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                                    <option data-display="Select">Nothing</option>
+                                    <option value="1">Popularity</option>
+                                    <option value="2">High Price → High Price</option>
+                                    <option value="3">Low Price → High Price</option>
+                                    <option value="4">Best Selling</option>
+                                </select>
                             </div>
-                            <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                </ul>
+                            <p>Showing all 4 results</p>
+                        </div>
+                        <div class="col-12 col-sm-4 text-center text-sm-right">
+                            <ul class="nav nav-tabs ml-auto">
+                                <li>
+                                    <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
-                                <a class="cart" href="carrinho.php?acao=add&id=<?php echo $product['idreceita']?>" class="card-link">Adicionar ao carrinho</a>
+                    <div class="product-categorie-box">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                <div class="row">
 
+                                    <?php foreach($products as $product) : ?>
+                                        <?php $cat=$product['nome_categoria'] ?>
+
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale"><?php echo $cat?></p>
+                                                    </div>
+                                                    <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="carrinho.php?acao=add&id=<?php echo $product['idreceita']?>">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h4>
+                                                    <h5>
+                                                        <?php
+                                                        if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
+                                                    </h5>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php endforeach;?>
+
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="list-view">
+
+
+                                <div class="list-view-box">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">Sale</p>
+                                                    </div>
+                                                    <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                                            <div class="why-text full-width">
+                                                <h4>Lorem ipsum dolor sit amet</h4>
+                                                <h5> <del>$ 60.00</del> $40.79</h5>
+                                                <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien, imperdiet quis magna nec, iaculis ultrices ante. Integer vitae suscipit nisi. Morbi dignissim risus sit amet orci porta, eget aliquam purus
+                                                    sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus, quis euismod ex volutpat in. Vestibulum eleifend eros ac lobortis aliquet.
+                                                    Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin quam. Praesent vulputate semper libero pulvinar consequat. Etiam ut placerat lectus.</p>
+                                                <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="why-text">
-                            <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h4>
-
-
-                            <h5 class="card-subtitle m-2 text text-muted">
-                                <?php
-                                if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
-                        </div>
-
-                    </div>
-
-                </div>
-            <?php endforeach;?>
-
-        </div>
-    </div>
-</div>
-
-<!-- End Products  -->
-
-<!-- Start Blog  -->
-<div class="latest-blog">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="title-all text-center">
-                    <h1>Receitas + Recentes</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-lg-4 col-xl-4">
-                <div class="blog-box">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="images/blog-img.jpg" alt="" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="title-blog">
-                            <h3>Fusce in augue non nisi fringilla</h3>
-                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
-                        </div>
-                        <ul class="option-blog">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-comments"></i></a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 col-xl-4">
-                <div class="blog-box">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="images/blog-img-01.jpg" alt="" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="title-blog">
-                            <h3>Fusce in augue non nisi fringilla</h3>
-                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+            <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                <div class="product-categori">
+
+                    <div class="filter-sidebar-left">
+                        <div class="title-left">
+                            <h3>Categorias</h3>
                         </div>
-                        <ul class="option-blog">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-comments"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xl-4">
-                <div class="blog-box">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="images/blog-img-02.jpg" alt="" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="title-blog">
-                            <h3>Fusce in augue non nisi fringilla</h3>
-                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+
+                        <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+
+                            <div class="list-group-collapse sub-men">
+                                <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Receita Carne
+                                </a>
+
+                            </div>
+                            <div class="button-group filter-button-group">
+                                <button   data-filter=".Receita_Peixe">Receita Peixes</button>
+
+
+                            </div>
+                            <div class="list-group-collapse sub-men">
+                                <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Receita Massa
+                                </a>
+
+                            </div>
+                            <div class="list-group-collapse sub-men">
+                                <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Receita Marrisco
+                                </a>
+
+                            </div>
+                            <div class="list-group-collapse sub-men">
+                                <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1"> Receitas Sobremesas e Doces
+                                </a>
+
+                            </div>
+                            <div class="button-group filter-button-group">
+                                <button data-filter=".Salada">Receita Saladas</button>
+
+
+                            </div>
+                            <div class="list-group-collapse sub-men">
+                                <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Receita Sumo e Bebidas
+                                </a>
+
+                            </div>
+                            <div class="list-group-collapse sub-men">
+                                <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Receita Sopas
+
+                                </a>
+
+                            </div>
+
                         </div>
-                        <ul class="option-blog">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-comments"></i></a></li>
-                        </ul>
+                    </div>
+                    <div class="filter-price-left">
+                        <div class="title-left">
+                            <h3>Price</h3>
+                        </div>
+                        <div class="price-box-slider">
+                            <div id="slider-range"></div>
+                            <p>
+                                <input type="text" id="amount" readonly style="border:0; color:#fbb714; font-weight:bold;">
+                                <button class="btn hvr-hover" type="submit">Filter</button>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End Blog  -->
 
+</div>
+<!-- End Shop Page -->
 
 <!-- Start Instagram Feed  -->
 <div class="instagram-box">
     <div class="main-instagram owl-carousel owl-theme">
         <div class="item">
             <div class="ins-inner-box">
-                <img src="images/sala-1.jpg" alt="" />
+                <img src="images/instagram-img-01.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -519,8 +484,10 @@ $totalCarts = getTotalCart($pdoConfig);
             <div class="row">
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-top-box">
-
-
+                        <h3>Business Time</h3>
+                        <ul class="list-time">
+                            <li>Monday - Friday: 08.00am to 05.00pm</li> <li>Saturday: 10.00am to 08.00pm</li> <li>Sunday: <span>Closed</span></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
@@ -537,7 +504,17 @@ $totalCarts = getTotalCart($pdoConfig);
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-top-box">
-
+                        <h3>Social Media</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -545,25 +522,27 @@ $totalCarts = getTotalCart($pdoConfig);
             <div class="row">
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-widget">
-                        <h4>Sobre Luso Flavors</h4>
+                        <h4>About Freshshop</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-link">
-                        <h4>Informações</h4>
+                        <h4>Information</h4>
                         <ul>
-
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Customer Service</a></li>
+                            <li><a href="#">Our Sitemap</a></li>
                             <li><a href="#">Terms &amp; Conditions</a></li>
-                            <li><a href="politica_privacidade.php">Politica de Privacidade</a></li>
-
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Delivery Information</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-link-contact">
-                        <h4>Contacto</h4>
+                        <h4>Contact Us</h4>
                         <ul>
                             <li>
                                 <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
@@ -605,10 +584,12 @@ $totalCarts = getTotalCart($pdoConfig);
 <script src="js/isotope.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/baguetteBox.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/jquery.nicescroll.min.js"></script>
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
-
 </body>
 
 </html>
+
