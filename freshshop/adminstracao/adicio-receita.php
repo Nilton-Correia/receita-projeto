@@ -249,12 +249,15 @@ if(isset($_SESSION["loggedin"])){
                                             </div>
                                             <div class="field">
                                                 <div class="control">
-                                                    <input name="ingredientes" type="text" class="input is-large"  placeholder="Ingredientes">
+
+                                                        <textarea class="form-control" id="message" name="ingredientes" placeholder="Ingredientes" rows="5"></textarea>
+
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="control">
-                                                    <input name="modo_preparacao" type="text" class="input is-large"  placeholder="Modo de Preparacao">
+                                                    <textarea class="form-control" id="message" name="modo_preparacao" placeholder="Modo de Preparação" rows="5"></textarea>
+
                                                 </div>
                                             </div>
                                             <div class="field">

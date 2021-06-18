@@ -7,7 +7,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 if(isset($_SESSION["loggedin"])){
     if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]=="admin"){
-        header("location: ../adminstracao/adminstrador.php");
+        header("location: ../user/client.php");
     }
 }
 require_once "../confi.php";
@@ -91,12 +91,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["bt"]=="submeter"){
 <body>
 <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+        <div class="navbar-header ">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span></button>
-            <a class="navbar-brand" href="../index.php"><span>TEC-PONTE </span>DIGITAL STP</a>
+            <a class="navbar-brand" href="../index.php"><span>Luso </span>Flavors</a>
+
         </div>
     </div><!-- /.container-fluid -->
 </nav>
@@ -118,23 +119,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["bt"]=="submeter"){
         </div>
     </form>
     <ul class="nav menu">
-        <li class="active"><a href="client.php"><em class="fa fa-dashboard">&nbsp;</em>Painel de Controle</a></li>
-        <li><a href="widgets.php"><em class="fa fa-calendar">&nbsp;</em> Ferramenta</a></li>
-        <li><a href="../produtos.php"><em class="fa fa-product-hunt">&nbsp;</em> Produto</a></li>
-        <li><a href="../carrinho.php"><em class="fa fa-shopping-cart">&nbsp;</em> Carrinho</a></li>
-        <li><a href="anuncio.php"><em class="fa fa-newspaper-o">&nbsp;</em> Anuncio</a></li>
-        <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
-                <em class="fa fa-navicon">&nbsp;</em> Encomenda <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
-            </a>
-            <ul class="children collapse" id="sub-item-1">
-                <li><a class="" href="encomendas.php">
-                        <span class="fa fa-arrow-right">&nbsp;</span> Encomendas
-                    </a></li>
 
-            </ul>
-        </li>
-        <li><a href="../logout.php"><em class="fa fa-power-off">&nbsp;</em> Sair</a></li>
+        <li><a href="editar_util.php"><em class="fa fa-product-hunt">&nbsp;</em>Editar Perfil</a></li>
+        <li><a href="editar_util.php"><em class="fa fa-rotate-right">&nbsp;</em>Minhas Receitas</a></li>
+        <li><a href="../carrinh.php"><em class="fa fa-rotate-right">&nbsp;</em>Carrinho</a></li>
     </ul>
+    <li><a href="../logout.php"><em class="fa fa-power-off">&nbsp;</em> Sair</a></li>
 </div><!--/.sidebar-->
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
@@ -149,7 +139,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["bt"]=="submeter"){
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Minha Conta</h1>
+            <h1 class="page-header">Dados Pessoais</h1>
         </div>
     </div><!--/.row-->
 
@@ -184,12 +174,86 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["bt"]=="submeter"){
         </div><!--/.row-->
     </div>
 
+    <?php
+    require_once "../confi.php";
 
+    $id=$_SESSION["id"];
+    /* definir o charset utilizado na ligação */
+
+
+
+    $sql = "SELECT * FROM utilizador WHERE id = '$id'";
+    $result = $link->query($sql);
+
+
+    $ln= $result->fetch_assoc();
+    $nome  = $ln['nome'];
+    $username  = $ln['username'];
+    $telefone = number_format( $ln['telefone']);
+    $email  = $ln['email'];
+    $morada  = $ln['morada'];
+    $localidade  = $ln['localidade'];
+
+    ?>
 
     <div class="row">
-        <?php
-        require ("contato.php")
-        ?>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Editar Dados Pessoais
+                    <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+                <div class="panel-body">
+                    <form class="form-horizontal" action="editarCliente.php" method="post"  name="formContato">
+                        <fieldset>
+                            <!-- Name input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="name">Login</label>
+                                <div class="col-md-9">
+                                    <div  class="form-control"><?php echo"$username" ?></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="name">Nome Completo</label>
+                                <div class="col-md-9">
+                                    <div   class="form-control"><?php echo"$nome" ?></div>
+
+                                </div>
+                            </div>
+
+
+                            <!-- Email input-->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="email">Seu E-mail</label>
+                                <div class="col-md-9">
+                                    <div  class="form-control"><?php echo"$email" ?></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="name">Morada</label>
+                                <div class="col-md-9">
+                                    <div class="form-control">  <?php echo"$morada" ?> </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="name">Localidade</label>
+                                <div class="col-md-9">
+                                    <div class="form-control">  <?php echo"$localidade" ?> </div>
+                                </div>
+                            </div>
+
+                            <!-- Message body -->
+
+                            <!-- Form actions -->
+                            <div class="form-group">
+                                <a class="btn btn-link" href="editar_util.php">editar</a>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
 
 
         <div class="col-md-6">
@@ -219,7 +283,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["bt"]=="submeter"){
             </div>
         </div><!--/.col-->
         <div class="col-sm-12">
-            <p class="back-link">TEC-PONTE DIGITAL STP by <a href="https://www.instagram.com/astar_stp" target="_blank">aSTAR</a></p>
+            <p class="back-link">Luso Flavors <a href="https://www.instagram.com/astar_stp" target="_blank">aSTAR</a></p>
         </div>
     </div><!--/.row-->
 </div>	<!--/.main-->
