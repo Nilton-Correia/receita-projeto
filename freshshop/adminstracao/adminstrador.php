@@ -1,8 +1,16 @@
 <?php
 // Initialize the session
-require("../confi.php");
-
 session_start();
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: ../login.php");
+}
+
+if(isset($_SESSION["loggedin"])){
+    if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]!="admin"){
+        header("location: ../adminstrador.php");
+    }
+}
+
 
 
 
@@ -31,7 +39,7 @@ session_start();
     <!-- responsive css -->
     <link rel="stylesheet" href="css/responsive.css" />
     <!-- color css -->
-    <link rel="stylesheet" href="css/colors.css" />
+    <link rel="stylesheet" href="css/color_2.css" />
     <!-- select bootstrap -->
     <link rel="stylesheet" href="css/bootstrap-select.css" />
     <!-- scrollbar css -->
@@ -58,7 +66,7 @@ session_start();
                     <div class="icon_setting"></div>
                     <div class="user_profle_side">
                         <div class="user_info">
-                            <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Olá ";echo htmlspecialchars($_SESSION["username"]);
+                            <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Bem-vindo ";echo htmlspecialchars($_SESSION["username"]);
                                 }
                                 else{ echo "Conta";}?> </h6>
                             <p><span class="online_animation"></span> Online</p>
@@ -76,22 +84,25 @@ session_start();
 
                     <li>
                         <a href="receita.php">
-                            <i class="fa fa-cutlery red_color"></i> <span>Receitas</span></a>
+                            <i class="fa fa-cutlery green_color"></i> <span>Receitas</span></a>
                     </li>
                     <li>
                         <a href="categoria.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Editar Categoria</span></a>
+                            <i class="fa fa-edit yellow_color"></i> <span>Editar Categoria</span></a>
                     </li>
 
                     <li>
                         <a href="pais.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Editar Pais da Receita</span></a>
+                            <i class="fa fa-edit red_color"></i> <span>Editar Pais da Receita</span></a>
                     </li>
-
+                    <li>
+                        <a href="listar-informacoe-contacto.php">
+                            <i class="fa fa-product-hunt red_color"></i> <span>Problemas e Informaçoes</span></a>
+                    </li>
 
                     <li>
                         <a href="../index.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Luso Flavors</span></a>
+                            <i class="fa fa-home orange_color2"></i> <span>Luso Flavors</span></a>
                     </li>
 
                     <li>
@@ -99,9 +110,6 @@ session_start();
                             <i class="fa fa-sign-out red_color"></i> <span>Logout</span></a>
                     </li>
 
-
-
-                    <li><a href="pluto/settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
                 </ul>
             </div>
         </nav>

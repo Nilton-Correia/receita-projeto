@@ -96,6 +96,7 @@ function getCatReceita9($pdo){
 }
 
 function getCategoria($pdo){
+
     $sql = "SELECT * FROM categoria";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();

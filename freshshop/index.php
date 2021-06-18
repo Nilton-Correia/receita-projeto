@@ -76,20 +76,7 @@ $totalCarts = getTotalCart($pdoConfig);
                     <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="receita-carne.php">Receita de Carne</a></li>
-                            <li><a href="receita-peixe.php">Receita de Peixe</a></li>
-                            <li><a href="sopas.php">Sopas</a></li>
-                            <li><a href="sobremesa-doce.php">Sobremesa e Doce</a></li>
-                            <li><a href="bolos.php">Bolos</a></li>
-                            <li><a href="massa.php">Massa</a></li>
-                            <li><a href="marisco.php">Marisco</a></li>
-                            <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
                             <li><a href="saotome_principe.php">São Tomé</a></li>
                             <li><a href="angola.php">Angola</a></li>
@@ -99,9 +86,10 @@ $totalCarts = getTotalCart($pdoConfig);
                             <li><a href="guine_bissau.php">Giné Bissau</a></li>
                             <li><a href="guine-equatorial.php">Guiné Equatorial</a></li>
                             <li><a href="timor_leste.php">Timor-Leste</a></li>
+                            <li><a href="brazil.php">Brasil</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="recente.php">Receitas recentes</a></li>
+
                     <li class="nav-item"><a class="nav-link" href="contacto.php">Contacte nos</a></li>
                 </ul>
             </div>
@@ -160,7 +148,7 @@ $totalCarts = getTotalCart($pdoConfig);
                         </li>
 
                         <li class="total">
-                            <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
+                            <a href="carrinh.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
                             <span class="float-right"><strong>Total</strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
                         </li>
                     </ul>
@@ -198,7 +186,7 @@ $totalCarts = getTotalCart($pdoConfig);
                     <div class="col-md-12">
                         <h1 class="m-b-20"><strong>Bem-Vindo a <br> LusoFlavors</strong></h1>
                         <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
-                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+
                     </div>
                 </div>
             </div>
@@ -210,7 +198,7 @@ $totalCarts = getTotalCart($pdoConfig);
                     <div class="col-md-12">
                         <h1 class="m-b-20"><strong>Bem-Vindo a <br> LusoFlavors</strong></h1>
                         <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
-                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+
                     </div>
                 </div>
             </div>
@@ -222,7 +210,7 @@ $totalCarts = getTotalCart($pdoConfig);
                     <div class="col-md-12">
                         <h1 class="m-b-20">Bem-Vindo a <br> LusoFlavors</strong></h1>
                         <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
-                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+
                     </div>
                 </div>
             </div>
@@ -236,30 +224,6 @@ $totalCarts = getTotalCart($pdoConfig);
 <!-- End Slider -->
 
 <!-- Start Categories  -->
-<div class="categories-shop">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/bacalhau_com_natas1.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/cachupa.cv1.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/moamba1.png" alt="" />
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- End Categories -->
 
 <div class="box-add-products">
@@ -328,7 +292,7 @@ $totalCarts = getTotalCart($pdoConfig);
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
 
-                                <a class="cart" href="carrinho.php?acao=add&id=<?php echo $product['idreceita']?>" class="card-link">Adicionar ao carrinho</a>
+                                <a class="cart" href="carrinh.php?acao=add&id=<?php echo $product['idreceita']?>" class="card-link">Adicionar ao carrinho</a>
 
                             </div>
                         </div>
@@ -354,72 +318,6 @@ $totalCarts = getTotalCart($pdoConfig);
 
 <!-- Start Blog  -->
 <div class="latest-blog">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="title-all text-center">
-                    <h1>Receitas + Recentes</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-lg-4 col-xl-4">
-                <div class="blog-box">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="images/blog-img.jpg" alt="" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="title-blog">
-                            <h3>Fusce in augue non nisi fringilla</h3>
-                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
-                        </div>
-                        <ul class="option-blog">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-comments"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xl-4">
-                <div class="blog-box">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="images/blog-img-01.jpg" alt="" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="title-blog">
-                            <h3>Fusce in augue non nisi fringilla</h3>
-                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
-                        </div>
-                        <ul class="option-blog">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-comments"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xl-4">
-                <div class="blog-box">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="images/blog-img-02.jpg" alt="" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="title-blog">
-                            <h3>Fusce in augue non nisi fringilla</h3>
-                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
-                        </div>
-                        <ul class="option-blog">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-comments"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <!-- End Blog  -->
 
@@ -566,13 +464,13 @@ $totalCarts = getTotalCart($pdoConfig);
                         <h4>Contacto</h4>
                         <ul>
                             <li>
-                                <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
+                                <p><i class="fas fa-map-marker-alt"></i>Address: Rua Camilo Castelo Branco <br>Bragança,<br> 5300-106 </p>
                             </li>
                             <li>
                                 <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
                             </li>
                             <li>
-                                <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                <p><i class="fas fa-envelope"></i>Email: <a href="mailto:lusoflavors@gmail.com">lusoflavors@gmail.com</a></p>
                             </li>
                         </ul>
                     </div>

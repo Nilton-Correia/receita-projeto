@@ -7,7 +7,7 @@ if(isset($_SESSION["loggedin"])){
     if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]== "admin") {
         header("location: ./adminstracao/adminstrador.php");
     }else{
-        header("location: ./utilizadores/cliente.php");
+        header("location: ./user/client.php");
     }
 
 }
@@ -77,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                                 header("location: adminstracao/adminstrador.php");
                             }else{
-                                header("location:index.php");
+                                header("location:client.php");
                             }
 
                         }

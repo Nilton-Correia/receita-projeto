@@ -75,33 +75,22 @@ $cat = getCategoria($pdoConfig);
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="receita-carne.php">Receita de Carne</a></li>
-                            <li><a href="receita-peixe.php">Receita de Peixe</a></li>
-                            <li><a href="sopas.php">Sopas</a></li>
-                            <li><a href="sobremesa-doce.php">Sobremesa e Doce</a></li>
-                            <li><a href="bolos.php">Bolos</a></li>
-                            <li><a href="massa.php">Massa</a></li>
-                            <li><a href="marisco.php">Marisco</a></li>
-                            <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
-                        </ul>
-                    </li>
+
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
-                            <li><a href="shop.html">São Tomé</a></li>
-                            <li><a href="shop-detail.html">Angola</a></li>
-                            <li><a href="cart.html">Portugal</a></li>
-                            <li><a href="shop.html">Cabo Verde</a></li>
-                            <li><a href="checkout.html">Moçambique</a></li>
-                            <li><a href="my-account.html">Giné Bissau</a></li>
-                            <li><a href="wishlist.html">Guiné Equatorial</a></li>
-                            <li><a href="wishlist.html">Timor-Leste</a></li>
+                            <li><a href="saotome_principe.php">São Tomé</a></li>
+                            <li><a href="angola.php">Angola</a></li>
+                            <li><a href="portugal.php">Portugal</a></li>
+                            <li><a href="cabo_verde.php">Cabo Verde</a></li>
+                            <li><a href="mocambique.php">Moçambique</a></li>
+                            <li><a href="guine_bissau.php">Giné Bissau</a></li>
+                            <li><a href="guine-equatorial.php">Guiné Equatorial</a></li>
+                            <li><a href="timor_leste.php">Timor-Leste</a></li>
+                            <li><a href="brazil.php">Brasil</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Receitas recentes</a></li>
+
                     <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
                 </ul>
             </div>
@@ -153,7 +142,7 @@ $cat = getCategoria($pdoConfig);
                         </li>
 
                         <li class="total">
-                            <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
+                            <a href="carrinh.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
                             <span class="float-right"><strong>Total</strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
                         </li>
                     </ul>
@@ -170,9 +159,11 @@ $cat = getCategoria($pdoConfig);
 <div class="top-search">
     <div class="container">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search">
-            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            <form action="pesquisa.php" method="Get">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="search" class="form-control" name="pesquisar" placeholder="Pesquise">
+                <button class="input-group-addon close-search"><i class="fa fa-times"></i></button>
+            </form>
         </div>
     </div>
 </div>
@@ -287,40 +278,43 @@ $cat = getCategoria($pdoConfig);
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="list-view">
+                                <?php foreach($products as $product) : ?>
+                                    <?php $cat=$product['nome_categoria'] ?>
 
+                                    <div class="list-view-box">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                <div class="products-single fix">
+                                                    <div class="box-img-hover">
+                                                        <div class="type-lb">
+                                                            <p class="sale"><?php echo $cat?></p>
+                                                        </div>
+                                                        <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
 
-                                <div class="list-view-box">
-                                    <div class="row">
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
-                                                    </div>
-                                                    <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
+                                                        <div class="mask-icon">
+                                                            <ul>
+                                                                <li><?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a>'; ?></li>
 
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                            </ul>
+                                                            <a class="cart" href="carrinh.php?acao=add&id=<?php echo $product['idreceita']?>">Adicionar Carrinho</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                            <div class="why-text full-width">
-                                                <h4>Lorem ipsum dolor sit amet</h4>
-                                                <h5> <del>$ 60.00</del> $40.79</h5>
-                                                <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien, imperdiet quis magna nec, iaculis ultrices ante. Integer vitae suscipit nisi. Morbi dignissim risus sit amet orci porta, eget aliquam purus
-                                                    sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus, quis euismod ex volutpat in. Vestibulum eleifend eros ac lobortis aliquet.
-                                                    Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin quam. Praesent vulputate semper libero pulvinar consequat. Etiam ut placerat lectus.</p>
-                                                <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                                                <div class="why-text full-width">
+                                                    <h5><?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h5>
+                                                    <h5><?php
+                                                        if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
+                                                    <p><?php echo $product['descricao']?></p>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                <?php endforeach;?>
+
                             </div>
                         </div>
                     </div>
@@ -346,51 +340,39 @@ $cat = getCategoria($pdoConfig);
                 <div class="title-left">
                     <h3>Categorias</h3>
                 </div>
+                <?php
+                require_once ("confi.php");
+                /*comando para selecionar categoria na base de dados*/
+                $consulta = "SELECT * FROM categoria";
+                $link->set_charset("utf8");
 
-                <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                /* executar a consulta e testar se ocorreu erro */
+                if (!$resultado = $link->query($consulta)) {
+                    echo ' Falha na consulta: '. $link->error;
+                    $link->close();  /* fechar a ligação */
+                }
+                else{
+                    while ($cat = $resultado->fetch_assoc()) {
 
-                    <div class="list-group-collapse sub-men">
-                        <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Fruits & Drinks <small class="text-muted">(100)</small>
-                        </a>
-                        <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action active">Fruits 1 <small class="text-muted">(50)</small></a>
-                                <a href="#" class="list-group-item list-group-item-action">Fruits 2 <small class="text-muted">(10)</small></a>
-                                <a href="#" class="list-group-item list-group-item-action">Fruits 3 <small class="text-muted">(10)</small></a>
-                                <a href="#" class="list-group-item list-group-item-action">Fruits 4 <small class="text-muted">(10)</small></a>
-                                <a href="#" class="list-group-item list-group-item-action">Fruits 5 <small class="text-muted">(20)</small></a>
-                            </div>
+                        ?>
+
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="<?php echo $cat['idcategoria'];?>">
+                            <label for="<?php echo $cat['idcategoria'];?>">
+                                <span></span>
+                                <a href="?categoria=<?php echo $cat['idcategoria'];?>"><?php echo $cat['nome_categoria'];?></a>
+                            </label>
+
                         </div>
-                    </div>
-                    <div class="list-group-collapse sub-men">
-                        <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Vegetables
-                            <small class="text-muted">(50)</small>
-                        </a>
-                        <div class="collapse" id="sub-men2" data-parent="#list-group-men">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action">Vegetables 1 <small class="text-muted">(10)</small></a>
-                                <a href="#" class="list-group-item list-group-item-action">Vegetables 2 <small class="text-muted">(20)</small></a>
-                                <a href="#" class="list-group-item list-group-item-action">Vegetables 3 <small class="text-muted">(20)</small></a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="list-group-item list-group-item-action"> Grocery  <small class="text-muted">(150) </small></a>
-                    <a href="#" class="list-group-item list-group-item-action"> Grocery <small class="text-muted">(11)</small></a>
-                    <a href="#" class="list-group-item list-group-item-action"> Grocery <small class="text-muted">(22)</small></a>
-                </div>
+                        <?php
+                    }
+
+                }
+                ?>
+
             </div>
-            <div class="filter-price-left">
-                <div class="title-left">
-                    <h3>Price</h3>
-                </div>
-                <div class="price-box-slider">
-                    <div id="slider-range"></div>
-                    <p>
-                        <input type="text" id="amount" readonly style="border:0; color:#fbb714; font-weight:bold;">
-                        <button class="btn hvr-hover" type="submit">Filter</button>
-                    </p>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>

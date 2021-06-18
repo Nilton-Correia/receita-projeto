@@ -220,51 +220,71 @@ session_start();
                                         ?>
 
 
-                                        <div class="d-md-flex align-items-center">
+                                        <div class="form-floating mb-3">
                                             <div class="container has-text-centered">
 
                                                 <div class="box">
 
 
                                                     <form action="editarCliente.php" method="post" >
-                                                        <div class="field">
+                                                        <h4 class="field">
+                                                            <h4> Login </h4>
+                                                            <input type="text" class="form-control" id="floatingInput" value="<?=$row['username']?>" placeholder="login">
+                                                            <label for="floatingInput"></label>
+
+                                                        </div>
+                                                        <h4 class="field">
+                                                            <h4>Nome Completo</h4>
                                                             <div class="control">
-                                                                <input name="x_username" type="text" value="<?=$row['username']?>" class="input is-large" placeholder="username">
+                                                                <input type="text" class="form-control" id="floatingInput" value="<?=$row['nome']?>" placeholder="Nome Completo">
+                                                                <label for="floatingInput"></label>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="field">
+                                                            <h4>Email</h4>
+                                                            <div class="control">
+                                                                <input type="email" class="form-control" id="floatingInput" value="<?=$row['email']?>" placeholder="email">
+                                                                <label for="floatingInput"></label>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="field">
+                                                            <h4>Teletone</h4>
+                                                            <div class="control">
+                                                                <div class="control">
+                                                                    <input type="text" class="form-control" id="floatingInput" value="<?=$row['telefone']?>" placeholder="telefone">
+                                                                    <label for="floatingInput"></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="field">
+                                                            <h4>Morada</h4>
+                                                            <div class="control">
+                                                                <div class="control">
+                                                                    <input type="text" class="form-control" id="floatingInput" value="<?=$row['morada']?>" placeholder="morada">
+                                                                    <label for="floatingInput"></label>
                                                             </div>
                                                         </div>
                                                         <div class="field">
                                                             <div class="control">
-                                                                <input name="x_nome" type="text" value="<?=$row['nome']?>" class="input is-large" placeholder="nome">
+                                                                <h4>Localidade</h4>
+                                                                <div class="control">
+                                                                    <input type="text" class="form-control" id="floatingInput" value="<?=$row['localidade']?>" placeholder="localidade">
+                                                                    <label for="floatingInput"></label>
+
                                                             </div>
                                                         </div>
                                                         <div class="field">
                                                             <div class="control">
-                                                                <input name="x_email" type="text" value="<?=$row['email']?>" class="input is-large" placeholder="email">
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="control">
-                                                                <input name="x_telefone" type="text" value="<?=$row['telefone']?>" class="input is-large" placeholder="telefone">
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="control">
-                                                                <input name="x_morada" type="text" value="<?=$row['morada']?>" class="input is-large" placeholder="morada">
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="control">
-                                                                <input name="x_localidade" type="text" value="<?=$row['localidade']?>" class="input is-large" placeholder="localidade">
-                                                            </div>
-                                                        </div>
-                                                        <div class="field">
-                                                            <div class="control">
-                                                                <input name="x_id" type="hidden" value="<?=$row['id']?>" class="input is-large">
+                                                                <div class="control">
+                                                                    <input type="hidden" name="x_id" class="input is-large" id="floatingInput" value="<?=$row['id']?>">
+                                                                    <label for="floatingInput"></label>
+
                                                             </div>
                                                         </div>
 
                                                         <br>
-                                                        <button type="submit"  class="button is-block is-link is-large ">Editar</button>
+                                                        <button class="btn btn-primary" type="submit">Editar</button>
                                                     </form>
 
                                                     <?php
@@ -275,6 +295,7 @@ session_start();
                                                 </div>
                                             </div>
                                         </div>
+
 
                                         <!-- graph -->
 
