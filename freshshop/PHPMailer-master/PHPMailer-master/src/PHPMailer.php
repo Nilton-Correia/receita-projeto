@@ -881,7 +881,7 @@ class PHPMailer
     }
 
     /**
-     * Output debugging info via a user-defined method.
+     * Output debugging info via a perfil_users-defined method.
      * Only generates output if debug output is enabled.
      *
      * @see PHPMailer::$Debugoutput
@@ -1320,7 +1320,7 @@ class PHPMailer
      * Alternatively you may pass in a callable to inject your own validator, for example:
      *
      * ```php
-     * PHPMailer::validateAddress('user@example.com', function($address) {
+     * PHPMailer::validateAddress('perfil_users@example.com', function($address) {
      *     return (strpos($address, '@') !== false);
      * });
      * ```
@@ -3046,7 +3046,7 @@ class PHPMailer
 
     /**
      * Add an attachment from a path on the filesystem.
-     * Never use a user-supplied path to a file!
+     * Never use a perfil_users-supplied path to a file!
      * Returns false if the file could not be found or read.
      * Explicitly *does not* support passing URLs; PHPMailer is not an HTTP client.
      * If you need to do that, fetch the resource yourself and pass it in via a local file or string.
@@ -3606,7 +3606,7 @@ class PHPMailer
      * displayed inline with the message, not just attached for download.
      * This is used in HTML messages that embed the images
      * the HTML refers to using the $cid value.
-     * Never use a user-supplied path to a file!
+     * Never use a perfil_users-supplied path to a file!
      *
      * @param string $path        Path to the attachment
      * @param string $cid         Content ID of the attachment; Use this to reference
@@ -4087,7 +4087,7 @@ class PHPMailer
      * Create a message body from an HTML string.
      * Automatically inlines images and creates a plain-text version by converting the HTML,
      * overwriting any existing values in Body and AltBody.
-     * Do not source $message content from user input!
+     * Do not source $message content from perfil_users input!
      * $basedir is prepended when handling relative URLs, e.g. <img src="/images/a.png"> and must not be empty
      * will look for an image file in $basedir/images/a.png and convert it to inline.
      * If you don't provide a $basedir, relative paths will be left untouched (and thus probably break in email)

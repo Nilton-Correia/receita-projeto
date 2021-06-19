@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Check if the user is logged in, if not then redirect him to login page
+// Check if the perfil_users is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: client.php");
 

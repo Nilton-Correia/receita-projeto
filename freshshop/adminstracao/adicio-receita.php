@@ -13,7 +13,7 @@ if(isset($_SESSION["loggedin"])){
 
 
 
-    if(!empty($_POST['nome'])||!empty($_POST['preco'])||!empty($_POST['imagens'])||!empty($_POST['idPais'])||!empty($_POST['ingredientes'])||!empty($_POST['modo_preparacao'])||!empty($_POST['descricao'])||!empty($_POST['video'])||!empty($_POST['idcategoria'])) {
+    if(!empty($_POST['nome'])||!empty($_POST['preco'])||!empty($_POST['imagens'])||!empty($_POST['idPais'])||!empty($_POST['ingredientes'])||!empty($_POST['modo_preparacao'])||!empty($_POST['descricao'])||!empty($_POST['idcategoria'])) {
         $nome = $_POST['nome'];
         $preco = $_POST['preco'];
         $descricao = $_POST['descricao'];
@@ -22,7 +22,7 @@ if(isset($_SESSION["loggedin"])){
         $modo_preparacao = $_POST['modo_preparacao'];
         $categoria = $_POST['idcategoria'];
 
-
+/*imagens*/
         print_r($_FILES);
         $imagens = $_FILES['imagens'];
 
@@ -36,8 +36,21 @@ if(isset($_SESSION["loggedin"])){
         $imagensActualExt = strtolower(end($imagensExt));
 
         $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+        /* video*/
+        print_r($_FILES);
+        $video = $_FILES['video'];
+        $videoName = $_FILES['video']['name'];
+        $videoTmpName = $_FILES['video']['tmp_name'];
+        $videoSize = $_FILES['video']['size'];
+        $videoError = $_FILES['video']['error'];
+        $videoType = $_FILES['video']['type'];
 
-        $sql = "INSERT INTO receita(nome, preco, descricao, ingredientes, modo_preparacao, idcategoria, idPais, imagens) VALUES ('$nome','$preco','$descricao','$ingredientes','$modo_preparacao','$categoria','$idpais','".$imagens['name']."')";
+        $videoExt = explode('.', $videoName);
+        $videoActualExt = strtolower(end($videoExt));
+
+        $allowed = array('mp4');
+
+        $sql = "INSERT INTO receita(nome, preco, descricao, ingredientes, modo_preparacao, idcategoria, idPais, imagens, video) VALUES ('$nome','$preco','$descricao','$ingredientes','$modo_preparacao','$categoria','$idpais','".$imagens['name']."','".$video['name']."')";
         if (!mysqli_query($link, $sql)) {
             print_r(mysqli_error($link));
 
@@ -59,6 +72,25 @@ if(isset($_SESSION["loggedin"])){
             } else {
                 echo "Não podes fazer upload deste tipo de imagens";
             }
+            /*video*/
+            if (in_array($videoActualExt, $allowed)) {
+                if ($videoError === 0) {
+                    if ($videoSize < 1000000) {
+                        $videoNameNew = uniqid('', true) . "." . $videoActualExt;
+                        $videoDestination = 'video/' . $videoNameNew;
+                        move_uploaded_file($videoTmpName, $videoDestination);
+                        //header("Location:cadastro_produtos.php");
+                    } else {
+                        echo "Seu video e muito grande";
+                    }
+                } else {
+                    echo " Houve um erro ao fazer o upload";
+                }
+            } else {
+                echo "Não podes fazer upload deste tipo de video";
+            }
+
+
 
         }
 
@@ -250,13 +282,13 @@ if(isset($_SESSION["loggedin"])){
                                             <div class="field">
                                                 <div class="control">
 
-                                                        <textarea class="form-control" id="message" name="ingredientes" placeholder="Ingredientes" rows="5"></textarea>
+                                                        <input class="form-control" id="message" name="ingredientes" placeholder="Ingredientes" rows="5"></input>
 
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="control">
-                                                    <textarea class="form-control" id="message" name="modo_preparacao" placeholder="Modo de Preparação" rows="5"></textarea>
+                                                    <input class="form-control" id="message" name="modo_preparacao" placeholder="Modo de Preparação" rows="5"></input>
 
                                                 </div>
                                             </div>
@@ -291,6 +323,10 @@ if(isset($_SESSION["loggedin"])){
                                             Imagem
                                             <div>
                                                 <input type="file" name="imagens" value="imagens">
+                                            </div>
+                                            Video
+                                            <div>
+                                                <input type="file" name="video" value="video">
                                             </div>
                                             <br>
                                             <button type="submit" class="button is-block is-link is-large ">Registar Produto</button>

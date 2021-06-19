@@ -127,7 +127,7 @@ if(isset($_SESSION["loggedin"])){
                         </div>
 
                     </div>
-                </nav>
+
             </div>
             <!-- end topbar -->
             <!-- dashboard inner -->

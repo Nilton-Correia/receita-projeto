@@ -2,7 +2,7 @@
 // Include config file
 session_start();
 require("confi.php");
-// Check if the user is
+// Check if the perfil_users is
 if(!isset($_SESSION['carrinho.php'])){
     $_SESSION['carrinho.php'] = array();
 }//adiciona produto

@@ -7,7 +7,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 if(isset($_SESSION["loggedin"])){
     if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]=="admin"){
-        header("location: ../user/client.php");
+        header("location: adminstracao/adminstrador.php");
     }
 }
 require_once "../confi.php";

@@ -8,8 +8,13 @@ if($_GET['acao'] == 'add') {
     $id = intval($_GET['id']);
 }
 require_once "functions/receita-funcao.php";
+require_once "functions/cart.php";
 $pdoConfig = require_once "confi.php";
 $receita = getProductsByIds($pdoConfig,$id);
+$products = getProductos($pdoConfig);
+$resultsCarts = getContentCart($pdoConfig);
+$totalCarts = getTotalCart($pdoConfig);
+
 
 ?>
 
@@ -56,117 +61,123 @@ $receita = getProductsByIds($pdoConfig,$id);
 <!-- End Main Top -->
 
 <!-- Start Main Top -->
-<header class="main-header">
-    <!-- Start Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-        <div class="container">
-            <!-- Start Header Navigation -->
-            <div class="navbar-header">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="index.php"><img src="images/log21.png" class="logo" alt=""></a>
-            </div>
-            <!-- End Header Navigation -->
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="navbar-menu">
-                <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                    <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="receita-carne.php">Receita de Carne</a></li>
-                            <li><a href="receita-peixe.php">Receita de Peixe</a></li>
-                            <li><a href="sopas.php">Sopas</a></li>
-                            <li><a href="sobremesa-doce.php">Sobremesa e Doce</a></li>
-                            <li><a href="bolos.php">Bolos</a></li>
-                            <li><a href="massa.php">Massa</a></li>
-                            <li><a href="marisco.php">Marisco</a></li>
-                            <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="html/shop.html">São Tomé</a></li>
-                            <li><a href="html/shop-detail.html">Angola</a></li>
-                            <li><a href="html/cart.html">Portugal</a></li>
-                            <li><a href="html/shop.html">Cabo Verde</a></li>
-                            <li><a href="html/checkout.html">Moçambique</a></li>
-                            <li><a href="html/my-account.html">Giné Bissau</a></li>
-                            <li><a href="html/wishlist.html">Guiné Equatorial</a></li>
-                            <li><a href="html/wishlist.html">Timor-Leste</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="html/gallery.html">Receitas recentes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-
-            <!-- Start Atribute Navigation -->
-            <div class="attr-nav">
-                <ul>
-                    <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                    <li class="side-menu">
-                        <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                            </svg>
-                            <span class="badge">3</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+    <div class="container">
+        <!-- Start Header Navigation -->
+        <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="index.php"><img src="images/logotipo.png" class="logo" alt=""></a>
         </div>
-        <div class="side-menu">
-            <ul>
-                <li><a href="login.php"><i class="fa fa-user s_color"></i>Conta</a></li>
+        <!-- End Header Navigation -->
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Receita País</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="saotome_principe.php">São Tomé</a></li>
+                        <li><a href="angola.php">Angola</a></li>
+                        <li><a href="portugal.php">Portugal</a></li>
+                        <li><a href="cabo_verde.php">Cabo Verde</a></li>
+                        <li><a href="mocambique.php">Moçambique</a></li>
+                        <li><a href="guine_bissau.php">Giné Bissau</a></li>
+                        <li><a href="guine-equatorial.php">Guiné Equatorial</a></li>
+                        <li><a href="timor_leste.php">Timor-Leste</a></li>
+                        <li><a href="brazil.php">Brasil</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item"><a class="nav-link" href="contacto.php">Contacte nos</a></li>
             </ul>
         </div>
-        <!-- End Atribute Navigation -->
-        <!-- Start Side Menu -->
-        <div class="side">
-            <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-            <li class="cart-box">
+        <!-- /.navbar-collapse -->
+
+        <!-- Start Atribute Navigation -->
+        <div class="attr-nav">
+            <ul>
+                <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                <li class="side-menu">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                        </svg>
+                        <span class="qty"><?php echo count($_SESSION['cart'])?></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="side-menu">
+        <ul>
+            <li><a href="login.php"><i class="fa fa-user s_color"></i>
+
+                    <span><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
+                        }
+                        else{ echo "Conta";}?> </span>
+                </a></li>
+        </ul>
+    </div>
+    <!-- End Atribute Navigation -->
+
+    <!-- Start Side Menu -->
+
+    <!-- Start Side Menu -->
+
+
+
+    <div class="side">
+        <?php foreach($resultsCarts as $result) : ?>
+            <a href="" class="close-side"><i class="fa fa-times"></i></a>
+
+            <li class="cart-list">
+
                 <ul class="cart-list">
                     <li>
-                        <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
-                        <h6><a href="#">Delica omtantur </a></h6>
-                        <p>1x - <span class="price">$80.00</span></p>
+                        <a href="ver-receita.php?acao=add&id=" class="photo"><?php echo '<img src="./images/'.$result['imagens'].'" height="250px"/>' ?></a>
+                        <h6><?php echo '<a href="ver-receita.php?acao=add&id=' . $result['idreceita'] . '">' . $result['nome'] . '</a>'; ?></h6>
+
+                        <p>
+                                <span class="price">
+                                  <?php
+                                  if(($result['preco']!=0)){ echo number_format($result['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
+                                </span>
+
+                        </p>
                     </li>
-                    <li>
-                        <a href="#" class="photo"><img src="images/log3.jpg" class="cart-thumb" alt="" /></a>
-                        <h6><a href="#">Omnes ocurreret</a></h6>
-                        <p>1x - <span class="price">$60.00</span></p>
-                    </li>
-                    <li>
-                        <a href="#" class="photo"><img src="images/log3.jpg" class="cart-thumb" alt="" /></a>
-                        <h6><a href="#">Agam facilisis</a></h6>
-                        <p>1x - <span class="price">$40.00</span></p>
-                    </li>
+
                     <li class="total">
-                        <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                        <span class="float-right"><strong>Total</strong>: $180.00</span>
+                        <a href="carrinh.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
+                        <span class="float-right"><strong>Total</strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
                     </li>
                 </ul>
+
             </li>
-        </div>
-        <!-- End Side Menu -->
-    </nav>
-    <!-- End Navigation -->
+        <?php endforeach;?>
+    </div>
+
+
+    <!-- End Side Menu -->
+
+</nav>
+<!-- End Navigation -->
 </header>
+<!-- End Main Top -->
 
 <!-- Start Top Search -->
 <div class="top-search">
     <div class="container">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search">
-            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            <form action="pesquisa.php" method="Get">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="search" class="form-control" name="pesquisar" placeholder="Pesquise">
+                <button class="input-group-addon close-search"><i class="fa fa-times"></i></button>
+            </form>
         </div>
     </div>
 </div>
@@ -241,7 +252,7 @@ $receita = getProductsByIds($pdoConfig,$id);
                     <h2><?php echo $product['nome'] ?> </h2>
                     <h5>  <?php
                         if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
-                    <p class="available-stock"><span> More than 20 available / <a href="#">8 sold </a></span><p>
+
                     <h4>Ingredientes</h4>
                     <p>  <?php echo $product['ingredientes'] ?></p>
 
@@ -252,27 +263,40 @@ $receita = getProductsByIds($pdoConfig,$id);
 
                     <div class="price-box-bar">
                         <div class="cart-and-bay-btn">
-                            <a class="btn hvr-hover" data-fancybox-close="" href="#">Buy New</a>
-                            <a class="btn hvr-hover" href="carrinho.php?acao=add&id=<?php echo $product['idreceita']?>"data-fancybox-close="" href="#">Adicionar ao carrinho</a>
+
+                            <a class="btn hvr-hover" href="carrinh.php?acao=add&id=<?php echo $product['idreceita']?>"data-fancybox-close="" href="#">Adicionar ao carrinho</a>
                         </div>
                     </div>
 
                     <div class="add-to-btn">
                         <div class="add-comp">
-                            <a class="btn hvr-hover" href="#"><i class="fas fa-heart"></i> Add to wishlist</a>
-                            <a class="btn hvr-hover" href="#"><i class="fas fa-sync-alt"></i> Add to Compare</a>
+
                         </div>
-                        <div class="share-bar">
-                            <a class="btn hvr-hover" href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-                            <a class="btn hvr-hover" href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a>
-                            <a class="btn hvr-hover" href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-                            <a class="btn hvr-hover" href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
-                            <a class="btn hvr-hover" href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
+            <div class="carousel-inner" role="listbox">
+
+                <!--  A imagem da receita selecionada         -->
+
+                <video width="640" height="480" controls>
+                    <?php echo '<source type="video/mp4" src="./images/'.$product['video'].'"/>' ?>
+                    <source src="video/new-york.mp4" type="video/mp4">
+                    Seu navegador não suporta esse tipo de vídeo.
+                </video>
+
+                <iframe width="560" height="315"<?php echo ' src="'.$product['video'].'" '?>title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+
+                <!---  </video>-->
+
+
+
+            </div>
 
 
         <?php endforeach;?>
@@ -323,168 +347,7 @@ $receita = getProductsByIds($pdoConfig,$id);
             </div>
         </div>
 
-        <div class="row my-5">
-            <div class="col-lg-12">
-                <div class="title-all text-center">
-                    <h1>Featured Products</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
-                </div>
-                <div class="featured-products-box owl-carousel owl-theme">
-                    <div class="item">
-                        <div class="products-single fix">
-                            <div class="box-img-hover">
-                                <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>Lorem ipsum dolor sit amet</h4>
-                                <h5> $9.79</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="products-single fix">
-                            <div class="box-img-hover">
-                                <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>Lorem ipsum dolor sit amet</h4>
-                                <h5> $9.79</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="products-single fix">
-                            <div class="box-img-hover">
-                                <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>Lorem ipsum dolor sit amet</h4>
-                                <h5> $9.79</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="products-single fix">
-                            <div class="box-img-hover">
-                                <img src="images/img-pro-04.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>Lorem ipsum dolor sit amet</h4>
-                                <h5> $9.79</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="products-single fix">
-                            <div class="box-img-hover">
-                                <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>Lorem ipsum dolor sit amet</h4>
-                                <h5> $9.79</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="products-single fix">
-                            <div class="box-img-hover">
-                                <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>Lorem ipsum dolor sit amet</h4>
-                                <h5> $9.79</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="products-single fix">
-                            <div class="box-img-hover">
-                                <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>Lorem ipsum dolor sit amet</h4>
-                                <h5> $9.79</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="products-single fix">
-                            <div class="box-img-hover">
-                                <img src="images/img-pro-04.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>Lorem ipsum dolor sit amet</h4>
-                                <h5> $9.79</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
     </div>
 </div>

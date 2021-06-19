@@ -163,29 +163,7 @@ $totalCarts = getTotalCart($rtConnection);
 
         <div class="side">
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-            <li class="cart-box">
-                <?php foreach($resultsCarts as $result) : ?>
-                    <ul class="cart-list">
-                        <li>
-                            <a href="ver-receita.php?acao=add&id=" class="photo"><?php echo '<img src="./images/'.$result['imagens'].'" height="250px"/>' ?></a>
-                            <h6><?php echo '<a href="ver-receita.php?acao=add&id=' . $result['idreceita'] . '">' . $result['nome'] . '</a>'; ?></h6>
 
-                            <p>
-                                <span class="price">
-                                  <?php
-                                  if(($result['preco']!=0)){ echo number_format($result['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
-                                </span>
-
-                            </p>
-                        </li>
-
-                        <li class="total">
-                            <a href="carrinh.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
-                            <span class="float-right"><strong>Total</strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
-                        </li>
-                    </ul>
-                <?php endforeach;?>
-            </li>
         </div>
         <!-- End Side Menu -->
 
@@ -245,7 +223,9 @@ $totalCarts = getTotalCart($rtConnection);
 
                         </tr>
                         </thead>
-                        <?php foreach($resultsCarts as $result) :?>
+                        <?php
+
+                        foreach($resultsCarts as $result) :?>
                         <tbody>
 
                         <tr>
@@ -301,6 +281,7 @@ $totalCarts = getTotalCart($rtConnection);
                             }
 
                         endforeach;?>
+
                     </table>
                 </div>
             </div>

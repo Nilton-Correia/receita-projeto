@@ -2,17 +2,17 @@
 // Initialize the session
 session_start();
 
-// Check if the user is already logged in, if yes then redirect him to welcome page
+// Check if the perfil_users is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"])){
     if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]== "admin") {
         header("location: ./adminstracao/adminstrador.php");
     }else{
-        header("location: ./user/client.php");
+        header("location: ./perfil_users/client.php");
     }
 
 }
 
-// Check if the user is
+// Check if the perfil_users is
 if(!isset($_SESSION['carrinho'])){
     $_SESSION['carrinho'] = array();
 }
@@ -72,12 +72,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["tipo_utilizador"] = $tipo;
                             $_SESSION["username"] = $username;
 
-                            // Redirect user to welcome page
+                            // Redirect perfil_users to welcome page
                             if($tipo=="admin") {
 
-                                header("location: adminstracao/adminstrador.php");
+                                header("location: ./adminstracao/adminstrador.php");
                             }else{
-                                header("location:client.php");
+                                header("location: ./perfil_users/client.php");
                             }
 
                         }

@@ -130,9 +130,13 @@ $totalCarts = getTotalCart($pdoConfig);
 
 
         <div class="side">
-            <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-            <li class="cart-box">
-                <?php foreach($resultsCarts as $result) : ?>
+
+            <?php
+                  foreach($resultsCarts as $result) : ?>
+            <a href="" class="close-side"><i class="fa fa-times"></i></a>
+
+            <li class="cart-list">
+
                     <ul class="cart-list">
                         <li>
                             <a href="ver-receita.php?acao=add&id=" class="photo"><?php echo '<img src="./images/'.$result['imagens'].'" height="250px"/>' ?></a>
@@ -152,9 +156,16 @@ $totalCarts = getTotalCart($pdoConfig);
                             <span class="float-right"><strong>Total</strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
                         </li>
                     </ul>
-                <?php endforeach;?>
+
             </li>
+            <?php
+
+            endforeach;?>
+
+
         </div>
+
+
         <!-- End Side Menu -->
 
     </nav>
@@ -272,7 +283,8 @@ $totalCarts = getTotalCart($pdoConfig);
         </div>
 
         <div class="row special-list">
-            <?php foreach($products as $product) : ?>
+            <?php
+            foreach($products as $product) : ?>
                 <?php $cat=$product['nome_categoria'] ?>
                 <div class="col-lg-3 col-md-6 special-grid <?php echo $cat?>">
                     <div class="products-single fix">
@@ -292,7 +304,8 @@ $totalCarts = getTotalCart($pdoConfig);
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
 
-                                <a class="cart" href="carrinh.php?acao=add&id=<?php echo $product['idreceita']?>" class="card-link">Adicionar ao carrinho</a>
+                                <a class="cart" href="carrinh.php?acao=add&id=<?php
+                              if($product['preco']!=0) echo $product['idreceita']?>" class="card-link">Adicionar ao carrinho</a>
 
                             </div>
                         </div>

@@ -118,14 +118,14 @@ if(isset($_SESSION["loggedin"])){
         <div id="content">
             <!-- topbar -->
             <div class="topbar">
-                <nav class="navbar navbar-expand-lg navbar-light">
+
                     <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
-                            <a href="../index.php"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
+
                         </div>
                     </div>
-                </nav>
+
             </div>
             <!-- end topbar -->
             <!-- dashboard inner -->
@@ -138,7 +138,7 @@ if(isset($_SESSION["loggedin"])){
                             </div>
                         </div>
                     </div>
-
+                <div class="container">
                     <table class="table table-striped table-white">
                         <thead>
                         <tr>
@@ -179,6 +179,7 @@ if(isset($_SESSION["loggedin"])){
 
                         ?>
                     </table>
+                </div>
 
                     <!-- graph -->
 

@@ -3665,8 +3665,8 @@ module.exports = function(Chart) {
 		easing: '', // the easing to use for this animation
 		render: null, // render function used by the animation service
 
-		onAnimationProgress: null, // user specified callback to fire on each step of the animation
-		onAnimationComplete: null, // user specified callback to fire when the animation finishes
+		onAnimationProgress: null, // perfil_users specified callback to fire on each step of the animation
+		onAnimationComplete: null, // perfil_users specified callback to fire when the animation finishes
 	});
 
 	Chart.animationService = {
@@ -4958,7 +4958,7 @@ module.exports = function(Chart) {
 			// the internal meta data accordingly.
 			if (me._data !== data) {
 				if (me._data) {
-					// This case happens when the user replaced the data array instance.
+					// This case happens when the perfil_users replaced the data array instance.
 					unlistenArrayEvents(me._data, me);
 				}
 
@@ -4966,7 +4966,7 @@ module.exports = function(Chart) {
 				me._data = data;
 			}
 
-			// Re-sync meta data in case the user replaced the data array or if we missed
+			// Re-sync meta data in case the perfil_users replaced the data array or if we missed
 			// any updates and so make sure that we handle number of datapoints changing.
 			me.resyncElements();
 		},
@@ -6806,7 +6806,7 @@ module.exports = {
 
 	/**
 	 * Invalidates cache for the given chart: descriptors hold a reference on plugin option,
-	 * but in some cases, this reference can be changed by the user when updating options.
+	 * but in some cases, this reference can be changed by the perfil_users when updating options.
 	 * https://github.com/chartjs/Chart.js/issues/5111#issuecomment-355934167
 	 * @private
 	 */
@@ -8596,14 +8596,14 @@ module.exports = function(Chart) {
 					tooltipItems.push(createTooltipItem(active[i]));
 				}
 
-				// If the user provided a filter function, use it to modify the tooltip items
+				// If the perfil_users provided a filter function, use it to modify the tooltip items
 				if (opts.filter) {
 					tooltipItems = tooltipItems.filter(function(a) {
 						return opts.filter(a, data);
 					});
 				}
 
-				// If the user provided a sorting function, use it to modify the tooltip items
+				// If the perfil_users provided a sorting function, use it to modify the tooltip items
 				if (opts.itemSort) {
 					tooltipItems = tooltipItems.sort(function(a, b) {
 						return opts.itemSort(a, b, data);
@@ -10592,7 +10592,7 @@ function initCanvas(canvas, config) {
 	if (renderHeight === null || renderHeight === '') {
 		if (canvas.style.height === '') {
 			// If no explicit render height and style height, let's apply the aspect ratio,
-			// which one can be specified by the user but also by charts as default option
+			// which one can be specified by the perfil_users but also by charts as default option
 			// (i.e. options.aspectRatio). If not specified, use canvas aspect ratio of 2.
 			canvas.height = canvas.width / (config.options.aspectRatio || 2);
 		} else {
@@ -12228,13 +12228,13 @@ module.exports = function(Chart) {
 			var findIndex;
 
 			if (me.options.ticks.min !== undefined) {
-				// user specified min value
+				// perfil_users specified min value
 				findIndex = labels.indexOf(me.options.ticks.min);
 				me.minIndex = findIndex !== -1 ? findIndex : me.minIndex;
 			}
 
 			if (me.options.ticks.max !== undefined) {
-				// user specified max value
+				// perfil_users specified max value
 				findIndex = labels.indexOf(me.options.ticks.max);
 				me.maxIndex = findIndex !== -1 ? findIndex : me.maxIndex;
 			}
@@ -12605,7 +12605,7 @@ module.exports = function(Chart) {
 			var tickOpts = opts.ticks;
 
 			// If we are forcing it to begin at 0, but 0 will already be rendered on the chart,
-			// do nothing since that would make the chart weird. If the user really wants a weird chart
+			// do nothing since that would make the chart weird. If the perfil_users really wants a weird chart
 			// axis, they can manually override it
 			if (tickOpts.beginAtZero) {
 				var minSign = helpers.sign(me.min);
@@ -13800,7 +13800,7 @@ function momentify(value, options) {
 	}
 
 	// Labels are in an incompatible moment format and no `parser` has been provided.
-	// The user might still use the deprecated `format` option to convert his inputs.
+	// The perfil_users might still use the deprecated `format` option to convert his inputs.
 	if (typeof format === 'function') {
 		return format(value);
 	}
@@ -14074,7 +14074,7 @@ module.exports = function(Chart) {
 			 * Ticks generation input values:
 			 * - 'auto': generates "optimal" ticks based on scale size and time options.
 			 * - 'data': generates ticks from data (including labels from data {t|x|y} objects).
-			 * - 'labels': generates ticks from user given `data.labels` values ONLY.
+			 * - 'labels': generates ticks from perfil_users given `data.labels` values ONLY.
 			 * @see https://github.com/chartjs/Chart.js/pull/4507
 			 * @since 2.7.0
 			 */
@@ -14220,7 +14220,7 @@ module.exports = function(Chart) {
 				max = timestamps[timestamps.length - 1];
 			}
 
-			// Enforce limits with user min/max options
+			// Enforce limits with perfil_users min/max options
 			min = parse(timeOpts.min, me) || min;
 			max = parse(timeOpts.max, me) || max;
 

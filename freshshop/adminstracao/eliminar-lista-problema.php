@@ -10,7 +10,7 @@ $resultado=$link->query($deleta);
 
 if ($resultado=$link->query($deleta)) {
     echo "O registro foi excluido";
-    header( "location: listar-informacoes-contacto.php");
+    header( "location:listar-informacoe-contacto.php");
 } else {
 
 
