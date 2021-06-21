@@ -1,6 +1,6 @@
 <?php
 
-function getProducts($pdo){
+function getReceitas($pdo){
 	$sql = "SELECT *  FROM receita ";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
@@ -29,7 +29,7 @@ function pesquisar($pdo,$pesquisar)
     }
 }
 
-function getProductsByIds($pdo, $ids) {
+function getReceitasByIds($pdo, $ids) {
 	$sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE  idreceita IN (".$ids.")";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();

@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nomecat = filter_input(INPUT_POST, 'nome_categoria');
+    $nomecat = filter_input(INPUT_POST, 'r_categoria');
 
 
     /* validar os dados recebidos do formulario */

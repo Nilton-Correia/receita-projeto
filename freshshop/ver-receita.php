@@ -10,7 +10,7 @@ if($_GET['acao'] == 'add') {
 require_once "functions/receita-funcao.php";
 require_once "functions/cart.php";
 $pdoConfig = require_once "confi.php";
-$receita = getProductsByIds($pdoConfig,$id);
+$receita = getReceitasByIds($pdoConfig,$id);
 $products = getProductos($pdoConfig);
 $resultsCarts = getContentCart($pdoConfig);
 $totalCarts = getTotalCart($pdoConfig);

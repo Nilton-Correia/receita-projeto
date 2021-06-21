@@ -56,7 +56,7 @@ if(isset($_SESSION["loggedin"])){
             <div class="sidebar_blog_1">
                 <div class="sidebar-header">
                     <div class="logo_section">
-                        <a href="../index.php"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
+
                     </div>
                 </div>
                 <div class="sidebar_user_info">
@@ -115,17 +115,19 @@ if(isset($_SESSION["loggedin"])){
         </nav>
         <!-- end sidebar -->
         <!-- right content -->
-        <div id="content">
+        <div id="content" class="d-flex flex-column">
             <!-- topbar -->
             <div class="topbar">
-
+                <nav class="navbar navbar-expand-lg navbar-light">
                     <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
 
-                        </div>
-                    </div>
 
+                        </div>
+
+                    </div>
+                </nav>
             </div>
             <!-- end topbar -->
             <!-- dashboard inner -->

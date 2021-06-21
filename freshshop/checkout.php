@@ -33,7 +33,7 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
     $total += $ln['preco'] * $qtd;
     $nome = $ln['nome'];
     $preco = $ln['preco'];
-    $abc .="[".$qtd . " " . $nome . "," . " Por: " . $preco."] ";;
+    $abc .="[".$qtd . " " . $nome . "," . " Por: " . $preco."] ";
 
 }        if($_POST) {
     include("./PHPMailer-master/PHPMailer-master/src/PHPMailer.php");
@@ -51,13 +51,13 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
     $assunto = "Mensagem recebida do site";
     $mensagem = "Recebemos uma Encomenda no site <br/>
  
- 
+ <strong>E-mail:</strong>$_POST[email] <br/>
  <strong>Pagamento:</strong>$pagamento <br/>
  <strong>Receita:</strong> $abc <br/>
  <strong>Total:</strong> $total <br/>
 
  ";
-    $usser = $_SESSION['username'];
+    $utilizador = $_SESSION['username'];
     if (empty($nome)) {
         echo "Todos os campos do formulário devem conter valores ";
 
@@ -66,7 +66,7 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
         $pag = $_POST['paymentMethod'];
 
         /* texto sql da consulta*/
-        $consulta = "INSERT INTO receita_guadar (preco, nome_receita, utilizador_id, pagamento_idpagamento, data_criacao) VALUES ($total,'$abc', $usser, $pag, Now())";
+        $consulta = "INSERT INTO receita_encomenda (preco, nome_receita, utilizador_id, pagamento_idpagamento, data_criacao) VALUES ($total,'$abc', '$utilizador', $pag, Now())";
         /* executar a consulta e testar se ocorreu erro */
         if (!$link->query($consulta)) {
             echo " ERRO - Falha ao executar a consulta: \"$consulta\" <br>" . $link->error;
@@ -81,15 +81,13 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
 
     include("enviar_email.php");
 
-    $mailDestino = $_POST["email"];
+    $mailDestino = $_POST['email'];
     $nome = 'Suporte LusoFlavors';
     $assunto = "Receita Registrada";
-    $mensagem = "Recebemos a sua encomenda <br/>
+    $mensagem = "O Seu Pedido Foi Registado aguardamos o Seu Pagamento <br/>
  
- <strong>Pagamento:</strong>$pagamento <br/>
- <strong>Produtos:</strong> $abc <br/>
- <strong>Total:</strong> $total <br/>
- <strong>---------------</strong>
+ <strong>Nome: </strong>$utilizador<br/>
+ <strong>Receita:</strong> $abc <br/>
   <strong>Informações de Pagamento:</strong>$pagamento <br/>
  <strong>Entidade:</strong>1435352 <br/>
  <strong>Referencia:</strong>3253363636<br/>
@@ -97,7 +95,7 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
  
  ";
     include("enviar_email.php");
-    header("location: client.php");
+    header("location: index.php");
 }
 
 ?>
@@ -291,61 +289,31 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
                     <div class="title-left">
                         <h3>Dados de Pagamentos</h3>
                     </div>
-                    <form class="needs-validation" novalidate method="post">
 
+                    <form class="needs-validation" method="post">
 
-                        <hr class="mb-4">
-                        <div class="title"> <span>Payment</span> </div>
+                        <div class="row">
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email">Introduza o seu Email*</label>
+                            <input type="email" class="form-control" name="email" placeholder="E-mail">
+                            <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
+                        </div>
+
+                        <div class="title"> <span>Pagamento</span> </div>
                         <div class="d-block my-3">
+
                             <div class="custom-control custom-radio">
-                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" value="3"  >
-                                <label class="custom-control-label" for="credit">Credit card</label>
+                                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" value="2" required>
+                                <label class="custom-control-label" for="debit">Transferencia</label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" value="2" >
-                                <label class="custom-control-label" for="debit">Tranferencia</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" value="1" >
+                                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" value="1" required>
                                 <label class="custom-control-label" for="paypal">Multibanco</label>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="cc-name">Name on card</label>
-                                <input type="text" class="form-control" id="cc-name" placeholder="" required> <small class="text-muted">Full name as displayed on card</small>
-                                <div class="invalid-feedback"> Name on card is required </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="cc-number">Credit card number</label>
-                                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                                <div class="invalid-feedback"> Credit card number is required </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
-                                <label for="cc-expiration">Expiration</label>
-                                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                                <div class="invalid-feedback"> Expiration date required </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="cc-expiration">CVV</label>
-                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                                <div class="invalid-feedback"> Security code required </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="payment-icon">
-                                    <ul>
-                                        <li><img class="img-fluid" src="images/payment-icon/1.png" alt=""></li>
-                                        <li><img class="img-fluid" src="images/payment-icon/2.png" alt=""></li>
-                                        <li><img class="img-fluid" src="images/payment-icon/3.png" alt=""></li>
-                                        <li><img class="img-fluid" src="images/payment-icon/5.png" alt=""></li>
-                                        <li><img class="img-fluid" src="images/payment-icon/7.png" alt=""></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="mb-1">
 
 
                 </div>
@@ -359,7 +327,7 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
                                 <h3>Detalhes do pedido</h3>
                             </div>
                             <div class="d-flex">
-                                <div class="font-weight-bold">Product</div>
+                                <div class="font-weight-bold">Receita</div>
                                 <div class="ml-auto font-weight-bold">Total</div>
                             </div>
                             <hr class="my-1">
@@ -386,7 +354,7 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
                             </div>
                             <hr>
                             <div class="d-flex gr-total">
-                                <h5>Grand Total</h5>
+                                <h5>Total</h5>
                                 <div class="ml-auto h5"> $ 388 </div>
                             </div>
                             <hr> </div>
