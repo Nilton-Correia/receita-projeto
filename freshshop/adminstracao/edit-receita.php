@@ -2,17 +2,19 @@
 session_start();
 require("../confi.php");
 
-/* Verificar se o formulário foi submetido */
+/* Ver se o formulário foi submetido */
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = filter_input(INPUT_POST, 'r_id');
     $nome = filter_input(INPUT_POST, 'r_nome');
     $preco = filter_input(INPUT_POST, 'r_preco');
     $img= filter_input(INPUT_POST, 'r_img');
+    $video= filter_input(INPUT_POST, 'r_video');
     $ingredientes = filter_input(INPUT_POST, 'r_ingredientes');
     $des = filter_input(INPUT_POST, 'r_desc');
     $modo_pre = filter_input(INPUT_POST, 'r_preparacao');
     $pais = filter_input(INPUT_POST, 'r_idPais');
-    $cat = filter_input(INPUT_POST, 'r_idcategoria');
+    $cat = filter_input(INPUT_POST, 'nome_categoria');
 
 
 
@@ -29,7 +31,7 @@ else{
 
 
 /* texto sql da consulta*/
-$consulta = "UPDATE receita SET  nome ='$nome', preco=$preco, imagens='$img', modo_preparacao='$modo_pre', ingredientes=' $ingredientes', descricao='$des', idPais=$pais, idcategoria=$cat where idreceita=$id ";
+$consulta = "UPDATE receita SET  nome ='$nome', preco=$preco, imagens='$img', video='$video', modo_preparacao='$modo_pre', ingredientes=' $ingredientes', descricao='$des', idPais=$pais, idcategoria=$cat where idreceita=$id ";
 
 /* executar a consulta e testar se ocorreu erro */
 if (!$link->query($consulta)) {

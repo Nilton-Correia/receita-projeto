@@ -1,5 +1,14 @@
 <?php
 session_start();
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: ../login.php");
+}
+
+if(isset($_SESSION["loggedin"])){
+    if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]!="admin"){
+        header("location: ../adminstrador.php");
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -50,9 +59,7 @@ session_start();
         <nav id="sidebar">
             <div class="sidebar_blog_1">
                 <div class="sidebar-header">
-                    <div class="logo_section">
-                        <a href="pluto/index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
-                    </div>
+
                 </div>
                 <div class="sidebar_user_info">
                     <div class="icon_setting"></div>
@@ -114,28 +121,10 @@ session_start();
                     <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
-                            <a href="pluto/index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
+
+
                         </div>
-                        <div class="right_topbar">
-                            <div class="icon_info">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
-                                    <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
-                                </ul>
-                                <ul class="user_profile_dd">
-                                    <li>
-                                        <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" /><span class="name_user">John David</span></a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="pluto/profile.html">My Profile</a>
-                                            <a class="dropdown-item" href="pluto/settings.html">Settings</a>
-                                            <a class="dropdown-item" href="help.html">Help</a>
-                                            <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+
                     </div>
                 </nav>
             </div>
@@ -146,7 +135,7 @@ session_start();
                     <div class="row column_title">
                         <div class="col-md-12">
                             <div class="page_title">
-                                <h2>Dashboard</h2>
+                                <h2>Editar Receita</h2>
                             </div>
                         </div>
                     </div>
@@ -205,17 +194,19 @@ session_start();
 
 
                                                     <form method="post" action="edit-receita.php">
-                                                        <br>
+                                                        <br>Nome de Receita
                                                         <input type="text" name="r_nome" value="<?=$row['nome']?>" class="input is-large" ><br>
-                                                        <br>
+                                                        <br>Preço
                                                         <input type="number" name="r_preco" value="<?=$row['preco']?>" class="input is-large" ><br>
-                                                        <br>
+                                                        <br>Imagens
                                                         <input type="text" name="r_img" value="<?=$row['imagens']?>" class="input is-large" ><br>
-                                                        <br>
+                                                        <br>Video
+                                                        <input type="text" name="r_video" value="<?=$row['video']?>" class="input is-large" ><br>
+                                                        <br>Descrição
                                                         <input type="text" name="r_desc" value="<?=$row['descricao']?>" class="input is-large"><br>
-                                                        <br>
+                                                        <br>Ingredientes
                                                         <input type="text" name="r_ingredientes" value="<?=$row['ingredientes']?>" class="input is-large" ><br>
-                                                        <br>
+                                                        <br> Modo de Preparação
                                                         <input type="text" name="r_preparacao" value="<?=$row['modo_preparacao']?>" class="input is-large"><br>
 
                                                         Tipo País
@@ -248,7 +239,7 @@ session_start();
                                                         </div>
                                                         Categoria de Receita...
                                                         <div class="col-md-12 mb-2">
-                                                            <select class="custom-select d-block w-100"  name="r_idcategoria" required>
+                                                            <select class="custom-select d-block w-100" id="pais" name="nome_categoria" required>
                                                                 <option value=""></option>
                                                                 <option value=<?php echo $row['idcategoria'];?> selected><?php echo $row['nome_categoria'];?></option>
                                                                 <?php
@@ -283,6 +274,7 @@ session_start();
 
                                                     <?php
                                                     $resultado->free();/* libertar o resultado */
+
                                                     $link->close();       /* close a ligação */
                                                     }
                                                     ?>

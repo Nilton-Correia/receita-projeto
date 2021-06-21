@@ -6,7 +6,7 @@ if(!isset($_SESSION['cart'])){
 require_once "functions/receita-funcao.php";
 require_once "functions/cart.php";
 $pdoConfig = require_once "confi.php";
-$products = getProducts($pdoConfig);
+$products = getReceitas($pdoConfig);
 $resultsCarts = getContentCart($pdoConfig);
 $totalCarts = getTotalCart($pdoConfig);
 $products = getCatReceita2($pdoConfig);

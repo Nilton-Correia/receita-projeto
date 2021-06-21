@@ -170,19 +170,20 @@ if(isset($_SESSION["loggedin"])){
                                         <?php
 
                                         require("../confi.php");
+
                                         $link->set_charset("utf8");
 
-                                        $operacao = filter_input(INPUT_GET, 'operacao');
+                                        $op = filter_input(INPUT_GET, 'operacao');
 
 
-                                        $unome="";
+                                        $nome="";
                                         $link->close();
                                         ?>
 
 
                                         <form method="POST" action="add-cat.php" onSubmit="return validar()">
                                             Categoria<br>
-                                            <input type="text" id="nome_categoria" name="nome_categoria" value="" class="input is-large" placeholder="Categoria"><br>
+                                            <input type="text" id="r_categoria" name="r_categoria"  class="input is-large" placeholder="Categoria"><br>
                                             <br>
                                             <button type="submit" value="Adicionar" class="button is-block is-link is-large is-fullwidth">Adicionar</button>
                                         </form>

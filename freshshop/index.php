@@ -7,7 +7,7 @@ require_once "functions/receita-funcao.php";
 require_once "functions/cart.php";
 
 $pdoConfig = require_once "confi.php";
-$products = getProductos($pdoConfig);
+$receitas = getProductos($pdoConfig);
 $resultsCarts = getContentCart($pdoConfig);
 $totalCarts = getTotalCart($pdoConfig);
 
@@ -284,8 +284,8 @@ $totalCarts = getTotalCart($pdoConfig);
 
         <div class="row special-list">
             <?php
-            foreach($products as $product) : ?>
-                <?php $cat=$product['nome_categoria'] ?>
+            foreach($receitas as $receit) :  ?>
+                <?php $cat=$receit['nome_categoria'] ?>
                 <div class="col-lg-3 col-md-6 special-grid <?php echo $cat?>">
                     <div class="products-single fix">
 
@@ -296,7 +296,7 @@ $totalCarts = getTotalCart($pdoConfig);
                             <div class="type-lb">
                                 <p class="sale"><?php echo $cat?></p>
                             </div>
-                            <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
+                            <?php echo '<img src="./images/'.$receit['imagens'].'" height="250px"/>' ?>
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -305,17 +305,18 @@ $totalCarts = getTotalCart($pdoConfig);
                                 </ul>
 
                                 <a class="cart" href="carrinh.php?acao=add&id=<?php
-                              if($product['preco']!=0) echo $product['idreceita']?>" class="card-link">Adicionar ao carrinho</a>
+                              if($receit['preco']!=0) echo $receit['idreceita']?>" class="card-link">Adicionar ao carrinho</a>
 
                             </div>
                         </div>
                         <div class="why-text">
-                            <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h4>
+
+                            <h4> <?php  echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '">' . $receit['nome'] . '</a>'; ?></h4>
 
 
                             <h5 class="card-subtitle m-2 text text-muted">
                                 <?php
-                                if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
+                                if(($receit['preco']!=0)){ echo number_format($receit['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
                         </div>
 
                     </div>
@@ -437,12 +438,13 @@ $totalCarts = getTotalCart($pdoConfig);
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-top-box">
                         <h3>Newsletter</h3>
-                        <form class="newsletter-box">
+                        <form action="" method="post" class="newsletter-box">
                             <div class="form-group">
-                                <input class="" type="email" name="Email" placeholder="Email Address*" />
+                                <input class="" type="email" name="mail" placeholder="Email Address*" />
                                 <i class="fa fa-envelope"></i>
                             </div>
                             <button class="btn hvr-hover" type="submit">Submit</button>
+
                         </form>
                     </div>
                 </div>

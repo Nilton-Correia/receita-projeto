@@ -8,9 +8,9 @@ require_once "functions/cart.php";
 
 $pdoConfig = require_once "confi.php";
 
-$products = getProducts($pdoConfig);
+$receitas = getReceitas($pdoConfig);
 $resultsCarts = getContentCart($pdoConfig);
-$products = getAngola($pdoConfig);
+$receitas = getAngola($pdoConfig);
 $cat = getCategoria($pdoConfig);
 $totalCarts = getTotalCart($pdoConfig);
 ?>
@@ -224,8 +224,8 @@ $totalCarts = getTotalCart($pdoConfig);
                             <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
                                 <div class="row">
 
-                                    <?php foreach($products as $product) : ?>
-                                        <?php $cat=$product['nome_categoria'] ?>
+                                    <?php foreach($receitas as $receit) : ?>
+                                        <?php $cat=$receit['nome_categoria'] ?>
 
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                             <div class="products-single fix">
@@ -233,20 +233,20 @@ $totalCarts = getTotalCart($pdoConfig);
                                                     <div class="type-lb">
                                                         <p class="sale"><?php echo $cat?></p>
                                                     </div>
-                                                    <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
+                                                    <?php echo '<img src="./images/'.$receit['imagens'].'" height="250px"/>' ?>
                                                     <div class="mask-icon">
                                                         <ul>
-                                                            <li><?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a>'; ?></li>
+                                                            <li><?php echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a>'; ?></li>
                                                             <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                                         </ul>
-                                                        <a class="cart" href="carrinh.php?acao=add&id=<?php echo $product['idreceita']?>">Adicionar Carrinho</a>
+                                                        <a class="cart" href="carrinh.php?acao=add&id=<?php echo $receit['idreceita']?>">Adicionar Carrinho</a>
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
-                                                    <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h4>
+                                                    <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '">' . $receit['nome'] . '</a>'; ?></h4>
                                                     <h5>
                                                         <?php
-                                                        if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
+                                                        if(($receit['preco']!=0)){ echo number_format($receit['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
                                                     </h5>
 
                                                 </div>
@@ -258,8 +258,8 @@ $totalCarts = getTotalCart($pdoConfig);
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="list-view">
-                                <?php foreach($products as $product) : ?>
-                                    <?php $cat=$product['nome_categoria'] ?>
+                                <?php foreach($receitas as $receit) : ?>
+                                    <?php $cat=$receit['nome_categoria'] ?>
 
                                     <div class="list-view-box">
                                         <div class="row">
@@ -269,25 +269,25 @@ $totalCarts = getTotalCart($pdoConfig);
                                                         <div class="type-lb">
                                                             <p class="sale"><?php echo $cat?></p>
                                                         </div>
-                                                        <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
+                                                        <?php echo '<img src="./images/'.$receit['imagens'].'" height="250px"/>' ?>
 
                                                         <div class="mask-icon">
                                                             <ul>
-                                                                <li><?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a>'; ?></li>
+                                                                <li><?php echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a>'; ?></li>
 
                                                                 <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                                             </ul>
-                                                            <a class="cart" href="carrinh.php?acao=add&id=<?php echo $product['idreceita']?>">Adicionar Carrinho</a>
+                                                            <a class="cart" href="carrinh.php?acao=add&id=<?php echo $receit['idreceita']?>">Adicionar Carrinho</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
                                                 <div class="why-text full-width">
-                                                    <h5><?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h5>
+                                                    <h5><?php echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '">' . $receit['nome'] . '</a>'; ?></h5>
                                                     <h5><?php
-                                                        if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
-                                                    <p><?php echo $product['descricao']?></p>
+                                                        if(($receit['preco']!=0)){ echo number_format($receit['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
+                                                    <p><?php echo $receit['descricao']?></p>
 
                                                 </div>
                                             </div>
@@ -313,6 +313,7 @@ $totalCarts = getTotalCart($pdoConfig);
                         require_once ("confi.php");
                         /*comando para selecionar categoria na base de dados*/
                         $consulta = "SELECT * FROM categoria";
+
                         $link->set_charset("utf8");
 
                         /* executar a consulta e testar se ocorreu erro */
