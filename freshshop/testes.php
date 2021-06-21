@@ -4,14 +4,20 @@ if(!isset($_SESSION['cart'])){
     $_SESSION['cart'] = array();
 }
 require_once "functions/receita-funcao.php";
+require_once "functions/cart.php";
+
 $pdoConfig = require_once "confi.php";
 
-
+$products = getProducts($pdoConfig);
+$resultsCarts = getContentCart($pdoConfig);
+$products = getPortugal($pdoConfig);
+$cat = getCategoria($pdoConfig);
+$totalCarts = getTotalCart($pdoConfig);
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <!-- Basic -->
 <!-- End Cart -->
 
@@ -50,6 +56,69 @@ $pdoConfig = require_once "confi.php";
 
 <body>
 <!-- Start Main Top -->
+<div class="main-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="custom-select-box">
+                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                        <option>¥ JPY</option>
+                        <option>$ USD</option>
+                        <option>€ EUR</option>
+                    </select>
+                </div>
+                <div class="right-phone-box">
+                    <p>Call US :- <a href="#"> +11 900 800 100</a></p>
+                </div>
+                <div class="our-link">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>
+                        <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>
+                        <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="login-box">
+                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
+                        <option>Register Here</option>
+                        <option>Sign In</option>
+                    </select>
+                </div>
+                <div class="text-slid-box">
+                    <div id="offer-box" class="carouselTicker">
+                        <ul class="offer-box">
+                            <li>
+                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> Off 50%! Shop Now
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> Off 50%! Shop Now
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- End Main Top -->
 
 <!-- Start Main Top -->
@@ -62,43 +131,28 @@ $pdoConfig = require_once "confi.php";
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.php"><img src="images/logotipo.png" class="logo" alt=""></a>
+                <a class="navbar-brand" href="index.html"><img src="../images/logo.png" class="logo" alt=""></a>
             </div>
             <!-- End Header Navigation -->
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                    <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="dropdown active">
+                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                         <ul class="dropdown-menu">
-                            <li><a href="receita-carne.php">Receita de Carne</a></li>
-                            <li><a href="receita-peixe.php">Receita de Peixe</a></li>
-                            <li><a href="sopas.php">Sopas</a></li>
-                            <li><a href="sobremesa-doce.php">Sobremesa e Doce</a></li>
-                            <li><a href="bolos.php">Bolos</a></li>
-                            <li><a href="massa.php">Massa</a></li>
-                            <li><a href="marisco.php">Marisco</a></li>
-                            <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
+                            <li><a href="shop.html">Sidebar Shop</a></li>
+                            <li><a href="shop-detail.html">Shop Detail</a></li>
+                            <li><a href="cart.html">Cart</a></li>
+                            <li><a href="checkout.html">Checkout</a></li>
+                            <li><a href="my-account.html">My Account</a></li>
+                            <li><a href="wishlist.html">Wishlist</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="html/shop.html">São Tomé</a></li>
-                            <li><a href="html/shop-detail.html">Angola</a></li>
-                            <li><a href="html/cart.html">Portugal</a></li>
-                            <li><a href="html/shop.html">Cabo Verde</a></li>
-                            <li><a href="html/checkout.html">Moçambique</a></li>
-                            <li><a href="html/my-account.html">Giné Bissau</a></li>
-                            <li><a href="html/wishlist.html">Guiné Equatorial</a></li>
-                            <li><a href="html/wishlist.html">Timor-Leste</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="recente.php">Receitas recentes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../contact-us.html">Contact Us</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -107,71 +161,49 @@ $pdoConfig = require_once "confi.php";
             <div class="attr-nav">
                 <ul>
                     <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                    <li class="side-menu">
-                        <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                            </svg>
-                            <span class="badge">4</span>
-                        </a>
-                    </li>
+                    <li class="side-menu"><a href="#">
+                            <i class="fa fa-shopping-bag"></i>
+                            <span class="badge">3</span>
+                            <p>My Cart</p>
+                        </a></li>
                 </ul>
             </div>
-
+            <!-- End Atribute Navigation -->
         </div>
-        <div class="side-menu">
-            <ul>
-                <li><a href="login.php"><i class="fa fa-user s_color"></i>
-
-                        <span><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
-                            }
-                            else{ echo "Conta";}?> </span>
-                    </a></li>
-            </ul>
-        </div>
-        <!-- End Atribute Navigation -->
-
         <!-- Start Side Menu -->
-
-
-
         <div class="side">
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
             <li class="cart-box">
-                <?php foreach($resultsCarts as $result) : ?>
-                    <ul class="cart-list">
-                        <li>
-                            <a href="ver-receita.php?acao=add&id=" class="photo"><?php echo '<img src="./images/'.$result['imagens'].'" height="250px"/>' ?></a>
-                            <h6><?php echo '<a href="ver-receita.php?acao=add&id=' . $result['idreceita'] . '">' . $result['nome'] . '</a>'; ?></h6>
-
-                            <p>
-                                <span class="price">
-                                  <?php
-                                  if(($result['preco']!=0)){ echo number_format($result['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
-                                </span>
-
-                            </p>
-                        </li>
-
-                        <li class="total">
-                            <a href="html/cart.html" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
-                        </li>
-                    </ul>
-                <?php endforeach;?>
+                <ul class="cart-list">
+                    <li>
+                        <a href="#" class="photo"><img src="../images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
+                        <h6><a href="#">Delica omtantur </a></h6>
+                        <p>1x - <span class="price">$80.00</span></p>
+                    </li>
+                    <li>
+                        <a href="#" class="photo"><img src="../images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
+                        <h6><a href="#">Omnes ocurreret</a></h6>
+                        <p>1x - <span class="price">$60.00</span></p>
+                    </li>
+                    <li>
+                        <a href="#" class="photo"><img src="../images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
+                        <h6><a href="#">Agam facilisis</a></h6>
+                        <p>1x - <span class="price">$40.00</span></p>
+                    </li>
+                    <li class="total">
+                        <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                        <span class="float-right"><strong>Total</strong>: $180.00</span>
+                    </li>
+                </ul>
             </li>
         </div>
-
-
         <!-- End Side Menu -->
-
     </nav>
     <!-- End Navigation -->
 </header>
 <!-- End Main Top -->
 
 <!-- Start Top Search -->
-
 <div class="top-search">
     <div class="container">
         <div class="input-group">
@@ -183,260 +215,174 @@ $pdoConfig = require_once "confi.php";
 </div>
 <!-- End Top Search -->
 
-<!-- Start Slider -->
-<div id="slides-shop" class="cover-slides">
-    <ul class="slides-container">
-        <li class="text-center">
-            <img src="images/banner-01.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Bem-Vindo a <br> LusoFlavors</strong></h1>
-                        <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
-                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="text-center">
-            <img src="images/log3.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Bem-Vindo a <br> LusoFlavors</strong></h1>
-                        <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
-                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="text-center">
-            <img src="images/banner-03.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20">Bem-Vindo a <br> LusoFlavors</strong></h1>
-                        <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
-                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
-    <div class="slides-navigation">
-        <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-        <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-    </div>
-</div>
-<!-- End Slider -->
-
-<!-- Start Categories  -->
-<div class="categories-shop">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/bacalhau_com_natas1.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/cachupa.cv1.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="images/moamba1.png" alt="" />
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Categories -->
-
-<div class="box-add-products">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <img class="img-fluid" src="images/logim2.jpg" alt="" />
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <img class="img-fluid" src="images/logim3.jpg" alt="" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Start Products  -->
-<div class="products-box">
+<!-- Start All Title Box -->
+<div class="all-title-box">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="title-all text-center">
-                    <h1>Sabores Luso</h1>
-                    <p>Melhores sabores Luso econtras aqui</p>
-                </div>
+                <h2>Shop</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Shop</li>
+                </ul>
             </div>
         </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start Shop Page  -->
+<div class="shop-box-inner">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="special-menu text-center">
-                    <div class="button-group filter-button-group">
-                        <button class="active" data-filter="*">Todos</button>
-                        <button data-filter=".doces">Doces</button>
-                        <button data-filter=".mariscos">Mariscos</button>
-                        <button data-filter=".peixe">Peixes</button>
-                        <button data-filter=".carnes">Carnes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row special-list">
-
-
-
-
-            <?php
-
-            if($_POST){
-                $pesquisar = $_POST['Procurar'];
-            }
-            else{
-                $pesquisar = "";
-            }
-
-            $products = pesquisar($pdoConfig,$pesquisar);
-
-
-            foreach($products as $product) : ?>
-                <div class="col-lg-3 col-md-6 special-grid">
-                    <div class="products-single fix">
-
-
-
-
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="sale"><?php echo $product['idcategoria']?></p>
+            <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                <div class="right-product-box">
+                    <div class="product-item-filter row">
+                        <div class="col-12 col-sm-8 text-center text-sm-left">
+                            <div class="toolbar-sorter-right">
+                                <span>Sort by </span>
+                                <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                                    <option data-display="Select">Nothing</option>
+                                    <option value="1">Popularity</option>
+                                    <option value="2">High Price → High Price</option>
+                                    <option value="3">Low Price → High Price</option>
+                                    <option value="4">Best Selling</option>
+                                </select>
                             </div>
-                            <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                </ul>
-
-                                <a class="cart" href="carrinho.php?acao=add&id=<?php echo $product['idreceita']?>" class="card-link">Adicionar ao carrinho</a>
-
-                            </div>
+                            <p>Showing all 4 results</p>
                         </div>
-                        <div class="why-text">
-                            <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h4>
+                        <div class="col-12 col-sm-4 text-center text-sm-right">
+                            <ul class="nav nav-tabs ml-auto">
+                                <li>
+                                    <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="product-categorie-box">
+                        <div class="tab-content">
 
 
-                            <h5 class="card-subtitle m-2 text text-muted">
+
+<!--- Inicio  -->
+
+                            <div class="aside">
+                                <h3 class="aside-title">Categorias</h3>
+                                <div class="checkbox-filter">
+                                    <?php
+                                    $consulta = 'SELECT * FROM categoria';
+
+                                    /* executar a consulta e testar se ocorreu erro */
+                                    if (!$resultado = $link->query($consulta)) {
+                                        echo ' Falha na consulta: '. $link->error;
+                                        $link->close();  /* fechar a ligação */
+                                    }
+                                    else{
+                                        while ($rows = $resultado->fetch_assoc()) {
+
+                                            ?>
+
+                                            <div class="input-checkbox">
+                                                <input type="checkbox" id="<?php echo $rows['idcategoria'];?>">
+                                                <label for="<?php echo $rows['idcategoria'];?>">
+                                                    <span></span>
+                                                    <a href="?categoria=<?php echo $rows['idcategoria'];?>"><?php echo $rows['nome_categoria'];?></a>
+                                                </label>
+
+                                            </div>
+                                            <?php
+                                        }
+
+                                    }
+                                    ?>
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+
+
                                 <?php
-                                if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
+                                $categoriaId = null;
+                                if (isset($_GET['categoria'])) {
+                                    $categoriaId = $_GET['categoria'];
+                                }
+                                if ($categoriaId == null) {
+                                $sql = "SELECT receita.*, pais.*, categoria.* FROM receita INNER JOIN pais ON receita.idPais=pais.idPais INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria";
+                                $result = $link->query($sql);
+                                $result->num_rows;
+                                if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+
+
+                                ?>
+                            </div>
+
+
+
+
+
+                            </div>
+
+
+
+
+
+
+                            <!--- Fim  -->
+
+
+
+                            <div role="tabpanel" class="tab-pane fade" id="list-view">
+                                <div class="list-view-box">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="new">New</p>
+                                                    </div>
+                                                    <img src="../images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
                         </div>
-
                     </div>
-
                 </div>
-            <?php endforeach;?>
+            </div>
 
         </div>
     </div>
 </div>
-
-<!-- End Products  -->
-
-<!-- Start Blog  -->
-<div class="latest-blog">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="title-all text-center">
-                    <h1>Receitas + Recentes</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-lg-4 col-xl-4">
-                <div class="blog-box">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="images/blog-img.jpg" alt="" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="title-blog">
-                            <h3>Fusce in augue non nisi fringilla</h3>
-                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
-                        </div>
-                        <ul class="option-blog">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-comments"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xl-4">
-                <div class="blog-box">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="images/blog-img-01.jpg" alt="" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="title-blog">
-                            <h3>Fusce in augue non nisi fringilla</h3>
-                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
-                        </div>
-                        <ul class="option-blog">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-comments"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xl-4">
-                <div class="blog-box">
-                    <div class="blog-img">
-                        <img class="img-fluid" src="images/blog-img-02.jpg" alt="" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="title-blog">
-                            <h3>Fusce in augue non nisi fringilla</h3>
-                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
-                        </div>
-                        <ul class="option-blog">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                            <li><a href="#"><i class="far fa-comments"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Blog  -->
-
+<!-- End Shop Page -->
 
 <!-- Start Instagram Feed  -->
 <div class="instagram-box">
     <div class="main-instagram owl-carousel owl-theme">
         <div class="item">
             <div class="ins-inner-box">
-                <img src="images/sala-1.jpg" alt="" />
+                <img src="../images/instagram-img-01.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -444,7 +390,7 @@ $pdoConfig = require_once "confi.php";
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="images/instagram-img-02.jpg" alt="" />
+                <img src="../images/instagram-img-02.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -452,7 +398,7 @@ $pdoConfig = require_once "confi.php";
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="images/instagram-img-03.jpg" alt="" />
+                <img src="../images/instagram-img-03.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -460,7 +406,7 @@ $pdoConfig = require_once "confi.php";
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="images/instagram-img-04.jpg" alt="" />
+                <img src="../images/instagram-img-04.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -468,7 +414,7 @@ $pdoConfig = require_once "confi.php";
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="images/instagram-img-05.jpg" alt="" />
+                <img src="../images/instagram-img-05.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -476,7 +422,7 @@ $pdoConfig = require_once "confi.php";
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="images/instagram-img-06.jpg" alt="" />
+                <img src="../images/instagram-img-06.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -484,7 +430,7 @@ $pdoConfig = require_once "confi.php";
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="images/instagram-img-07.jpg" alt="" />
+                <img src="../images/instagram-img-07.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -492,7 +438,7 @@ $pdoConfig = require_once "confi.php";
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="images/instagram-img-08.jpg" alt="" />
+                <img src="../images/instagram-img-08.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -500,7 +446,7 @@ $pdoConfig = require_once "confi.php";
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="images/instagram-img-09.jpg" alt="" />
+                <img src="../images/instagram-img-09.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -508,7 +454,7 @@ $pdoConfig = require_once "confi.php";
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="images/instagram-img-05.jpg" alt="" />
+                <img src="../images/instagram-img-05.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -614,22 +560,23 @@ $pdoConfig = require_once "confi.php";
 <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 <!-- ALL JS FILES -->
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 <!-- ALL PLUGINS -->
-<script src="js/jquery.superslides.min.js"></script>
-<script src="js/bootstrap-select.js"></script>
-<script src="js/inewsticker.js"></script>
-<script src="js/bootsnav.js"></script>
-<script src="js/images-loded.min.js"></script>
-<script src="js/isotope.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/baguetteBox.min.js"></script>
-<script src="js/form-validator.min.js"></script>
-<script src="js/contact-form-script.js"></script>
-<script src="js/custom.js"></script>
-
+<script src="../js/jquery.superslides.min.js"></script>
+<script src="../js/bootstrap-select.js"></script>
+<script src="../js/inewsticker.js"></script>
+<script src="js/bootsnav.js."></script>
+<script src="../js/images-loded.min.js"></script>
+<script src="../js/isotope.min.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/baguetteBox.min.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="../js/jquery.nicescroll.min.js"></script>
+<script src="../js/form-validator.min.js"></script>
+<script src="../js/contact-form-script.js"></script>
+<script src="../js/custom.js"></script>
 </body>
 
 </html>

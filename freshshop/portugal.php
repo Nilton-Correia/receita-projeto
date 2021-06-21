@@ -236,46 +236,24 @@ $totalCarts = getTotalCart($pdoConfig);
                         </div>
                     </div>
 
-                    <div class="product-categorie-box">
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
-                                <div class="row">
-
-                                    <?php foreach($products as $product) : ?>
-                                        <?php $cat=$product['nome_categoria'] ?>
-
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale"><?php echo $cat?></p>
-                                                    </div>
-                                                    <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="carrinho.php?acao=add&id=<?php echo $product['idreceita']?>">Add to Cart</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h4>
-                                                    <h5>
-                                                        <?php
-                                                        if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
-                                                    </h5>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    <?php endforeach;?>
-
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="special-menu text-center">
+                                <div class="button-group filter-button-group">
+                                    <button class="active" data-filter="*">Todos</button>
+                                    <button data-filter=".Sobremesa_Doces">Doces</button>
+                                    <button data-filter=".Marisco">Mariscos</button>
+                                    <button data-filter=".Receita_Peixe">Peixes</button>
+                                    <button data-filter=".Receita_Carne">Carnes</button>
+                                    <button data-filter=".Massa">Massa</button>
+                                    <button data-filter=".Sumo_Bebidas">Sumo e Bebidas</button>
+                                    <button data-filter=".Salada">Salada</button>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade" id="list-view">
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane fade" id="list-view">
 
 
                                 <div class="list-view-box">
@@ -323,35 +301,20 @@ $totalCarts = getTotalCart($pdoConfig);
                             <h3>Categorias</h3>
                         </div>
 
-                        <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
-
-                            <div class="list-group-collapse sub-men">
-                                <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Receita Carne
-                                </a>
-
+                           <div class="special-menu text-center">
+                                <div class="button-group filter-button-group">
+                                    <button class="active" data-filter="*">Todos</button>
+                                    <button data-filter=".Sobremesa_Doces">Doces</button>
+                                    <button data-filter=".Marisco">Mariscos</button>
+                                    <button data-filter=".Receita_Peixe">Peixes</button>
+                                    <button data-filter=".Receita_Carne">Carnes</button>
+                                    <button data-filter=".Massa">Massa</button>
+                                    <button data-filter=".Sumo_Bebidas">Sumo e Bebidas</button>
+                                    <button data-filter=".Salada">Salada</button>
+                                </div>
                             </div>
-                            <div class="button-group filter-button-group">
-                                <button   data-filter=".Receita_Peixe">Receita Peixes</button>
 
 
-                            </div>
-                            <div class="list-group-collapse sub-men">
-                                <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Receita Massa
-                                </a>
-
-                            </div>
-                            <div class="list-group-collapse sub-men">
-                                <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Receita Marrisco
-                                </a>
-
-                            </div>
-                            <div class="list-group-collapse sub-men">
-                                <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1"> Receitas Sobremesas e Doces
-                                </a>
-
-                            </div>
-                            <div class="button-group filter-button-group">
-                                <button data-filter=".Salada">Receita Saladas</button>
 
 
                             </div>
@@ -360,12 +323,7 @@ $totalCarts = getTotalCart($pdoConfig);
                                 </a>
 
                             </div>
-                            <div class="list-group-collapse sub-men">
-                                <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Receita Sopas
 
-                                </a>
-
-                            </div>
 
                         </div>
                     </div>
