@@ -10,7 +10,7 @@ $pdoConfig = require_once "confi.php";
 
 $receitas = getReceitas($pdoConfig);
 $resultsCarts = getContentCart($pdoConfig);
-$receit = getGuine($pdoConfig);
+$receitas = getGuine($pdoConfig);
 $cat = getCategoria($pdoConfig);
 $totalCarts = getTotalCart($pdoConfig);
 ?>
