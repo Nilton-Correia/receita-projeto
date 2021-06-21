@@ -77,33 +77,22 @@ $totalCarts = getTotalCart($pdoConfig);
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
+
                     <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
+                        <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
-                            <li><a href="receita-carne.php">Receita de Carne</a></li>
-                            <li><a href="receita-peixe.php">Receita de Peixe</a></li>
-                            <li><a href="sopas.php">Sopas</a></li>
-                            <li><a href="sobremesa-doce.php">Sobremesa e Doce</a></li>
-                            <li><a href="bolos.php">Bolos</a></li>
-                            <li><a href="massa.php">Massa</a></li>
-                            <li><a href="marisco.php">Marisco</a></li>
-                            <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="html/shop.html">São Tomé</a></li>
-                            <li><a href="html/shop-detail.html">Angola</a></li>
+                            <li><a href="saotome_principe.php">São Tomé</a></li>
+                            <li><a href="angola.php">Angola</a></li>
                             <li><a href="portugal.php">Portugal</a></li>
-                            <li><a href="html/shop.html">Cabo Verde</a></li>
-                            <li><a href="html/checkout.html">Moçambique</a></li>
-                            <li><a href="html/my-account.html">Giné Bissau</a></li>
-                            <li><a href="html/wishlist.html">Guiné Equatorial</a></li>
-                            <li><a href="html/wishlist.html">Timor-Leste</a></li>
+                            <li><a href="cabo_verde.php">Cabo Verde</a></li>
+                            <li><a href="mocambique.php">Moçambique</a></li>
+                            <li><a href="guine_bissau.php">Giné Bissau</a></li>
+                            <li><a href="guine-equatorial.php">Guiné Equatorial</a></li>
+                            <li><a href="timor_leste.php">Timor-Leste</a></li>
+                            <li><a href="brazil.php">Brasil</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="recente.php">Receitas recentes</a></li>
+
                     <li class="nav-item"><a class="nav-link" href="contacto.php">Contacte nos</a></li>
                 </ul>
             </div>
@@ -214,13 +203,7 @@ $totalCarts = getTotalCart($pdoConfig);
                         <div class="col-12 col-sm-8 text-center text-sm-left">
                             <div class="toolbar-sorter-right">
                                 <span>Sort by </span>
-                                <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                                    <option data-display="Select">Nothing</option>
-                                    <option value="1">Popularity</option>
-                                    <option value="2">High Price → High Price</option>
-                                    <option value="3">Low Price → High Price</option>
-                                    <option value="4">Best Selling</option>
-                                </select>
+
                             </div>
                             <p>Showing all 4 results</p>
                         </div>
@@ -236,25 +219,47 @@ $totalCarts = getTotalCart($pdoConfig);
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="special-menu text-center">
-                                <div class="button-group filter-button-group">
-                                    <button class="active" data-filter="*">Todos</button>
-                                    <button data-filter=".Sobremesa_Doces">Doces</button>
-                                    <button data-filter=".Marisco">Mariscos</button>
-                                    <button data-filter=".Receita_Peixe">Peixes</button>
-                                    <button data-filter=".Receita_Carne">Carnes</button>
-                                    <button data-filter=".Massa">Massa</button>
-                                    <button data-filter=".Sumo_Bebidas">Sumo e Bebidas</button>
-                                    <button data-filter=".Salada">Salada</button>
+                    <div class="product-categorie-box">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                <div class="row">
+
+                                    <?php foreach($products as $product) : ?>
+                                        <?php $cat=$product['nome_categoria'] ?>
+
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale"><?php echo $cat?></p>
+                                                    </div>
+                                                    <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a>'; ?></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="carrinh.php?acao=add&id=<?php echo $product['idreceita']?>">Adicionar Carrinho</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h4>
+                                                    <h5>
+                                                        <?php
+                                                        if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
+                                                    </h5>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php endforeach;?>
+
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div role="tabpanel" class="tab-pane fade" id="list-view">
-
+                            <div role="tabpanel" class="tab-pane fade" id="list-view">
+                                <?php foreach($products as $product) : ?>
+                                <?php $cat=$product['nome_categoria'] ?>
 
                                 <div class="list-view-box">
                                     <div class="row">
@@ -262,33 +267,37 @@ $totalCarts = getTotalCart($pdoConfig);
                                             <div class="products-single fix">
                                                 <div class="box-img-hover">
                                                     <div class="type-lb">
-                                                        <p class="sale">Sale</p>
+                                                        <p class="sale"><?php echo $cat?></p>
                                                     </div>
-                                                    <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
+                                                    <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
+
                                                     <div class="mask-icon">
                                                         <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                            <li><?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a>'; ?></li>
+
                                                             <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                                         </ul>
-
+                                                        <a class="cart" href="carrinh.php?acao=add&id=<?php echo $product['idreceita']?>">Adicionar Carrinho</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
                                             <div class="why-text full-width">
-                                                <h4>Lorem ipsum dolor sit amet</h4>
-                                                <h5> <del>$ 60.00</del> $40.79</h5>
-                                                <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien, imperdiet quis magna nec, iaculis ultrices ante. Integer vitae suscipit nisi. Morbi dignissim risus sit amet orci porta, eget aliquam purus
-                                                    sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus, quis euismod ex volutpat in. Vestibulum eleifend eros ac lobortis aliquet.
-                                                    Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin quam. Praesent vulputate semper libero pulvinar consequat. Etiam ut placerat lectus.</p>
-                                                <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                <h5><?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h5>
+                                                <h5><?php
+                                                    if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
+                                                <p><?php echo $product['descricao']?></p>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <?php endforeach;?>
+
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -300,45 +309,37 @@ $totalCarts = getTotalCart($pdoConfig);
                         <div class="title-left">
                             <h3>Categorias</h3>
                         </div>
+                        <?php
+                        require_once ("confi.php");
+                        /*comando para selecionar categoria na base de dados*/
+                        $consulta = "SELECT * FROM categoria";
+                        $link->set_charset("utf8");
 
-                           <div class="special-menu text-center">
-                                <div class="button-group filter-button-group">
-                                    <button class="active" data-filter="*">Todos</button>
-                                    <button data-filter=".Sobremesa_Doces">Doces</button>
-                                    <button data-filter=".Marisco">Mariscos</button>
-                                    <button data-filter=".Receita_Peixe">Peixes</button>
-                                    <button data-filter=".Receita_Carne">Carnes</button>
-                                    <button data-filter=".Massa">Massa</button>
-                                    <button data-filter=".Sumo_Bebidas">Sumo e Bebidas</button>
-                                    <button data-filter=".Salada">Salada</button>
-                                </div>
+                        /* executar a consulta e testar se ocorreu erro */
+                        if (!$resultado = $link->query($consulta)) {
+                            echo ' Falha na consulta: '. $link->error;
+                            $link->close();  /* fechar a ligação */
+                        }
+                        else{
+                        while ($cat = $resultado->fetch_assoc()) {
+
+                        ?>
+
+
+                            <div class="input-checkbox">
+                                <input type="checkbox" id="<?php echo $cat['idcategoria'];?>">
+                                <label for="<?php echo $cat['idcategoria'];?>">
+                                    <span></span>
+                                    <a href="?categoria=<?php echo $cat['idcategoria'];?>"><?php echo $cat['nome_categoria'];?></a>
+                                </label>
+
                             </div>
+                    <?php
+                            }
 
+                            }
+                            ?>
 
-
-
-                            </div>
-                            <div class="list-group-collapse sub-men">
-                                <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Receita Sumo e Bebidas
-                                </a>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <div class="filter-price-left">
-                        <div class="title-left">
-                            <h3>Price</h3>
-                        </div>
-                        <div class="price-box-slider">
-                            <div id="slider-range"></div>
-                            <p>
-                                <input type="text" id="amount" readonly style="border:0; color:#fbb714; font-weight:bold;">
-                                <button class="btn hvr-hover" type="submit">Filter</button>
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

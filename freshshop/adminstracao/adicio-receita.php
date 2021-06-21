@@ -1,10 +1,19 @@
 <?php
 session_start();
 require("../confi.php");
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: ../login.php");
+}
+
+if(isset($_SESSION["loggedin"])){
+    if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]!="admin"){
+        header("location: ../adminstrador.php");
+    }
+}
 
 
 
-    if(!empty($_POST['nome'])||!empty($_POST['preco'])||!empty($_POST['imagens'])||!empty($_POST['idPais'])||!empty($_POST['ingredientes'])||!empty($_POST['modo_preparacao'])||!empty($_POST['descricao'])||!empty($_POST['video'])||!empty($_POST['idcategoria'])) {
+    if(!empty($_POST['nome'])||!empty($_POST['preco'])||!empty($_POST['imagens'])||!empty($_POST['idPais'])||!empty($_POST['ingredientes'])||!empty($_POST['modo_preparacao'])||!empty($_POST['descricao'])||!empty($_POST['idcategoria'])) {
         $nome = $_POST['nome'];
         $preco = $_POST['preco'];
         $descricao = $_POST['descricao'];
@@ -12,8 +21,8 @@ require("../confi.php");
         $ingredientes = $_POST['ingredientes'];
         $modo_preparacao = $_POST['modo_preparacao'];
         $categoria = $_POST['idcategoria'];
-        $video = $_POST['video'];
 
+/*imagens*/
         print_r($_FILES);
         $imagens = $_FILES['imagens'];
 
@@ -26,9 +35,22 @@ require("../confi.php");
         $imagensExt = explode('.', $imagensName);
         $imagensActualExt = strtolower(end($imagensExt));
 
-        $allowed = array('jpg', 'jpeg', 'png', 'pdf', 'mp4');
+        $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+        /* video*/
+        print_r($_FILES);
+        $video = $_FILES['video'];
+        $videoName = $_FILES['video']['name'];
+        $videoTmpName = $_FILES['video']['tmp_name'];
+        $videoSize = $_FILES['video']['size'];
+        $videoError = $_FILES['video']['error'];
+        $videoType = $_FILES['video']['type'];
 
-        $sql = "INSERT INTO receita(nome, preco, descricao, ingredientes, modo_preparacao, idcategoria, idPais, video, imagens) VALUES ('$nome','$preco','$descricao','$ingredientes','$modo_preparacao','$categoria','$idpais','$video','".$imagens['name']."')";
+        $videoExt = explode('.', $videoName);
+        $videoActualExt = strtolower(end($videoExt));
+
+        $allowed = array('mp4');
+
+        $sql = "INSERT INTO receita(nome, preco, descricao, ingredientes, modo_preparacao, idcategoria, idPais, imagens, video) VALUES ('$nome','$preco','$descricao','$ingredientes','$modo_preparacao','$categoria','$idpais','".$imagens['name']."','".$video['name']."')";
         if (!mysqli_query($link, $sql)) {
             print_r(mysqli_error($link));
 
@@ -50,8 +72,30 @@ require("../confi.php");
             } else {
                 echo "Não podes fazer upload deste tipo de imagens";
             }
+            /*video*/
+            if (in_array($videoActualExt, $allowed)) {
+                if ($videoError === 0) {
+                    if ($videoSize < 1000000) {
+                        $videoNameNew = uniqid('', true) . "." . $videoActualExt;
+                        $videoDestination = 'video/' . $videoNameNew;
+                        move_uploaded_file($videoTmpName, $videoDestination);
+                        //header("Location:cadastro_produtos.php");
+                    } else {
+                        echo "Seu video e muito grande";
+                    }
+                } else {
+                    echo " Houve um erro ao fazer o upload";
+                }
+            } else {
+                echo "Não podes fazer upload deste tipo de video";
+            }
+
+
 
         }
+
+        header("Location:receita.php");
+
     }
 
 ?>
@@ -79,7 +123,7 @@ require("../confi.php");
     <!-- responsive css -->
     <link rel="stylesheet" href="css/responsive.css" />
     <!-- color css -->
-    <link rel="stylesheet" href="css/colors.css" />
+    <link rel="stylesheet" href="css/color_2.css" />
     <!-- select bootstrap -->
     <link rel="stylesheet" href="css/bootstrap-select.css" />
     <!-- scrollbar css -->
@@ -107,9 +151,9 @@ require("../confi.php");
                 <div class="sidebar_user_info">
                     <div class="icon_setting"></div>
                     <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
+
                         <div class="user_info">
-                            <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
+                            <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Bem-vindo ";echo htmlspecialchars($_SESSION["username"]);
                                 }
                                 else{ echo "Conta";}?></h6>
                             <p><span class="online_animation"></span> Online</p>
@@ -126,22 +170,25 @@ require("../confi.php");
 
                     <li>
                         <a href="receita.php">
-                            <i class="fa fa-cutlery red_color"></i> <span>Receitas</span></a>
+                            <i class="fa fa-cutlery green_color"></i> <span>Receitas</span></a>
                     </li>
                     <li>
                         <a href="categoria.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Editar Categoria</span></a>
+                            <i class="fa fa-edit yellow_color"></i> <span>Editar Categoria</span></a>
                     </li>
 
                     <li>
                         <a href="pais.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Editar Pais da Receita</span></a>
+                            <i class="fa fa-edit red_color"></i> <span>Editar Pais da Receita</span></a>
                     </li>
-
+                    <li>
+                        <a href="listar-informacoe-contacto.php">
+                            <i class="fa fa-product-hunt red_color"></i> <span>Problemas e Informaçoes</span></a>
+                    </li>
 
                     <li>
                         <a href="../index.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Luso Flavors</span></a>
+                            <i class="fa fa-home orange_color2"></i> <span>Luso Flavors</span></a>
                     </li>
 
                     <li>
@@ -149,9 +196,6 @@ require("../confi.php");
                             <i class="fa fa-sign-out red_color"></i> <span>Logout</span></a>
                     </li>
 
-
-
-                    <li><a href="pluto/settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
                 </ul>
             </div>
         </nav>
@@ -237,12 +281,15 @@ require("../confi.php");
                                             </div>
                                             <div class="field">
                                                 <div class="control">
-                                                    <input name="ingredientes" type="text" class="input is-large"  placeholder="Ingredientes">
+
+                                                        <input class="form-control" id="message" name="ingredientes" placeholder="Ingredientes" rows="5"></input>
+
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="control">
-                                                    <input name="modo_preparacao" type="text" class="input is-large"  placeholder="Modo de Preparacao">
+                                                    <input class="form-control" id="message" name="modo_preparacao" placeholder="Modo de Preparação" rows="5"></input>
+
                                                 </div>
                                             </div>
                                             <div class="field">
@@ -271,14 +318,15 @@ require("../confi.php");
                                                     </select>
                                                 </div>
                                             </div>
-                                              Video
-                                                <div>
-                                                    <input name="video" type="file" value="video">
-                                                </div>
+
 
                                             Imagem
                                             <div>
                                                 <input type="file" name="imagens" value="imagens">
+                                            </div>
+                                            Video
+                                            <div>
+                                                <input type="file" name="video" value="video">
                                             </div>
                                             <br>
                                             <button type="submit" class="button is-block is-link is-large ">Registar Produto</button>

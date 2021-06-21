@@ -216,6 +216,7 @@ $totalCarts  = getTotalCart($rtConnection);
                     <td><a href="carrinho.php?acao=del&id=<?php echo $result['idreceita']?>" class="btn btn-danger">Remover</a></td>
 
                 </tr>
+
             <?php endforeach;?>
             <tr>
                 <td colspan="3" class="text-right"><b>Total: </b></td>

@@ -692,7 +692,7 @@
                 mode === 'month' ? 'day' : mode === 'day' ? 'hour' : 'minute';
               module.set.mode(newMode);
               if (mode === 'hour' || (mode === 'day' && module.get.date())) {
-                //the user has chosen enough to consider a valid date/time has been chosen
+                //the perfil_users has chosen enough to consider a valid date/time has been chosen
                 module.set.date(date);
               } else {
                 module.set.focusDate(date);

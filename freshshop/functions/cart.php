@@ -11,9 +11,11 @@ function addCart($id, $quantity) {
 }
 
 function deleteCart($id) {
+
     if(isset($_SESSION['cart'][$id])){
         unset($_SESSION['cart'][$id]);
     }
+
 }
 
 function updateCart($id, $quantity) {
@@ -23,6 +25,7 @@ function updateCart($id, $quantity) {
         } else {
             deleteCart($id);
         }
+
     }
 }
 

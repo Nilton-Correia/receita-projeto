@@ -11,13 +11,17 @@ require("confi.php");
 
 $result = "INSERT INTO contato(nome, email, assunto, mensagem, created) VALUES ('$nome', '$email', '$assunto', '$sms', NOW())";
 
-if($result = mysqli_query($link, $result)){
-    echo "A tua Mensagem foi enviada Obrigado por nos contactares";
+if(!$link->query($result)){
+
+    echo "ERRO ao executar a consulta: \"$result\"<br>" . $link->error;
+    $link->close(); /*fecha a ligacao*/
+
 
 }
     else {
-        echo "Mensagem nao foi enviada";
+        echo "Mensagem foi enviada com sucesso";
 
   }
+$link->close();
 
 ?>

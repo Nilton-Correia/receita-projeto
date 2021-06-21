@@ -2713,7 +2713,7 @@
 		this._pages = [];
 
 		/**
-		 * All DOM elements of the user interface.
+		 * All DOM elements of the perfil_users interface.
 		 * @protected
 		 * @type {Object}
 		 */
@@ -2931,7 +2931,7 @@
 	};
 
 	/**
-	 * Draws the user interface.
+	 * Draws the perfil_users interface.
 	 * @todo The option `dotsData` wont work.
 	 * @protected
 	 */

@@ -13,7 +13,65 @@ if(isset($_SESSION["loggedin"])){
         header("location: ../utilizadores/cliente.php");
     }
 }
+require_once "../confi.php";
 
+// Define variables and initialize with empty values
+$new_password = $confirm_password = "";
+$new_password_err = $confirm_password_err = "";
+
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["bt"]=="submeter"){
+
+    // Validate new password
+    if(empty(trim($_POST["new_password"]))){
+        $new_password_err = "Please enter the new password.";
+    } elseif(strlen(trim($_POST["new_password"])) < 6){
+        $new_password_err = "Password must have atleast 6 characters.";
+    } else{
+        $new_password = trim($_POST["new_password"]);
+    }
+
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "Please confirm the password.";
+    } else{
+        $confirm_password = trim($_POST["confirm_password"]);
+        if(empty($new_password_err) && ($new_password != $confirm_password)){
+            $confirm_password_err = "Password did not match.";
+        }
+    }
+
+    // Check input errors before updating the database
+    if(empty($new_password_err) && empty($confirm_password_err)){
+        // Prepare an update statement
+        $sql = "UPDATE users SET password = ? WHERE id = ?";
+
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "si", $param_password, $param_id);
+
+            // Set parameters
+            $param_password = password_hash($new_password, PASSWORD_DEFAULT);
+            $param_id = $_SESSION["id"];
+
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Password updated successfully. Destroy the session, and redirect to login page
+                session_destroy();
+                header("location: login.php");
+                exit();
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+}
+// Close connection
+
+?>
 
 ?>
 
@@ -72,7 +130,7 @@ if(isset($_SESSION["loggedin"])){
                 <div class="sidebar_user_info">
                     <div class="icon_setting"></div>
                     <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
+
                         <div class="user_info">
                             <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
                                 }
@@ -87,73 +145,32 @@ if(isset($_SESSION["loggedin"])){
             <div class="sidebar_blog_2">
                 <h4>General</h4>
                 <ul class="list-unstyled components">
-                    <li class="active">
-                        <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
-                        <ul class="collapse list-unstyled" id="dashboard">
-                            <li>
-                                <a href="dashboard.html">> <span>Default Dashboard</span></a>
-                            </li>
-                            <li>
-                                <a href="dashboard_2.html">> <span>Dashboard style 2</span></a>
-                            </li>
-                        </ul>
-                    </li>
+
                     <li><a href="../carrinho.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                             </svg>
 
                             <span>Carrinho</span></a></li>
-                    <li>
-                        <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-diamond purple_color"></i> <span>Receitas</span></a>
-                        <ul class="collapse list-unstyled" id="element">
-                            <li><a href="html/shop.html">São Tomé</a></li>
-                            <li><a href="html/shop-detail.html">Angola</a></li>
-                            <li><a href="html/cart.html">Portugal</a></li>
-                            <li><a href="html/shop.html">Cabo Verde</a></li>
-                            <li><a href="html/checkout.html">Moçambique</a></li>
-                            <li><a href="html/my-account.html">Giné Bissau</a></li>
-                            <li><a href="html/wishlist.html">Guiné Equatorial</a></li>
-                            <li><a href="html/wishlist.html">Timor-Leste</a></li>
-                        </ul>
-                    </li>
+
                     <li><a href="tables.html"><i class="fa fa-table purple_color2"></i> <span>Minhas receitas</span></a></li>
-                    <li>
-                        <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Apps</span></a>
-                        <ul class="collapse list-unstyled" id="apps">
-                            <li><a href="email.html">> <span>Email</span></a></li>
-                            <li><a href="calendar.html">> <span>Calendar</span></a></li>
-                            <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
-                        </ul>
-                    </li>
-                    <li><a href="price.html"><i class="fa fa-briefcase blue1_color"></i> <span>Pricing Tables</span></a></li>
+
+
                     <li>
                         <a href="editar_util.php">
                             <i class="fa fa-paper-plane red_color"></i> <span>Editar Prefil</span></a>
                     </li>
-                    <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
-                        <ul class="collapse list-unstyled" id="additional_page">
-                            <li>
-                                <a href="profile.html">> <span>Profile</span></a>
-                            </li>
-                            <li>
-                                <a href="project.html">> <span>Projects</span></a>
-                            </li>
-                            <li>
-                                <a href="login.html">> <span>Login</span></a>
-                            </li>
-                            <li>
-                                <a href="404_error.html">> <span>404 Error</span></a>
-                            </li>
-                        </ul>
+
+                    <li>
+                        <a href="../index.php">
+                            <i class="fa fa-sign-out red_color"></i> <span>Pagina Inicial</span></a>
                     </li>
+
                     <li>
                         <a href="../logout.php">
                             <i class="fa fa-sign-out red_color"></i> <span>Logout</span></a>
                     </li>
-                    <li><a href="charts.html"><i class="fa fa-bar-chart-o green_color"></i> <span>Charts</span></a></li>
-                    <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
+
                 </ul>
             </div>
         </nav>
@@ -223,82 +240,68 @@ $localidade  = $ln['localidade'];
 
 ?>
 
-                <div class="col-sm-6 col-lg-6 mb-3">
-                    <div class="row">
-
-                        <div class="col-md-12 col-lg-12">
-                            <div class="odr-box">
-                                <div class="title-left">
-                                    <h3>Dados Pessoais</h3>
-                                </div>
-                                <div class="rounded p-2 bg-light">
-                                    <div class="media mb-2 border-bottom">
-                                        <div class="media-body">Username
-                                            <div class="small-body text-muted"><?php echo"$username" ?>
-                                                </div>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-2 border-bottom">
-                                        <div class="media-body">Nome Completo
-                                            <div class="small-body text-muted"> <?php echo"$nome" ?> </div>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> Email
-                                            <div class="small-body text-muted"><?php echo"$email" ?> </div>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-2">
-                                        <div class="media-body"> Telefone
-                                            <div class="small-body text-muted"><?php echo"$telefone" ?> </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="media mb-2">
-                                        <div class="media-body"> Morada
-                                            <div class="small-body text-muted"><?php echo"$morada" ?> </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="media mb-2">
-                                        <div class="media-body"> Localidade
-                                            <div class="small-body text-muted"><?php echo"$localidade" ?> </div>
-                                        </div>
-                                    </div>
 
 
-                                </div>
+                <form action="editarCliente.php" method="post" >
 
-
-
-
-                            </div>
-
-
-
-
-
+                        <h4> Login </h4>
+                        <div type="text" class="form-control"><?php echo"$username" ?>
 
                         </div>
 
-                <!----Fim de onde fica os dados do cliente---->
 
+            <h4 class="field">
+                <h4>Nome Completo</h4>
+                <div class="control">
+                    <div type="text" class="form-control" id="floatingInput"><?php echo"$nome" ?>
+                    <label for="floatingInput"></label>
 
+                </div>
+        </div>
+        <div class="field">
+            <h4>Email</h4>
+            <div class="control">
+                <div type="email" class="form-control" id="floatingInput" ><?php echo"$email" ?>
+                <label for="floatingInput"></label>
 
-
-
-
-
-                    </div>
-                    <!-- footer -->
-                    <div class="container-fluid">
-                        <div class="footer">
-                            <a href="editar_util.php">
-                            <p>Editar</p>
-                            </a>
-                        </div>
+            </div>
+        </div>
+        <div class="field">
+            <h4>Teletone</h4>
+            <div class="control">
+                <div class="control">
+                    <div type="text" class="form-control" id="floatingInput"><?php echo"$telefone" ?>
+                        <label for="floatingInput"></label>
+                </div>
+            </div>
+            <div class="field">
+                <h4>Morada</h4>
+                <div class="control">
+                    <div class="control">
+                        <div type="text" class="form-control" id="floatingInput"><?php echo"$morada" ?>
+                        <label for="floatingInput"></label>
                     </div>
                 </div>
+                <div class="field">
+                    <div class="control">
+                        <h4>Localidade</h4>
+                        <div class="control">
+                            <div type="text" class="form-control" id="floatingInput"><?php echo"$localidade" ?>
+                            <label for="floatingInput"></label>
+
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                        </div>
+
+                        <br>
+
+                            <a href="editar_util.php">
+                                <p>Editar</p>
+                            </a>
+                        </form>
+
 
 
 
@@ -339,6 +342,17 @@ $localidade  = $ln['localidade'];
 <script src="js/perfect-scrollbar.min.js"></script>
 <script>
     var ps = new PerfectScrollbar('#sidebar');
+</script>
+<script>
+    window.onload = function () {
+        var chart1 = document.getElementById("line-chart").getContext("2d");
+        window.myLine = new Chart(chart1).Line(lineChartData, {
+            responsive: true,
+            scaleLineColor: "rgba(0,0,0,.2)",
+            scaleGridLineColor: "rgba(0,0,0,.05)",
+            scaleFontColor: "#c5c7cc"
+        });
+    };
 </script>
 <!-- custom js -->
 <script src="js/custom.js"></script>

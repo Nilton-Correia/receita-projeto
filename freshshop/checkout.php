@@ -1,6 +1,15 @@
 <?php
 session_start();
-if(!isset($_SESSION['cart'])){
+require_once ("confi.php");
+
+    if($_SESSION["loggedin"] == true ) {
+
+    }else{
+        header("location: login.php");
+    }
+
+
+/* if(!isset($_SESSION['cart'])){
     $_SESSION['cart'] = array();
 }
 require_once "functions/receita-funcao.php";
@@ -10,6 +19,86 @@ $pdoConfig = require_once "confi.php";
 $products = getProductos($pdoConfig);
 $resultsCarts = getContentCart($pdoConfig);
 $totalCarts = getTotalCart($pdoConfig);
+*/
+ini_set ('display_errors', 1);
+
+$i=$total=0;
+$abc="";
+foreach ($_SESSION['cart'] as $id => $qtd) {
+
+    $sql = "SELECT *  FROM receita WHERE idreceita= $id";
+
+    $result = $link->query($sql);
+    $ln = $result->fetch_assoc();
+    $total += $ln['preco'] * $qtd;
+    $nome = $ln['nome'];
+    $preco = $ln['preco'];
+    $abc .="[".$qtd . " " . $nome . "," . " Por: " . $preco."] ";;
+
+}        if($_POST) {
+    include("./PHPMailer-master/PHPMailer-master/src/PHPMailer.php");
+    include("./PHPMailer-master/PHPMailer-master/src/SMTP.php");
+    include("./PHPMailer-master/PHPMailer-master/src/OAuth.php");
+    include("./PHPMailer-master/PHPMailer-master/src/Exception.php");
+    if ($_POST['paymentMethod'] == 1) {
+        $pagamento = "Multibanco";
+    } else {
+        $pagamento = "Transferencia";
+    }
+
+    $mailDestino = 'lusoflavors@gmail.com';
+    $nome = 'Luso Flavors Adminstracao';
+    $assunto = "Mensagem recebida do site";
+    $mensagem = "Recebemos uma Encomenda no site <br/>
+ 
+ 
+ <strong>Pagamento:</strong>$pagamento <br/>
+ <strong>Receita:</strong> $abc <br/>
+ <strong>Total:</strong> $total <br/>
+
+ ";
+    $usser = $_SESSION['username'];
+    if (empty($nome)) {
+        echo "Todos os campos do formulário devem conter valores ";
+
+    } else {
+        require_once("confi.php");
+        $pag = $_POST['paymentMethod'];
+
+        /* texto sql da consulta*/
+        $consulta = "INSERT INTO receita_guadar (preco, nome_receita, utilizador_id, pagamento_idpagamento, data_criacao) VALUES ($total,'$abc', $usser, $pag, Now())";
+        /* executar a consulta e testar se ocorreu erro */
+        if (!$link->query($consulta)) {
+            echo " ERRO - Falha ao executar a consulta: \"$consulta\" <br>" . $link->error;
+            $link->close();  /* fechar a ligação */
+        } else {
+
+
+        }
+
+
+    }
+
+    include("enviar_email.php");
+
+    $mailDestino = $_POST["email"];
+    $nome = 'Suporte LusoFlavors';
+    $assunto = "Receita Registrada";
+    $mensagem = "Recebemos a sua encomenda <br/>
+ 
+ <strong>Pagamento:</strong>$pagamento <br/>
+ <strong>Produtos:</strong> $abc <br/>
+ <strong>Total:</strong> $total <br/>
+ <strong>---------------</strong>
+  <strong>Informações de Pagamento:</strong>$pagamento <br/>
+ <strong>Entidade:</strong>1435352 <br/>
+ <strong>Referencia:</strong>3253363636<br/>
+ <strong>Total:</strong> $total <br/>
+ 
+ ";
+    include("enviar_email.php");
+    header("location: client.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -202,23 +291,23 @@ $totalCarts = getTotalCart($pdoConfig);
                     <div class="title-left">
                         <h3>Dados de Pagamentos</h3>
                     </div>
-                    <form class="needs-validation" novalidate>
+                    <form class="needs-validation" novalidate method="post">
 
 
                         <hr class="mb-4">
                         <div class="title"> <span>Payment</span> </div>
                         <div class="d-block my-3">
                             <div class="custom-control custom-radio">
-                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" value="3"  >
                                 <label class="custom-control-label" for="credit">Credit card</label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                <label class="custom-control-label" for="debit">Debit card</label>
+                                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" value="2" >
+                                <label class="custom-control-label" for="debit">Tranferencia</label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                <label class="custom-control-label" for="paypal">Paypal</label>
+                                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" value="1" >
+                                <label class="custom-control-label" for="paypal">Multibanco</label>
                             </div>
                         </div>
                         <div class="row">
@@ -256,7 +345,9 @@ $totalCarts = getTotalCart($pdoConfig);
                                 </div>
                             </div>
                         </div>
-                        <hr class="mb-1"> </form>
+                        <hr class="mb-1">
+
+
                 </div>
             </div>
             <div class="col-sm-6 col-lg-6 mb-3">
@@ -265,7 +356,7 @@ $totalCarts = getTotalCart($pdoConfig);
                     <div class="col-md-12 col-lg-12">
                         <div class="order-box">
                             <div class="title-left">
-                                <h3>Your order</h3>
+                                <h3>Detalhes do pedido</h3>
                             </div>
                             <div class="d-flex">
                                 <div class="font-weight-bold">Product</div>
@@ -300,9 +391,16 @@ $totalCarts = getTotalCart($pdoConfig);
                             </div>
                             <hr> </div>
                     </div>
-                    <div class="col-12 d-flex shopping-box"> <a href="checkout.html" class="ml-auto btn hvr-hover">Place Order</a> </div>
+
+                    <div class="col-12 d-flex shopping-box">
+                        <button class="ml-auto btn hvr-hover" id="submit" type="submit">Finalizar</button>
+                    </div>
+
                 </div>
             </div>
+
+            </form>
+
         </div>
 
     </div>

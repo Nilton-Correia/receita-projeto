@@ -1,5 +1,14 @@
 <?php
 session_start();
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: ../login.php");
+}
+
+if(isset($_SESSION["loggedin"])){
+    if($_SESSION["loggedin"] == true && $_SESSION["tipo_utilizador"]!="admin"){
+        header("location: ../adminstrador.php");
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +34,7 @@ session_start();
     <!-- responsive css -->
     <link rel="stylesheet" href="css/responsive.css" />
     <!-- color css -->
-    <link rel="stylesheet" href="css/colors.css" />
+    <link rel="stylesheet" href="css/color_2.css" />
     <!-- select bootstrap -->
     <link rel="stylesheet" href="css/bootstrap-select.css" />
     <!-- scrollbar css -->
@@ -53,9 +62,9 @@ session_start();
                 <div class="sidebar_user_info">
                     <div class="icon_setting"></div>
                     <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="../images/logotipo.png"alt="#" /></div>
+
                         <div class="user_info">
-                            <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Hi ";echo htmlspecialchars($_SESSION["username"]);
+                            <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Bem-vindo ";echo htmlspecialchars($_SESSION["username"]);
                                 }
                                 else{ echo "Conta";}?></h6>
                             <p><span class="online_animation"></span> Online</p>
@@ -74,22 +83,25 @@ session_start();
 
                     <li>
                         <a href="receita.php">
-                            <i class="fa fa-cutlery red_color"></i> <span>Receitas</span></a>
+                            <i class="fa fa-cutlery green_color"></i> <span>Receitas</span></a>
                     </li>
                     <li>
                         <a href="categoria.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Editar Categoria</span></a>
+                            <i class="fa fa-edit yellow_color"></i> <span>Editar Categoria</span></a>
                     </li>
 
                     <li>
                         <a href="pais.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Editar Pais da Receita</span></a>
+                            <i class="fa fa-edit red_color"></i> <span>Editar Pais da Receita</span></a>
                     </li>
-
+                    <li>
+                        <a href="listar-informacoe-contacto.php">
+                            <i class="fa fa-product-hunt red_color"></i> <span>Problemas e Informaçoes</span></a>
+                    </li>
 
                     <li>
                         <a href="../index.php">
-                            <i class="fa fa-paper-plane red_color"></i> <span>Luso Flavors</span></a>
+                            <i class="fa fa-home orange_color2"></i> <span>Luso Flavors</span></a>
                     </li>
 
                     <li>
@@ -97,8 +109,6 @@ session_start();
                             <i class="fa fa-sign-out red_color"></i> <span>Logout</span></a>
                     </li>
 
-
-                    <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
 
                 </ul>
             </div>
@@ -108,14 +118,14 @@ session_start();
         <div id="content">
             <!-- topbar -->
             <div class="topbar">
-                <nav class="navbar navbar-expand-lg navbar-light">
+
                     <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
-                            <a href="../index.php"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
+
                         </div>
                     </div>
-                </nav>
+
             </div>
             <!-- end topbar -->
             <!-- dashboard inner -->
@@ -128,7 +138,7 @@ session_start();
                             </div>
                         </div>
                     </div>
-
+                <div class="container">
                     <table class="table table-striped table-white">
                         <thead>
                         <tr>
@@ -161,7 +171,7 @@ session_start();
             <td>'.$row['Pais'].'</td>
             <td>'.$row['nome_categoria'].'</td>
             <td><a href="elimina-receita.php?id='.$row['idreceita'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
-            <td><a href="edit-receita.php?id='.$row['idreceita'].'" class="fa fa-wrench green_color"> Editar</a></td>
+            <td><a href="form_edit_receita.php?id='.$row['idreceita'].'" class="fa fa-wrench green_color"> Editar</a></td>
             </tr>';
                             }
                         }
@@ -169,6 +179,7 @@ session_start();
 
                         ?>
                     </table>
+                </div>
 
                     <!-- graph -->
 
