@@ -190,7 +190,9 @@ $totalCarts = getTotalCart($rtConnection);
 <!-- End All Title Box -->
 
 <!-- Start Cart  -->
-<?php if($resultsCarts) : ?>
+
+<?php
+   if($resultsCarts) : ?>
 <form action="carrinh.php?acao=up" method="post">
 <div class="cart-box-main">
     <div class="container">
@@ -313,7 +315,9 @@ $totalCarts = getTotalCart($rtConnection);
     </div>
 </div>
 </form>
-<?php endif?>
+<?php endif ?>
+
+
 <!-- End Cart -->
 
 <!-- Start Instagram Feed  -->

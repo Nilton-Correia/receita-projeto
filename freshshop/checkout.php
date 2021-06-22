@@ -99,6 +99,8 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
 }
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -154,34 +156,22 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
             <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                 <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
+
                 <li class="dropdown">
-                    <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Receita País</a>
                     <ul class="dropdown-menu">
-                        <li><a href="receita-carne.php">Receita de Carne</a></li>
-                        <li><a href="receita-peixe.php">Receita de Peixe</a></li>
-                        <li><a href="sopas.php">Sopas</a></li>
-                        <li><a href="sobremesa-doce.php">Sobremesa e Doce</a></li>
-                        <li><a href="bolos.php">Bolos</a></li>
-                        <li><a href="massa.php">Massa</a></li>
-                        <li><a href="marisco.php">Marisco</a></li>
-                        <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
+                        <li><a href="saotome_principe.php">São Tomé</a></li>
+                        <li><a href="angola.php">Angola</a></li>
+                        <li><a href="portugal.php">Portugal</a></li>
+                        <li><a href="cabo_verde.php">Cabo Verde</a></li>
+                        <li><a href="mocambique.php">Moçambique</a></li>
+                        <li><a href="guine_bissau.php">Giné Bissau</a></li>
+                        <li><a href="guine-equatorial.php">Guiné Equatorial</a></li>
+                        <li><a href="timor_leste.php">Timor-Leste</a></li>
+                        <li><a href="brazil.php">Brasil</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="html/shop.html">São Tomé</a></li>
-                        <li><a href="html/shop-detail.html">Angola</a></li>
-                        <li><a href="html/cart.html">Portugal</a></li>
-                        <li><a href="html/shop.html">Cabo Verde</a></li>
-                        <li><a href="html/checkout.html">Moçambique</a></li>
-                        <li><a href="html/my-account.html">Giné Bissau</a></li>
-                        <li><a href="html/wishlist.html">Guiné Equatorial</a></li>
-                        <li><a href="html/wishlist.html">Timor-Leste</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="recente.php">Receitas recentes</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
+                <li class="nav-item"><a class="nav-link" href="contacto.php">Contacte nos</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -269,11 +259,8 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2>Checkout</h2>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                    <li class="breadcrumb-item active">Checkout</li>
-                </ul>
+                <h2>Finalizar Compra</h2>
+
             </div>
         </div>
     </div>

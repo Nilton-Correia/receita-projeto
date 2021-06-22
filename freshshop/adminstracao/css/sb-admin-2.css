@@ -4901,6 +4901,10 @@ input[type="button"].btn-block {
   padding: 1.25rem;
   overflow-x:scroll ;
 }
+div.dataTables_wrapper {
+  width: 800px;
+  margin: 0 auto;
+}
 
 .card-title {
   margin-bottom: 0.75rem;

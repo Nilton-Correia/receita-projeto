@@ -70,33 +70,21 @@ $totalCarts = getTotalCart($pdoConfig);
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
+
                     <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
-                            <li><a href="receita-carne.php">Receita de Carne</a></li>
-                            <li><a href="receita-peixe.php">Receita de Peixe</a></li>
-                            <li><a href="sopas.php">Sopas</a></li>
-                            <li><a href="sobremesa-doce.php">Sobremesa e Doce</a></li>
-                            <li><a href="bolos.php">Bolos</a></li>
-                            <li><a href="massa.php">Massa</a></li>
-                            <li><a href="marisco.php">Marisco</a></li>
-                            <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
+                            <li><a href="saotome_principe.php">São Tomé</a></li>
+                            <li><a href="angola.php">Angola</a></li>
+                            <li><a href="portugal.php">Portugal</a></li>
+                            <li><a href="cabo_verde.php">Cabo Verde</a></li>
+                            <li><a href="mocambique.php">Moçambique</a></li>
+                            <li><a href="guine_bissau.php">Giné Bissau</a></li>
+                            <li><a href="guine-equatorial.php">Guiné Equatorial</a></li>
+                            <li><a href="timor_leste.php">Timor-Leste</a></li>
+                            <li><a href="brazil.php">Brasil</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="html/shop.html">São Tomé</a></li>
-                            <li><a href="html/shop-detail.html">Angola</a></li>
-                            <li><a href="html/cart.html">Portugal</a></li>
-                            <li><a href="html/shop.html">Cabo Verde</a></li>
-                            <li><a href="html/checkout.html">Moçambique</a></li>
-                            <li><a href="html/my-account.html">Giné Bissau</a></li>
-                            <li><a href="html/wishlist.html">Guiné Equatorial</a></li>
-                            <li><a href="html/wishlist.html">Timor-Leste</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="recente.php">Receitas recentes</a></li>
                     <li class="nav-item"><a class="nav-link" href="contacto.php">Contacte nos</a></li>
                 </ul>
             </div>
@@ -154,12 +142,13 @@ $totalCarts = getTotalCart($pdoConfig);
                             </p>
                         </li>
 
-                        <li class="total">
-                            <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
-                            <span class="float-right"><strong>Total</strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
-                        </li>
+
                     </ul>
                 <?php endforeach;?>
+            <li class="total">
+                <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
+                <span class="float-right"><strong>Total: </strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
+            </li>
             </li>
         </div>
         <!-- End Side Menu -->
@@ -242,17 +231,17 @@ $totalCarts = getTotalCart($pdoConfig);
             </div>
             <div class="col-lg-4 col-sm-12">
                 <div class="contact-info-left">
-                    <h2>CONTACT INFO</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                    <h2>Informações do Contato</h2>
+                    <p>Luso Flavors é uma empresa que esta tem melhores receitas do mundo</p>
                     <ul>
                         <li>
-                            <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 9000 <br>Preston Street Wichita,<br> KS 87213 </p>
+                            <p><i class="fas fa-map-marker-alt"></i>Endereço:Rua Camilo Castelo Branco <br>Bragança,<br> 5300-106 </p>
                         </li>
                         <li>
-                            <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                            <p><i class="fas fa-phone-square"></i>Telefone: <a href="tel:+351 966435435">966435435</a></p>
                         </li>
                         <li>
-                            <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                            <p><i class="fas fa-envelope"></i>Email: <a href="lusoflavors@gmail.com">lusoflavors@gmail.com</a></p>
                         </li>
                     </ul>
                 </div>

@@ -3,10 +3,7 @@
 session_start();
 
 // Check if the perfil_users is logged in, otherwise redirect to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
-    exit;
-}
+
 
 // Include config file
 require_once "confi.php";
