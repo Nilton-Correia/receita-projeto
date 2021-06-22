@@ -96,20 +96,7 @@ $totalCarts = getTotalCart($rtConnection);
                     <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="receita-carne.php">Receita de Carne</a></li>
-                            <li><a href="receita-peixe.php">Receita de Peixe</a></li>
-                            <li><a href="sopas.php">Sopas</a></li>
-                            <li><a href="sobremesa-doce.php">Sobremesa e Doce</a></li>
-                            <li><a href="bolos.php">Bolos</a></li>
-                            <li><a href="massa.php">Massa</a></li>
-                            <li><a href="marisco.php">Marisco</a></li>
-                            <li><a href="sumos-bebidas.php">Sumos e Bebidas</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
+                        <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
                             <li><a href="saotome_principe.php">São Tomé</a></li>
                             <li><a href="angola.php">Angola</a></li>
@@ -121,7 +108,7 @@ $totalCarts = getTotalCart($rtConnection);
                             <li><a href="timor_leste.php">Timor-Leste</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="recente.php">Receitas recentes</a></li>
+
                     <li class="nav-item"><a class="nav-link" href="contacto.php">Contacte nos</a></li>
                 </ul>
             </div>
@@ -214,9 +201,8 @@ $totalCarts = getTotalCart($rtConnection);
                         <thead>
                         <tr>
                             <th>Imgens</th>
-                            <th>Nome Receita</th>
+                            <th>Nome</th>
                             <th>Preço</th>
-                            <th>Quantidade</th>
                             <th>SubTotal</th>
                             <th>Remove</th>
 
@@ -242,7 +228,7 @@ $totalCarts = getTotalCart($rtConnection);
                             <td class="price-pr">
                                 <p><?php echo number_format($result['preco'], 2, ',', '.')?>€</p>
                             </td>
-                            <td class="quantity-box"><input type="number" name="prod[<?php echo $result['idreceita']?>]" size="1" value="<?php echo $result['quantity']?>"></td>
+
                             <td class="total-pr">
                                 <p><?php echo number_format($result['subtotal'], 2, ',', '.')?>€</p>
                             </td>
@@ -302,7 +288,7 @@ $totalCarts = getTotalCart($rtConnection);
 
             <div class="col-lg-6 col-sm-6">
                 <div class="update-box">
-                    <input value="Update Cart" type="submit">
+                    <input value="atualizar carrinho" type="submit">
                 </div>
             </div>
         </div>
