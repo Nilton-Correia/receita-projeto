@@ -4462,6 +4462,7 @@ tbody.collapse.show {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 1.25rem;
+  overflow-x:scroll ;
 }
 
 .card-title {
@@ -8962,6 +8963,7 @@ a.text-dark:hover, a.text-dark:focus {
   }
   .table {
     border-collapse: collapse !important;
+
   }
   .table td,
   .table th {

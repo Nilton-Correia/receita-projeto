@@ -213,6 +213,7 @@
     .topbar {
         padding-left: 0;
         min-width: 320px;
+        overflow: scroll;
     }
     #sidebar.active+#content .topbar {
         padding-left: 0;

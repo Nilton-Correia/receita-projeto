@@ -12,7 +12,7 @@ if(isset($_SESSION["loggedin"])){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<div lang="en">
 <head>
     <!-- basic -->
     <meta charset="utf-8">
@@ -48,7 +48,7 @@ if(isset($_SESSION["loggedin"])){
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="top_page_header">
+<div class="top_page_header">
 
 <div class="is-wrapped">
 
@@ -112,12 +112,28 @@ if(isset($_SESSION["loggedin"])){
                 </ul>
             </div>
         </nav>
+
+
+        <!-- right content -->
+        <div id="content">
+            <!-- topbar -->
+            <div class="topbar">
+
+                <div class="full">
+                    <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                    <div class="logo_section">
+
+                    </div>
+
+                </div>
+
+            </div>
         <!-- end sidebar -->
         <!-- right content -->
 
             <!-- end topbar -->
             <!-- dashboard inner -->
-            <div class="midde_cont">
+            <div class="sidebar_blog_2">
                 <div class="container-fluid">
                     <div class="row column_title">
                         <div class="col-md-12">
@@ -127,7 +143,7 @@ if(isset($_SESSION["loggedin"])){
                         </div>
                     </div>
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-white">
                         <thead>
                         <tr>
                             <th>Nome</th>
@@ -181,7 +197,10 @@ if(isset($_SESSION["loggedin"])){
                 <!-- end dashboard inner -->
             </div>
         </div>
-    </ul>
+        </ul>
+</div>
+</div>
+</div>
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
