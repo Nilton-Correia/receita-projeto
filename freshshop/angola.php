@@ -328,7 +328,7 @@ $totalCarts = getTotalCart($pdoConfig);
 
 
                                 <div class="input-checkbox">
-                                    <input type="checkbox" id="<?php echo $cat['idcategoria'];?>">
+                                    <input type="checkbox" name="<?php echo $cat['idcategoria'];?>">
                                     <label for="<?php echo $cat['idcategoria'];?>">
                                         <span></span>
                                         <a href="?categoria=<?php echo $cat['idcategoria'];?>"><?php echo $cat['nome_categoria'];?></a>

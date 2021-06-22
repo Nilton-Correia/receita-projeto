@@ -21,7 +21,7 @@ if(isset($_SESSION["loggedin"])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <title>Luso Flavors</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -48,9 +48,11 @@ if(isset($_SESSION["loggedin"])){
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="dashboard dashboard_1">
-<div class="full_container">
-    <div class="inner_container">
+<body class="top_page_header">
+
+<div class="is-wrapped">
+
+    <ul class="inner_container">
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar_blog_1">
@@ -76,10 +78,7 @@ if(isset($_SESSION["loggedin"])){
                 <h4>General</h4>
                 <ul class="list-unstyled components">
 
-
-
                     <li><a href="utilizador.php"><i class="fa fa-group purple_color2"></i> <span>Utilizador</span></a></li>
-
 
                     <li>
                         <a href="receita.php">
@@ -115,20 +114,7 @@ if(isset($_SESSION["loggedin"])){
         </nav>
         <!-- end sidebar -->
         <!-- right content -->
-        <div id="content" class="d-flex flex-column">
-            <!-- topbar -->
-            <div class="topbar">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <div class="full">
-                        <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
-                        <div class="logo_section">
 
-
-                        </div>
-
-                    </div>
-                </nav>
-            </div>
             <!-- end topbar -->
             <!-- dashboard inner -->
             <div class="midde_cont">
@@ -140,8 +126,8 @@ if(isset($_SESSION["loggedin"])){
                             </div>
                         </div>
                     </div>
-                <div class="container">
-                    <table class="table table-striped table-white">
+                <div class="card-body">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
                             <th>Nome</th>
@@ -195,7 +181,7 @@ if(isset($_SESSION["loggedin"])){
                 <!-- end dashboard inner -->
             </div>
         </div>
-    </div>
+    </ul>
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>

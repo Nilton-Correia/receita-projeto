@@ -130,13 +130,10 @@ $totalCarts = getTotalCart($pdoConfig);
 
 
         <div class="side">
-
+            <a href="#" class="close-side"><i class="fa fa-times"></i></a>
             <?php
                   foreach($resultsCarts as $result) : ?>
-            <a href="" class="close-side"><i class="fa fa-times"></i></a>
-
-            <li class="cart-list">
-
+            <li class="cart-box">
                     <ul class="cart-list">
                         <li>
                             <a href="ver-receita.php?acao=add&id=" class="photo"><?php echo '<img src="./images/'.$result['imagens'].'" height="250px"/>' ?></a>
@@ -151,17 +148,19 @@ $totalCarts = getTotalCart($pdoConfig);
                             </p>
                         </li>
 
-                        <li class="total">
-                            <a href="carrinh.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
-                            <span class="float-right"><strong>Total</strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
-                        </li>
+
                     </ul>
 
             </li>
             <?php
 
-            endforeach;?>
+            endforeach;
 
+            ?>
+            <li class="total">
+                <a href="carrinh.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
+                <span class="float-right"><strong>Total</strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
+            </li>
 
         </div>
 
@@ -297,21 +296,25 @@ $totalCarts = getTotalCart($pdoConfig);
                                 <p class="sale"><?php echo $cat?></p>
                             </div>
                             <?php echo '<img src="./images/'.$receit['imagens'].'" height="250px"/>' ?>
+
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li>
+                                        <?php if($receit['preco']!=0){echo" ";}else{
+                                        echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '" data-toggle="tooltip" data-placement="right" title="View" ><i class="fas fa-eye"></i></a>';} ?> </li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
 
-                                <a class="cart" href="carrinh.php?acao=add&id=<?php
-                              if($receit['preco']!=0) echo $receit['idreceita']?>" class="card-link">Adicionar ao carrinho</a>
+                                <?php if($receit['preco']!=0){ ?><a class="cart" href="carrinh.php?acao=add&id=<?php
+                              if($receit['preco']!=0) echo $receit['idreceita']?>" class="card-link">Adicionar ao carrinho</a><?php } ?>
 
                             </div>
+
                         </div>
                         <div class="why-text">
 
-                            <h4> <?php  echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '">' . $receit['nome'] . '</a>'; ?></h4>
+                            <h4> <?php if($receit['preco']!=0){echo $receit['nome'];}else{
+                                    echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '">' . $receit['nome'] . '</a>';} ?></h4>
 
 
                             <h5 class="card-subtitle m-2 text text-muted">
