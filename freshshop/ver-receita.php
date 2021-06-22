@@ -212,7 +212,7 @@ $totalCarts = getTotalCart($pdoConfig);
 
 
 
-        <?php foreach($receita as $product) : ?>
+        <?php foreach($receita as $receit) : ?>
 
 
 
@@ -225,7 +225,7 @@ $totalCarts = getTotalCart($pdoConfig);
 <!--  A imagem da receita selecionada         -->
                        <!--- <video width="320" height="240" controls="controls">-->
 
-                        <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
+                        <?php echo '<img src="./images/'.$receit['imagens'].'" height="250px"/>' ?>
 
 
 
@@ -249,22 +249,22 @@ $totalCarts = getTotalCart($pdoConfig);
             </div>
             <div class="col-xl-7 col-lg-7 col-md-6">
                 <div class="single-product-details">
-                    <h2><?php echo $product['nome'] ?> </h2>
+                    <h2><?php echo $receit['nome'] ?> </h2>
                     <h5>  <?php
-                        if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
+                        if(($receit['preco']!=0)){ echo number_format($receit['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
 
                     <h4>Ingredientes</h4>
-                    <p>  <?php echo $product['ingredientes'] ?></p>
+                    <p>  <?php echo $receit['ingredientes'] ?></p>
 
 
                     <h4>Modo de preparação</h4>
-                   <p> <?php echo $product['modo_preparacao'] ?></p>
+                   <p> <?php echo $receit['modo_preparacao'] ?></p>
 
 
                     <div class="price-box-bar">
                         <div class="cart-and-bay-btn">
 
-                            <a class="btn hvr-hover" href="carrinh.php?acao=add&id=<?php echo $product['idreceita']?>"data-fancybox-close="" href="#">Adicionar ao carrinho</a>
+                            <a class="btn hvr-hover" href="carrinh.php?acao=add&id=<?php echo $receit['idreceita']?>" data-fancybox-close="" href="#">Adicionar ao carrinho</a>
                         </div>
                     </div>
 
@@ -281,25 +281,21 @@ $totalCarts = getTotalCart($pdoConfig);
 
                 <!--  A imagem da receita selecionada         -->
 
-                <video width="640" height="480" controls>
-                    <?php echo '<source type="video/mp4" src="./images/'.$product['video'].'"/>' ?>
-                    <source src="video/new-york.mp4" type="video/mp4">
-                    Seu navegador não suporta esse tipo de vídeo.
-                </video>
 
-                <iframe width="560" height="315"<?php echo ' src="'.$product['video'].'" '?>title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 
 
                 <!---  </video>-->
-
+              <?php  echo $receit['video'];?>
 
 
             </div>
 
 
         <?php endforeach;?>
+
+
 
 
 
