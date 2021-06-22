@@ -52,7 +52,7 @@ if(isset($_SESSION["loggedin"])){
 
 <div class="is-wrapped">
 
-    <ul class="inner_container">
+    <div class="inner_container">
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar_blog_1">
@@ -114,10 +114,22 @@ if(isset($_SESSION["loggedin"])){
         </nav>
         <!-- end sidebar -->
         <!-- right content -->
+        <div id="content">
+            <!-- topbar -->
+            <div class="topbar">
 
+                <div class="full">
+                    <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                    <div class="logo_section">
+
+                    </div>
+
+                </div>
+
+            </div>
             <!-- end topbar -->
             <!-- dashboard inner -->
-            <div class="midde_cont">
+            <div  class="table table-responsive">
                 <div class="container-fluid">
                     <div class="row column_title">
                         <div class="col-md-12">
@@ -127,7 +139,7 @@ if(isset($_SESSION["loggedin"])){
                         </div>
                     </div>
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table  class="table-striped table  table-responsive " >
                         <thead>
                         <tr>
                             <th>Nome</th>
@@ -181,7 +193,8 @@ if(isset($_SESSION["loggedin"])){
                 <!-- end dashboard inner -->
             </div>
         </div>
-    </ul>
+</div>
+</div>
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>

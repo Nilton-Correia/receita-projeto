@@ -139,24 +139,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <span class="help-block "><?php echo $password_err; ?></span>
                 </div>
                 <div class="tm-flex-lr">
-                    <a href="resert-password.php" class="white-text small">Forgot Password?</a>
-                    <button type="submit" class="waves-effect btn-large btn-large-white px-4 black-text rounded-0">Login</button>
+                    <a href="resert-password.php" class="white-text small">Esqueceste a tua palavra passe</a>
+                    <button type="submit" class="waves-effect btn-large btn-large-white px-4 black-text ">Entrar</button>
                 </div>
             </form>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-login-r">
             <header class="font-weight-light tm-bg-black p-5 h-100">
                 <h3 class="mt-0 text-white font-weight-light"><a href="index.php">LusoFlavors</a></h3>
-                <p>Poderas encontrar melhor site de receita aqui</p>
+
+                <div class="row">
+                    <h6 class="yellow_color">Ainda não tens conta? crie aqui</h6>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 ml-auto mr-0 text-center">
+                        <a href="registar.php" class="waves-effect btn-large btn-large-white px-4 black-text ">Criar Conta</a>
+                    </div>
+                </div>
 
             </header>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 ml-auto mr-0 text-center">
-            <a href="registar.php" class="waves-effect btn-large btn-large-white px-4 black-text rounded-0">Criar Conta</a>
-        </div>
-    </div>
+
     <footer class="row tm-mt-big mb-3">
         <div class="col-xl-12 text-center">
             <p class="d-inline-block tm-bg-black white-text py-2 tm-px-5">

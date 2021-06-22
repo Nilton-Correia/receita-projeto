@@ -169,14 +169,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+<!-- End Cart -->
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register - Input Form by Tooplate</title>
+    <title>Login Form by Tooplate</title>
     <!--
     Template 2105 Input
     http://www.tooplate.com/view/2105-input
@@ -187,48 +189,63 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="css/tooplate.css">
 </head>
 
-<body id="register">
+<body id="login">
 <div class="container">
-    <div class="row tm-register-row ">
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-register-col-l">
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <div class="row tm-register-row tm-mb-35">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-login-l">
 
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="tm-bg-black p-5 h-100">
 
-                <div class="input-field  <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-
-                    <input placeholder="Username" id="<?php echo $username; ?>" name="username" type="text" class="validate">
+                <div class="input-field <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                    <input placeholder="Username" id="<?php echo $username; ?>"  name="username" type="text" class="validate">
                 </div>
-                <div class="input-field <?php echo (!empty($nome_err)) ? 'has-error' : ''; ?>">
-                    <input placeholder="Nome" id="<?php echo $nome; ?>" name="nome" type="text" class="validate">
+
+                <div class="input-field<?php echo (!empty($nome_err)) ? 'has-error' : ''; ?>">
+                    <input placeholder="Nome Completo" id="<?php echo $nome; ?>"  name="nome" type="text" class="validate">
                 </div>
+
                 <div class="input-field <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
-                    <input placeholder="Email" id="email" name="email" type="text" class="validate">
+                    <input placeholder="E-mail" id="email" name="email"   type="email" class="validate">
                 </div>
-                <div class="input-field <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+
+                <div class="input-field mb-5 <?php echo (!empty($password_err)) ? 'erro no password' : '';?>">
                     <input placeholder="Password" id="<?php echo $password; ?>" name="password" type="password" class="validate">
+
+                </div>
+                <div class="input-field mb-5 <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                    <input placeholder="Confirmar Password" id="<?php echo $confirm_password; ?>" name="confirm_password" type="password" class="validate">
+
                 </div>
 
-                <div class="input-field <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                    <input placeholder="Confirmar password" id="<?php echo $confirm_password; ?>" name="confirm_password" type="password" class="validate">
-                </div>
+                <div class="tm-flex-lr">
 
-                <div class="text-right mt-4">
-                    <button type="submit" class="waves-effect btn-large btn-large-white px-4 black-text">Submeter</button>
+
+                    <button type="submit" class="waves-effect btn-large btn-large-white px-4 black-text ">Submeter</button>
                 </div>
             </form>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-register-col-r">
-            <header class="mb-5">
-                <h3 class="mt-0 text-white"><a href="index.php">LusoFlavors</a></h3>
-                <p>Melhor site de Receita Lusofono</p>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-login-r">
+            <header class="font-weight-light tm-bg-black p-5 h-100">
+                <h3 class="mt-0 text-white font-weight-light"><a href="index.php">LusoFlavors</a></h3>
+
+                <h6 class="yellow_color">Se já tens conta inicia sessão aqui</h6>
+                <div class="tm-flex-lr">
+
+                    <a href="login.php" class="waves-effect btn-large btn-large-white px-4 black-text">Iniciar sessação</a>
+                    <div type="submit" class=""></div>
+                </div>
 
             </header>
-
         </div>
     </div>
+
+    <div class="row">
+
+
+    </div>
     <footer class="row tm-mt-big mb-3">
-        <div class="col-xl-12">
-            <p class="text-center grey-text text-lighten-2 tm-footer-text-small">
+        <div class="col-xl-12 text-center">
+            <p class="d-inline-block tm-bg-black white-text py-2 tm-px-5">
                 Copyright &copy; 2018 Company Name
 
                 - <a rel="nofollow" href="http://www.tooplate.com/view/2105-input">Input</a> by
@@ -247,4 +264,3 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </script>
 </body>
 
-</html>

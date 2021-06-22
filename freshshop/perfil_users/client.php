@@ -1,3 +1,4 @@
+
 <?php
 require("../confi.php");
 session_start();
@@ -12,61 +13,61 @@ if(isset($_SESSION["loggedin"])){
 }
 require_once "../confi.php";
 
-// Define variables and initialize with empty values
+// Definir variaveis e iniciar com valor vazio
 $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = "";
 
-// Processing form data when form is submitted
+// Processando dados do formulário quando o formulário é enviado
 if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["bt"]=="submeter"){
 
-    // Validate new password
+    // Validar new password
     if(empty(trim($_POST["new_password"]))){
-        $new_password_err = "Please enter the new password.";
+        $new_password_err = "Por favor entre com nova password.";
     } elseif(strlen(trim($_POST["new_password"])) < 6){
-        $new_password_err = "Password must have atleast 6 characters.";
+        $new_password_err = "Password tem que ter  6 caracteres.";
     } else{
         $new_password = trim($_POST["new_password"]);
     }
 
-    // Validate confirm password
+    // Validar  confirm password
     if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Please confirm the password.";
+        $confirm_password_err = "Por favor confirme password.";
     } else{
         $confirm_password = trim($_POST["confirm_password"]);
         if(empty($new_password_err) && ($new_password != $confirm_password)){
-            $confirm_password_err = "Password did not match.";
+            $confirm_password_err = "Password não combina.";
         }
     }
 
-    // Check input errors before updating the database
+    // Verifique os erros de entrada antes de atualizar a base de dados
     if(empty($new_password_err) && empty($confirm_password_err)){
         // Prepare an update statement
-        $sql = "UPDATE users SET password = ? WHERE id = ?";
+        $sql = "UPDATE utilizador SET password = ? WHERE id = ?";
 
         if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
+            // Vincular variáveis  instrução preparada como parâmetros
             mysqli_stmt_bind_param($stmt, "si", $param_password, $param_id);
 
-            // Set parameters
+            // Definir parâmetros
             $param_password = password_hash($new_password, PASSWORD_DEFAULT);
             $param_id = $_SESSION["id"];
 
-            // Attempt to execute the prepared statement
+            // Tente executar a declaração preparada
             if(mysqli_stmt_execute($stmt)){
-                // Password updated successfully. Destroy the session, and redirect to login page
+                // Senha atualizada com sucesso. Destrua a sessão e redirecione para a página de login
                 session_destroy();
-                header("location: login.php");
+                header("location: ../login.php");
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
         }
 
-        // Close statement
+        // Fechar declaração
         mysqli_stmt_close($stmt);
     }
 }
-// Close connection
+// Fecha coneção
 
 ?>
 
@@ -143,36 +144,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["bt"]=="submeter"){
         </div>
     </div><!--/.row-->
 
-    <div class="panel panel-container">
-        <div class="row">
-            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-                <div class="panel panel-teal panel-widget border-right">
-                    <div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
-                        <div class="large"><?php echo count($_SESSION['carrinho'])?></div>
-                        <div class="text-muted">Itens</div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-                <div class="panel panel-teal panel-widget border-right">
-                    <div class="row no-padding"><em class="fa fa-xl fa-cart-plus color-gray"></em>
-                        <div class="large"></div>
-                        <div class="text-muted">Encomenda</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-                <div class="panel panel-blue panel-widget border-right">
-                    <div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
-                        <div class="large">0</div>
-                        <div class="text-muted">Mensagem</div>
-                    </div>
-                </div>
-            </div>
-
-        </div><!--/.row-->
-    </div>
 
     <?php
     require_once "../confi.php";
