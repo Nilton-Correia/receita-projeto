@@ -142,7 +142,7 @@ $cat = getCategoria($pdoConfig);
                         </li>
 
                         <li class="total">
-                            <a href="carrinh.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
+                            <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
                             <span class="float-right"><strong>Total</strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
                         </li>
                     </ul>
@@ -297,7 +297,7 @@ $cat = getCategoria($pdoConfig);
 
                                                                 <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                                             </ul>
-                                                            <a class="cart" href="carrinh.php?acao=add&id=<?php echo $product['idreceita']?>">Adicionar Carrinho</a>
+                                                            <a class="cart" href="carrinho.php?acao=add&id=<?php echo $product['idreceita']?>">Adicionar Carrinho</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -469,44 +469,32 @@ $cat = getCategoria($pdoConfig);
 <!-- End Instagram Feed  -->
 
 
-<!-- Start Footer  -->
 <footer>
     <div class="footer-main">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-top-box">
-                        <h3>Business Time</h3>
-                        <ul class="list-time">
-                            <li>Monday - Friday: 08.00am to 05.00pm</li> <li>Saturday: 10.00am to 08.00pm</li> <li>Sunday: <span>Closed</span></li>
-                        </ul>
+
+
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-top-box">
                         <h3>Newsletter</h3>
-                        <form class="newsletter-box">
+                        <form action="" method="post" class="newsletter-box">
                             <div class="form-group">
-                                <input class="" type="email" name="Email" placeholder="Email Address*" />
+                                <input class="" type="email" name="mail" placeholder="Email Address*" />
                                 <i class="fa fa-envelope"></i>
                             </div>
                             <button class="btn hvr-hover" type="submit">Submit</button>
+
                         </form>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-top-box">
-                        <h3>Social Media</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <ul>
-                            <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
-                        </ul>
+
                     </div>
                 </div>
             </div>
@@ -514,38 +502,31 @@ $cat = getCategoria($pdoConfig);
             <div class="row">
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-widget">
-                        <h4>About Freshshop</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class="footer-link">
-                        <h4>Information</h4>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Customer Service</a></li>
-                            <li><a href="#">Our Sitemap</a></li>
-                            <li><a href="#">Terms &amp; Conditions</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Delivery Information</a></li>
-                        </ul>
+                        <h4>Sobre Luso Flavors</h4>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-link-contact">
-                        <h4>Contact Us</h4>
+                        <h4>Contacto</h4>
                         <ul>
                             <li>
-                                <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
+                                <p><i class="fas fa-map-marker-alt"></i>Address: Rua Camilo Castelo Branco <br>Bragança,<br> 5300-106 </p>
                             </li>
                             <li>
                                 <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
                             </li>
                             <li>
-                                <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                <p><i class="fas fa-envelope"></i>Email: <a href="mailto:lusoflavors@gmail.com">lusoflavors@gmail.com</a></p>
                             </li>
                         </ul>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-link">
+                        <h4>Informações</h4>
+
                     </div>
                 </div>
             </div>
@@ -555,10 +536,7 @@ $cat = getCategoria($pdoConfig);
 <!-- End Footer  -->
 
 <!-- Start copyright  -->
-<div class="footer-copyright">
-    <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
-        <a href="https://html.design/">html design</a></p>
-</div>
+
 <!-- End copyright  -->
 
 <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
@@ -576,13 +554,10 @@ $cat = getCategoria($pdoConfig);
 <script src="js/isotope.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/baguetteBox.min.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/jquery.nicescroll.min.js"></script>
 <script src="js/form-validator.min.js"></script>
 <script src="js/contact-form-script.js"></script>
 <script src="js/custom.js"></script>
+
 </body>
 
 </html>
-
-

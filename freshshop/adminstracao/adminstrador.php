@@ -17,7 +17,7 @@ if(isset($_SESSION["loggedin"])){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <!-- basic -->
     <meta charset="utf-8">
@@ -26,7 +26,7 @@ if(isset($_SESSION["loggedin"])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <title>LusoFlavors</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -59,14 +59,14 @@ if(isset($_SESSION["loggedin"])){
             <div class="sidebar_blog_1">
                 <div class="sidebar-header">
                     <div class="logo_section">
-                        <a href="pluto/index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
+                        <a href="pluto/index.html"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
                     </div>
                 </div>
                 <div class="sidebar_user_info">
                     <div class="icon_setting"></div>
                     <div class="user_profle_side">
                         <div class="user_info">
-                            <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Bem-vindo ";echo htmlspecialchars($_SESSION["username"]);
+                            <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Adminstrador ";echo htmlspecialchars($_SESSION["username"]);
                                 }
                                 else{ echo "Conta";}?> </h6>
                             <p><span class="online_animation"></span> Online</p>
@@ -78,13 +78,17 @@ if(isset($_SESSION["loggedin"])){
 
                 <ul class="list-unstyled components">
 
-
+                    <li><a href="adminstrador.php"><i class="fa fa-adjust "></i> <span>Adminstração</span></a></li>
                     <li><a href="utilizador.php"><i class="fa fa-group purple_color2"></i> <span>Utilizador</span></a></li>
 
 
                     <li>
                         <a href="receita.php">
-                            <i class="fa fa-cutlery green_color"></i> <span>Receitas</span></a>
+                            <i class="fa fa-list green_color"></i> <span>Receitas</span></a>
+                    </li>
+                    <li>
+                        <a href="listar_pedido.php">
+                            <i class="fa fa-list-alt green_color"></i> <span>Pedidos</span></a>
                     </li>
                     <li>
                         <a href="categoria.php">
@@ -122,18 +126,9 @@ if(isset($_SESSION["loggedin"])){
                     <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
-                            <a href="pluto/index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
-                        </div>
-                        <div class="right_topbar">
-                            <div class="icon_info">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
-                                    <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
-                                </ul>
 
-                            </div>
                         </div>
+
                     </div>
                 </nav>
             </div>

@@ -197,7 +197,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="tm-bg-black p-5 h-100">
 
                 <div class="input-field <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                    <input placeholder="Username" id="<?php echo $username; ?>"  name="username" type="text" class="validate">
+                    <input placeholder="Nome do Utilizador" id="<?php echo $username; ?>"  name="username" type="text" class="validate">
                 </div>
 
                 <div class="input-field<?php echo (!empty($nome_err)) ? 'has-error' : ''; ?>">
@@ -220,7 +220,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="tm-flex-lr">
 
 
-                    <button type="submit" class="waves-effect btn-large btn-large-white px-4 black-text ">Submeter</button>
+                    <button type="submit" class="waves-effect btn-large btn-large-white px-4 black-text ">Registar</button>
                 </div>
             </form>
         </div>

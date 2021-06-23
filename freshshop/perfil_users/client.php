@@ -120,12 +120,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["bt"]=="submeter"){
         </div>
     </form>
     <ul class="nav menu">
-
-        <li><a href="editar_util.php"><em class="fa fa-product-hunt">&nbsp;</em>Editar Perfil</a></li>
-        <li><a href="editar_util.php"><em class="fa fa-rotate-right">&nbsp;</em>Minhas Receitas</a></li>
-        <li><a href="../carrinh.php"><em class="fa fa-rotate-right">&nbsp;</em>Carrinho</a></li>
+        <li><a href="client.php"><em class="fa fa-user">&nbsp;</em>Perfil</a></li>
+        <li><a href="editar_util.php"><em class="fa fa-user-times">&nbsp;</em>Editar Perfil</a></li>
+        <li><a href="minhas_receita.php"><em class="fa fa-list-alt">&nbsp;</em>Minhas Receitas</a></li>
+        <li><a href="../carrinho.php"><em class="fa fa-shopping-cart">&nbsp;</em>Carrinho</a></li>
     </ul>
-    <li><a href="../logout.php"><em class="fa fa-power-off">&nbsp;</em> Sair</a></li>
+    <li><a href="../logout.php"><em class="fa fa-sign-out">&nbsp;</em> Sair</a></li>
 </div><!--/.sidebar-->
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
@@ -179,7 +179,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["bt"]=="submeter"){
                         <fieldset>
                             <!-- Name input-->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="name">Login</label>
+                                <label class="col-md-3 control-label" for="name">Nome de utilizador</label>
                                 <div class="col-md-9">
                                     <div  class="form-control"><?php echo"$username" ?></div>
                                 </div>
@@ -195,7 +195,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["bt"]=="submeter"){
 
                             <!-- Email input-->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="email">Seu E-mail</label>
+                                <label class="col-md-3 control-label" for="email"> E-mail</label>
                                 <div class="col-md-9">
                                     <div  class="form-control"><?php echo"$email" ?></div>
                                 </div>

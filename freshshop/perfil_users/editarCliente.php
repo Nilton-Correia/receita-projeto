@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 else{
-    echo "  Não foi possível editar. ";
+    echo "  Não foi possível editar os dados do utilizador ";
     exit();
 }
 
@@ -31,7 +31,7 @@ if (!$link->query($editar)) {
     $link->close();  /* fechar a ligação */
 
 } else {
-    header( "location:cliente.php");
+    header( "location:utilizador.php");
 
 }
 $link->close();

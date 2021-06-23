@@ -11,7 +11,6 @@ if(isset($_SESSION["loggedin"])){
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +21,7 @@ if(isset($_SESSION["loggedin"])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <title>LusoFalvors</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -42,9 +41,6 @@ if(isset($_SESSION["loggedin"])){
     <link rel="stylesheet" href="css/perfect-scrollbar.css" />
     <!-- custom css -->
     <link rel="stylesheet" href="css/custom.css" />
-
-    <link rel="stylesheet" href="css/bulma.min.css" />
-    <link href="css/sb-admin-2.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -58,33 +54,36 @@ if(isset($_SESSION["loggedin"])){
             <div class="sidebar_blog_1">
                 <div class="sidebar-header">
                     <div class="logo_section">
-                        <a href="../index.php"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
+                        <a href="pluto/index.html"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
                     </div>
                 </div>
                 <div class="sidebar_user_info">
                     <div class="icon_setting"></div>
                     <div class="user_profle_side">
-
                         <div class="user_info">
                             <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Bem-vindo ";echo htmlspecialchars($_SESSION["username"]);
                                 }
-                                else{ echo "Conta";}?></h6>
+                                else{ echo "Conta";}?> </h6>
                             <p><span class="online_animation"></span> Online</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="sidebar_blog_2">
-                <h4><a href="adminstrador.php" >Administração</a></h4>
+
                 <ul class="list-unstyled components">
 
-
+                    <li><a href="adminstrador.php"><i class="fa fa-adjust "></i> <span>Adminstração</span></a></li>
                     <li><a href="utilizador.php"><i class="fa fa-group purple_color2"></i> <span>Utilizador</span></a></li>
 
 
                     <li>
                         <a href="receita.php">
-                            <i class="fa fa-cutlery green_color"></i> <span>Receitas</span></a>
+                            <i class="fa fa-list green_color"></i> <span>Receitas</span></a>
+                    </li>
+                    <li>
+                        <a href="listar_pedido.php">
+                            <i class="fa fa-list-alt green_color"></i> <span>Pedidos</span></a>
                     </li>
                     <li>
                         <a href="categoria.php">
@@ -118,33 +117,27 @@ if(isset($_SESSION["loggedin"])){
         <div id="content">
             <!-- topbar -->
             <div class="topbar">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="full">
+                        <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                        <div class="logo_section">
 
-                <div class="full">
-                    <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
-                    <div class="logo_section">
-                        <a href="../index.php"><img class="img-responsive" src="../images/logotipo.png" alt="#" /></a>
+                        </div>
+
                     </div>
-
-                </div>
                 </nav>
             </div>
             <!-- end topbar -->
             <!-- dashboard inner -->
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-
-
-                <div class="row">
-
-                    <!-- Area Chart -->
-                    <div class="col-xl-12 col-lg-7">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Lista País de Receita<a href="./form_add_categoria.php"> <img src="../img/adicionar-geral.png" alt=""></a></h6>
-
+            <div class="midde_cont">
+                <div class="container-fluid">
+                    <div class="row column_title">
+                        <div class="col-md-12">
+                            <div class="page_title">
+                                <h2>Listar País</h2>
                             </div>
+                        </div>
+                    </div>
                             <!-- Card Body -->
                             <div class="card-body">
                                 <div class="table-responsive">

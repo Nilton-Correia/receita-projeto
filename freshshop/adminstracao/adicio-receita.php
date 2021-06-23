@@ -13,7 +13,7 @@ if(isset($_SESSION["loggedin"])){
 
 
 
-    if(!empty($_POST['nome'])||!empty($_POST['preco'])||!empty($_POST['imagens'])||!empty($_POST['idPais'])||!empty($_POST['ingredientes'])||!empty($_POST['modo_preparacao'])||!empty($_POST['descricao'])||!empty($_POST['video'])||!empty($_POST['idcategoria'])) {
+    if(!empty($_POST['nome'])||!empty($_POST['preco'])||!empty($_POST['imagens'])||!empty($_POST['idPais'])||!empty($_POST['ingredientes'])||!empty($_POST['modo_preparacao'])||!empty($_POST['descricao'])||!empty($_POST['idcategoria'])) {
         $nome = $_POST['nome'];
         $preco = $_POST['preco'];
         $descricao = $_POST['descricao'];
@@ -37,8 +37,8 @@ if(isset($_SESSION["loggedin"])){
         $imagensActualExt = strtolower(end($imagensExt));
 
         $allowed = array('jpg', 'jpeg', 'png', 'pdf');
-        /* video*/
-      /*  print_r($_FILES);
+        /*
+        print_r($_FILES);
         $video = $_FILES['video'];
         $videoName = $_FILES['video']['name'];
         $videoTmpName = $_FILES['video']['tmp_name'];
@@ -50,8 +50,8 @@ if(isset($_SESSION["loggedin"])){
         $videoActualExt = strtolower(end($videoExt));
 
         $allowed = array('mp4');
-*/
-        $sql = "INSERT INTO receita(nome, preco, descricao, ingredientes, modo_preparacao, idcategoria, idPais, imagens, video) VALUES ('$nome','$preco','$descricao','$ingredientes','$modo_preparacao','$categoria','$idpais','".$imagens['name']."','$video')";
+video*/
+        $sql = "INSERT INTO receita(nome, preco, descricao, ingredientes, modo_preparacao, idcategoria, idPais, imagens, video) VALUES ('$nome','$preco','$descricao','$ingredientes','$modo_preparacao','$categoria','$idpais','".$imagens['name']."','".$video['name']."')";
         if (!mysqli_query($link, $sql)) {
             print_r(mysqli_error($link));
 
@@ -90,7 +90,7 @@ if(isset($_SESSION["loggedin"])){
             } else {
                 echo "Não podes fazer upload deste tipo de video";
             }
-*/
+ */
 
 
         }
@@ -100,6 +100,7 @@ if(isset($_SESSION["loggedin"])){
     }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -111,12 +112,12 @@ if(isset($_SESSION["loggedin"])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <title>LusoFalvors</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- site icon -->
-    <link rel="icon" href="" type="image/png" />
+    <link rel="icon" href="images/fevicon.png" type="image/png" />
     <!-- bootstrap css -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <!-- site css -->
@@ -131,8 +132,9 @@ if(isset($_SESSION["loggedin"])){
     <link rel="stylesheet" href="css/perfect-scrollbar.css" />
     <!-- custom css -->
     <link rel="stylesheet" href="css/custom.css" />
+
     <link rel="stylesheet" href="css/bulma.min.css" />
-    <link href="css/sb-admin-2.css" rel="stylesheet">
+
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -146,32 +148,36 @@ if(isset($_SESSION["loggedin"])){
             <div class="sidebar_blog_1">
                 <div class="sidebar-header">
                     <div class="logo_section">
-                        <a href="../index.php"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
+                        <a href="pluto/index.html"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
                     </div>
                 </div>
                 <div class="sidebar_user_info">
                     <div class="icon_setting"></div>
                     <div class="user_profle_side">
-
                         <div class="user_info">
                             <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Bem-vindo ";echo htmlspecialchars($_SESSION["username"]);
                                 }
-                                else{ echo "Conta";}?></h6>
+                                else{ echo "Conta";}?> </h6>
                             <p><span class="online_animation"></span> Online</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="sidebar_blog_2">
-                <h4>General</h4>
+
                 <ul class="list-unstyled components">
 
+                    <li><a href="adminstrador.php"><i class="fa fa-adjust "></i> <span>Adminstração</span></a></li>
                     <li><a href="utilizador.php"><i class="fa fa-group purple_color2"></i> <span>Utilizador</span></a></li>
 
 
                     <li>
                         <a href="receita.php">
-                            <i class="fa fa-cutlery green_color"></i> <span>Receitas</span></a>
+                            <i class="fa fa-list green_color"></i> <span>Receitas</span></a>
+                    </li>
+                    <li>
+                        <a href="listar_pedido.php">
+                            <i class="fa fa-list-alt green_color"></i> <span>Pedidos</span></a>
                     </li>
                     <li>
                         <a href="categoria.php">
@@ -209,8 +215,9 @@ if(isset($_SESSION["loggedin"])){
                     <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
-                            <a href="pluto/index.html"><img class="img-responsive" src="../images/logotipo.png" alt="#" /></a>
+
                         </div>
+
                     </div>
                 </nav>
             </div>
@@ -220,6 +227,9 @@ if(isset($_SESSION["loggedin"])){
                 <div class="container-fluid">
                     <div class="row column_title">
                         <div class="col-md-12">
+                            <div class="page_title">
+                                <h2></h2>
+                            </div>
                         </div>
                     </div>
 
@@ -240,7 +250,7 @@ if(isset($_SESSION["loggedin"])){
                                         <form action="adicio-receita.php" method="post" enctype="multipart/form-data">
                                             <div class="field">
                                                 <div class="control">
-                                                    <input name="nome" type="text" class="input is-large" placeholder="Nome Produto" autofocus>
+                                                    <input name="nome" type="text" class="input is-large" placeholder="Nome de Receita" autofocus>
                                                 </div>
                                             </div>
                                             <div class="field">
@@ -250,7 +260,7 @@ if(isset($_SESSION["loggedin"])){
                                             </div>
                                             <div class="field">
                                                 <div class="control">
-                                                    <input name="descricao" class="input is-large" type="text" placeholder="Descrição do Produto">
+                                                    <input name="descricao" class="input is-large" type="text" placeholder="Descrição de Receita">
                                                 </div>
                                             </div>
                                             <div class="field">
@@ -283,13 +293,13 @@ if(isset($_SESSION["loggedin"])){
                                             <div class="field">
                                                 <div class="control">
 
-                                                        <input class="input is-large" id="message" name="ingredientes" placeholder="Ingredientes" rows="5">
+                                                        <input class="form-control" id="message" name="ingredientes" placeholder="Ingredientes" rows="5">
 
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="control">
-                                                    <input class="input is-large" id="message" name="modo_preparacao" placeholder="Modo de Preparação" rows="5">
+                                                    <input class="form-control" id="message" name="modo_preparacao" placeholder="Modo de Preparação" rows="5">
 
                                                 </div>
                                             </div>
@@ -328,12 +338,11 @@ if(isset($_SESSION["loggedin"])){
                                             Video
                                             <div class="field">
                                                 <div class="control">
-                                                    <input  id="message" name="video" class="input is-large" rows="5">
-
+                                                    <input name="video" class="input is-large" type="text" placeholder="video">
                                                 </div>
                                             </div>
                                             <br>
-                                            <button type="submit" class="button is-block is-link is-large ">Registar Produto</button>
+                                            <button type="submit" class="button is-block is-link is-large ">Registar Receita</button>
                                         </form>
 
                                     </div>
