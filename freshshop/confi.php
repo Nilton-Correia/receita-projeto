@@ -7,6 +7,7 @@ define('DB_NAME', 'site-receita');
 
 
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$link -> set_charset("utf8");
 
 // Check connection
 if($link === false){

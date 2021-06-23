@@ -11,7 +11,6 @@ if(isset($_SESSION["loggedin"])){
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +21,7 @@ if(isset($_SESSION["loggedin"])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <title>LusoFalvors</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -42,9 +41,6 @@ if(isset($_SESSION["loggedin"])){
     <link rel="stylesheet" href="css/perfect-scrollbar.css" />
     <!-- custom css -->
     <link rel="stylesheet" href="css/custom.css" />
-
-    <link rel="stylesheet" href="css/bulma.min.css" />
-    <link href="css/sb-admin-2.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -58,33 +54,36 @@ if(isset($_SESSION["loggedin"])){
             <div class="sidebar_blog_1">
                 <div class="sidebar-header">
                     <div class="logo_section">
-                        <a href="../index.php"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
+                        <a href="pluto/index.html"><img class="logo_icon img-responsive" src="../images/logotipo.png" alt="#" /></a>
                     </div>
                 </div>
                 <div class="sidebar_user_info">
                     <div class="icon_setting"></div>
                     <div class="user_profle_side">
-
                         <div class="user_info">
                             <h6><?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "Bem-vindo ";echo htmlspecialchars($_SESSION["username"]);
                                 }
-                                else{ echo "Conta";}?></h6>
+                                else{ echo "Conta";}?> </h6>
                             <p><span class="online_animation"></span> Online</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="sidebar_blog_2">
-                <h4><a href="adminstrador.php" >Administração</a></h4>
+
                 <ul class="list-unstyled components">
 
-
+                    <li><a href="adminstrador.php"><i class="fa fa-adjust "></i> <span>Adminstração</span></a></li>
                     <li><a href="utilizador.php"><i class="fa fa-group purple_color2"></i> <span>Utilizador</span></a></li>
 
 
                     <li>
                         <a href="receita.php">
-                            <i class="fa fa-cutlery green_color"></i> <span>Receitas</span></a>
+                            <i class="fa fa-list green_color"></i> <span>Receitas</span></a>
+                    </li>
+                    <li>
+                        <a href="listar_pedido.php">
+                            <i class="fa fa-list-alt green_color"></i> <span>Pedidos</span></a>
                     </li>
                     <li>
                         <a href="categoria.php">
@@ -110,7 +109,6 @@ if(isset($_SESSION["loggedin"])){
                             <i class="fa fa-sign-out red_color"></i> <span>Logout</span></a>
                     </li>
 
-
                 </ul>
             </div>
         </nav>
@@ -119,7 +117,7 @@ if(isset($_SESSION["loggedin"])){
         <div id="content">
             <!-- topbar -->
             <div class="topbar">
-
+                <nav class="navbar navbar-expand-lg navbar-light">
                     <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
@@ -127,11 +125,11 @@ if(isset($_SESSION["loggedin"])){
                         </div>
 
                     </div>
-
+                </nav>
             </div>
             <!-- end topbar -->
             <!-- dashboard inner -->
-            <div class="sidebar_blog_2">
+            <div class="midde_cont">
                 <div class="container-fluid">
                     <div class="row column_title">
                         <div class="col-md-12">
@@ -140,6 +138,7 @@ if(isset($_SESSION["loggedin"])){
                             </div>
                         </div>
                     </div>
+
                     <table class="table table-striped table-white">
                         <thead>
                         <tr>
@@ -158,7 +157,7 @@ if(isset($_SESSION["loggedin"])){
                         </thead>
 
                         <?php
-            require ("../confi.php");
+                      require ("../confi.php");
                         $utilizador="SELECT utilizador.*, tipo_utilizador.* FROM  utilizador INNER JOIN tipo_utilizador ON utilizador.id_tipo= tipo_utilizador.id_tipo";
                         if($resultado=$link->query($utilizador)){
                             while ($row=$resultado->fetch_assoc()){
@@ -171,9 +170,7 @@ if(isset($_SESSION["loggedin"])){
               <td>'.$row['localidade'].'</td>
                <td>'.$row['tipo'].'</td>
             
-              
-            
-            
+   
             <td><a href="elimina-utilizador.php?id='.$row['id'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
             <td><a href="edit-utilizador-formulario.php?id='.$row['id'].'" class="fa fa-wrench green_color"> Editar</a></td>
             </tr>';

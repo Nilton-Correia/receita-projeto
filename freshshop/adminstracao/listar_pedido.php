@@ -11,7 +11,6 @@ if(isset($_SESSION["loggedin"])){
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,43 +134,42 @@ if(isset($_SESSION["loggedin"])){
                     <div class="row column_title">
                         <div class="col-md-12">
                             <div class="page_title">
-                                <h2>Listar Problemas e Informações</h2>
+                                <h2>Listar Pedidos</h2>
                             </div>
                         </div>
                     </div>
- <table class="table table-striped table-white">
+
+                    <table class="table table-striped table-white">
                         <thead>
                         <tr>
 
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Assunto</th>
-                            <th>Mensagem</th>
-                            <th>data de criação</th>
+                            <th>ID</th>
+                            <th>Nome do utilizador</th>
+                            <th>Preco</th>
+
+                            <th>Data de Criação</th>
 
 
 
+                            <th><a href="adicio-utilizador.php" class="fa fa-plus blue2_color">Adiciona</a></th>
                         </tr>
                         </thead>
 
                         <?php
                         require ("../confi.php");
-                        $utilizador="SELECT * FROM  contato ";
+                        $utilizador="SELECT pedido_receita.*, utilizador.nome FROM  pedido_receita INNER JOIN receita ON pedido_receita.receita_idreceita = receita.idreceita INNER JOIN utilizador ON pedido_receita.utilizador_id = utilizador.id";
                         if($resultado=$link->query($utilizador)){
                             while ($row=$resultado->fetch_assoc()){
                                 echo'<tr> 
-       
+            <td>'.$row['receita_idreceita'].'</td>
             <td>'.$row['nome'].'</td>
-            <td>'.$row['email'].'</td> 
-            <td>'.$row['assunto'].'</td>
-             <td>'.$row['mensagem'].'</td>
-              <td>'.$row['created'].'</td>
-               
-            
-              
+            <td>'.$row['preco_unitario'].'</td>
+          
+            <td>'.$row['data_criacao'].'</td> 
             
             
-            <td><a href="eliminar-lista-problema.php?id='.$row['idcontato'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
+   
+            <td><a href="elimina-utilizador.php?id='.$row['receita_idreceita'].'" class="fa fa-trash-o red_color"> Eliminar</a></td>
            
             </tr>';
                             }

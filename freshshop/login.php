@@ -131,7 +131,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="tm-bg-black p-5 h-100">
                 <div class="input-field  <?php echo (!empty($username_err)) ? 'erro no utilizador' : '';?>">
-                    <input placeholder="Username" id="<?php echo $username; ?>" name="username" type="text" class="validate">
+                    <input placeholder="Nome de utilizador" id="<?php echo $username; ?>" name="username" type="text" class="validate">
                     <span class=" help-block"><?php echo $username_err; ?></span>
                 </div>
                 <div class="input-field mb-5 <?php echo (!empty($password_err)) ? 'erro no password' : '';?>">

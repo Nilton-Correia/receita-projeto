@@ -157,7 +157,7 @@ $totalCarts = getTotalCart($pdoConfig);
 
                 ?>
             <li class="total">
-                <a href="carrinh.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
+                <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
                 <span class="float-right"><strong>Total: </strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
             </li>
             </li>
@@ -304,7 +304,7 @@ $totalCarts = getTotalCart($pdoConfig);
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
 
-                                <?php if($receit['preco']!=0){ ?><a class="cart" href="carrinh.php?acao=add&id=<?php
+                                <?php if($receit['preco']!=0){ ?><a class="cart" href="carrinho.php?acao=add&id=<?php
                               if($receit['preco']!=0) echo $receit['idreceita']?>" class="card-link">Adicionar ao carrinho</a><?php } ?>
 
                             </div>
@@ -461,35 +461,30 @@ $totalCarts = getTotalCart($pdoConfig);
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-widget">
                         <h4>Sobre Luso Flavors</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                         </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-link-contact">
+                        <h4>Contacto</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: Rua Camilo Castelo Branco <br>Bragança,<br> 5300-106 </p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:lusoflavors@gmail.com">lusoflavors@gmail.com</a></p>
+                                </li>
+                            </ul>
+
+                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-link">
                         <h4>Informações</h4>
-                        <ul>
 
-                            <li><a href="#">Terms &amp; Conditions</a></li>
-                            <li><a href="politica_privacidade.php">Politica de Privacidade</a></li>
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class="footer-link-contact">
-                        <h4>Contacto</h4>
-                        <ul>
-                            <li>
-                                <p><i class="fas fa-map-marker-alt"></i>Address: Rua Camilo Castelo Branco <br>Bragança,<br> 5300-106 </p>
-                            </li>
-                            <li>
-                                <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
-                            </li>
-                            <li>
-                                <p><i class="fas fa-envelope"></i>Email: <a href="mailto:lusoflavors@gmail.com">lusoflavors@gmail.com</a></p>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -499,10 +494,7 @@ $totalCarts = getTotalCart($pdoConfig);
 <!-- End Footer  -->
 
 <!-- Start copyright  -->
-<div class="footer-copyright">
-    <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
-        <a href="https://html.design/">html design</a></p>
-</div>
+
 <!-- End copyright  -->
 
 <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>

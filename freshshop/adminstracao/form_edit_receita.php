@@ -214,7 +214,7 @@ if(isset($_SESSION["loggedin"])){
                                                         <div class="col-md-12 mb-2">
                                                             <select class="custom-select d-block w-100"  name="r_idPais" >
                                                                 <option value=""></option>
-                                                                <option value=<?php echo $row['idPais'];?> selected><?php echo $row['Pais'];?></option>
+                                                                <option value=<?=$row['idPais']?> selected><?= $row['Pais']?></option>
                                                                 <?php
                                                                 require ("../confi.php");
                                                                 $link->set_charset("utf8");
@@ -230,7 +230,7 @@ if(isset($_SESSION["loggedin"])){
                                                                     while ($rowss = $resultado->fetch_assoc()) {
 
                                                                         ?>
-                                                                        <option value=<?php echo $rowss['idPais'];?>><?php echo $rowss['Pais'];?></option>
+                                                                        <option value=<?= $rowss['idPais']?>><?= $rowss['Pais']?></option>
                                                                         <?php
                                                                     }
 
