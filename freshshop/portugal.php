@@ -309,7 +309,7 @@ $totalCarts = getTotalCart($pdoConfig);
                         <div class="title-left">
                             <h3>Categorias</h3>
                         </div>
-                        <?php
+                        <?php/*
                         require_once ("confi.php");
                         /*comando para selecionar categoria na base de dados*/
                         $consulta = "SELECT * FROM categoria";
@@ -328,7 +328,7 @@ $totalCarts = getTotalCart($pdoConfig);
 
                             <div class="input-checkbox">
                                 <input type="checkbox" id="<?php echo $cat['idcategoria'];?>">
-                                <label for="<?php echo $cat['idcategoria'];?>">
+                               // <label for="<?php echo $cat['idcategoria'];?>">
                                     <span></span>
                                     <a href="?categoria=<?php echo $cat['idcategoria'];?>"><?php echo $cat['nome_categoria'];?></a>
                                 </label>
