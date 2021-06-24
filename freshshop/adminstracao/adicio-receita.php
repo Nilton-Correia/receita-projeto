@@ -103,7 +103,7 @@ video*/
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <!-- basic -->
     <meta charset="utf-8">
