@@ -27,7 +27,7 @@ else{
 $editar ="UPDATE utilizador SET username='$username', nome='$nome', email= '$email', telefone='$telefone',morada='$morada',localidade='$localidade'WHERE id = $id";
 
 if (!$link->query($editar)) {
-    echo " Falha ao executar a consulta: \"$editar\" <br>" . $link->error;
+    echo " Falha ao executar a sql: \"$editar\" <br>" . $link->error;
     $link->close();  /* fechar a ligação */
 
 } else {

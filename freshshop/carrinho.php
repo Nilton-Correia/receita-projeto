@@ -189,6 +189,17 @@ $totalCarts = getTotalCart($rtConnection);
 <!-- Start Cart  -->
 
 <?php
+
+if (count($_SESSION['cart']) == 0){
+    echo '
+        <tr>
+          <td colspan="150">carrinho esta vazio</td>
+        </tr>
+      ';
+}
+else {
+require_once("confi.php");
+
    if($resultsCarts) : ?>
 <form action="carrinho.php?acao=up" method="post">
 <div class="cart-box-main">
@@ -314,6 +325,10 @@ $totalCarts = getTotalCart($rtConnection);
 </form>
 <?php endif ?>
 
+<?php
+}
+?>
+
 
 <!-- End Cart -->
 
@@ -322,7 +337,7 @@ $totalCarts = getTotalCart($rtConnection);
     <div class="main-instagram owl-carousel owl-theme">
         <div class="item">
             <div class="ins-inner-box">
-                <img src="../images/instagram-img-01.jpg" alt="" />
+                <img src="images/instagram-img-01.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -330,7 +345,7 @@ $totalCarts = getTotalCart($rtConnection);
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="../images/instagram-img-02.jpg" alt="" />
+                <img src="images/instagram-img-02.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -338,7 +353,7 @@ $totalCarts = getTotalCart($rtConnection);
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="../images/instagram-img-03.jpg" alt="" />
+                <img src="images/instagram-img-03.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -346,7 +361,7 @@ $totalCarts = getTotalCart($rtConnection);
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="../images/instagram-img-04.jpg" alt="" />
+                <img src="images/instagram-img-04.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -354,7 +369,7 @@ $totalCarts = getTotalCart($rtConnection);
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="../images/instagram-img-05.jpg" alt="" />
+                <img src="images/instagram-img-05.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -362,7 +377,7 @@ $totalCarts = getTotalCart($rtConnection);
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="../images/instagram-img-06.jpg" alt="" />
+                <img src="images/instagram-img-06.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -370,7 +385,7 @@ $totalCarts = getTotalCart($rtConnection);
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="../images/instagram-img-07.jpg" alt="" />
+                <img src="images/instagram-img-07.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -378,7 +393,7 @@ $totalCarts = getTotalCart($rtConnection);
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="../images/instagram-img-08.jpg" alt="" />
+                <img src="images/instagram-img-08.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -386,7 +401,7 @@ $totalCarts = getTotalCart($rtConnection);
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="../images/instagram-img-09.jpg" alt="" />
+                <img src="images/instagram-img-09.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -394,7 +409,7 @@ $totalCarts = getTotalCart($rtConnection);
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <img src="../images/instagram-img-05.jpg" alt="" />
+                <img src="images/instagram-img-05.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>

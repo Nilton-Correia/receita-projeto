@@ -143,8 +143,8 @@ if(isset($_SESSION["loggedin"])){
                         <thead>
                         <tr>
 
-                            <th>Login</th>
-                            <th>Nome</th>
+                            <th>Nome do utilizador</th>
+                            <th>Nome Completo</th>
                             <th>Email</th>
                             <th>Telefone</th>
                             <th>Morada</th>
@@ -186,11 +186,7 @@ if(isset($_SESSION["loggedin"])){
                     <!-- graph -->
 
                     <!-- footer -->
-                    <div class="container-fluid">
-                        <div class="footer">
-                            <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
-                        </div>
-                    </div>
+
                 </div>
                 <!-- end dashboard inner -->
             </div>

@@ -173,12 +173,12 @@ if(isset($_SESSION["loggedin"])){
                                         /* definir o charset utilizado na ligação */
                                         $link->set_charset("utf8");
 
-                                        /* texto sql da consulta*/
-                                        $editar = "SELECT * FROM receita  WHERE idreceita = '$id' ";
+                                        /* texto sql da sql*/
+                                        $editar = "SELECT receita.*, pais.*, categoria.* FROM receita INNER JOIN pais ON pais.idPais = receita.idPais INNER JOIN categoria ON categoria.idcategoria = receita.idcategoria WHERE idreceita = '$id' ";
 
-                                        /* executar a consulta e testar se ocorreu erro */
+                                        /* executar a sql e testar se ocorreu erro */
                                         if (!$resultado = $link->query($editar)) {
-                                            echo ' Falha na consulta: '. $link->error;
+                                            echo ' Falha na sql: '. $link->error;
                                             $link->close();  /* fechar a ligação */
                                         }
                                         else{
@@ -200,9 +200,11 @@ if(isset($_SESSION["loggedin"])){
                                                         <input type="number" name="r_preco" value="<?=$row['preco']?>" class="input is-large" ><br>
                                                         <br>Imagens
                                                         <input type="text" name="r_img" value="<?=$row['imagens']?>" class="input is-large" ><br>
-                                                        <br>Video
-                                                        <input type="text" name="r_video" value="<?=$row['video']?>" class="input is-large" ><br>
 
+                                                        <div class="control">
+                                                            <br>Video
+                                                        <input type="text" name="r_video" value="<?=$row['video']?>" class="input is-large" ><br>
+                                                        </div>
                                                         <br>Descrição
                                                         <input type="text" name="r_desc" value="<?=$row['descricao']?>" class="input is-large"><br>
                                                         <br>Ingredientes
@@ -219,11 +221,11 @@ if(isset($_SESSION["loggedin"])){
                                                                 require ("../confi.php");
                                                                 $link->set_charset("utf8");
                                                                 $tp=$row['idPais'];
-                                                                $consulta = "SELECT * FROM pais where idPais!=$tp";
+                                                                $sql = "SELECT * FROM pais where idPais!=$tp";
 
-                                                                /* executar a consulta e testar se ocorreu erro */
-                                                                if (!$resultado = $link->query($consulta)) {
-                                                                    echo ' Falha na consulta: '. $link->error;
+                                                                /* executar a sql e testar se ocorreu erro */
+                                                                if (!$resultado = $link->query($sql)) {
+                                                                    echo ' Falha na sql: '. $link->error;
                                                                     $link->close();  /* fechar a ligação */
                                                                 }
                                                                 else{
@@ -240,18 +242,18 @@ if(isset($_SESSION["loggedin"])){
                                                         </div>
                                                         Categoria de Receita...
                                                         <div class="col-md-12 mb-2">
-                                                            <select class="custom-select d-block w-100" id="pais" name="nome_categoria" required>
-                                                                <option value=""></option>
+                                                            <select class="custom-select d-block w-100" name="receita_cat" >
+
                                                                 <option value=<?php echo $row['idcategoria'];?> selected><?php echo $row['nome_categoria'];?></option>
                                                                 <?php
-                                                                require ("../confi.php");
-                                                                $link->set_charset("utf8");
-                                                                $ct=$row['idcategoria'];
-                                                                $consulta = "SELECT * FROM categoria where idcategoria!=$ct";
+                                                                require_once("../confi.php");
 
-                                                                /* executar a consulta e testar se ocorreu erro */
-                                                                if (!$resultado = $link->query($consulta)) {
-                                                                    echo ' Falha na consulta: '. $link->error;
+                                                                $ct=$row['idcategoria'];
+                                                                $sql = "SELECT * FROM categoria where idcategoria!=$ct";
+
+                                                                /* executar a sql e testar se ocorreu erro */
+                                                                if (!$resultado = $link->query($sql)) {
+                                                                    echo ' Falha na sql: '. $link->error;
                                                                     $link->close();  /* fechar a ligação */
                                                                 }
                                                                 else{

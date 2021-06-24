@@ -22,7 +22,7 @@ else{
 $editar ="UPDATE categoria SET nome_categoria='$nomecat'WHERE idcategoria = $idcategoria";
 
 if (!$link->query($editar)) {
-    echo " Falha ao executar a consulta: \"$editar\" <br>" . $link->error;
+    echo " Falha ao executar a sql: \"$editar\" <br>" . $link->error;
     $link->close();  /* fechar a ligação */
 
 } else {

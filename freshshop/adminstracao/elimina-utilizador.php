@@ -7,7 +7,7 @@ $utilizador = $_GET['id'];
 $deleta ="DELETE FROM utilizador WHERE id = $utilizador";
 $resultado=$link->query($deleta);
 
-/* texto sql da consulta*/
+/* texto sql da sql*/
 if($resultado['id_tipo']==1) {
     echo " ERRO - Não tem permissão para executar a operação. ";
     echo ' <br> <a href="utilizador.php"> Voltar à lista de Utilizadores </a>' ;

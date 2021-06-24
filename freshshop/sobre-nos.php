@@ -5,15 +5,12 @@ if(!isset($_SESSION['cart'])){
 }
 require_once "functions/receita-funcao.php";
 require_once "functions/cart.php";
+
 $pdoConfig = require_once "confi.php";
-$products = getReceitas($pdoConfig);
 $resultsCarts = getContentCart($pdoConfig);
 $totalCarts = getTotalCart($pdoConfig);
-$products = getCatReceita2($pdoConfig);
-$cat = getCategoria($pdoConfig);
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -74,10 +71,9 @@ $cat = getCategoria($pdoConfig);
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nós</a></li>
-
+                    <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Receita País</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
                             <li><a href="saotome_principe.php">São Tomé</a></li>
                             <li><a href="angola.php">Angola</a></li>
@@ -91,7 +87,7 @@ $cat = getCategoria($pdoConfig);
                         </ul>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contacte nos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacto.php">Contacte nos</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -122,15 +118,26 @@ $cat = getCategoria($pdoConfig);
                     </a></li>
             </ul>
         </div>
+        <!-- End Atribute Navigation -->
+
         <!-- Start Side Menu -->
+
+        <!-- Start Side Menu -->
+
+
+
         <div class="side">
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
             <li class="cart-box">
-                <?php foreach($resultsCarts as $result) : ?>
+                <?php
+                foreach($resultsCarts as $result) : ?>
                     <ul class="cart-list">
                         <li>
                             <a href="ver-receita.php?acao=add&id=" class="photo"><?php echo '<img src="./images/'.$result['imagens'].'" height="250px"/>' ?></a>
-                            <h6><?php echo '<a href="ver-receita.php?acao=add&id=' . $result['idreceita'] . '">' . $result['nome'] . '</a>'; ?></h6>
+
+
+                            <h6><?php echo
+                                    '<a href="ver-receita.php?acao=add&id=' . $result['idreceita'] . '">' . $result['nome'] . '</a>'; ?></h6>
 
                             <p>
                                 <span class="price">
@@ -141,15 +148,21 @@ $cat = getCategoria($pdoConfig);
                             </p>
                         </li>
 
-                        <li class="total">
-                            <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
-                            <span class="float-right"><strong>Total</strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
-                        </li>
+
                     </ul>
-                <?php endforeach;?>
+                <?php endforeach;
+
+                ?>
+            <li class="total">
+                <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
+                <span class="float-right"><strong>Total: </strong><?php echo number_format($totalCarts, 2, ',', '.')?>€</span>
+            </li>
             </li>
         </div>
+
+
         <!-- End Side Menu -->
+
     </nav>
     <!-- End Navigation -->
 </header>
@@ -174,212 +187,145 @@ $cat = getCategoria($pdoConfig);
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2>Shop</h2>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Shop</li>
-                </ul>
+                <h2>Sobre Nós</h2>
+
             </div>
         </div>
     </div>
 </div>
 <!-- End All Title Box -->
 
-<!-- Start Shop Page  -->
-<div class="shop-box-inner">
+<!-- Start About Page  -->
+<div class="about-box-main">
     <div class="container">
         <div class="row">
-            <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
-                <div class="right-product-box">
-                    <div class="product-item-filter row">
-                        <div class="col-12 col-sm-8 text-center text-sm-left">
-                            <div class="toolbar-sorter-right">
-                                <span>Sort by </span>
-                                <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                                    <option data-display="Select">Nothing</option>
-                                    <option value="1">Popularity</option>
-                                    <option value="2">High Price → High Price</option>
-                                    <option value="3">Low Price → High Price</option>
-                                    <option value="4">Best Selling</option>
-                                </select>
-                            </div>
-                            <p>Showing all 4 results</p>
-                        </div>
-                        <div class="col-12 col-sm-4 text-center text-sm-right">
-                            <ul class="nav nav-tabs ml-auto">
-                                <li>
-                                    <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
-                                </li>
-                                <li>
-                                    <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="product-categorie-box">
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
-                                <div class="row">
-                                    <?php
-                                    if($_GET){
-                                        $pesquisar = $_GET['pesquisar'];
-                                    }
-                                    else{
-                                        $pesquisar = " ";
-                                    }
-
-
-                                    ?>
-                                    <?php
-                                    $sql = "SELECT receita.*, pais.*, categoria.* FROM receita INNER JOIN pais ON receita.idPais= pais.idPais INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria WHERE nome LIKE '%$pesquisar%'";
-
-                                    $result = $link->query($sql);
-                                    $result->num_rows;
-                                    if ($result!=null) {
-                                        while($row = $result->fetch_assoc()) {
-
-
-                                            ?>
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="products-single fix">
-                                                    <div class="box-img-hover">
-                                                        <div class="type-lb">
-                                                            <p class="sale">Sale</p>
-                                                        </div>
-                                                        <?php echo '<img src="./images/'.$row['imagens'].'" height="250px"/>' ?>
-                                                        <div class="mask-icon">
-                                                            <ul>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                            </ul>
-                                                            <a class="cart" href="teste.php?acao=add&id=<?php echo $row['idreceita']?>">Add to Cart</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="why-text">
-                                                        <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $row['idreceita'] . '">' . $row['nome'] . '</a>'; ?></h4>
-                                                        <h5>
-                                                            <?php
-                                                            if(($row['preco']!=0)){ echo number_format($row['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
-                                                        </h5>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php
-
-                                        }
-                                    }
-
-                                    ?>
-
-
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="list-view">
-                                <?php foreach($products as $product) : ?>
-                                    <?php $cat=$product['nome_categoria'] ?>
-
-                                    <div class="list-view-box">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="products-single fix">
-                                                    <div class="box-img-hover">
-                                                        <div class="type-lb">
-                                                            <p class="sale"><?php echo $cat?></p>
-                                                        </div>
-                                                        <?php echo '<img src="./images/'.$product['imagens'].'" height="250px"/>' ?>
-
-                                                        <div class="mask-icon">
-                                                            <ul>
-                                                                <li><?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a>'; ?></li>
-
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                                            </ul>
-                                                            <a class="cart" href="carrinho.php?acao=add&id=<?php echo $product['idreceita']?>">Adicionar Carrinho</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                                <div class="why-text full-width">
-                                                    <h5><?php echo '<a href="ver-receita.php?acao=add&id=' . $product['idreceita'] . '">' . $product['nome'] . '</a>'; ?></h5>
-                                                    <h5><?php
-                                                        if(($product['preco']!=0)){ echo number_format($product['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
-                                                    <p><?php echo $product['descricao']?></p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php endforeach;?>
-
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-lg-6">
+                <div class="banner-frame"> <img class="img-fluid" src="images/about-img.jpg" alt="" />
                 </div>
             </div>
+            <div class="col-lg-6">
+                <h2 class="noo-sh-title-top">We are <span>Freshshop</span></h2>
+                <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
+                    voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
+                    sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
+                    Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <a class="btn hvr-hover" href="#">Read More</a>
+            </div>
+        </div>
 
-
-            <div class="top-search">
-                <div class="container">
-                    <div class="input-group">
-                        <form action="pesquisa.php" method="Get">
-                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            <input type="search" class="form-control" name="pesquisar" placeholder="Pesquise">
-                            <button class="input-group-addon close-search"><i class="fa fa-times"></i></button>
-                        </form>
+        <div class="row my-4">
+            <div class="col-12">
+                <h2 class="noo-sh-title">Meet Our Team</h2>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="hover-team">
+                    <div class="our-team"> <img src="../images/img-1.jpg" alt="" />
+                        <div class="team-content">
+                            <h3 class="title">Williamson</h3> <span class="post">Web Developer</span> </div>
+                        <ul class="social">
+                            <li>
+                                <a href="#" class="fab fa-facebook"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-twitter"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-google-plus"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-youtube"></a>
+                            </li>
+                        </ul>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
                     </div>
-                </div>
+                    <div class="team-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                    </div>
+                    <hr class="my-0"> </div>
             </div>
-
-
-
-            <div class="filter-sidebar-left">
-                <div class="title-left">
-                    <h3>Categorias</h3>
-                </div>
-                <?php
-                require_once ("confi.php");
-                /*comando para selecionar categoria na base de dados*/
-                $consulta = "SELECT * FROM categoria";
-                $link->set_charset("utf8");
-
-                /* executar a sql e testar se ocorreu erro */
-                if (!$resultado = $link->query($consulta)) {
-                    echo ' Falha na sql: '. $link->error;
-                    $link->close();  /* fechar a ligação */
-                }
-                else{
-                    while ($cat = $resultado->fetch_assoc()) {
-
-                        ?>
-
-
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="<?php echo $cat['idcategoria'];?>">
-                            <label for="<?php echo $cat['idcategoria'];?>">
-                                <span></span>
-                                <a href="?categoria=<?php echo $cat['idcategoria'];?>"><?php echo $cat['nome_categoria'];?></a>
-                            </label>
-
-                        </div>
-                        <?php
-                    }
-
-                }
-                ?>
-
+            <div class="col-sm-6 col-lg-3">
+                <div class="hover-team">
+                    <div class="our-team"> <img src="../images/img-2.jpg" alt="" />
+                        <div class="team-content">
+                            <h3 class="title">Kristiana</h3> <span class="post">Web Developer</span> </div>
+                        <ul class="social">
+                            <li>
+                                <a href="#" class="fab fa-facebook"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-twitter"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-google-plus"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-youtube"></a>
+                            </li>
+                        </ul>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                    </div>
+                    <div class="team-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                    </div>
+                    <hr class="my-0"> </div>
             </div>
-
+            <div class="col-sm-6 col-lg-3">
+                <div class="hover-team">
+                    <div class="our-team"> <img src="images/img-3.jpg" alt="" />
+                        <div class="team-content">
+                            <h3 class="title">Steve Thomas</h3> <span class="post">Web Developer</span> </div>
+                        <ul class="social">
+                            <li>
+                                <a href="#" class="fab fa-facebook"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-twitter"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-google-plus"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-youtube"></a>
+                            </li>
+                        </ul>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                    </div>
+                    <div class="team-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                    </div>
+                    <hr class="my-0"> </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="hover-team">
+                    <div class="our-team"> <img src="images/img-1.jpg" alt="" />
+                        <div class="team-content">
+                            <h3 class="title">Williamson</h3> <span class="post">Web Developer</span> </div>
+                        <ul class="social">
+                            <li>
+                                <a href="#" class="fab fa-facebook"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-twitter"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-google-plus"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-youtube"></a>
+                            </li>
+                        </ul>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                    </div>
+                    <div class="team-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                    </div>
+                    <hr class="my-0"> </div>
+            </div>
         </div>
     </div>
 </div>
-</div>
-
-</div>
-<!-- End Shop Page -->
+<!-- End About Page -->
 
 <!-- Start Instagram Feed  -->
 <div class="instagram-box">
@@ -469,6 +415,7 @@ $cat = getCategoria($pdoConfig);
 <!-- End Instagram Feed  -->
 
 
+<!-- Start Footer  -->
 <footer>
     <div class="footer-main">
         <div class="container">

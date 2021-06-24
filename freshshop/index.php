@@ -74,7 +74,7 @@ $totalCarts = getTotalCart($pdoConfig);
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sobre-nos.php">Sobre Nós</a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
@@ -133,6 +133,16 @@ $totalCarts = getTotalCart($pdoConfig);
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
             <li class="cart-box">
                 <?php
+
+                if (count($_SESSION['cart']) == 0){
+                    echo '
+        <tr>
+          <td colspan="150">carrinho esta vazio</td>
+        </tr>
+      ';
+                }
+                else {
+                require_once("confi.php");
                   foreach($resultsCarts as $result) : ?>
                     <ul class="cart-list">
                         <li>
@@ -154,7 +164,7 @@ $totalCarts = getTotalCart($pdoConfig);
 
                     </ul>
                 <?php endforeach;
-
+                }
                 ?>
             <li class="total">
                 <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>

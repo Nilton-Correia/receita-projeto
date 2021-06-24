@@ -28,11 +28,11 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
 
     $sql = "SELECT *  FROM receita WHERE idreceita= $id";
 
-    $result = $link->query($sql);
-    $ln = $result->fetch_assoc();
-    $total += $ln['preco'] * $qtd;
-    $nome = $ln['nome'];
-    $preco = $ln['preco'];
+    $resultado = $link->query($sql);
+    $re = $resultado->fetch_assoc();
+    $total += $re['preco'] * $qtd;
+    $nome = $re['nome'];
+    $preco = $re['preco'];
     $abc .="[".$qtd . " " . $nome . "," . " Por: " . $preco."] ";
 
 }        if($_POST) {
@@ -65,11 +65,11 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
         require_once("confi.php");
         $pag = $_POST['paymentMethod'];
 
-        /* texto sql da consulta*/
+        /* texto sql da sql*/
         $consulta = "INSERT INTO receita_encomenda (preco, nome_receita, utilizador_id, pagamento_idpagamento, data_criacao) VALUES ($total,'$abc', '$utilizador', $pag, Now())";
-        /* executar a consulta e testar se ocorreu erro */
+        /* executar a sql e testar se ocorreu erro */
         if (!$link->query($consulta)) {
-            echo " ERRO - Falha ao executar a consulta: \"$consulta\" <br>" . $link->error;
+            echo " ERRO - Falha ao executar a sql: \"$consulta\" <br>" . $link->error;
             $link->close();  /* fechar a ligação */
         } else {
 
@@ -213,16 +213,16 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
     <div class="side">
         <a href="#" class="close-side"><i class="fa fa-times"></i></a>
         <li class="cart-box">
-            <?php foreach($resultsCarts as $result) : ?>
+            <?php foreach($resultsCarts as $resultado) : ?>
                 <ul class="cart-list">
                     <li>
-                        <a href="ver-receita.php?acao=add&id=" class="photo"><?php echo '<img src="./images/'.$result['imagens'].'" height="250px"/>' ?></a>
-                        <h6><?php echo '<a href="ver-receita.php?acao=add&id=' . $result['idreceita'] . '">' . $result['nome'] . '</a>'; ?></h6>
+                        <a href="ver-receita.php?acao=add&id=" class="photo"><?php echo '<img src="./images/'.$resultado['imagens'].'" height="250px"/>' ?></a>
+                        <h6><?php echo '<a href="ver-receita.php?acao=add&id=' . $resultado['idreceita'] . '">' . $resultado['nome'] . '</a>'; ?></h6>
 
                         <p>
                                 <span class="price">
                                   <?php
-                                  if(($result['preco']!=0)){ echo number_format($result['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
+                                  if(($resultado['preco']!=0)){ echo number_format($resultado['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
                                 </span>
 
                         </p>
@@ -305,8 +305,30 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
 
                 </div>
             </div>
+
+
+
             <div class="col-sm-6 col-lg-6 mb-3">
                 <div class="row">
+
+                    <?php
+                    if(count($_SESSION['cart']) == 0){
+                        echo '
+        <tr>
+          <td colspan="5">carrinho vazio</td>
+        </tr>
+      ';
+                    } else {
+                    require_once("./confi.php");
+                    $total=0;
+                    foreach($_SESSION['cart'] as $id => $qtd) {
+                      /* comando para selecionar receita na base de dados*/
+                    $sql = "SELECT *  FROM receita WHERE idreceita= $id";
+
+                    $resultado = $link->query($sql);
+                    $re = $resultado->fetch_assoc();
+                    $total += $re['preco'] * $qtd;
+                    ?>
 
                     <div class="col-md-12 col-lg-12">
                         <div class="order-box">
@@ -319,30 +341,14 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
                             </div>
                             <hr class="my-1">
                             <div class="d-flex">
-                                <h4>Sub Total</h4>
-                                <div class="ml-auto font-weight-bold"> $ 440 </div>
+                                <h4><?php echo ''.$re['nome'].'';?></h4>
+                                <div class="ml-auto font-weight-bold"><?php echo ''.$re['preco'].'';?>&nbsp;Euros</div>
                             </div>
-                            <div class="d-flex">
-                                <h4>Discount</h4>
-                                <div class="ml-auto font-weight-bold"> $ 40 </div>
-                            </div>
-                            <hr class="my-1">
-                            <div class="d-flex">
-                                <h4>Coupon Discount</h4>
-                                <div class="ml-auto font-weight-bold"> $ 10 </div>
-                            </div>
-                            <div class="d-flex">
-                                <h4>Tax</h4>
-                                <div class="ml-auto font-weight-bold"> $ 2 </div>
-                            </div>
-                            <div class="d-flex">
-                                <h4>Shipping Cost</h4>
-                                <div class="ml-auto font-weight-bold"> Free </div>
-                            </div>
+
                             <hr>
                             <div class="d-flex gr-total">
                                 <h5>Total</h5>
-                                <div class="ml-auto h5"> $ 388 </div>
+                                <div class="ml-auto h5"><?php echo $total; ?>&nbsp;Euros</div>
                             </div>
                             <hr> </div>
                     </div>
@@ -352,6 +358,10 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
                     </div>
 
                 </div>
+                <?php
+                }
+                }
+                ?>
             </div>
 
             </form>

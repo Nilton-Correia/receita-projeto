@@ -159,10 +159,10 @@ if(isset($_SESSION["loggedin"])){
                                         /* definir o charset utilizado na ligação */
                                         $link->set_charset("utf8");
 
-                                        /* texto sql da consulta*/
+                                        /* texto sql da sql*/
                                         $catc = 'SELECT * FROM pais';
 
-                                        /* executar a consulta e testar se ocorreu erro */
+                                        /* executar a sql e testar se ocorreu erro */
                                         if($resultado=$link->query($catc)){
                                             while ($row=$resultado->fetch_assoc()){
                                                 echo'<tr> 

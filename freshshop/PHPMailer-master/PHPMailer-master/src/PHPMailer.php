@@ -541,13 +541,13 @@ class PHPMailer
     /**
      * Callback Action function name.
      *
-     * The function that handles the result of the send email action.
+     * The function that handles the resultado of the send email action.
      * It is called out by send() for each email sent.
      *
      * Value can be any php callable: http://www.php.net/is_callable
      *
      * Parameters:
-     *   bool $result        result of the send action
+     *   bool $resultado        resultado of the send action
      *   array   $to            email addresses of the recipients
      *   array   $cc            cc email addresses
      *   array   $bcc           bcc email addresses
@@ -1508,7 +1508,7 @@ class PHPMailer
             && stripos(PHP_OS, 'WIN') === 0
         ) {
             trigger_error(
-                'Your version of PHP is affected by a bug that may result in corrupted messages.' .
+                'Your version of PHP is affected by a bug that may resultado in corrupted messages.' .
                 ' To fix it, switch to sending using SMTP, disable the mail.add_x_header option in' .
                 ' your php.ini, switch to MacOS or Linux, or upgrade your PHP to version 7.0.17+ or 7.1.3+.',
                 E_USER_WARNING
@@ -4643,7 +4643,7 @@ class PHPMailer
             $value = preg_replace('/[ \t]+/', ' ', $value);
             //RFC6376 is slightly unclear here - it says to delete space at the *end* of each value
             //But then says to delete space before and after the colon.
-            //Net result is the same as trimming both ends of the value.
+            //Net resultado is the same as trimming both ends of the value.
             //By elimination, the same applies to the field name
             $lines[$key] = trim($heading, " \t") . ':' . trim($value, " \t");
         }

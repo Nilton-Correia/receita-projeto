@@ -176,12 +176,12 @@ if(isset($_SESSION["loggedin"])){
                                         /* definir o charset utilizado na ligação */
                                         $link->set_charset("utf8");
 
-                                        /* texto sql da consulta*/
+                                        /* texto sql da sql*/
                                         $editar = "SELECT * FROM pais  WHERE idPais = '$id' ";
 
-                                        /* executar a consulta e testar se ocorreu erro */
+                                        /* executar a sql e testar se ocorreu erro */
                                         if (!$resultado = $link->query($editar)) {
-                                            echo ' Falha na consulta: '. $link->error;
+                                            echo ' Falha na sql: '. $link->error;
                                             $link->close();  /* fechar a ligação */
                                         }
                                         else{
