@@ -136,15 +136,15 @@
             Object.keys = function(
                 o, // object
                 k, // key
-                r  // result array
+                r  // resultado array
             ) {
-                // initialize object and result
+                // initialize object and resultado
                 r = [];
                 // iterate over object keys
                 for (k in o)
-                    // fill result array with non-prototypical keys
+                    // fill resultado array with non-prototypical keys
                     r.hasOwnProperty.call(o, k) && r.push(k);
-                // return result
+                // return resultado
                 return r;
             };
         }
@@ -813,7 +813,7 @@
                     title = typeof this.options.title !== 'undefined' ? this.options.title : this.options.noneSelectedText;
                 }
 
-                //strip all HTML tags and trim the result, then unescape any escaped tags
+                //strip all HTML tags and trim the resultado, then unescape any escaped tags
                 this.$button.attr('title', htmlUnescape($.trim(title.replace(/<[^>]*>?/g, ''))));
                 this.$button.children('.filter-option').html(title);
 

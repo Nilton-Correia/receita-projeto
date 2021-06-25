@@ -11,12 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         require("../confi.php");
         $link->set_charset("utf8");
-        /* texto sql da consulta*/
+        /* texto sql da sql*/
         $cp = "INSERT INTO pais (Pais) VALUES ('$nome_pais')";
-        /* executar a consulta e testar se ocorreu erro */
+        /* executar a sql e testar se ocorreu erro */
         if (!$link->query($cp)) {
 
-            echo " ERRO - Falha ao executar a consulta: \"$cp\" <br>" . $link->error;
+            echo " ERRO - Falha ao executar a sql: \"$cp\" <br>" . $link->error;
             $link->close();
         } else {
 

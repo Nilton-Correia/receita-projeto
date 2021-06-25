@@ -315,9 +315,9 @@ $totalCarts = getTotalCart($pdoConfig);
                         $consulta = "SELECT * FROM categoria";
                         $link->set_charset("utf8");
 
-                        /* executar a consulta e testar se ocorreu erro */
+                        /* executar a sql e testar se ocorreu erro */
                         if (!$resultado = $link->query($consulta)) {
-                            echo ' Falha na consulta: '. $link->error;
+                            echo ' Falha na sql: '. $link->error;
                             $link->close();  /* fechar a ligação */
                         }
                         else{

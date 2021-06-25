@@ -7,13 +7,10 @@ require_once "functions/receita-funcao.php";
 require_once "functions/cart.php";
 
 $pdoConfig = require_once "confi.php";
-$receitas = getProductos($pdoConfig);
 $resultsCarts = getContentCart($pdoConfig);
 $totalCarts = getTotalCart($pdoConfig);
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -74,11 +71,11 @@ $totalCarts = getTotalCart($pdoConfig);
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sobre-nos.php">Sobre Nós</a></li>
+                    <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
-                            <li><a href="saotome_principe.php">São Tomé e Príncipe</a></li>
+                            <li><a href="saotome_principe.php">São Tomé</a></li>
                             <li><a href="angola.php">Angola</a></li>
                             <li><a href="portugal.php">Portugal</a></li>
                             <li><a href="cabo_verde.php">Cabo Verde</a></li>
@@ -133,22 +130,12 @@ $totalCarts = getTotalCart($pdoConfig);
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
             <li class="cart-box">
                 <?php
-
-                if (count($_SESSION['cart']) == 0){
-                    echo '
-        <tr>
-          <td colspan="150">carrinho esta vazio</td>
-        </tr>
-      ';
-                }
-                else {
-                require_once("confi.php");
-                  foreach($resultsCarts as $result) : ?>
+                foreach($resultsCarts as $result) : ?>
                     <ul class="cart-list">
                         <li>
                             <a href="ver-receita.php?acao=add&id=" class="photo"><?php echo '<img src="./images/'.$result['imagens'].'" height="250px"/>' ?></a>
 
-                            
+
                             <h6><?php echo
                                     '<a href="ver-receita.php?acao=add&id=' . $result['idreceita'] . '">' . $result['nome'] . '</a>'; ?></h6>
 
@@ -164,7 +151,7 @@ $totalCarts = getTotalCart($pdoConfig);
 
                     </ul>
                 <?php endforeach;
-                }
+
                 ?>
             <li class="total">
                 <a href="carrinho.php" class="btn btn-default hvr-hover btn-cart">ver carrinho</a>
@@ -195,165 +182,157 @@ $totalCarts = getTotalCart($pdoConfig);
 </div>
 <!-- End Top Search -->
 
-<!-- Start Slider -->
-<div id="slides-shop" class="cover-slides">
-    <ul class="slides-container">
-        <li class="text-center">
-            <img src="images/banner-01.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Bem-Vindo a <br> LusoFlavors</strong></h1>
-                        <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
-
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="text-center">
-            <img src="images/log3.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Bem-Vindo a <br> LusoFlavors</strong></h1>
-                        <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
-
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="text-center">
-            <img src="images/banner-03.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20">Bem-Vindo a <br> LusoFlavors</strong></h1>
-                        <p class="m-b-40"> Sabores lusofono mais perto de ti</p>
-
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
-    <div class="slides-navigation">
-        <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-        <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-    </div>
-</div>
-<!-- End Slider -->
-
-<!-- Start Categories  -->
-<!-- End Categories -->
-
-<div class="box-add-products">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <img class="img-fluid" src="images/logim2.jpg" alt="" />
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <img class="img-fluid" src="images/logim3.jpg" alt="" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Start Products  -->
-<div class="products-box">
+<!-- Start All Title Box -->
+<div class="all-title-box">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="title-all text-center">
-                    <h1>Sabores Luso</h1>
-                    <p>Melhores sabores Luso econtras aqui</p>
-                </div>
+                <h2>Sobre Nós</h2>
+
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="special-menu text-center">
-                    <div class="button-group filter-button-group">
-                        <button class="active" data-filter="*">Todos</button>
-                        <button data-filter=".Sobremesa_Doces">Doces</button>
-                        <button data-filter=".Marisco">Mariscos</button>
-                        <button data-filter=".Receita_Peixe">Peixes</button>
-                        <button data-filter=".Receita_Carne">Carnes</button>
-                        <button data-filter=".Massa">Massa</button>
-                        <button data-filter=".Sumo_Bebidas">Sumo e Bebidas</button>
-                        <button data-filter=".Salada">Salada</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row special-list">
-            <?php
-            foreach($receitas as $receit) :  ?>
-                <?php $cat=$receit['nome_categoria'] ?>
-                <div class="col-lg-3 col-md-6 special-grid <?php echo $cat?>">
-                    <div class="products-single fix">
-
-
-
-
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="sale"><?php echo $cat?></p>
-                            </div>
-                            <?php echo '<img src="./images/'.$receit['imagens'].'" height="250px"/>' ?>
-
-                            <div class="mask-icon">
-                                <ul>
-                                    <li>
-                                        <?php if($receit['preco']!=0){echo" ";}else{
-                                        echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '" data-toggle="tooltip" data-placement="right" title="View" ><i class="fas fa-eye"></i></a>';} ?> </li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                </ul>
-
-                                <?php if($receit['preco']!=0){ ?><a class="cart" href="carrinho.php?acao=add&id=<?php
-                              if($receit['preco']!=0) echo $receit['idreceita']?>" class="card-link">Adicionar ao carrinho</a><?php } ?>
-
-                            </div>
-
-                        </div>
-                        <div class="why-text">
-
-                            <h4> <?php if($receit['preco']!=0){echo $receit['nome'];}else{
-                                    echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '">' . $receit['nome'] . '</a>';} ?></h4>
-
-
-                            <h5 class="card-subtitle m-2 text text-muted">
-                                <?php
-                                if(($receit['preco']!=0)){ echo number_format($receit['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
-                        </div>
-
-                    </div>
-
-                </div>
-            <?php endforeach;?>
-
         </div>
     </div>
 </div>
+<!-- End All Title Box -->
 
-<!-- End Products  -->
+<!-- Start About Page  -->
+<div class="about-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="banner-frame"> <img class="img-fluid" src="images/about-img.jpg" alt="" />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h2 class="noo-sh-title-top">We are <span>Freshshop</span></h2>
+                <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
+                    voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
+                    sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
+                    Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <a class="btn hvr-hover" href="#">Read More</a>
+            </div>
+        </div>
 
-<!-- Start Blog  -->
-<div class="latest-blog">
+        <div class="row my-4">
+            <div class="col-12">
+                <h2 class="noo-sh-title">Meet Our Team</h2>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="hover-team">
+                    <div class="our-team"> <img src="../images/img-1.jpg" alt="" />
+                        <div class="team-content">
+                            <h3 class="title">Williamson</h3> <span class="post">Web Developer</span> </div>
+                        <ul class="social">
+                            <li>
+                                <a href="#" class="fab fa-facebook"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-twitter"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-google-plus"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-youtube"></a>
+                            </li>
+                        </ul>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                    </div>
+                    <div class="team-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                    </div>
+                    <hr class="my-0"> </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="hover-team">
+                    <div class="our-team"> <img src="../images/img-2.jpg" alt="" />
+                        <div class="team-content">
+                            <h3 class="title">Kristiana</h3> <span class="post">Web Developer</span> </div>
+                        <ul class="social">
+                            <li>
+                                <a href="#" class="fab fa-facebook"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-twitter"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-google-plus"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-youtube"></a>
+                            </li>
+                        </ul>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                    </div>
+                    <div class="team-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                    </div>
+                    <hr class="my-0"> </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="hover-team">
+                    <div class="our-team"> <img src="images/img-3.jpg" alt="" />
+                        <div class="team-content">
+                            <h3 class="title">Steve Thomas</h3> <span class="post">Web Developer</span> </div>
+                        <ul class="social">
+                            <li>
+                                <a href="#" class="fab fa-facebook"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-twitter"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-google-plus"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-youtube"></a>
+                            </li>
+                        </ul>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                    </div>
+                    <div class="team-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                    </div>
+                    <hr class="my-0"> </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="hover-team">
+                    <div class="our-team"> <img src="images/img-1.jpg" alt="" />
+                        <div class="team-content">
+                            <h3 class="title">Williamson</h3> <span class="post">Web Developer</span> </div>
+                        <ul class="social">
+                            <li>
+                                <a href="#" class="fab fa-facebook"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-twitter"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-google-plus"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="fab fa-youtube"></a>
+                            </li>
+                        </ul>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                    </div>
+                    <div class="team-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                    </div>
+                    <hr class="my-0"> </div>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- End Blog  -->
-
+<!-- End About Page -->
 
 <!-- Start Instagram Feed  -->
 <div class="instagram-box">
     <div class="main-instagram owl-carousel owl-theme">
         <div class="item">
             <div class="ins-inner-box">
-                <img src="images/sala-1.jpg" alt="" />
+                <img src="images/instagram-img-01.jpg" alt="" />
                 <div class="hov-in">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -471,22 +450,22 @@ $totalCarts = getTotalCart($pdoConfig);
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-widget">
                         <h4>Sobre Luso Flavors</h4>
-                         </div>
+                    </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-link-contact">
                         <h4>Contacto</h4>
-                            <ul>
-                                <li>
-                                    <p><i class="fas fa-map-marker-alt"></i>Address: Rua Camilo Castelo Branco <br>Bragança,<br> 5300-106 </p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:lusoflavors@gmail.com">lusoflavors@gmail.com</a></p>
-                                </li>
-                            </ul>
+                        <ul>
+                            <li>
+                                <p><i class="fas fa-map-marker-alt"></i>Address: Rua Camilo Castelo Branco <br>Bragança,<br> 5300-106 </p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-envelope"></i>Email: <a href="mailto:lusoflavors@gmail.com">lusoflavors@gmail.com</a></p>
+                            </li>
+                        </ul>
 
                         </ul>
                     </div>

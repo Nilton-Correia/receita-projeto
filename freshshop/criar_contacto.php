@@ -13,7 +13,7 @@ $result = "INSERT INTO contato(nome, email, assunto, mensagem, created) VALUES (
 
 if(!$link->query($result)){
 
-    echo "ERRO ao executar a consulta: \"$result\"<br>" . $link->error;
+    echo "ERRO ao executar a sql: \"$result\"<br>" . $link->error;
     $link->close(); /*fecha a ligacao*/
 
 

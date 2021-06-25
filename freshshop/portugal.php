@@ -193,7 +193,6 @@ $totalCarts = getTotalCart($pdoConfig);
 </div>
 <!-- End All Title Box -->
 
-
 <!-- Start Shop Page  -->
 <div class="shop-box-inner">
     <div class="container">
@@ -213,105 +212,88 @@ $totalCarts = getTotalCart($pdoConfig);
                                 <li>
                                     <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
                                 </li>
-
+                                <li>
+                                    <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
 
+                    <div class="product-categorie-box">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                <div class="row">
 
+                                    <?php foreach($receitas as $receit) : ?>
+                                        <?php $cat=$receit['nome_categoria'] ?>
 
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale"><?php echo $cat?></p>
+                                                    </div>
+                                                    <?php echo '<img src="./images/'.$receit['imagens'].'" height="250px"/>' ?>
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><?php echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a>'; ?></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="carrinho.php?acao=add&id=<?php echo $receit['idreceita']?>">Adicionar Carrinho</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4> <?php echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '">' . $receit['nome'] . '</a>'; ?></h4>
+                                                    <h5>
+                                                        <?php
+                                                        if(($receit['preco']!=0)){ echo number_format($receit['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
+                                                    </h5>
 
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="special-menu text-center">
-                                <div class="button-group filter-button-group">
-                                    <button class="active" data-filter="*">Todos</button>
-                                    <button data-filter=".Sobremesa_Doces">Doces</button>
-                                    <button data-filter=".Marisco">Mariscos</button>
-                                    <button data-filter=".Receita_Peixe">Peixes</button>
-                                    <button data-filter=".Receita_Carne">Carnes</button>
-                                    <button data-filter=".Massa">Massa</button>
-
-                                    <button data-filter=".Salada">Salada</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
-                    <div class="row special-list">
-                        <?php
-                        foreach($receitas as $receit) :  ?>
-                            <?php $cat=$receit['nome_categoria'] ?>
-                            <div class="col-lg-3 col-md-6 special-grid <?php echo $cat?>">
-                                <div class="products-single fix">
-
-
-
-
-                                    <div class="box-img-hover">
-                                        <div class="type-lb">
-                                            <p class="sale"><?php echo $cat?></p>
-                                        </div>
-                                        <?php echo '<img src="./images/'.$receit['imagens'].'" height="250px"/>' ?>
-
-                                        <div class="mask-icon">
-                                            <ul>
-                                                <li>
-                                                    <?php if($receit['preco']!=0){echo" ";}else{
-                                                        echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '" data-toggle="tooltip" data-placement="right" title="View" ><i class="fas fa-eye"></i></a>';} ?> </li>
-                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                            </ul>
-
-                                            <?php if($receit['preco']!=0){ ?><a class="cart" href="carrinho.php?acao=add&id=<?php
-                                            if($receit['preco']!=0) echo $receit['idreceita']?>" class="card-link">Adicionar ao carrinho</a><?php } ?>
-
+                                                </div>
+                                            </div>
                                         </div>
 
-                                    </div>
-                                    <div class="why-text">
-
-                                        <h4> <?php if($receit['preco']!=0){echo $receit['nome'];}else{
-                                                echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '">' . $receit['nome'] . '</a>';} ?></h4>
-
-
-                                        <h5 class="card-subtitle m-2 text text-muted">
-                                            <?php
-                                            if(($receit['preco']!=0)){ echo number_format($receit['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
-                                    </div>
+                                    <?php endforeach;?>
 
                                 </div>
-
                             </div>
-                        <?php endforeach;?>
+                            <div role="tabpanel" class="tab-pane fade" id="list-view">
+                                <?php foreach($receitas as $receit) : ?>
+                                <?php $cat=$receit['nome_categoria'] ?>
 
-                    </div>
+                                <div class="list-view-box">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale"><?php echo $cat?></p>
+                                                    </div>
+                                                    <?php echo '<img src="./images/'.$receit['imagens'].'" height="250px"/>' ?>
 
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><?php echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a>'; ?></li>
 
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="carrinho.php?acao=add&id=<?php echo $receit['idreceita']?>">Adicionar Carrinho</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                                            <div class="why-text full-width">
+                                                <h5><?php echo '<a href="ver-receita.php?acao=add&id=' . $receit['idreceita'] . '">' . $receit['nome'] . '</a>'; ?></h5>
+                                                <h5><?php
+                                                    if(($receit['preco']!=0)){ echo number_format($receit['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?></h5>
+                                                <p><?php echo $receit['descricao']?></p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php endforeach;?>
 
                             </div>
 
@@ -320,8 +302,50 @@ $totalCarts = getTotalCart($pdoConfig);
                     </div>
                 </div>
             </div>
+            <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                <div class="product-categori">
+
+                    <div class="filter-sidebar-left">
+                        <div class="title-left">
+                            <h3>Categorias</h3>
+                        </div>
+                        <?php
+                        require_once ("confi.php");
+                        /*comando para selecionar categoria na base de dados*/
+                        $consulta = "SELECT * FROM categoria";
+                        $link->set_charset("utf8");
+
+                        /* executar a sql e testar se ocorreu erro */
+                        if (!$resultado = $link->query($consulta)) {
+                            echo ' Falha na sql: '. $link->error;
+                            $link->close();  /* fechar a ligação */
+                        }
+                        else{
+                        while ($cat = $resultado->fetch_assoc()) {
+
+                        ?>
 
 
+                            <div class="input-checkbox">
+                                <input type="checkbox" id="<?php echo $cat['idcategoria'];?>">
+                                <label for="<?php echo $cat['idcategoria'];?>">
+                                    <span></span>
+                                    <a href="?categoria=<?php echo $cat['idcategoria'];?>"><?php echo $cat['nome_categoria'];?></a>
+                                </label>
+
+                            </div>
+                    <?php
+                            }
+
+                            }
+                            ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 <!-- End Shop Page -->
 
 <!-- Start Instagram Feed  -->
@@ -412,119 +436,95 @@ $totalCarts = getTotalCart($pdoConfig);
 <!-- End Instagram Feed  -->
 
 
-<!-- Start Footer  -->
 <footer>
-    <div class="footer-main">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class="footer-top-box">
-                        <h3>Business Time</h3>
-                        <ul class="list-time">
-                            <li>Monday - Friday: 08.00am to 05.00pm</li> <li>Saturday: 10.00am to 08.00pm</li> <li>Sunday: <span>Closed</span></li>
-                        </ul>
+        <div class="footer-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+                            <h3>Newsletter</h3>
+                            <form action="" method="post" class="newsletter-box">
+                                <div class="form-group">
+                                    <input class="" type="email" name="mail" placeholder="Email Address*" />
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <button class="btn hvr-hover" type="submit">Submit</button>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class="footer-top-box">
-                        <h3>Newsletter</h3>
-                        <form class="newsletter-box">
-                            <div class="form-group">
-                                <input class="" type="email" name="Email" placeholder="Email Address*" />
-                                <i class="fa fa-envelope"></i>
-                            </div>
-                            <button class="btn hvr-hover" type="submit">Submit</button>
-                        </form>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4>Sobre Luso Flavors</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class="footer-top-box">
-                        <h3>Social Media</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <ul>
-                            <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
-                        </ul>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link-contact">
+                            <h4>Contacto</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: Rua Camilo Castelo Branco <br>Bragança,<br> 5300-106 </p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:lusoflavors@gmail.com">lusoflavors@gmail.com</a></p>
+                                </li>
+                            </ul>
+
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class="footer-widget">
-                        <h4>About Freshshop</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class="footer-link">
-                        <h4>Information</h4>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Customer Service</a></li>
-                            <li><a href="#">Our Sitemap</a></li>
-                            <li><a href="#">Terms &amp; Conditions</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Delivery Information</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                    <div class="footer-link-contact">
-                        <h4>Contact Us</h4>
-                        <ul>
-                            <li>
-                                <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
-                            </li>
-                            <li>
-                                <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
-                            </li>
-                            <li>
-                                <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
-                            </li>
-                        </ul>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link">
+                            <h4>Informações</h4>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
-<!-- End Footer  -->
+    </footer>
+    <!-- End Footer  -->
 
-<!-- Start copyright  -->
-<div class="footer-copyright">
-    <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
-        <a href="https://html.design/">html design</a></p>
-</div>
-<!-- End copyright  -->
+    <!-- Start copyright  -->
 
-<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+    <!-- End copyright  -->
 
-<!-- ALL JS FILES -->
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- ALL PLUGINS -->
-<script src="js/jquery.superslides.min.js"></script>
-<script src="js/bootstrap-select.js"></script>
-<script src="js/inewsticker.js"></script>
-<script src="js/bootsnav.js"></script>
-<script src="js/images-loded.min.js"></script>
-<script src="js/isotope.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/baguetteBox.min.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/jquery.nicescroll.min.js"></script>
-<script src="js/form-validator.min.js"></script>
-<script src="js/contact-form-script.js"></script>
-<script src="js/custom.js"></script>
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+    <!-- ALL JS FILES -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="js/jquery.superslides.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/inewsticker.js"></script>
+    <script src="js/bootsnav.js"></script>
+    <script src="js/images-loded.min.js"></script>
+    <script src="js/isotope.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/baguetteBox.min.js"></script>
+    <script src="js/form-validator.min.js"></script>
+    <script src="js/contact-form-script.js"></script>
+    <script src="js/custom.js"></script>
+
 </body>
 
 </html>
-

@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $des = filter_input(INPUT_POST, 'r_desc');
     $modo_pre = filter_input(INPUT_POST, 'r_preparacao');
     $pais = filter_input(INPUT_POST, 'r_idPais');
-    $cat = filter_input(INPUT_POST, 'nome_categoria');
+    $cat = filter_input(INPUT_POST, 'receita_cat');
 
 
 
@@ -30,12 +30,12 @@ else{
 }
 
 
-/* texto sql da consulta*/
-$consulta = "UPDATE receita SET  nome ='$nome', preco=$preco, imagens='$img', video='$video', modo_preparacao='$modo_pre', ingredientes=' $ingredientes', descricao='$des', idPais=$pais, idcategoria=$cat where idreceita=$id ";
+/* texto sql da sql*/
+$sql = "UPDATE receita SET  nome ='$nome', preco=$preco, imagens='$img', video='$video', modo_preparacao='$modo_pre', ingredientes=' $ingredientes', descricao='$des', idPais='$pais', idcategoria='$cat' where idreceita=$id ";
 
-/* executar a consulta e testar se ocorreu erro */
-if (!$link->query($consulta)) {
-    echo " ERRO - Falha ao executar a consulta: \"$consulta\" <br>" . $link->error;
+/* executar a sql e testar se ocorreu erro */
+if (!$link->query($sql)) {
+    echo " ERRO - Falha ao executar a sql: \"$sql\" <br>" . $link->error;
     $link->close();  /* fechar a ligação */
 }
 else{

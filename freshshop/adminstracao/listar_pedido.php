@@ -151,7 +151,7 @@ if(isset($_SESSION["loggedin"])){
 
 
 
-                            <th><a href="adicio-utilizador.php" class="fa fa-plus blue2_color">Adiciona</a></th>
+
                         </tr>
                         </thead>
 

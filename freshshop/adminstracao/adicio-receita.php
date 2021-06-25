@@ -272,9 +272,9 @@ video*/
                                                         $link->set_charset("utf8");
                                                         $consulta = 'SELECT * FROM pais';
 
-                                                        /* executar a consulta e testar se ocorreu erro */
+                                                        /* executar a sql e testar se ocorreu erro */
                                                         if (!$resultado = $link->query($consulta)) {
-                                                            echo ' Falha na consulta: '. $link->error;
+                                                            echo ' Falha na sql: '. $link->error;
                                                             $link->close();  /* fechar a ligação */
                                                         }
                                                         else{
@@ -311,9 +311,9 @@ video*/
                                                         $link->set_charset("utf8");
                                                         $consulta = 'SELECT * FROM categoria';
 
-                                                        /* executar a consulta e testar se ocorreu erro */
+                                                        /* executar a sql e testar se ocorreu erro */
                                                         if (!$resultado = $link->query($consulta)) {
-                                                            echo ' Falha na consulta: '. $link->error;
+                                                            echo ' Falha na sql: '. $link->error;
                                                             $link->close();  /* fechar a ligação */
                                                         }
                                                         else{

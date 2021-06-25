@@ -117,12 +117,12 @@ if(isset($_SESSION["loggedin"])){
     $link->set_charset("utf8");
 
     $id=$_SESSION["id"];
-    /* texto sql da consulta*/
+    /* texto sql da sql*/
     $editar = "SELECT * FROM utilizador  WHERE id = '$id' ";
 
-    /* executar a consulta e testar se ocorreu erro */
+    /* executar a sql e testar se ocorreu erro */
     if (!$resultado = $link->query($editar)) {
-        echo ' Falha na consulta: '. $link->error;
+        echo ' Falha na sql: '. $link->error;
         $link->close();  /* fechar a ligação */
     }
     else{
@@ -145,7 +145,7 @@ if(isset($_SESSION["loggedin"])){
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="name">Nome do Utilizador</label>
                                 <div class="col-md-9">
-                                    <input type="text" name="x_username" class="form-control"  value="<?=$row['username']?>" placeholder="login">
+                                    <input type="text" name="x_username" class="form-control"  value="<?=$row['username']?>" placeholder="Nome o utilizador">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -208,9 +208,7 @@ if(isset($_SESSION["loggedin"])){
 
 
       <!--/.col-->
-        <div class="col-sm-12">
-            <p class="back-link">Luso Flavors <a href="https://www.instagram.com/astar_stp" target="_blank">aSTAR</a></p>
-        </div>
+
     </div><!--/.row-->
 </div>	<!--/.main-->
 

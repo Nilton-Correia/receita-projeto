@@ -11,11 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         require("../confi.php");
         $link->set_charset("utf8");
-        /* texto sql da consulta*/
+        /* texto sql da sql*/
         $catc = "INSERT INTO categoria (nome_categoria) VALUES ('$nomecat')";
-        /* executar a consulta e testar se ocorreu erro */
+        /* executar a sql e testar se ocorreu erro */
         if (!$link->query($catc)) {
-            echo "  Falha ao executar a consulta: \"$catc\" <br>" . $link->error;
+            echo "  Falha ao executar a sql: \"$catc\" <br>" . $link->error;
             $link->close();  /* fechar a ligação */
         } else {
 
