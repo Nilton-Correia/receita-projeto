@@ -134,7 +134,7 @@ if(isset($_SESSION["loggedin"])){
                     <div class="row column_title">
                         <div class="col-md-12">
                             <div class="page_title">
-                                <h2>Listar Utilizador</h2>
+                                <h2>Listar receitas</h2>
                             </div>
                         </div>
                     </div>

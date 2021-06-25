@@ -78,7 +78,7 @@ $totalCarts = getTotalCart($pdoConfig);
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
-                            <li><a href="saotome_principe.php">São Tomé</a></li>
+                            <li><a href="saotome_principe.php">São Tomé e Príncipe</a></li>
                             <li><a href="angola.php">Angola</a></li>
                             <li><a href="portugal.php">Portugal</a></li>
                             <li><a href="cabo_verde.php">Cabo Verde</a></li>

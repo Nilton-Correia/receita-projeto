@@ -448,7 +448,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                                 </div>
 
                                                                 <div class="text-right mt-4">
-                                                                    <button type="submit" class="waves-effect btn-large btn-large-white px-4 black-text">Submeter</button>
+                                                                    <button type="submit" class="waves-effect btn-large btn-large-white px-4 black-text">Adicionar</button>
                                                                 </div>
                                                             </form>
                                                         </div>

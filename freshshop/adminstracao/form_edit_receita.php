@@ -201,7 +201,7 @@ if(isset($_SESSION["loggedin"])){
                                                         <br>Imagens
                                                         <input type="text" name="r_img" value="<?=$row['imagens']?>" class="input is-large" ><br>
                                                         <br>Video
-                                                        <input type="text" name="r_video" value="<?=$row['video']?>" class="input is-large" ><br>
+                                                        <input type="text" name="r_video" value="<?=$row['video']?> <br>
 
                                                         <br>Descrição
                                                         <input type="text" name="r_desc" value="<?=$row['descricao']?>" class="input is-large"><br>
