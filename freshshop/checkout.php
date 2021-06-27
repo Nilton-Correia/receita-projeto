@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once ("confi.php");
+require ("confi.php");
 
     if($_SESSION["loggedin"] == true ) {
 
@@ -59,7 +59,7 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
  ";
     $utilizador = $_SESSION['username'];
     if (empty($nome)) {
-        echo "Todos os campos do formulário devem conter valores ";
+        echo "Todos os campos do formulário devem conter valoresss ";
 
     } else {
         require_once("confi.php");
@@ -285,8 +285,8 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
 
                         <div class="mb-3">
                             <label for="email">Introduza o seu Email*</label>
-                            <input type="email" class="form-control" name="email" placeholder="E-mail">
-                            <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
+                            <input type="email" class="form-control" name="email" placeholder="E-mail" required>
+                            <div class="invalid-feedback">Por Favor coloque o seu email </div>
                         </div>
 
                         <div class="title"> <span>Pagamento</span> </div>

@@ -174,7 +174,7 @@ if(isset($_SESSION["loggedin"])){
                                         $link->set_charset("utf8");
 
                                         /* texto sql da consulta*/
-                                        $editar = "SELECT * FROM receita  WHERE idreceita = '$id' ";
+                                        $editar = "SELECT receita.*, pais.*, categoria.* FROM receita INNER JOIN pais ON pais.idPais = receita.idPais INNER JOIN categoria ON categoria.idcategoria = categoria.idcategoria  WHERE idreceita = '$id' ";
 
                                         /* executar a consulta e testar se ocorreu erro */
                                         if (!$resultado = $link->query($editar)) {
@@ -201,7 +201,7 @@ if(isset($_SESSION["loggedin"])){
                                                         <br>Imagens
                                                         <input type="text" name="r_img" value="<?=$row['imagens']?>" class="input is-large" ><br>
                                                         <br>Video
-                                                        <input type="text" name="r_video" value="<?=$row['video']?> <br>
+                                                        <input type="text" name="r_video" value="<?=$row['video']?>" class="input is-large" > <br>
 
                                                         <br>Descrição
                                                         <input type="text" name="r_desc" value="<?=$row['descricao']?>" class="input is-large"><br>
@@ -213,7 +213,7 @@ if(isset($_SESSION["loggedin"])){
                                                         Tipo País
                                                         <div class="col-md-12 mb-2">
                                                             <select class="custom-select d-block w-100"  name="r_idPais" >
-                                                                <option value=""></option>
+
                                                                 <option value=<?=$row['idPais']?> selected><?= $row['Pais']?></option>
                                                                 <?php
                                                                 require ("../confi.php");
@@ -240,8 +240,8 @@ if(isset($_SESSION["loggedin"])){
                                                         </div>
                                                         Categoria de Receita...
                                                         <div class="col-md-12 mb-2">
-                                                            <select class="custom-select d-block w-100" id="pais" name="nome_categoria" required>
-                                                                <option value=""></option>
+                                                            <select class="custom-select d-block w-100"  name="r_cat" required>
+
                                                                 <option value=<?php echo $row['idcategoria'];?> selected><?php echo $row['nome_categoria'];?></option>
                                                                 <?php
                                                                 require ("../confi.php");
@@ -258,7 +258,7 @@ if(isset($_SESSION["loggedin"])){
                                                                     while ($rows = $resultado->fetch_assoc()) {
 
                                                                         ?>
-                                                                        <option value=<?php echo $rows['idcategoria'];?>><?php echo $rows['nome_categoria'];?></option>
+                                                                        <option value=<?= $rows['idcategoria'];?>><?= $rows['nome_categoria'];?></option>
                                                                         <?php
                                                                     }
 

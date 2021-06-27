@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $des = filter_input(INPUT_POST, 'r_desc');
     $modo_pre = filter_input(INPUT_POST, 'r_preparacao');
     $pais = filter_input(INPUT_POST, 'r_idPais');
-    $cat = filter_input(INPUT_POST, 'receita_cat');
+    $cat = filter_input(INPUT_POST, 'r_cat');
 
 
 

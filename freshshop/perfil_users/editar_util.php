@@ -89,7 +89,7 @@ if(isset($_SESSION["loggedin"])){
 
     /* Verificar se foi enviado o pedido para eliminar  */
 
-    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $id = filter_input(INPUT_GET, 'id');
         $operacao = filter_input(INPUT_GET, 'operacao');
 
@@ -105,20 +105,12 @@ if(isset($_SESSION["loggedin"])){
 
 
 
-
-
-
-
-
     /* estabelece a ligação à base de dados */
-    require "../confi.php";
+    require_once "../confi.php";
 
-    /* definir o charset utilizado na ligação */
-    $link->set_charset("utf8");
-
-    $id=$_SESSION["id"];
+    $users = $_SESSION['id'];
     /* texto sql da sql*/
-    $editar = "SELECT * FROM utilizador  WHERE id = '$id' ";
+    $editar = "SELECT * FROM utilizador  WHERE id = '$users'";
 
     /* executar a sql e testar se ocorreu erro */
     if (!$resultado = $link->query($editar)) {

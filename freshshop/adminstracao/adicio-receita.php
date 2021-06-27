@@ -51,7 +51,7 @@ if(isset($_SESSION["loggedin"])){
 
         $allowed = array('mp4');
 video*/
-        $sql = "INSERT INTO receita(nome, preco, descricao, ingredientes, modo_preparacao, idcategoria, idPais, imagens, video) VALUES ('$nome','$preco','$descricao','$ingredientes','$modo_preparacao','$categoria','$idpais','".$imagens['name']."','".$video['name']."')";
+        $sql = "INSERT INTO receita(nome, preco, descricao, ingredientes, modo_preparacao, idcategoria, idPais, imagens, video) VALUES ('$nome','$preco','$descricao','$ingredientes','$modo_preparacao','$categoria','$idpais','".$imagens['name']."','$video')";
         if (!mysqli_query($link, $sql)) {
             print_r(mysqli_error($link));
 
