@@ -16,6 +16,16 @@ $sql = "SELECT receita.*,categoria.*,pais.*  FROM receita INNER JOIN pais ON rec
 }
 
 
+function getPais($pdo){
+
+    $sql = "SELECT * FROM pais";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+
 
 function pesquisar($pdo,$pesquisar)
 {
@@ -35,6 +45,15 @@ function getReceitasByIds($pdo, $ids) {
 	$stmt->execute();
 
 	return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+function getReceitasByIdPais($pdo, $ids) {
+    $sql = "SELECT receita.*, categoria.*, pais.* FROM receita INNER JOIN categoria ON receita.idcategoria=categoria.idcategoria INNER JOIN pais ON receita.idPais= pais.idPais WHERE  idPais IN (".$ids.")";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 

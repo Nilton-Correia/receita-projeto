@@ -150,12 +150,50 @@ $totalCarts = getTotalCart($rtConnection);
 
         <div class="side">
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+            <li class="cart-box">
+                <?php
 
+                if (count($_SESSION['cart']) == 0){
+                    echo '
+        <tr>
+          <td colspan="150">carrinho esta vazio</td>
+        </tr>
+      ';
+                }
+                else {
+                    require_once("confi.php");
+                    foreach($resultsCarts as $result) : ?>
+                        <ul class="cart-list">
+                            <li>
+                                <a href="ver-receita.php?acao=add&id=" class="photo"><?php echo '<img src="./images/'.$result['imagens'].'" height="250px"/>' ?></a>
+
+
+                                <h6><?php echo
+                                        '<a href="ver-receita.php?acao=add&id=' . $result['idreceita'] . '">' . $result['nome'] . '</a>'; ?></h6>
+
+                                <p>
+                                <span class="price">
+                                  <?php
+                                  if(($result['preco']!=0)){ echo number_format($result['preco'], 2, ',', '.');echo "€";}else{echo"gratis";} ?>
+                                </span>
+
+                                </p>
+                            </li>
+
+
+                        </ul>
+                    <?php endforeach;
+                }
+                ?>
+            <li class="total">
+
+                 </li>
+            </li>
         </div>
+
+
         <!-- End Side Menu -->
 
-    </nav>
-        <!-- End Side Menu -->
     </nav>
     <!-- End Navigation -->
 </header>
@@ -165,9 +203,11 @@ $totalCarts = getTotalCart($rtConnection);
 <div class="top-search">
     <div class="container">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search">
-            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            <form action="pesquisa.php" method="Get">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="search" class="form-control" name="pesquisar" placeholder="Pesquise">
+                <button class="input-group-addon close-search"><i class="fa fa-times"></i></button>
+            </form>
         </div>
     </div>
 </div>

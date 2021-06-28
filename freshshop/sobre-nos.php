@@ -71,7 +71,7 @@ $totalCarts = getTotalCart($pdoConfig);
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="html/about.html">Sobre Nós</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sobre-nos.php">Sobre Nós</a></li>
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
@@ -200,23 +200,19 @@ $totalCarts = getTotalCart($pdoConfig);
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <div class="banner-frame"> <img class="img-fluid" src="images/about-img.jpg" alt="" />
+                <div class="banner-frame"> <img class="img-fluid" src="images/pastel4.png" alt="" />
                 </div>
             </div>
             <div class="col-lg-6">
-                <h2 class="noo-sh-title-top">We are <span>Freshshop</span></h2>
-                <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
-                    voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-                    sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
-                    Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <a class="btn hvr-hover" href="#">Read More</a>
+                <h2 class="noo-sh-title-top">Nós somos <span>LUSOFLAVORS</span></h2>
+                <p>"Este projeto é dedicado a todos os interessados, em especial as pessoas pertencentes a comunidade CPLP que queriam conhecer e aprender um pouco da gastronomia lusófona nomeadamente os países como São Tomé e Príncipe, Portugal, Cabo Verde, Angola, Guine Bissau, Moçambique, Brasil, Guine Equatorial e Timor-Leste. E por fim, mas não menos importante gostaríamos de dedicar este projeto aos nossos familiares que nos serviram como referência para crescer e ser ambiciosos quanto ao nosso futuro, serviram também de modelos de inspiração para a concretização deste que é uma etapa importante da nossa vida bem como por todo o apoio"</p>
+              <a class="btn hvr-hover" href="#">Ler mais</a>
             </div>
         </div>
 
         <div class="row my-4">
             <div class="col-12">
-                <h2 class="noo-sh-title">Meet Our Team</h2>
+                <h2 class="noo-sh-title">Conheça nosso time</h2>
             </div>
             <div class="col-sm-6 col-lg-3">
                 <div class="hover-team">
@@ -239,14 +235,12 @@ $totalCarts = getTotalCart($pdoConfig);
                         </ul>
                         <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
                     </div>
-                    <div class="team-description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
-                    </div>
+
                     <hr class="my-0"> </div>
             </div>
             <div class="col-sm-6 col-lg-3">
                 <div class="hover-team">
-                    <div class="our-team"> <img src="../images/img-2.jpg" alt="" />
+                    <div class="our-team"> <img src="../images/" alt="" />
                         <div class="team-content">
                             <h3 class="title">Kristiana</h3> <span class="post">Web Developer</span> </div>
                         <ul class="social">
@@ -263,21 +257,22 @@ $totalCarts = getTotalCart($pdoConfig);
                                 <a href="#" class="fab fa-youtube"></a>
                             </li>
                         </ul>
-                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="false"></i> </div>
                     </div>
                     <div class="team-description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
-                    </div>
+                        <p>O Web Designer é o profissional responsável pelo desenvolvimento de interfaces em aplicações web e web sites. Este profissional também fica encarregado pelo design gráfico, onde o leque é maior, isso porque abrange o desenho de layouts, mídia computadorizada e banners.
+
+                            Ou seja, o Web Designer tem como propósito além de projetar também desenhar web sites, sistemas, aplicativos web e blogs. Um dos seus principais objetivos é tornar a interface gráfica de um site interativa com o usuário e para isso, precisa levar em consideração pontos cruciais como as emoções que este design pode despertar no usuário e quais serão as facilidades de uso do site.</div>
                     <hr class="my-0"> </div>
             </div>
             <div class="col-sm-6 col-lg-3">
                 <div class="hover-team">
-                    <div class="our-team"> <img src="images/img-3.jpg" alt="" />
+                    <div class="our-team"> <img src="images/perfil2.jpg" alt="" />
                         <div class="team-content">
-                            <h3 class="title">Steve Thomas</h3> <span class="post">Web Developer</span> </div>
+                            <h3 class="title">Nilton Correia</h3> <span class="post">Web Developer</span> </div>
                         <ul class="social">
                             <li>
-                                <a href="#" class="fab fa-facebook"></a>
+                                <a href="https://www.facebook.com/nilton.hanakharide.5" class="fab fa-facebook"></a>
                             </li>
                             <li>
                                 <a href="#" class="fab fa-twitter"></a>
@@ -292,18 +287,19 @@ $totalCarts = getTotalCart($pdoConfig);
                         <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
                     </div>
                     <div class="team-description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                        <p>Nilton Correia</p>
+                        Licenciatura em Informática de Gestão
                     </div>
                     <hr class="my-0"> </div>
             </div>
             <div class="col-sm-6 col-lg-3">
                 <div class="hover-team">
-                    <div class="our-team"> <img src="images/img-1.jpg" alt="" />
+                    <div class="our-team"> <img src="images/perfil.jpg" alt="" />
                         <div class="team-content">
-                            <h3 class="title">Williamson</h3> <span class="post">Web Developer</span> </div>
+                            <h3 class="title">Inácio Fernandes</h3> <span class="post">Desenvolvidor Web</span> </div>
                         <ul class="social">
                             <li>
-                                <a href="#" class="fab fa-facebook"></a>
+                                <a href="https://www.facebook.com/inacio.fernandes.560/" class="fab fa-facebook"></a>
                             </li>
                             <li>
                                 <a href="#" class="fab fa-twitter"></a>
@@ -318,7 +314,9 @@ $totalCarts = getTotalCart($pdoConfig);
                         <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
                     </div>
                     <div class="team-description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                        <p>Inácio Fernandes </p>
+                        <p>Licenciatura em Informática de Gestão</p></br>
+                        964957371</p>
                     </div>
                     <hr class="my-0"> </div>
             </div>

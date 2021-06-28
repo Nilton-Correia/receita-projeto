@@ -10,6 +10,8 @@ $pdoConfig = require_once "confi.php";
 $receitas = getProductos($pdoConfig);
 $resultsCarts = getContentCart($pdoConfig);
 $totalCarts = getTotalCart($pdoConfig);
+$categ = getCategoria($pdoConfig);
+$pais = getPais($pdoConfig);
 
 ?>
 
@@ -78,6 +80,7 @@ $totalCarts = getTotalCart($pdoConfig);
                     <li class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Receita País</a>
                         <ul class="dropdown-menu">
+
                             <li><a href="saotome_principe.php">São Tomé e Príncipe</a></li>
                             <li><a href="angola.php">Angola</a></li>
                             <li><a href="portugal.php">Portugal</a></li>
@@ -278,13 +281,12 @@ $totalCarts = getTotalCart($pdoConfig);
                 <div class="special-menu text-center">
                     <div class="button-group filter-button-group">
                         <button class="active" data-filter="*">Todos</button>
-                        <button data-filter=".Sobremesa_Doces">Doces</button>
-                        <button data-filter=".Marisco">Mariscos</button>
-                        <button data-filter=".Receita_Peixe">Peixes</button>
-                        <button data-filter=".Receita_Carne">Carnes</button>
-                        <button data-filter=".Massa">Massa</button>
-                        <button data-filter=".Sumo_Bebidas">Sumo e Bebidas</button>
-                        <button data-filter=".Salada">Salada</button>
+
+                        <?php
+                        foreach($categ as $cats) :  ?>
+                            <button data-filter=".<?php echo $cats['nome_categoria']?>"><?php echo $cats['nome_categoria']?></button>
+
+                        <?php endforeach;?>
                     </div>
                 </div>
             </div>

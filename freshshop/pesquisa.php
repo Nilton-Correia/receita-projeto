@@ -245,7 +245,7 @@ $cat = getCategoria($pdoConfig);
                                                 <div class="products-single fix">
                                                     <div class="box-img-hover">
                                                         <div class="type-lb">
-                                                            <p class="sale">Sale</p>
+
                                                         </div>
                                                         <?php echo '<img src="./images/'.$row['imagens'].'" height="250px"/>' ?>
                                                         <div class="mask-icon">
@@ -322,56 +322,9 @@ $cat = getCategoria($pdoConfig);
             </div>
 
 
-            <div class="top-search">
-                <div class="container">
-                    <div class="input-group">
-                        <form action="pesquisa.php" method="Get">
-                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            <input type="search" class="form-control" name="pesquisar" placeholder="Pesquise">
-                            <button class="input-group-addon close-search"><i class="fa fa-times"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
 
 
 
-            <div class="filter-sidebar-left">
-                <div class="title-left">
-                    <h3>Categorias</h3>
-                </div>
-                <?php
-                require_once ("confi.php");
-                /*comando para selecionar categoria na base de dados*/
-                $consulta = "SELECT * FROM categoria";
-                $link->set_charset("utf8");
-
-                /* executar a sql e testar se ocorreu erro */
-                if (!$resultado = $link->query($consulta)) {
-                    echo ' Falha na sql: '. $link->error;
-                    $link->close();  /* fechar a ligação */
-                }
-                else{
-                    while ($cat = $resultado->fetch_assoc()) {
-
-                        ?>
-
-
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="<?php echo $cat['idcategoria'];?>">
-                            <label for="<?php echo $cat['idcategoria'];?>">
-                                <span></span>
-                                <a href="?categoria=<?php echo $cat['idcategoria'];?>"><?php echo $cat['nome_categoria'];?></a>
-                            </label>
-
-                        </div>
-                        <?php
-                    }
-
-                }
-                ?>
-
-            </div>
 
         </div>
     </div>

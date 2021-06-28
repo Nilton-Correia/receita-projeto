@@ -220,12 +220,12 @@ $totalCarts = getTotalCart($pdoConfig);
             <div class="row">
                 <div class="col-xl-5 col-lg-5 col-md-6">
                     <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
-                        <div class="carousel-inner" role="listbox">
+                        <div >
 
                             <!--  A imagem da receita selecionada         -->
                             <!--- <video width="320" height="240" controls="controls">-->
 
-                            <?php echo '<img src="./images/'.$receit['imagens'].'" height="250px"/>' ?>
+                            <?php echo '<img src="./images/'.$receit['imagens'].'" height="350px"/>' ?>
 
 
 
@@ -234,15 +234,7 @@ $totalCarts = getTotalCart($pdoConfig);
 
 
                         </div>
-                        <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
 
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carousel-example-1" role="button" data-slide="next">
-                            <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            <span class="sr-only">Next</span>
-                        </a>
-                        <ol class="carousel-indicators">
 
 
                     </div>

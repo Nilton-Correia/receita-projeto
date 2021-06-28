@@ -368,6 +368,12 @@ foreach ($_SESSION['cart'] as $id => $qtd) {
 
         </div>
 
+        <form action="minhas_receitas.php" method="post" >
+            <input name="idreceita" value="<?=$re['idreceita']?>">
+            <input name="idreceita" value="<?=$_SESSION['id']?>">
+
+        </form>
+
     </div>
 </div>
 <!-- End Cart -->
